@@ -4,6 +4,8 @@
 # tiltDataAnalysis
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/2DegreesInvesting/tiltDataAnalysis/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/2DegreesInvesting/tiltDataAnalysis/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of tiltDataAnalysis is to analyze tilt output data.
