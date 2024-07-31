@@ -16,11 +16,16 @@ Suggests:
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Imports: 
+    dplyr,
     readr,
+    rlang,
+    stats,
+    tidyselect,
     tiltIndicator (>= 0.0.0.9228),
     tiltIndicatorAfter (>= 0.0.0.9056),
     tiltToyData (>= 0.0.0.9204),
-    tiltTransitionRisk (>= 0.0.0.9003)
+    tiltTransitionRisk (>= 0.0.0.9003),
+    utils
 Remotes: 
     2degreesinvesting/tiltIndicatorAfter,
     2degreesinvesting/tiltToyData,
@@ -28,3 +33,4 @@ Remotes:
 Depends: 
     R (>= 2.10)
 LazyData: true
+Config/Needs/website: rmarkdown
