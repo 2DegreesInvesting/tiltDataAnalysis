@@ -26,17 +26,37 @@ emission_product_example <- example_emission_product_co2_des_analysis()
 emission_product_example
 ```
 
+This example calculates the descriptive analysis for benchmark "all".
+ 
+```{r}
+co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "all"
+ )
+co2_all
+```
+
 This example calculates the descriptive analysis for benchmark "tilt_subsector".
  
 ```{r}
-output <- calculate_co2_descriptive_analysis_per_benchmark(
+co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "tilt_subsector"
  )
-output
+co2_tilt_subsector
+```
+
+This example calculates the descriptive analysis for benchmark "unit_tilt_subsector".
+ 
+```{r}
+co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit_tilt_subsector"
+ )
+co2_unit_tilt_subsector
 ```
 
 Similarly, function `calculate_co2_descriptive_analysis_per_benchmark()` is used 
-to create descriptive analysis of co2_footprint for benchmarks `all`, `unit`, 
-`isic_4digit`, `unit_isic_4digit`, and `unit_tilt_subsector` (all six emissions' 
+to calculate descriptive analysis of co2_footprint for benchmarks `unit`, 
+`isic_4digit`, and `unit_isic_4digit`(all six emissions' 
 profile benchmarks).
