@@ -15,11 +15,11 @@
 #' emission_product_example
 #'
 #' # Calculates the descriptive analysis for benchmark "tilt_subsector"
-#' calculate_co2_footprint_descriptive_analysis_per_benchmark(
+#' calculate_co2_descriptive_analysis_per_benchmark(
 #'   emission_product_example,
 #'   "tilt_subsector"
 #' )
-calculate_co2_footprint_descriptive_analysis_per_benchmark <- function(emission_product, benchmark) {
+calculate_co2_descriptive_analysis_per_benchmark <- function(emission_product, benchmark) {
   if (benchmark == "all") {
     select_benchmarks <- c("benchmark", "co2_footprint", "ep_product")
     group_benchmark <- NULL
