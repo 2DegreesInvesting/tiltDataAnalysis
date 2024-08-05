@@ -11,6 +11,7 @@
 #' @importFrom rlang .data
 #' @importFrom stats median
 #' @importFrom stats sd
+#' @importFrom tibble tribble
 #' @importFrom tidyselect all_of
 #' @importFrom tiltIndicator unnest_company
 #' @importFrom tiltIndicator unnest_product

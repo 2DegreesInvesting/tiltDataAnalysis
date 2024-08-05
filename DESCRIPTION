@@ -20,6 +20,7 @@ Imports:
     readr,
     rlang,
     stats,
+    tibble,
     tidyselect,
     tiltIndicator (>= 0.0.0.9228),
     tiltIndicatorAfter (>= 0.0.0.9056),
