@@ -19,14 +19,14 @@ library(tibble)
 options(readr.show_col_types = FALSE)
 ```
 
-Subset of product-level output of Emissions profile.
+Example subset of product-level output of Emissions profile.
 
 ```{r}
 emission_product_example <- example_emission_product_co2_des_analysis()
 emission_product_example
 ```
 
-This example calculates the descriptive analysis for benchmark "all".
+Descriptive analysis for benchmark "all".
  
 ```{r}
 co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
@@ -36,7 +36,27 @@ co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
 co2_all
 ```
 
-This example calculates the descriptive analysis for benchmark "tilt_subsector".
+Descriptive analysis for benchmark "unit".
+ 
+```{r}
+co2_unit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit"
+ )
+co2_unit
+```
+
+Descriptive analysis for benchmark "isic_4digit".
+ 
+```{r}
+co2_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "isic_4digit"
+ )
+co2_isic_4digit
+```
+
+Descriptive analysis for benchmark "tilt_subsector".
  
 ```{r}
 co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
@@ -46,7 +66,7 @@ co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
 co2_tilt_subsector
 ```
 
-This example calculates the descriptive analysis for benchmark "unit_tilt_subsector".
+Descriptive analysis for benchmark "unit_tilt_subsector".
  
 ```{r}
 co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
@@ -56,7 +76,12 @@ co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
 co2_unit_tilt_subsector
 ```
 
-Similarly, function `calculate_co2_descriptive_analysis_per_benchmark()` is used 
-to calculate descriptive analysis of co2_footprint for benchmarks `unit`, 
-`isic_4digit`, and `unit_isic_4digit`(all six emissions' 
-profile benchmarks).
+Descriptive analysis for benchmark "unit_isic_4digit".
+ 
+```{r}
+co2_unit_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit_isic_4digit"
+ )
+co2_unit_isic_4digit
+```
