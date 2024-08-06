@@ -1,0 +1,87 @@
+---
+title: "Descriptive analysis of co2_footprint per benchmark"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This article shows how to calculate the descriptive analysis of co2_footprint per
+benchmark using product-level output of Emissions profile indicator.
+
+```{r setup}
+library(tiltDataAnalysis)
+library(tibble)
+
+options(readr.show_col_types = FALSE)
+```
+
+Example subset of product-level output of Emissions profile.
+
+```{r}
+emission_product_example <- example_emission_product_co2_des_analysis()
+emission_product_example
+```
+
+Descriptive analysis for benchmark "all".
+ 
+```{r}
+co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "all"
+ )
+co2_all
+```
+
+Descriptive analysis for benchmark "unit".
+ 
+```{r}
+co2_unit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit"
+ )
+co2_unit
+```
+
+Descriptive analysis for benchmark "isic_4digit".
+ 
+```{r}
+co2_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "isic_4digit"
+ )
+co2_isic_4digit
+```
+
+Descriptive analysis for benchmark "tilt_subsector".
+ 
+```{r}
+co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "tilt_subsector"
+ )
+co2_tilt_subsector
+```
+
+Descriptive analysis for benchmark "unit_tilt_subsector".
+ 
+```{r}
+co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit_tilt_subsector"
+ )
+co2_unit_tilt_subsector
+```
+
+Descriptive analysis for benchmark "unit_isic_4digit".
+ 
+```{r}
+co2_unit_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "unit_isic_4digit"
+ )
+co2_unit_isic_4digit
+```
