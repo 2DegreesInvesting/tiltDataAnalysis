@@ -3,6 +3,7 @@ library(dplyr, warn.conflicts = FALSE)
 library(tiltToyData, warn.conflicts = FALSE)
 library(tiltTransitionRisk, warn.conflicts = FALSE)
 library(tiltIndicatorAfter, warn.conflicts = FALSE)
+library(tiltPolish, warn.conflicts = FALSE)
 
 set.seed(123)
 restore <- options(list(
