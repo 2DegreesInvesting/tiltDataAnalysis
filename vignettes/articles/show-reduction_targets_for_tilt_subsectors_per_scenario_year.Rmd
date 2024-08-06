@@ -1,0 +1,37 @@
+---
+title: "Show reduction targets for all tilt_subsectors per scenario-year benchmark"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This article outlines how to show reduction targets for all `tilt_subsectors` per
+scenario-year benchmark using product-level output of Sector profile indicator.
+
+```{r setup}
+library(tiltDataAnalysis)
+options(readr.show_col_types = FALSE)
+```
+
+Example subset of product-level output of Sector profile.
+
+```{r}
+sector_product_example <- product_sector |>
+  dplyr::select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+  dplyr::distinct()
+
+sector_product_example
+```
+
+Shows reduction targets for all `tilt_subsectors` per scenario-year benchmark.
+
+```{r}
+result <- show_reduction_targets_for_tilt_subsectors_per_scenario_year(
+   sector_product_example
+ )
+result
+```
