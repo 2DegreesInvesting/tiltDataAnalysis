@@ -13,7 +13,6 @@ This article outlines how to show reduction targets for all `tilt_subsectors` pe
 scenario-year benchmark using product-level output of Sector profile indicator.
 
 ```{r setup}
-library(dplyr)
 library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 ```
@@ -22,8 +21,8 @@ Example subset of product-level output of Sector profile.
 
 ```{r}
 sector_product_example <- product_sector |>
-  select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
-  distinct()
+  dplyr::select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+  dplyr::distinct()
 
 sector_product_example
 ```
