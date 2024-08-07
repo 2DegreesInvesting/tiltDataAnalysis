@@ -2,9 +2,12 @@
 % Please edit documentation in R/example_data.R
 \name{example_emission_product_co2_des_analysis}
 \alias{example_emission_product_co2_des_analysis}
+\alias{example_transition_risk_product_trs_des_analysis}
 \title{Example raw datasets}
 \usage{
 example_emission_product_co2_des_analysis()
+
+example_transition_risk_product_trs_des_analysis()
 }
 \value{
 A dataframe.
@@ -15,5 +18,6 @@ package.
 }
 \examples{
 example_emission_product_co2_des_analysis()
+example_transition_risk_product_trs_des_analysis()
 }
 \keyword{internal}
