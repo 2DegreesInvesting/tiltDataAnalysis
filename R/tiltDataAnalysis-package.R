@@ -11,6 +11,7 @@
 #' @importFrom readr read_csv
 #' @importFrom rlang .data
 #' @importFrom stats median
+#' @importFrom stats quantile
 #' @importFrom stats sd
 #' @importFrom tibble tribble
 #' @importFrom tidyr pivot_wider
