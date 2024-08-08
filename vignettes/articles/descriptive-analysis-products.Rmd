@@ -1,0 +1,152 @@
+---
+title: "Descriptive analysis of products"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This article shows how to calculate the descriptive analysis of products for 
+emission and sector profile.
+
+```{r setup}
+library(dplyr)
+library(tiltDataAnalysis)
+options(readr.show_col_types = FALSE)
+```
+
+Example subset of product-level output of emissions profile.
+
+```{r}
+emission_product_example <- example_emission_ep_product_des_analysis()
+emission_product_example
+```
+
+Example subset of product-level output of sector profile.
+
+```{r}
+sector_product_example <- example_sector_ep_product_des_analysis()
+sector_product_example
+```
+
+Distinct products of emission and sector profile
+
+```{r}
+print(paste("Distinct products of emission profile:", n_distinct(emission_product_example$ep_product)))
+print(paste("Distinct products of sector profile:", n_distinct(sector_product_example$ep_product)))
+```
+
+Matched distinct products of emission and sector profile
+
+```{r}
+matched_distinct_products <- function(data, profile) {
+  result <- data |>
+    select(all_of(c("ep_product", profile))) |>
+    distinct() |>
+    filter(!is.na(.data[[profile]]))
+  
+  n_distinct(result$ep_product)
+}
+
+print(paste("Matched distinct products of emission profile:", matched_distinct_products(emission_product_example, "emission_profile")))
+print(paste("Matched distinct products of sector profile:", matched_distinct_products(sector_product_example, "sector_profile")))
+```
+
+Average amount of distinct products per company for emission and sector profile
+
+```{r}
+avg_distinct_products_per_company <- function(data) {
+  result <- data |>
+    select(all_of(c("companies_id", "ep_product"))) |>
+    distinct() |>
+    filter(!is.na(ep_product))
+  
+  n_distinct(result$ep_product) / n_distinct(result$companies_id)
+}
+
+print(paste("Average amount of distinct products per company for emission profile:", avg_distinct_products_per_company(emission_product_example)))
+print(paste("Average amount of distinct products per company for sector profile:", avg_distinct_products_per_company(sector_product_example)))
+```
+
+Distinct products without a risk category for emission and sector profile
+
+```{r}
+distinct_products_without_risk_category <- function(data, profile) {
+  result <- data |>
+    select(all_of(c("ep_product", profile))) |>
+    distinct() |>
+    filter(!is.na(ep_product) & is.na(.data[[profile]]))
+  
+  n_distinct(result$ep_product)
+}
+
+print(paste("Distinct products without a risk category for emission profile:", distinct_products_without_risk_category(emission_product_example, "emission_profile")))
+print(paste("Distinct products without a risk category for sector profile:", distinct_products_without_risk_category(sector_product_example, "sector_profile")))
+```
+
+Average profile ranking of all products
+
+```{r}
+result <- emission_product_example |>
+  select(all_of(c("ep_product", "profile_ranking"))) |>
+  distinct()
+
+avg_profile_ranking_all_products <- sum(result$profile_ranking, na.rm = TRUE)/ n_distinct(result$ep_product)
+print(paste("Average profile ranking of all products:", avg_profile_ranking_all_products))
+```
+
+Average reduction targets of all products
+
+```{r}
+result <- sector_product_example |>
+  select(all_of(c("ep_product", "reduction_targets"))) |>
+  distinct()
+
+avg_reduction_targets_all_products <- sum(result$reduction_targets, na.rm = TRUE)/ n_distinct(result$ep_product)
+print(paste("Average reduction targets of all products:", avg_reduction_targets_all_products))
+```
+
+Average transition risk scores of all products
+
+```{r}
+result <- product_transition_risk |>
+  select(all_of(c("product", "transition_risk_score"))) |>
+  filter(product %in% c("tent", "camper patios")) |>
+  distinct()
+result
+```
+
+```{r}
+avg_transition_risk_score_all_products <- sum(result$transition_risk_score, na.rm = TRUE)/ n_distinct(result$product)
+print(paste("Average transition risk scores of all products:", avg_transition_risk_score_all_products))
+```
+
+Average NA share per company with atleast one matched product for emission profile
+
+```{r}
+# Companies with atleast one matched product
+companies_atleast_one_matched_product <- product_emission |>
+  select(all_of(c("companies_id", "emission_profile"))) |>
+  distinct() |>
+  filter(!is.na(emission_profile))
+companies_atleast_one_matched_product
+```
+
+
+```{r}
+# Average NA share per company which have atleast one matched product
+result <- company_transition_risk |>
+  select(all_of(c("companies_id", "emission_category_NA"))) |>
+  distinct() |>
+  filter(companies_id %in% companies_atleast_one_matched_product$companies_id)
+result
+```
+
+
+```{r}
+average_result <- sum(result$emission_category_NA) / n_distinct(result$companies_id)
+print(paste("Average NA share per company with atleast one matched product for emission profile:", average_result))
+```
