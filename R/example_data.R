@@ -10,6 +10,8 @@
 #' @examples
 #' example_emission_product_co2_des_analysis()
 #' example_transition_risk_product_trs_des_analysis()
+#' example_emission_ep_product_des_analysis()
+#' example_sector_ep_product_des_analysis()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -48,6 +50,42 @@ example_transition_risk_product_trs_des_analysis <- function() {
      "iron & steel",   "NZ 2050_2030_tilt_subsector",                     14,
      "iron & steel",   "NZ 2050_2050_tilt_subsector",                     15,
      "iron & steel",   "NZ 2050_2050_tilt_subsector",               NA_real_
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_emission_ep_product_des_analysis <- function() {
+  tribble(
+    # styler: off
+  ~companies_id, ~ep_product, ~emission_profile, ~profile_ranking,
+       "comp_1",         "a",            "high",                1,
+       "comp_1",         "b",            "high",                4,
+       "comp_1",         "c",            "high",                9,
+       "comp_1",         "d",     NA_character_,         NA_real_,
+       "comp_1",         "e",     NA_character_,         NA_real_,
+       "comp_2",         "a",            "high",                1,
+       "comp_2",         "b",            "high",                2,
+       "comp_2",         "c",            "high",                4
+  # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_sector_ep_product_des_analysis <- function() {
+  tribble(
+    # styler: off
+    ~companies_id, ~ep_product, ~sector_profile, ~reduction_targets,
+         "comp_1",         "a",          "high",                  1,
+         "comp_1",         "b",          "high",                  4,
+         "comp_1",         "c",          "high",                  9,
+         "comp_1",         "d",   NA_character_,           NA_real_,
+         "comp_1",         "e",   NA_character_,           NA_real_,
+         "comp_2",         "a",          "high",                  1,
+         "comp_2",         "b",          "high",                  2,
+         "comp_2",         "c",          "high",                  4
     # styler: on
   )
 }
