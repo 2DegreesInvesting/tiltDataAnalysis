@@ -27,8 +27,15 @@ options(readr.show_col_types = FALSE)
 emission_product_example <- product_emission |>
   select(any_of(c("companies_id", "country", "emission_profile", "tilt_sector", 
                   "tilt_subsector", "main_activity"))) |>
-  distinct()
-kable(head(emission_product_example, 5))
+  distinct() |>
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+                               "heliophobic_clownanemonefish", companies_id)) |>
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+                             "subdermal_chipmunk", "fascist_maiasaura",
+                             "ironhearted_tarpan", "heliophobic_clownanemonefish",
+                             "subzero_whiteeye"))
+
+kable(emission_product_example)
 ```
 
 ### Example subset of product-level output of sector profile.
@@ -37,18 +44,43 @@ kable(head(emission_product_example, 5))
 sector_product_example <- product_sector |>
   select(any_of(c("companies_id", "country", "sector_profile", "tilt_sector", 
                   "tilt_subsector", "main_activity"))) |>
-  distinct()
-kable(head(sector_product_example, 5))
+  distinct() |>
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+                               "heliophobic_clownanemonefish", companies_id)) |>
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+                             "subdermal_chipmunk", "fascist_maiasaura",
+                             "ironhearted_tarpan", "heliophobic_clownanemonefish",
+                             "subzero_whiteeye"))
+
+kable(sector_product_example)
 ```
 
-### Number of companies for emission and sector profile
+### Example subset of product-level output of transition risk profile.
+
+```{r}
+transition_risk_product_example <- product_transition_risk |>
+  select(any_of(c("companies_id", "country", "transition_risk_category", "tilt_sector", 
+                  "tilt_subsector", "main_activity"))) |>
+  distinct() |>
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+                               "heliophobic_clownanemonefish", companies_id)) |>
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+                             "subdermal_chipmunk", "fascist_maiasaura",
+                             "ironhearted_tarpan", "heliophobic_clownanemonefish",
+                             "subzero_whiteeye"))
+
+kable(transition_risk_product_example)
+```
+
+### Number of companies for emission, sector, and transition risk profile
 
 ```{r, results='asis'}
 cat("Number of companies for emission profile:", n_distinct(emission_product_example$companies_id))
 cat("Number of companies for sector profile:", n_distinct(sector_product_example$companies_id))
+cat("Number of companies for transition risk profile:", n_distinct(transition_risk_product_example$companies_id))
 ```
 
-### Number of companies that have atleast one product with `emission_profile` and with `sector_profile`
+### Number of companies that have atleast one product with `emission_profile`, with `sector_profile`, and with `transition_risk_category`
 
 ```{r}
 companies_atleast_one_product_with_profile <- function(data, profile) {
@@ -64,9 +96,10 @@ companies_atleast_one_product_with_profile <- function(data, profile) {
 ```{r, results='asis'}
 cat("Number of companies that have atleast one product with `emission_profile`:", companies_atleast_one_product_with_profile(emission_product_example, "emission_profile"))
 cat("Number of companies that have atleast one product with `sector_profile`:", companies_atleast_one_product_with_profile(sector_product_example, "sector_profile"))
+cat("Number of companies that have atleast one product with `transition_risk_category`:", companies_atleast_one_product_with_profile(transition_risk_product_example, "transition_risk_category"))
 ```
 
-### Number of companies that have more than one tilt_sectors for emission and sector profile
+### Number of companies that have more than one tilt_sectors for emission, sector, and transition risk profile
 
 ```{r}
 companies_with_multiple_tilt_sectors <- function(data) {
@@ -83,9 +116,10 @@ companies_with_multiple_tilt_sectors <- function(data) {
 ```{r, results='asis'}
 cat("Number of companies that have more than one tilt_sectors for emission profile:", companies_with_multiple_tilt_sectors(emission_product_example))
 cat("Number of companies that have more than one tilt_sectors for sector profile:", companies_with_multiple_tilt_sectors(sector_product_example))
+cat("Number of companies that have more than one tilt_sectors for transition risk profile:", companies_with_multiple_tilt_sectors(transition_risk_product_example))
 ```
 
-### Number of companies that have more than one tilt_subsectors for emission and sector profile
+### Number of companies that have more than one tilt_subsectors for emission, sector, and transition risk profile
 
 ```{r}
 companies_with_multiple_tilt_subsectors <- function(data) {
@@ -102,9 +136,10 @@ companies_with_multiple_tilt_subsectors <- function(data) {
 ```{r, results='asis'}
 cat("Number of companies that have more than one tilt_subsectors for emission profile:", companies_with_multiple_tilt_subsectors(emission_product_example))
 cat("Number of companies that have more than one tilt_subsectors for sector profile:", companies_with_multiple_tilt_subsectors(sector_product_example))
+cat("Number of companies that have more than one tilt_subsectors for transition risk profile:", companies_with_multiple_tilt_subsectors(transition_risk_product_example))
 ```
 
-### Number of companies per tilt_sector for emission and sector profile
+### Number of companies per tilt_sector for emission, sector, and transition risk profile
 
 ```{r}
 companies_per_single_benchmark <- function(data, benchmark) {
@@ -125,9 +160,12 @@ kable(companies_per_single_benchmark(emission_product_example, "tilt_sector"), a
 kable(companies_per_single_benchmark(sector_product_example, "tilt_sector"), align = "lc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 2))
+kable(companies_per_single_benchmark(transition_risk_product_example, "tilt_sector"), align = "lc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
-### Number of companies per tilt_subsector for emission and sector profile
+### Number of companies per tilt_subsector for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "tilt_subsector"), align = "lc", format.args = list(big.mark = ",")) |>
@@ -136,9 +174,12 @@ kable(companies_per_single_benchmark(emission_product_example, "tilt_subsector")
 kable(companies_per_single_benchmark(sector_product_example, "tilt_subsector"), align = "lc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 2))
+kable(companies_per_single_benchmark(transition_risk_product_example, "tilt_subsector"), align = "lc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
-### Number of companies per country for emission and sector profile
+### Number of companies per country for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "country"), align = "lc", format.args = list(big.mark = ",")) |>
@@ -147,9 +188,12 @@ kable(companies_per_single_benchmark(emission_product_example, "country"), align
 kable(companies_per_single_benchmark(sector_product_example, "country"), align = "lc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 2))
+kable(companies_per_single_benchmark(transition_risk_product_example, "country"), align = "lc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
-### Number of companies per country and tilt_sector for emission and sector profile
+### Number of companies per country and tilt_sector emission, sector, and transition risk profile
 
 ```{r}
 companies_per_double_benchmark <- function(data, benchmark_first, benchmark_second) {
@@ -170,9 +214,12 @@ kable(companies_per_double_benchmark(emission_product_example, "country", "tilt_
 kable(companies_per_double_benchmark(sector_product_example, "country", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 3))
+kable(companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
-### Number of companies per country and tilt_subsector for emission and sector profile
+### Number of companies per country and tilt_subsector emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "country", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
@@ -181,9 +228,12 @@ kable(companies_per_double_benchmark(emission_product_example, "country", "tilt_
 kable(companies_per_double_benchmark(sector_product_example, "country", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 3))
+kable(companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
-### Number of companies per main_activity for emission and sector profile
+### Number of companies per main_activity for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "main_activity"), align = "lc", format.args = list(big.mark = ",")) |>
@@ -192,9 +242,12 @@ kable(companies_per_single_benchmark(emission_product_example, "main_activity"),
 kable(companies_per_single_benchmark(sector_product_example, "main_activity"), align = "lc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 2))
+kable(companies_per_single_benchmark(transition_risk_product_example, "main_activity"), align = "lc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
-### Number of companies per main_activity and tilt_sector for emission and sector profile
+### Number of companies per main_activity and tilt_sector for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
@@ -203,9 +256,12 @@ kable(companies_per_double_benchmark(emission_product_example, "main_activity", 
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 3))
+kable(companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
-### Number of companies per main_activity and tilt_subsector for emission and sector profile
+### Number of companies per main_activity and tilt_subsector for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
@@ -214,9 +270,12 @@ kable(companies_per_double_benchmark(emission_product_example, "main_activity", 
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 3))
+kable(companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
-### Number of companies per main_activity and country for emission and sector profile
+### Number of companies per main_activity and country for emission, sector, and transition risk profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "country"), align = "lcc", format.args = list(big.mark = ",")) |>
@@ -225,9 +284,12 @@ kable(companies_per_double_benchmark(emission_product_example, "main_activity", 
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "country"), align = "lcc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 3))
+kable(companies_per_double_benchmark(transition_risk_product_example, "main_activity", "country"), align = "lcc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
-### Number of companies per main_activity, country, and tilt_sector for emission and sector profile
+### Number of companies per main_activity, country, and tilt_sector for emission, sector, and transition risk profile
 
 ```{r}
 companies_per_main_activity_country_tilt_sector <- function(data) {
@@ -246,6 +308,9 @@ kable(companies_per_main_activity_country_tilt_sector(emission_product_example),
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Emission profile" = 4))
 kable(companies_per_main_activity_country_tilt_sector(sector_product_example), align = "lccc", format.args = list(big.mark = ",")) |>
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 4))
+kable(companies_per_main_activity_country_tilt_sector(transition_risk_product_example), align = "lccc", format.args = list(big.mark = ",")) |>
   kable_styling(position = "center", full_width = F) |>
   add_header_above(c("Sector profile" = 4))
 ```
