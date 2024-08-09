@@ -5,6 +5,9 @@
 \alias{example_transition_risk_product_trs_des_analysis}
 \alias{example_emission_ep_product_des_analysis}
 \alias{example_sector_ep_product_des_analysis}
+\alias{example_transition_risk_product_emission_cov}
+\alias{example_transition_risk_product_sector_cov}
+\alias{example_transition_risk_product_transition_risk_cov}
 \title{Example raw datasets}
 \usage{
 example_emission_product_co2_des_analysis()
@@ -14,6 +17,12 @@ example_transition_risk_product_trs_des_analysis()
 example_emission_ep_product_des_analysis()
 
 example_sector_ep_product_des_analysis()
+
+example_transition_risk_product_emission_cov()
+
+example_transition_risk_product_sector_cov()
+
+example_transition_risk_product_transition_risk_cov()
 }
 \value{
 A dataframe.
@@ -27,5 +36,7 @@ example_emission_product_co2_des_analysis()
 example_transition_risk_product_trs_des_analysis()
 example_emission_ep_product_des_analysis()
 example_sector_ep_product_des_analysis()
+example_transition_risk_product_emission_cov()
+example_transition_risk_product_sector_cov()
 }
 \keyword{internal}

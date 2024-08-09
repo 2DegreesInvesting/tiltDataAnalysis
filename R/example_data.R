@@ -12,6 +12,9 @@
 #' example_transition_risk_product_trs_des_analysis()
 #' example_emission_ep_product_des_analysis()
 #' example_sector_ep_product_des_analysis()
+#' example_transition_risk_product_emission_cov()
+#' example_transition_risk_product_sector_cov()
+#' example_transition_risk_product_transition_risk_cov()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -86,6 +89,64 @@ example_sector_ep_product_des_analysis <- function() {
          "comp_2",         "a",          "high",
          "comp_2",         "b",          "high",
          "comp_2",         "c",          "high"
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_product_emission_cov <- function() {
+  tribble(
+    # styler: off
+    ~companies_id,    ~grouping_emission, ~cov_emission_rank,
+         "comp_1",                 "all",               10.0,
+         "comp_1",         "isic_4digit",               15.0,
+         "comp_1",      "tilt_subsector",               20.0,
+         "comp_1",                "unit",               25.0,
+         "comp_1",    "unit_isic_4digit",               30.0,
+         "comp_1", "unit_tilt_subsector",               35.0,
+         "comp_2",                 "all",               45.0,
+         "comp_2",         "isic_4digit",               50.0,
+         "comp_2",      "tilt_subsector",               55.0,
+         "comp_2",                "unit",               60.0,
+         "comp_2",    "unit_isic_4digit",               65.0,
+         "comp_2", "unit_tilt_subsector",               70.0
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_product_sector_cov <- function() {
+  tribble(
+    # styler: off
+    ~companies_id,  ~scenario, ~year, ~cov_sector_target,
+         "comp_1", "1.5C RPS",  2030,               10.0,
+         "comp_1", "1.5C RPS",  2050,               15.0,
+         "comp_1",  "NZ 2050",  2030,               20.0,
+         "comp_1",  "NZ 2050",  2050,               25.0,
+         "comp_2", "1.5C RPS",  2030,               45.0,
+         "comp_2", "1.5C RPS",  2050,               50.0,
+         "comp_2",  "NZ 2050",  2030,               55.0,
+         "comp_2",  "NZ 2050",  2050,               60.0
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_product_transition_risk_cov <- function() {
+  tribble(
+    # styler: off
+    ~companies_id,      ~grouping_transition_risk, ~cov_transition_risk,
+         "comp_1", "1.5C RPS_2030_tilt_subsector",                 10.0,
+         "comp_1", "1.5C RPS_2050_tilt_subsector",                 15.0,
+         "comp_1",  "NZ 2050_2030_tilt_subsector",                 20.0,
+         "comp_1",  "NZ 2050_2050_tilt_subsector",                 25.0,
+         "comp_2", "1.5C RPS_2030_tilt_subsector",                 45.0,
+         "comp_2", "1.5C RPS_2050_tilt_subsector",                 50.0,
+         "comp_2",  "NZ 2050_2030_tilt_subsector",                 55.0,
+         "comp_2",  "NZ 2050_2050_tilt_subsector",                 60.0
     # styler: on
   )
 }
