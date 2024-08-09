@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 This article shows how to calculate the descriptive analysis of companies'
 employees.
 
-```{r setup, warning=FALSE}
+```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
 library(dplyr)
 library(knitr)

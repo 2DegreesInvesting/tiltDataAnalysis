@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 This article shows how to calculate the descriptive analysis of co2_footprint per
 benchmark using product-level output of Emissions profile indicator.
 
-```{r setup, warning=FALSE}
+```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
 library(tibble)
 
