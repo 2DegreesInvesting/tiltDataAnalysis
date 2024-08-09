@@ -76,6 +76,14 @@ companies_headcount_range_tilt_sector <- transition_risk_product_example |>
 kable(companies_headcount_range_tilt_sector)
 ```
 
+### Bar plot 
+
+```{r, warning=FALSE}
+companies_headcount_range_tilt_sector$range_headcounts <- paste(companies_headcount_range_tilt_sector$min_headcount, companies_headcount_range_tilt_sector$max_headcount, companies_headcount_range_tilt_sector$tilt_sector, sep = '-') 
+ggplot(companies_headcount_range_tilt_sector, aes(x = range_headcounts, y = n_comp_headcount_range_tilt_sector, fill = range_headcounts)) +
+  geom_bar(stat = "identity")
+```
+
 ### Number of companies between `min_headcount` and `max_headcount` range grouped by `tilt_sector` and `country`
 
 ```{r}
