@@ -98,16 +98,23 @@ amount of companies for emission and sector profile.</p>
 <code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="va">product_emission</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"country"</span>, <span class="st">"emission_profile"</span>, <span class="st">"tilt_sector"</span>, </span>
 <span>                  <span class="st">"tilt_subsector"</span>, <span class="st">"main_activity"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
+<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
+<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
+<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
+<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="31%">
-<col width="7%">
-<col width="15%">
-<col width="11%">
-<col width="22%">
-<col width="12%">
+<col width="24%">
+<col width="10%">
+<col width="14%">
+<col width="10%">
+<col width="21%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -119,40 +126,104 @@ amount of companies for emission and sector profile.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">asteria_megalotomusquinquespinosus</td>
-<td align="left">austria</td>
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
 <td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
-<td align="left">wholesaler</td>
+<td align="left">retailer</td>
 </tr>
 <tr class="even">
-<td align="left">skarn_gallinule</td>
-<td align="left">austria</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="odd">
-<td align="left">relegable_southernhairnosedwombat</td>
-<td align="left">austria</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">psychodelic_airedale</td>
-<td align="left">austria</td>
+<td align="left">antimonarchy_canine</td>
+<td align="left">germany</td>
 <td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
 <td align="left">distributor</td>
 </tr>
 <tr class="odd">
-<td align="left">ergophilic_fieldspaniel</td>
-<td align="left">austria</td>
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="odd">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">fascist_maiasaura</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">wholesaler</td>
+</tr>
+<tr class="odd">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="even">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">subzero_whiteeye</td>
+<td align="left">netherlands</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">netherlands</td>
 <td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
@@ -168,16 +239,23 @@ amount of companies for emission and sector profile.</p>
 <code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="va">product_sector</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"country"</span>, <span class="st">"sector_profile"</span>, <span class="st">"tilt_sector"</span>, </span>
 <span>                  <span class="st">"tilt_subsector"</span>, <span class="st">"main_activity"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
+<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
+<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
+<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
+<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="23%">
-<col width="8%">
-<col width="15%">
-<col width="13%">
-<col width="25%">
-<col width="14%">
+<col width="24%">
+<col width="10%">
+<col width="12%">
+<col width="11%">
+<col width="21%">
+<col width="19%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -205,20 +283,202 @@ amount of companies for emission and sector profile.</p>
 <td align="left">distributor</td>
 </tr>
 <tr class="odd">
-<td align="left">celestial_lovebird</td>
-<td align="left">spain</td>
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="odd">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">fascist_maiasaura</td>
+<td align="left">germany</td>
 <td align="left">medium</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
 <td align="left">wholesaler</td>
 </tr>
-<tr class="even">
-<td align="left">celestial_lovebird</td>
-<td align="left">spain</td>
+<tr class="odd">
+<td align="left">fascist_maiasaura</td>
+<td align="left">germany</td>
 <td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
 <td align="left">wholesaler</td>
+</tr>
+<tr class="even">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="odd">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="even">
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">retailer</td>
+</tr>
+<tr class="odd">
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">retailer</td>
+</tr>
+<tr class="even">
+<td align="left">subzero_whiteeye</td>
+<td align="left">netherlands</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">subzero_whiteeye</td>
+<td align="left">netherlands</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">netherlands</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">netherlands</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="example-subset-of-product-level-output-of-transition-risk-profile-">Example subset of product-level output of transition risk
+profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-transition-risk-profile-"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="va">product_transition_risk</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"country"</span>, <span class="st">"transition_risk_category"</span>, <span class="st">"tilt_sector"</span>, </span>
+<span>                  <span class="st">"tilt_subsector"</span>, <span class="st">"main_activity"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
+<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
+<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
+<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
+<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="22%">
+<col width="9%">
+<col width="19%">
+<col width="10%">
+<col width="19%">
+<col width="18%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">country</th>
+<th align="left">transition_risk_category</th>
+<th align="left">tilt_sector</th>
+<th align="left">tilt_subsector</th>
+<th align="left">main_activity</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">retailer</td>
+</tr>
+<tr class="even">
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">retailer</td>
+</tr>
+<tr class="odd">
+<td align="left">antimonarchy_canine</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="even">
+<td align="left">antimonarchy_canine</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
 </tr>
 <tr class="odd">
 <td align="left">nonphilosophical_llama</td>
@@ -228,24 +488,125 @@ amount of companies for emission and sector profile.</p>
 <td align="left">other metals</td>
 <td align="left">distributor</td>
 </tr>
+<tr class="even">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="odd">
+<td align="left">fascist_maiasaura</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">wholesaler</td>
+</tr>
+<tr class="even">
+<td align="left">fascist_maiasaura</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">wholesaler</td>
+</tr>
+<tr class="odd">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="even">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="odd">
+<td align="left">ironhearted_tarpan</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">manufacturer/ producer</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">subzero_whiteeye</td>
+<td align="left">netherlands</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="odd">
+<td align="left">subzero_whiteeye</td>
+<td align="left">netherlands</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">agent/ representative</td>
+</tr>
+<tr class="even">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">netherlands</td>
+<td align="left">high</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="odd">
+<td align="left">heliophobic_clownanemonefish</td>
+<td align="left">netherlands</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-for-emission-and-sector-profile">Number of companies for emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-for-emission-sector-and-transition-risk-profile">Number of companies for emission, sector, and transition risk
+profile<a class="anchor" aria-label="anchor" href="#number-of-companies-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for emission profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies for emission profile: 72</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for emission profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of companies for emission profile: 7</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for sector profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies for sector profile: 72</p>
+<p>Number of companies for sector profile: 7</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for transition risk profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of companies for transition risk profile: 7</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-that-have-atleast-one-product-with-emission_profile-and-with-sector_profile">Number of companies that have atleast one product with
-<code>emission_profile</code> and with <code>sector_profile</code><a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-atleast-one-product-with-emission_profile-and-with-sector_profile"></a>
+<h3 id="number-of-companies-that-have-atleast-one-product-with-emission_profile-with-sector_profile-and-with-transition_risk_category">Number of companies that have atleast one product with
+<code>emission_profile</code>, with <code>sector_profile</code>, and
+with <code>transition_risk_category</code><a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-atleast-one-product-with-emission_profile-with-sector_profile-and-with-transition_risk_category"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_atleast_one_product_with_profile</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">profile</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">profile</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -254,20 +615,24 @@ amount of companies for emission and sector profile.</p>
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `emission_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emission_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have atleast one product with
-<code>emission_profile</code>: 72</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code>emission_profile</code>: 7</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `sector_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"sector_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have atleast one product with
-<code>sector_profile</code>: 72</p>
+<code>sector_profile</code>: 7</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `transition_risk_category`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of companies that have atleast one product with
+<code>transition_risk_category</code>: 7</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-and-sector-profile">Number of companies that have more than one tilt_sectors for
-emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-sector-and-transition-risk-profile">Number of companies that have more than one tilt_sectors for
+emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_sectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -277,20 +642,24 @@ emission and sector profile<a class="anchor" aria-label="anchor" href="#number-o
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_sectors for emission
-profile: 0</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+profile: 1</p>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_sectors for sector
-profile: 0</p>
+profile: 1</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of companies that have more than one tilt_sectors for
+transition risk profile: 1</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-and-sector-profile">Number of companies that have more than one tilt_subsectors for
-emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile">Number of companies that have more than one tilt_subsectors for
+emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_subsectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -300,20 +669,24 @@ emission and sector profile<a class="anchor" aria-label="anchor" href="#number-o
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_subsectors for
-emission profile: 0</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+emission profile: 1</p>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_subsectors for
-sector profile: 0</p>
+sector profile: 1</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of companies that have more than one tilt_subsectors for
+transition risk profile: 1</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-tilt_sector-for-emission-and-sector-profile">Number of companies per tilt_sector for emission and sector
-profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_sector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_sector for emission, sector, and
+transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_single_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -323,7 +696,7 @@ profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -351,7 +724,7 @@ companies_count
 construction
 </td>
 <td style="text-align:center;">
-67
+5
 </td>
 </tr>
 <tr>
@@ -359,12 +732,12 @@ construction
 metals
 </td>
 <td style="text-align:center;">
-5
+3
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -392,7 +765,7 @@ companies_count
 construction
 </td>
 <td style="text-align:center;">
-67
+5
 </td>
 </tr>
 <tr>
@@ -400,17 +773,58 @@ construction
 metals
 </td>
 <td style="text-align:center;">
+3
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+construction
+</td>
+<td style="text-align:center;">
 5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+metals
+</td>
+<td style="text-align:center;">
+3
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-tilt_subsector-for-emission-and-sector-profile">Number of companies per tilt_subsector for emission and sector
-profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_subsector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_subsector for emission, sector, and
+transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -438,7 +852,7 @@ companies_count
 construction residential
 </td>
 <td style="text-align:center;">
-67
+5
 </td>
 </tr>
 <tr>
@@ -446,7 +860,7 @@ construction residential
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -459,7 +873,7 @@ other metals
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -487,7 +901,7 @@ companies_count
 construction residential
 </td>
 <td style="text-align:center;">
-67
+5
 </td>
 </tr>
 <tr>
@@ -495,7 +909,56 @@ construction residential
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+other metals
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+construction residential
+</td>
+<td style="text-align:center;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+iron &amp; steel
+</td>
+<td style="text-align:center;">
+1
 </td>
 </tr>
 <tr>
@@ -510,9 +973,10 @@ other metals
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-for-emission-and-sector-profile">Number of companies per country for emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-country-for-emission-sector-and-transition-risk-profile">Number of companies per country for emission, sector, and transition
+risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -537,18 +1001,10 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -556,7 +1012,7 @@ france
 germany
 </td>
 <td style="text-align:center;">
-43
+5
 </td>
 </tr>
 <tr>
@@ -564,20 +1020,12 @@ germany
 netherlands
 </td>
 <td style="text-align:center;">
-12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-spain
-</td>
-<td style="text-align:center;">
-4
+2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -602,18 +1050,10 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -621,7 +1061,7 @@ france
 germany
 </td>
 <td style="text-align:center;">
-43
+5
 </td>
 </tr>
 <tr>
@@ -629,25 +1069,66 @@ germany
 netherlands
 </td>
 <td style="text-align:center;">
-12
+2
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:center;">
+1
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-spain
+germany
 </td>
 <td style="text-align:center;">
-4
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:center;">
+2
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-and-tilt_sector-for-emission-and-sector-profile">Number of companies per country and tilt_sector for emission and
-sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_sector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_sector emission, sector,
+and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_double_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -657,7 +1138,7 @@ sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-p
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_first</span><span class="op">]</span><span class="op">]</span>, <span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_second</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -685,24 +1166,13 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
 construction
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -713,7 +1183,7 @@ germany
 construction
 </td>
 <td style="text-align:center;">
-38
+2
 </td>
 </tr>
 <tr>
@@ -724,7 +1194,7 @@ germany
 metals
 </td>
 <td style="text-align:center;">
-5
+3
 </td>
 </tr>
 <tr>
@@ -735,23 +1205,12 @@ netherlands
 construction
 </td>
 <td style="text-align:center;">
-12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-spain
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-4
+2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -779,24 +1238,13 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
 construction
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -807,7 +1255,7 @@ germany
 construction
 </td>
 <td style="text-align:center;">
-38
+2
 </td>
 </tr>
 <tr>
@@ -818,7 +1266,7 @@ germany
 metals
 </td>
 <td style="text-align:center;">
-5
+3
 </td>
 </tr>
 <tr>
@@ -829,28 +1277,89 @@ netherlands
 construction
 </td>
 <td style="text-align:center;">
-12
+2
 </td>
 </tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:center;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td style="text-align:left;">
-spain
+france
 </td>
 <td style="text-align:center;">
 construction
 </td>
 <td style="text-align:center;">
-4
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+2
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-and-tilt_subsector-for-emission-and-sector-profile">Number of companies per country and tilt_subsector for emission and
-sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_subsector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_subsector emission, sector,
+and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -878,24 +1387,13 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-construction residential
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
 construction residential
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -906,7 +1404,7 @@ germany
 construction residential
 </td>
 <td style="text-align:center;">
-38
+2
 </td>
 </tr>
 <tr>
@@ -917,7 +1415,7 @@ germany
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -939,23 +1437,12 @@ netherlands
 construction residential
 </td>
 <td style="text-align:center;">
-12
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-spain
-</td>
-<td style="text-align:center;">
-construction residential
-</td>
-<td style="text-align:center;">
-4
+2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -983,24 +1470,13 @@ companies_count
 <tbody>
 <tr>
 <td style="text-align:left;">
-austria
-</td>
-<td style="text-align:center;">
-construction residential
-</td>
-<td style="text-align:center;">
-10
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 france
 </td>
 <td style="text-align:center;">
 construction residential
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1011,7 +1487,7 @@ germany
 construction residential
 </td>
 <td style="text-align:center;">
-38
+2
 </td>
 </tr>
 <tr>
@@ -1022,7 +1498,7 @@ germany
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1044,28 +1520,100 @@ netherlands
 construction residential
 </td>
 <td style="text-align:center;">
-12
+2
 </td>
 </tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:center;">
+tilt_subsector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td style="text-align:left;">
-spain
+france
 </td>
 <td style="text-align:center;">
 construction residential
 </td>
 <td style="text-align:center;">
-4
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:center;">
+iron &amp; steel
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:center;">
+other metals
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+2
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-for-emission-and-sector-profile">Number of companies per main_activity for emission and sector
-profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity for emission, sector, and
+transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1101,7 +1649,7 @@ agent/ representative
 distributor
 </td>
 <td style="text-align:center;">
-30
+3
 </td>
 </tr>
 <tr>
@@ -1109,7 +1657,7 @@ distributor
 manufacturer/ producer
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1117,7 +1665,7 @@ manufacturer/ producer
 retailer
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1125,12 +1673,12 @@ retailer
 wholesaler
 </td>
 <td style="text-align:center;">
-33
+1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1166,7 +1714,7 @@ agent/ representative
 distributor
 </td>
 <td style="text-align:center;">
-30
+3
 </td>
 </tr>
 <tr>
@@ -1174,7 +1722,7 @@ distributor
 manufacturer/ producer
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1182,7 +1730,7 @@ manufacturer/ producer
 retailer
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1190,17 +1738,82 @@ retailer
 wholesaler
 </td>
 <td style="text-align:center;">
-33
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+main_activity
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+manufacturer/ producer
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+retailer
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wholesaler
+</td>
+<td style="text-align:center;">
+1
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-tilt_sector-for-emission-and-sector-profile">Number of companies per main_activity and tilt_sector for emission
-and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_sector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_sector for emission,
+sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1256,7 +1869,7 @@ distributor
 construction
 </td>
 <td style="text-align:center;">
-29
+2
 </td>
 </tr>
 <tr>
@@ -1278,7 +1891,7 @@ manufacturer/ producer
 metals
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1289,7 +1902,7 @@ retailer
 construction
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1300,12 +1913,12 @@ wholesaler
 construction
 </td>
 <td style="text-align:center;">
-33
+1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1361,7 +1974,7 @@ distributor
 construction
 </td>
 <td style="text-align:center;">
-29
+2
 </td>
 </tr>
 <tr>
@@ -1383,7 +1996,7 @@ manufacturer/ producer
 metals
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1394,7 +2007,7 @@ retailer
 construction
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1405,17 +2018,122 @@ wholesaler
 construction
 </td>
 <td style="text-align:center;">
-33
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+main_activity
+</th>
+<th style="text-align:center;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+manufacturer/ producer
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+retailer
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wholesaler
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+1
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-tilt_subsector-for-emission-and-sector-profile">Number of companies per main_activity and tilt_subsector for
-emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_subsector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_subsector for
+emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1471,7 +2189,7 @@ distributor
 construction residential
 </td>
 <td style="text-align:center;">
-29
+2
 </td>
 </tr>
 <tr>
@@ -1493,7 +2211,7 @@ manufacturer/ producer
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1504,7 +2222,7 @@ retailer
 construction residential
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1515,12 +2233,12 @@ wholesaler
 construction residential
 </td>
 <td style="text-align:center;">
-33
+1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1576,7 +2294,7 @@ distributor
 construction residential
 </td>
 <td style="text-align:center;">
-29
+2
 </td>
 </tr>
 <tr>
@@ -1598,7 +2316,7 @@ manufacturer/ producer
 iron &amp; steel
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1609,7 +2327,7 @@ retailer
 construction residential
 </td>
 <td style="text-align:center;">
-4
+1
 </td>
 </tr>
 <tr>
@@ -1620,17 +2338,122 @@ wholesaler
 construction residential
 </td>
 <td style="text-align:center;">
-33
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+main_activity
+</th>
+<th style="text-align:center;">
+tilt_subsector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+other metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+other metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+manufacturer/ producer
+</td>
+<td style="text-align:center;">
+iron &amp; steel
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+retailer
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+wholesaler
+</td>
+<td style="text-align:center;">
+construction residential
+</td>
+<td style="text-align:center;">
+1
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-country-for-emission-and-sector-profile">Number of companies per main_activity and country for emission and
-sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-country-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and country for emission,
+sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1683,21 +2506,10 @@ netherlands
 distributor
 </td>
 <td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
 germany
 </td>
 <td style="text-align:center;">
-16
+2
 </td>
 </tr>
 <tr>
@@ -1708,18 +2520,7 @@ distributor
 netherlands
 </td>
 <td style="text-align:center;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
-spain
-</td>
-<td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1730,7 +2531,7 @@ manufacturer/ producer
 germany
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1746,76 +2547,10 @@ france
 </tr>
 <tr>
 <td style="text-align:left;">
-retailer
-</td>
-<td style="text-align:center;">
-germany
-</td>
-<td style="text-align:center;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-retailer
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-france
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 wholesaler
 </td>
 <td style="text-align:center;">
 germany
-</td>
-<td style="text-align:center;">
-22
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-spain
 </td>
 <td style="text-align:center;">
 1
@@ -1823,7 +2558,7 @@ spain
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1876,21 +2611,10 @@ netherlands
 distributor
 </td>
 <td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
 germany
 </td>
 <td style="text-align:center;">
-16
+2
 </td>
 </tr>
 <tr>
@@ -1901,18 +2625,7 @@ distributor
 netherlands
 </td>
 <td style="text-align:center;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
-spain
-</td>
-<td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1923,7 +2636,7 @@ manufacturer/ producer
 germany
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -1939,7 +2652,90 @@ france
 </tr>
 <tr>
 <td style="text-align:left;">
-retailer
+wholesaler
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+main_activity
+</th>
+<th style="text-align:center;">
+country
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+netherlands
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
+</td>
+<td style="text-align:center;">
+netherlands
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+manufacturer/ producer
 </td>
 <td style="text-align:center;">
 germany
@@ -1953,32 +2749,10 @@ germany
 retailer
 </td>
 <td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
 france
 </td>
 <td style="text-align:center;">
-2
+1
 </td>
 </tr>
 <tr>
@@ -1987,28 +2761,6 @@ wholesaler
 </td>
 <td style="text-align:center;">
 germany
-</td>
-<td style="text-align:center;">
-22
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-spain
 </td>
 <td style="text-align:center;">
 1
@@ -2018,10 +2770,10 @@ spain
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-and-sector-profile">Number of companies per main_activity, country, and tilt_sector for
-emission and sector profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-and-sector-profile"></a>
+<h3 id="number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity, country, and tilt_sector for
+emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_main_activity_country_tilt_sector</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2031,7 +2783,7 @@ emission and sector profile<a class="anchor" aria-label="anchor" href="#number-o
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">main_activity</span>, <span class="va">country</span>, <span class="va">tilt_sector</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -2093,27 +2845,13 @@ construction
 distributor
 </td>
 <td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
 germany
 </td>
 <td style="text-align:center;">
 construction
 </td>
 <td style="text-align:center;">
-15
+1
 </td>
 </tr>
 <tr>
@@ -2141,21 +2879,7 @@ netherlands
 construction
 </td>
 <td style="text-align:center;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
-spain
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -2169,7 +2893,7 @@ germany
 metals
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -2188,94 +2912,10 @@ construction
 </tr>
 <tr>
 <td style="text-align:left;">
-retailer
-</td>
-<td style="text-align:center;">
-germany
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-retailer
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-france
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 wholesaler
 </td>
 <td style="text-align:center;">
 germany
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-22
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-spain
 </td>
 <td style="text-align:center;">
 construction
@@ -2286,7 +2926,7 @@ construction
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -2348,27 +2988,13 @@ construction
 distributor
 </td>
 <td style="text-align:center;">
-austria
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-8
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
 germany
 </td>
 <td style="text-align:center;">
 construction
 </td>
 <td style="text-align:center;">
-15
+1
 </td>
 </tr>
 <tr>
@@ -2396,21 +3022,7 @@ netherlands
 construction
 </td>
 <td style="text-align:center;">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-distributor
-</td>
-<td style="text-align:center;">
-spain
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -2424,7 +3036,7 @@ germany
 metals
 </td>
 <td style="text-align:center;">
-3
+1
 </td>
 </tr>
 <tr>
@@ -2443,7 +3055,80 @@ construction
 </tr>
 <tr>
 <td style="text-align:left;">
-retailer
+wholesaler
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/add_header_above.html" class="external-link">add_header_above</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Sector profile
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+main_activity
+</th>
+<th style="text-align:center;">
+country
+</th>
+<th style="text-align:center;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+agent/ representative
+</td>
+<td style="text-align:center;">
+netherlands
+</td>
+<td style="text-align:center;">
+construction
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
 </td>
 <td style="text-align:center;">
 germany
@@ -2457,7 +3142,21 @@ construction
 </tr>
 <tr>
 <td style="text-align:left;">
-retailer
+distributor
+</td>
+<td style="text-align:center;">
+germany
+</td>
+<td style="text-align:center;">
+metals
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+distributor
 </td>
 <td style="text-align:center;">
 netherlands
@@ -2466,26 +3165,26 @@ netherlands
 construction
 </td>
 <td style="text-align:center;">
-2
+1
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-wholesaler
+manufacturer/ producer
 </td>
 <td style="text-align:center;">
-austria
+germany
 </td>
 <td style="text-align:center;">
-construction
+metals
 </td>
 <td style="text-align:center;">
-2
+1
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-wholesaler
+retailer
 </td>
 <td style="text-align:center;">
 france
@@ -2494,7 +3193,7 @@ france
 construction
 </td>
 <td style="text-align:center;">
-2
+1
 </td>
 </tr>
 <tr>
@@ -2503,34 +3202,6 @@ wholesaler
 </td>
 <td style="text-align:center;">
 germany
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-22
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-netherlands
-</td>
-<td style="text-align:center;">
-construction
-</td>
-<td style="text-align:center;">
-6
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-wholesaler
-</td>
-<td style="text-align:center;">
-spain
 </td>
 <td style="text-align:center;">
 construction
