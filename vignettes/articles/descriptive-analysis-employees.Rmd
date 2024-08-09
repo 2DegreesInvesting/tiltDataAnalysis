@@ -1,0 +1,91 @@
+---
+title: "Descriptive analysis of employees"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This article shows how to calculate the descriptive analysis of companies'
+employees.
+
+```{r setup, warning=FALSE}
+library(tiltDataAnalysis)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+options(readr.show_col_types = FALSE)
+```
+
+### Example product-level output of transition risk profile.
+
+```{r}
+transition_risk_product_example <- product_transition_risk |>
+  select(any_of(c("companies_id", "min_headcount", "max_headcount", "tilt_sector", "country"))) |>
+  distinct() |>
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+                               "heliophobic_clownanemonefish", companies_id)) |>
+  mutate(min_headcount = ifelse(companies_id %in% c("ironhearted_tarpan", "heliophobic_clownanemonefish"), 
+                               50, min_headcount)) |>
+  mutate(max_headcount = ifelse(companies_id %in% c("ironhearted_tarpan", "heliophobic_clownanemonefish"), 
+                               100, max_headcount)) |>
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+                             "subdermal_chipmunk", "fascist_maiasaura",
+                             "ironhearted_tarpan", "heliophobic_clownanemonefish",
+                             "subzero_whiteeye"))
+
+kable(transition_risk_product_example)
+```
+
+### Number of companies between `min_headcount` and `max_headcount` range
+
+```{r}
+companies_headcount_range <- transition_risk_product_example |>
+  select(all_of(c("companies_id", "min_headcount", "max_headcount"))) |> 
+  distinct() |>
+  mutate(n_comp_headcount_range = n_distinct(companies_id), .by = c("min_headcount", "max_headcount")) |>
+  select(-all_of(c("companies_id"))) |>
+  distinct() |>
+  arrange(min_headcount, max_headcount)
+  
+kable(companies_headcount_range)
+```
+
+### Bar plot 
+
+```{r, warning=FALSE}
+companies_headcount_range$range_headcounts <- paste(companies_headcount_range$min_headcount, companies_headcount_range$max_headcount, sep = '-') 
+ggplot(companies_headcount_range, aes(x = range_headcounts, y = n_comp_headcount_range, fill = range_headcounts)) +
+  geom_bar(stat = "identity")
+```
+
+### Number of companies between `min_headcount` and `max_headcount` range grouped by `tilt_sector`
+
+```{r}
+companies_headcount_range_tilt_sector <- transition_risk_product_example |>
+  select(all_of(c("companies_id", "min_headcount", "max_headcount", "tilt_sector"))) |> 
+  distinct() |>
+  mutate(n_comp_headcount_range_tilt_sector = n_distinct(companies_id), .by = c("min_headcount", "max_headcount", "tilt_sector")) |>
+  select(-all_of(c("companies_id"))) |>
+  distinct() |>
+  arrange(min_headcount, max_headcount, tilt_sector)
+  
+kable(companies_headcount_range_tilt_sector)
+```
+
+### Number of companies between `min_headcount` and `max_headcount` range grouped by `tilt_sector` and `country`
+
+```{r}
+companies_headcount_range_tilt_sector_country <- transition_risk_product_example |>
+  select(all_of(c("companies_id", "min_headcount", "max_headcount", "tilt_sector", "country"))) |> 
+  distinct() |>
+  mutate(n_comp_headcount_range_tilt_sector_country = n_distinct(companies_id), .by = c("min_headcount", "max_headcount", "tilt_sector", "country")) |>
+  select(-all_of(c("companies_id"))) |>
+  distinct() |>
+  arrange(min_headcount, max_headcount, tilt_sector, country)
+  
+kable(companies_headcount_range_tilt_sector_country)
+```
