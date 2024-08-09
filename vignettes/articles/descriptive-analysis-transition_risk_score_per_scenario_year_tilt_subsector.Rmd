@@ -13,7 +13,7 @@ This article shows how to calculate the descriptive analysis of transition risk
 scores for all `tilt_subsectors` per scenario-year-tilt_subsector benchmark 
 using product-level output of Transition risk profile indicator.
 
-```{r setup}
+```{r setup, warning=FALSE}
 library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 options(width = 5000)
