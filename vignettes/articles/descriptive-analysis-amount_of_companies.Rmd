@@ -12,11 +12,12 @@ knitr::opts_chunk$set(
 This article shows how to calculate the descriptive analysis on amount of 
 companies for emission and sector profile.
 
-```{r setup}
+```{r setup, warning=FALSE}
 library(tiltDataAnalysis)
 library(dplyr)
 library(knitr)
 library(tidyselect)
+library(kableExtra)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -119,33 +120,33 @@ companies_per_single_benchmark <- function(data, benchmark) {
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "tilt_sector"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 2))
 kable(companies_per_single_benchmark(sector_product_example, "tilt_sector"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
 ### Number of companies per tilt_subsector for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "tilt_subsector"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 2))
 kable(companies_per_single_benchmark(sector_product_example, "tilt_subsector"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
 ### Number of companies per country for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "country"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 2))
 kable(companies_per_single_benchmark(sector_product_example, "country"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
 ### Number of companies per country and tilt_sector for emission and sector profile
@@ -164,66 +165,66 @@ companies_per_double_benchmark <- function(data, benchmark_first, benchmark_seco
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "country", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 3))
 kable(companies_per_double_benchmark(sector_product_example, "country", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
 ### Number of companies per country and tilt_subsector for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "country", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 3))
 kable(companies_per_double_benchmark(sector_product_example, "country", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
 ### Number of companies per main_activity for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_single_benchmark(emission_product_example, "main_activity"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 2))
 kable(companies_per_single_benchmark(sector_product_example, "main_activity"), align = "lc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 2))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 2))
 ```
 
 ### Number of companies per main_activity and tilt_sector for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 3))
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "tilt_sector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
 ### Number of companies per main_activity and tilt_subsector for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 3))
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "tilt_subsector"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
 ### Number of companies per main_activity and country for emission and sector profile
 
 ```{r, warning=FALSE}
 kable(companies_per_double_benchmark(emission_product_example, "main_activity", "country"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 3))
 kable(companies_per_double_benchmark(sector_product_example, "main_activity", "country"), align = "lcc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 3))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 3))
 ```
 
 ### Number of companies per main_activity, country, and tilt_sector for emission and sector profile
@@ -242,9 +243,9 @@ companies_per_main_activity_country_tilt_sector <- function(data) {
 
 ```{r, warning=FALSE}
 kable(companies_per_main_activity_country_tilt_sector(emission_product_example), align = "lccc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Emission profile" = 4))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Emission profile" = 4))
 kable(companies_per_main_activity_country_tilt_sector(sector_product_example), align = "lccc", format.args = list(big.mark = ",")) |>
-  kableExtra::kable_styling(position = "center", full_width = F) |>
-  kableExtra::add_header_above(c("Sector profile" = 4))
+  kable_styling(position = "center", full_width = F) |>
+  add_header_above(c("Sector profile" = 4))
 ```

@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 This article outlines how to show reduction targets for all `tilt_subsectors` per
 scenario-year benchmark using product-level output of Sector profile indicator.
 
-```{r setup}
+```{r setup, warning=FALSE}
 library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 ```
