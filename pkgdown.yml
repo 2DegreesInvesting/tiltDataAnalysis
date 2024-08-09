@@ -4,10 +4,11 @@ pkgdown_sha: ~
 articles:
   articles/descriptive-analysis-amount_of_companies: descriptive-analysis-amount_of_companies.html
   articles/descriptive-analysis-co2_footprint_per_benchmark: descriptive-analysis-co2_footprint_per_benchmark.html
+  articles/descriptive-analysis-employees: descriptive-analysis-employees.html
   articles/descriptive-analysis-products: descriptive-analysis-products.html
   articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector: descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html
   articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year: show-reduction_targets_for_tilt_subsectors_per_scenario_year.html
-last_built: 2024-08-09T11:50Z
+last_built: 2024-08-09T13:42Z
 urls:
   reference: https://2degreesinvesting.github.io/tiltDataAnalysis/reference
   article: https://2degreesinvesting.github.io/tiltDataAnalysis/articles
