@@ -22,6 +22,7 @@ package."></head><body>
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/descriptive-analysis-amount_of_companies.html">Descriptive analysis on amount of companies</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-co2_footprint_per_benchmark.html">Descriptive analysis of co2_footprint per benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive-analysis-coefficient_of_variation.html">Descriptive analysis of coefficient of variation</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
@@ -57,7 +58,13 @@ package.</p>
 <span></span>
 <span><span class="fu">example_emission_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">example_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">example_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">example_transition_risk_product_emission_cov</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">example_transition_risk_product_sector_cov</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">example_transition_risk_product_transition_risk_cov</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -123,6 +130,34 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> comp_2       a          high          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> comp_2       b          high          </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> comp_2       c          high          </span>
+<span class="r-in"><span><span class="fu">example_transition_risk_product_emission_cov</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 3</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id grouping_emission   cov_emission_rank</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> comp_1       all                                10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> comp_1       isic_4digit                        15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> comp_1       tilt_subsector                     20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> comp_1       unit                               25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> comp_1       unit_isic_4digit                   30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> comp_1       unit_tilt_subsector                35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> comp_2       all                                45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_2       isic_4digit                        50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_2       tilt_subsector                     55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_2       unit                               60</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">11</span> comp_2       unit_isic_4digit                   65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">12</span> comp_2       unit_tilt_subsector                70</span>
+<span class="r-in"><span><span class="fu">example_transition_risk_product_sector_cov</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   companies_id scenario  year cov_sector_target</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030                10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>050                15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> comp_1       NZ 2050   <span style="text-decoration: underline;">2</span>030                20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> comp_1       NZ 2050   <span style="text-decoration: underline;">2</span>050                25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> comp_2       1.5C RPS  <span style="text-decoration: underline;">2</span>030                45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> comp_2       1.5C RPS  <span style="text-decoration: underline;">2</span>050                50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> comp_2       NZ 2050   <span style="text-decoration: underline;">2</span>030                55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> comp_2       NZ 2050   <span style="text-decoration: underline;">2</span>050                60</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

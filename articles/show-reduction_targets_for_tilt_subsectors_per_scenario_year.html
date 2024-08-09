@@ -35,6 +35,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
 <li><a class="dropdown-item" href="../articles/descriptive-analysis-amount_of_companies.html">Descriptive analysis on amount of companies</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-co2_footprint_per_benchmark.html">Descriptive analysis of co2_footprint per benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive-analysis-coefficient_of_variation.html">Descriptive analysis of coefficient of variation</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
@@ -73,11 +74,8 @@
 <p>This article outlines how to show reduction targets for all
 <code>tilt_subsectors</code> per scenario-year benchmark using
 product-level output of Sector profile indicator.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/2DegreesInvesting/tiltDataAnalysis" class="external-link">tiltDataAnalysis</a></span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>readr.show_col_types <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p>Example subset of product-level output of Sector profile.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="va">product_sector</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tilt_subsector"</span>, <span class="st">"scenario"</span>, <span class="st">"year"</span>, <span class="st">"reduction_targets"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -100,7 +98,7 @@ product-level output of Sector profile indicator.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> iron &amp; steel             NZ 2050   <span style="text-decoration: underline;">2</span>050              0.94</span></span></code></pre></div>
 <p>Shows reduction targets for all <code>tilt_subsectors</code> per
 scenario-year benchmark.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/show_reduction_targets_for_tilt_subsectors_per_scenario_year.html">show_reduction_targets_for_tilt_subsectors_per_scenario_year</a></span><span class="op">(</span></span>
 <span>   <span class="va">sector_product_example</span></span>
 <span> <span class="op">)</span></span>
