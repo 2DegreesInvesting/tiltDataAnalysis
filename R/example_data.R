@@ -15,6 +15,8 @@
 #' example_transition_risk_product_emission_cov()
 #' example_transition_risk_product_sector_cov()
 #' example_transition_risk_product_transition_risk_cov()
+#' example_emission_product_best_case_worst_case()
+#' example_transition_risk_product_emission_avg_best_case_worst_case()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -147,6 +149,67 @@ example_transition_risk_product_transition_risk_cov <- function() {
          "comp_2", "1.5C RPS_2050_tilt_subsector",                 50.0,
          "comp_2",  "NZ 2050_2030_tilt_subsector",                 55.0,
          "comp_2",  "NZ 2050_2050_tilt_subsector",                 60.0
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_emission_product_best_case_worst_case <- function() {
+  tribble(
+    # styler: off
+   ~benchmark,  ~country, ~emission_profile, ~emissions_profile_equal_weight, ~emissions_profile_best_case, ~emissions_profile_worst_case,
+        "all",  "france",            "high",                            0.25,                         0.25,                         0.25,
+        "all",  "france",            "high",                            0.75,                         0.75,                         0.75,
+        "all",  "france",          "medium",                            0.10,                         0.10,                         0.10,
+        "all",  "france",             "low",                            0.15,                         0.15,                         0.15,
+        "all",  "france",             "low",                            0.55,                         0.55,                         0.55,
+        "all",  "france",     NA_character_,                            0.30,                         0.30,                         0.30,
+       "unit",  "france",            "high",                            0.45,                         0.45,                         0.45,
+       "unit",  "france",          "medium",                            0.60,                         0.60,                         0.60,
+       "unit",  "france",          "medium",                            0.40,                         0.40,                         0.40,
+       "unit",  "france",             "low",                            0.35,                         0.35,                         0.35,
+       "unit",  "france",             "low",                            0.75,                         0.75,                         0.75,
+       "unit", "austria",            "high",                            0.35,                         0.35,                         0.35,
+        "all", "austria",            "high",                            0.25,                         0.25,                         0.25,
+        "all", "austria",          "medium",                            0.10,                         0.10,                         0.10,
+        "all", "austria",          "medium",                            0.60,                         0.60,                         0.60,
+        "all", "austria",             "low",                            0.15,                         0.15,                         0.15,
+        "all", "austria",     NA_character_,                            0.30,                         0.30,                         0.30,
+       "unit", "austria",            "high",                            0.45,                         0.45,                         0.45,
+       "unit", "austria",          "medium",                            0.60,                         0.60,                         0.60,
+       "unit", "austria",          "medium",                            0.80,                         0.80,                         0.80,
+       "unit", "austria",             "low",                            0.35,                         0.35,                         0.35,
+       "unit", "austria",             "low",                            0.85,                         0.85,                         0.85,
+       "unit", "austria",     NA_character_,                            0.75,                         0.75,                         0.75
+
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_product_emission_avg_best_case_worst_case <- function() {
+  tribble(
+    # styler: off
+    ~companies_id,  ~country, ~grouping_emission, ~emission_rank_avg_equal_weight, ~emission_rank_avg_best_case,  ~emission_rank_avg_worst_case,
+         "comp_1",  "france",              "all",                            0.25,                         0.25,                           0.25,
+         "comp_1",  "france",      "isic_4digit",                            0.85,                         0.85,                           0.85,
+         "comp_1",  "france",              "all",                            0.20,                         0.20,                           0.20,
+         "comp_1",  "france",      "isic_4digit",                            0.15,                         0.15,                           0.15,
+         "comp_2",  "france",              "all",                            0.10,                         0.10,                           0.10,
+         "comp_2",  "france",      "isic_4digit",                            0.30,                         0.30,                           0.30,
+         "comp_2",  "france",              "all",                            0.40,                         0.40,                           0.40,
+         "comp_2",  "france",      "isic_4digit",                            0.70,                         0.70,                           0.70,
+         "comp_1", "austria",              "all",                            0.35,                         0.35,                           0.35,
+         "comp_1", "austria",      "isic_4digit",                            0.55,                         0.55,                           0.55,
+         "comp_1", "austria",              "all",                            0.60,                         0.60,                           0.60,
+         "comp_1", "austria",      "isic_4digit",                            0.15,                         0.15,                           0.15,
+         "comp_2", "austria",              "all",                            0.70,                         0.70,                           0.70,
+         "comp_2", "austria",      "isic_4digit",                            0.20,                         0.20,                           0.20,
+         "comp_2", "austria",              "all",                            0.80,                         0.80,                           0.80,
+         "comp_2", "austria",      "isic_4digit",                            0.90,                         0.90,                           0.90
+
     # styler: on
   )
 }
