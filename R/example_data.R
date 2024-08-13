@@ -16,7 +16,7 @@
 #' example_transition_risk_product_sector_cov()
 #' example_transition_risk_product_transition_risk_cov()
 #' example_emission_product_best_case_worst_case()
-#' example_transition_risk_product_emission_avg_best_case_worst_case()
+#' example_transition_risk_company_emission_avg_best_case_worst_case()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -189,27 +189,18 @@ example_emission_product_best_case_worst_case <- function() {
 
 #' @export
 #' @rdname example_emission_product_co2_des_analysis
-example_transition_risk_product_emission_avg_best_case_worst_case <- function() {
+example_transition_risk_company_emission_avg_best_case_worst_case <- function() {
   tribble(
     # styler: off
     ~companies_id,  ~country, ~grouping_emission, ~emission_rank_avg_equal_weight, ~emission_rank_avg_best_case,  ~emission_rank_avg_worst_case,
          "comp_1",  "france",              "all",                            0.25,                         0.25,                           0.25,
          "comp_1",  "france",      "isic_4digit",                            0.85,                         0.85,                           0.85,
-         "comp_1",  "france",              "all",                            0.20,                         0.20,                           0.20,
-         "comp_1",  "france",      "isic_4digit",                            0.15,                         0.15,                           0.15,
          "comp_2",  "france",              "all",                            0.10,                         0.10,                           0.10,
          "comp_2",  "france",      "isic_4digit",                            0.30,                         0.30,                           0.30,
-         "comp_2",  "france",              "all",                            0.40,                         0.40,                           0.40,
-         "comp_2",  "france",      "isic_4digit",                            0.70,                         0.70,                           0.70,
-         "comp_1", "austria",              "all",                            0.35,                         0.35,                           0.35,
-         "comp_1", "austria",      "isic_4digit",                            0.55,                         0.55,                           0.55,
-         "comp_1", "austria",              "all",                            0.60,                         0.60,                           0.60,
-         "comp_1", "austria",      "isic_4digit",                            0.15,                         0.15,                           0.15,
-         "comp_2", "austria",              "all",                            0.70,                         0.70,                           0.70,
-         "comp_2", "austria",      "isic_4digit",                            0.20,                         0.20,                           0.20,
-         "comp_2", "austria",              "all",                            0.80,                         0.80,                           0.80,
-         "comp_2", "austria",      "isic_4digit",                            0.90,                         0.90,                           0.90
-
+         "comp_3", "austria",              "all",                            0.35,                         0.35,                           0.35,
+         "comp_3", "austria",      "isic_4digit",                            0.55,                         0.55,                           0.55,
+         "comp_4", "austria",              "all",                            0.70,                         0.70,                           0.70,
+         "comp_4", "austria",      "isic_4digit",                            0.20,                         0.20,                           0.20
     # styler: on
   )
 }

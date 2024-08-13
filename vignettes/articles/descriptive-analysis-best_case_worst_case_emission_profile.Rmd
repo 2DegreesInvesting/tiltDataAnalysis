@@ -150,7 +150,7 @@ plot_bar_plot_profile(avg_worst_case_per_benchmark_country_risk_category, "avg_w
 ### Example company-level output of transition risk profile for best case and worst case
 
 ```{r, warning=FALSE}
-transition_risk_product_example <- example_transition_risk_product_emission_avg_best_case_worst_case()
+transition_risk_product_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
 kable(transition_risk_product_example)
 ```
 
