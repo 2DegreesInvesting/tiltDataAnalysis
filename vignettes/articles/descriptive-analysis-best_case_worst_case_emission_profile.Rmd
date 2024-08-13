@@ -34,9 +34,9 @@ avg_per_benchmark_risk_category <- function(data, col) {
   data |>
     select(all_of(c("benchmark", "emission_profile", col))) |>
     distinct() |>
-    mutate(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("benchmark")) |>
-    select(-all_of(c("total_mode", col))) |>
+    select(-all_of(c("total_mode"))) |>
     distinct()
 }
 avg_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_equal_weight") |>
@@ -100,9 +100,9 @@ avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
     select(all_of(c("benchmark", "country", "emission_profile", col))) |>
     distinct() |>
     filter(country == country_value) |>
-    mutate(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("benchmark")) |>
-    select(-all_of(c("total_mode", col))) |>
+    select(-all_of(c("total_mode"))) |>
     distinct()
 }
 avg_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_equal_weight", "france") |>
