@@ -27,15 +27,17 @@ Imports:
     tidyselect,
     tiltIndicator (>= 0.0.0.9228),
     tiltIndicatorAfter (>= 0.0.0.9057),
+    tiltPlot (>= 0.0.0.9001),
     tiltPolish (>= 0.0.0.9006),
     tiltToyData (>= 0.0.0.9204),
     tiltTransitionRisk (>= 0.0.0.9003),
     utils
-Remotes: 
+Remotes:  
     2degreesinvesting/tiltIndicatorAfter,
     2degreesinvesting/tiltToyData,
     2degreesinvesting/tiltTransitionRisk,
-    2degreesinvesting/tiltPolish
+    2degreesinvesting/tiltPolish,
+    2degreesinvesting/tiltPlot
 Depends: 
     R (>= 2.10)
 LazyData: true
