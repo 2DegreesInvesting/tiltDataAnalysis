@@ -18,6 +18,7 @@
 #' example_emission_product_best_case_worst_case()
 #' example_transition_risk_company_emission_avg_best_case_worst_case()
 #' example_transition_risk_company_sector_avg_best_case_worst_case()
+#' example_transition_risk_product_best_case_worst_case()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -220,6 +221,39 @@ example_transition_risk_company_sector_avg_best_case_worst_case <- function() {
          "comp_3", "austria",  "NZ 2050",  2030,                            0.55,                         0.55,                           0.55,
          "comp_4", "austria", "1.5C RPS",  2030,                            0.70,                         0.70,                           0.70,
          "comp_4", "austria",  "NZ 2050",  2030,                            0.20,                         0.20,                           0.20
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_product_best_case_worst_case <- function() {
+  tribble(
+    # styler: off
+    ~grouping_transition_risk,  ~country, ~transition_risk_category, ~transition_risk_profile_equal_weight, ~transition_risk_profile_best_case, ~transition_risk_profile_worst_case,
+          "1.5C RPS_2030_all",  "france",                    "high",                                  0.25,                               0.25,                                0.25,
+          "1.5C RPS_2030_all",  "france",                    "high",                                  0.75,                               0.75,                                0.75,
+          "1.5C RPS_2030_all",  "france",                  "medium",                                  0.10,                               0.10,                                0.10,
+          "1.5C RPS_2030_all",  "france",                     "low",                                  0.15,                               0.15,                                0.15,
+          "1.5C RPS_2030_all",  "france",                     "low",                                  0.55,                               0.55,                                0.55,
+          "1.5C RPS_2030_all",  "france",             NA_character_,                                  0.30,                               0.30,                                0.30,
+          "NZ 2050_2030_unit",  "france",                    "high",                                  0.45,                               0.45,                                0.45,
+          "NZ 2050_2030_unit",  "france",                  "medium",                                  0.60,                               0.60,                                0.60,
+          "NZ 2050_2030_unit",  "france",                  "medium",                                  0.40,                               0.40,                                0.40,
+          "NZ 2050_2030_unit",  "france",                     "low",                                  0.35,                               0.35,                                0.35,
+          "NZ 2050_2030_unit",  "france",                     "low",                                  0.75,                               0.75,                                0.75,
+          "NZ 2050_2030_unit", "austria",                    "high",                                  0.35,                               0.35,                                0.35,
+          "1.5C RPS_2030_all", "austria",                    "high",                                  0.25,                               0.25,                                0.25,
+          "1.5C RPS_2030_all", "austria",                  "medium",                                  0.10,                               0.10,                                0.10,
+          "1.5C RPS_2030_all", "austria",                  "medium",                                  0.60,                               0.60,                                0.60,
+          "1.5C RPS_2030_all", "austria",                     "low",                                  0.15,                               0.15,                                0.15,
+          "1.5C RPS_2030_all", "austria",             NA_character_,                                  0.30,                               0.30,                                0.30,
+          "NZ 2050_2030_unit", "austria",                    "high",                                  0.45,                               0.45,                                0.45,
+          "NZ 2050_2030_unit", "austria",                  "medium",                                  0.60,                               0.60,                                0.60,
+          "NZ 2050_2030_unit", "austria",                  "medium",                                  0.80,                               0.80,                                0.80,
+          "NZ 2050_2030_unit", "austria",                     "low",                                  0.35,                               0.35,                                0.35,
+          "NZ 2050_2030_unit", "austria",                     "low",                                  0.85,                               0.85,                                0.85,
+          "NZ 2050_2030_unit", "austria",             NA_character_,                                  0.75,                               0.75,                                0.75
     # styler: on
   )
 }

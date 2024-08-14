@@ -1,0 +1,149 @@
+---
+title: "Descriptive analysis of best case and worst case for transition risk profile"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This article shows how to calculate the descriptive analysis of equal weight,
+best case, and worst case for transition risk profile.
+
+```{r setup, echo = FALSE, message=FALSE}
+library(tiltDataAnalysis)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+options(readr.show_col_types = FALSE)
+options(width = 50000)
+```
+
+### Example product-level output of transition risk profile for equal weight, best case, and worst case
+
+```{r, warning=FALSE}
+transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
+kable(transition_risk_product_example)
+```
+
+### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
+
+```{r, warning=FALSE}
+avg_per_benchmark_risk_category <- function(data, col) {
+  data |>
+    select(all_of(c("grouping_transition_risk", "transition_risk_category", col))) |>
+    distinct() |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
+    mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>
+    select(-all_of(c("total_mode"))) |>
+    distinct()
+}
+avg_transition_risk_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight") |>
+  rename(avg_equal_weight = "proportion")
+
+kable(avg_transition_risk_equal_weight_per_benchmark_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+score_colors <- function(...) c("low" = "#F6CB4E", "medium" = "#B3D15D", "high" = "#E3693B")
+fill_score_colors <- function() scale_fill_manual(values = score_colors(), na.value = "#0476D0")
+
+plot_bar_plot_profile <- function(data, col) {
+  ggplot(data, aes(x = .data[[col]], y = .data$grouping_transition_risk, fill = .data$transition_risk_category)) +
+    geom_col(position = position_stack(reverse = TRUE), width = 0.5) +
+    fill_score_colors() +
+    tiltPlot::theme_tiltplot() +
+    xlim(0, NA)
+}
+
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_risk_category, "avg_equal_weight")
+```
+
+### Average `transition_risk_profile_best_case` per per `grouping_transition_risk` and `transition_risk_category`
+
+```{r, warning=FALSE}
+avg_transition_risk_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_best_case") |>
+  rename(avg_best_case = "proportion")
+
+kable(avg_transition_risk_best_case_per_benchmark_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_risk_category, "avg_best_case")
+```
+
+### Average `transition_risk_profile_worst_case` per per `grouping_transition_risk` and `transition_risk_category`
+
+```{r, warning=FALSE}
+avg_transition_risk_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case") |>
+  rename(avg_worst_case = "proportion")
+
+kable(avg_transition_risk_worst_case_per_benchmark_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_risk_category, "avg_worst_case")
+```
+
+### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category` for a country
+
+```{r, warning=FALSE}
+avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
+  data |>
+    select(all_of(c("grouping_transition_risk", "country", "transition_risk_category", col))) |>
+    distinct() |>
+    filter(country == country_value) |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
+    mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>
+    select(-all_of(c("total_mode"))) |>
+    distinct()
+}
+avg_transition_risk_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "france") |>
+  rename(avg_equal_weight = "proportion")
+
+kable(avg_transition_risk_equal_weight_per_benchmark_country_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_category, "avg_equal_weight")
+```
+
+### Average `transition_risk_profile_best_case` per `grouping_transition_risk` and `transition_risk_category` for a country
+
+```{r, warning=FALSE}
+avg_transition_risk_best_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "france") |>
+  rename(avg_best_case = "proportion")
+
+kable(avg_transition_risk_best_case_per_benchmark_country_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_category, "avg_best_case")
+```
+
+### Average `transition_risk_profile_worst_case` per `grouping_transition_risk` and `transition_risk_category` for a country
+
+```{r, warning=FALSE}
+avg_transition_risk_worst_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "france") |>
+  rename(avg_worst_case = "proportion")
+
+kable(avg_transition_risk_worst_case_per_benchmark_country_risk_category)
+```
+
+#### Bar plot
+
+```{r, echo = FALSE, warning=FALSE}
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_category, "avg_worst_case")
+```
