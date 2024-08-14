@@ -36,6 +36,7 @@
 <li><a class="dropdown-item" href="../articles/descriptive-analysis-amount_of_companies.html">Descriptive analysis on amount of companies</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_emission_profile.html">Descriptive analysis of best case and worst case for emission profile</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_sector_profile.html">Descriptive analysis of best case and worst case for sector profile</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_transition_risk_profile.html">Descriptive analysis of best case and worst case for transition risk profile</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-co2_footprint_per_benchmark.html">Descriptive analysis of co2_footprint per benchmark</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-coefficient_of_variation.html">Descriptive analysis of coefficient of variation</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
@@ -301,10 +302,10 @@ and emission_profile<a class="anchor" aria-label="anchor" href="#average-emissio
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"total_mode"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">avg_equal_weight_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">avg_emission_profile_equal_weight_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_equal_weight <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_equal_weight_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_equal_weight_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
@@ -365,10 +366,10 @@ and emission_profile<a class="anchor" aria-label="anchor" href="#average-emissio
 emission_profile<a class="anchor" aria-label="anchor" href="#average-emissions_profile_best_case-per-benchmark-and-emission_profile"></a>
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">avg_best_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">avg_emission_profile_best_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_best_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_best_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_best_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
@@ -429,10 +430,10 @@ emission_profile<a class="anchor" aria-label="anchor" href="#average-emissions_p
 emission_profile<a class="anchor" aria-label="anchor" href="#average-emissions_profile_worst_case-per-benchmark-and-emission_profile"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">avg_worst_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">avg_emission_profile_worst_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_worst_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_worst_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_worst_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
@@ -503,10 +504,10 @@ and emission_profile for a country<a class="anchor" aria-label="anchor" href="#a
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"total_mode"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">avg_equal_weight_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span><span class="va">avg_emission_profile_equal_weight_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_equal_weight <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_equal_weight_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_equal_weight_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
@@ -562,10 +563,10 @@ and emission_profile for a country<a class="anchor" aria-label="anchor" href="#a
 emission_profile for a country<a class="anchor" aria-label="anchor" href="#average-emissions_profile_base_case-per-benchmark-and-emission_profile-for-a-country"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">avg_best_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">avg_emission_profile_best_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_best_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_best_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_best_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
@@ -621,10 +622,10 @@ emission_profile for a country<a class="anchor" aria-label="anchor" href="#avera
 emission_profile for a country<a class="anchor" aria-label="anchor" href="#average-emissions_profile_worst_case-per-benchmark-and-emission_profile-for-a-country"></a>
 </h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">avg_worst_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">avg_emission_profile_worst_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_worst_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_worst_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_worst_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>

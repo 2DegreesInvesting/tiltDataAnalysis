@@ -23,6 +23,7 @@ package."></head><body>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/descriptive-analysis-amount_of_companies.html">Descriptive analysis on amount of companies</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_emission_profile.html">Descriptive analysis of best case and worst case for emission profile</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_sector_profile.html">Descriptive analysis of best case and worst case for sector profile</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive-analysis-best_case_worst_case_transition_risk_profile.html">Descriptive analysis of best case and worst case for transition risk profile</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-co2_footprint_per_benchmark.html">Descriptive analysis of co2_footprint per benchmark</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-coefficient_of_variation.html">Descriptive analysis of coefficient of variation</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
@@ -72,7 +73,9 @@ package.</p>
 <span></span>
 <span><span class="fu">example_transition_risk_company_emission_avg_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">example_transition_risk_company_sector_avg_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">example_transition_risk_company_sector_avg_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">example_transition_risk_product_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -223,6 +226,25 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> comp_4       austria NZ 2050   <span style="text-decoration: underline;">2</span>030                           0.2 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: sector_target_avg_best_case &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sector_target_avg_worst_case &lt;dbl&gt;</span></span>
+<span class="r-in"><span><span class="fu">example_transition_risk_product_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 23 × 6</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    grouping_transition_r…¹ country transition_risk_cate…² transition_risk_prof…³</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> 1.5C RPS_2030_all       france  high                                     0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> 1.5C RPS_2030_all       france  high                                     0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> 1.5C RPS_2030_all       france  medium                                   0.1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> 1.5C RPS_2030_all       france  low                                      0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> 1.5C RPS_2030_all       france  low                                      0.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> 1.5C RPS_2030_all       france  <span style="color: #BB0000;">NA</span>                                       0.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> NZ 2050_2030_unit       france  high                                     0.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> NZ 2050_2030_unit       france  medium                                   0.6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> NZ 2050_2030_unit       france  medium                                   0.4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> NZ 2050_2030_unit       france  low                                      0.35</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 13 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated names: ¹​grouping_transition_risk, ²​transition_risk_category,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   ³​transition_risk_profile_equal_weight</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: transition_risk_profile_best_case &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   transition_risk_profile_worst_case &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
