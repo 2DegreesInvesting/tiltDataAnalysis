@@ -163,7 +163,7 @@ emission_rank_avg_per_benchmark <- function(data, col) {
     distinct() |>
     mutate(sum_mode = sum(.data[[col]], na.rm = TRUE), .by = "grouping_emission") |>
     mutate(distinct_comp = n_distinct(companies_id, na.rm = TRUE), .by = "grouping_emission") |>
-    mutate(average = sum_mode / distinct_comp, .by = "grouping_emission") |>
+    mutate(average = sum_mode / distinct_comp) |>
     mutate(rank_median = median(.data[[col]], na.rm = TRUE), .by = "grouping_emission") |>
     mutate(rank_25th = quantile(.data[[col]], 0.25, na.rm = TRUE), .by = "grouping_emission") |>
     mutate(rank_75th = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_emission") |>
