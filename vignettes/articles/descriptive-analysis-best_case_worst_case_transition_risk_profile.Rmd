@@ -18,7 +18,7 @@ library(dplyr)
 library(knitr)
 library(ggplot2)
 options(readr.show_col_types = FALSE)
-options(width = 50000)
+options(width = 5000)
 ```
 
 ### Example product-level output of transition risk profile for equal weight, best case, and worst case
