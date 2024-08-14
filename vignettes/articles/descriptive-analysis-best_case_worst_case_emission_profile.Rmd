@@ -39,10 +39,10 @@ avg_per_benchmark_risk_category <- function(data, col) {
     select(-all_of(c("total_mode"))) |>
     distinct()
 }
-avg_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_equal_weight") |>
+avg_emission_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_equal_weight") |>
   rename(avg_equal_weight = "proportion")
 
-kable(avg_equal_weight_per_benchmark_risk_category)
+kable(avg_emission_profile_equal_weight_per_benchmark_risk_category)
 ```
 
 #### Bar plot
@@ -59,37 +59,37 @@ plot_bar_plot_profile <- function(data, col) {
     xlim(0, NA)
 }
 
-plot_bar_plot_profile(avg_equal_weight_per_benchmark_risk_category, "avg_equal_weight")
+plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category, "avg_equal_weight")
 ```
 
 ### Average `emissions_profile_best_case` per benchmark and emission_profile
 
 ```{r, warning=FALSE}
-avg_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_best_case") |>
+avg_emission_profile_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_best_case") |>
   rename(avg_best_case = "proportion")
 
-kable(avg_best_case_per_benchmark_risk_category)
+kable(avg_emission_profile_best_case_per_benchmark_risk_category)
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_best_case_per_benchmark_risk_category, "avg_best_case")
+plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_risk_category, "avg_best_case")
 ```
 
 ### Average `emissions_profile_worst_case` per benchmark and emission_profile
 
 ```{r, warning=FALSE}
-avg_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_worst_case") |>
+avg_emission_profile_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_worst_case") |>
   rename(avg_worst_case = "proportion")
 
-kable(avg_worst_case_per_benchmark_risk_category)
+kable(avg_emission_profile_worst_case_per_benchmark_risk_category)
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_worst_case_per_benchmark_risk_category, "avg_worst_case")
+plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_risk_category, "avg_worst_case")
 ```
 
 ### Average `emissions_profile_equal_weight` per benchmark and emission_profile for a country
@@ -105,46 +105,46 @@ avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
     select(-all_of(c("total_mode"))) |>
     distinct()
 }
-avg_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_equal_weight", "france") |>
+avg_emission_profile_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_equal_weight", "france") |>
   rename(avg_equal_weight = "proportion")
 
-kable(avg_equal_weight_per_benchmark_country_risk_category)
+kable(avg_emission_profile_equal_weight_per_benchmark_country_risk_category)
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_equal_weight_per_benchmark_country_risk_category, "avg_equal_weight")
+plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_country_risk_category, "avg_equal_weight")
 ```
 
 ### Average `emissions_profile_base_case` per benchmark and emission_profile for a country
 
 ```{r, warning=FALSE}
-avg_best_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_best_case", "france") |>
+avg_emission_profile_best_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_best_case", "france") |>
   rename(avg_best_case = "proportion")
 
-kable(avg_best_case_per_benchmark_country_risk_category)
+kable(avg_emission_profile_best_case_per_benchmark_country_risk_category)
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_best_case_per_benchmark_country_risk_category, "avg_best_case")
+plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_category, "avg_best_case")
 ```
 
 ### Average `emissions_profile_worst_case` per benchmark and emission_profile for a country
 
 ```{r, warning=FALSE}
-avg_worst_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_worst_case", "france") |>
+avg_emission_profile_worst_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_worst_case", "france") |>
   rename(avg_worst_case = "proportion")
 
-kable(avg_worst_case_per_benchmark_country_risk_category)
+kable(avg_emission_profile_worst_case_per_benchmark_country_risk_category)
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_worst_case_per_benchmark_country_risk_category, "avg_worst_case")
+plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_category, "avg_worst_case")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case
