@@ -12,14 +12,13 @@ knitr::opts_chunk$set(
 This article shows how to calculate the descriptive analysis of equal weight,
 best case, and worst case for transition risk profile.
 
-```{r setup, echo = FALSE, message=FALSE}
+```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
 library(tiltDataAnalysis)
 library(dplyr)
 library(knitr)
 library(ggplot2)
 library(kableExtra)
 options(readr.show_col_types = FALSE)
-options(width = 5000)
 ```
 
 ### Example product-level output of transition risk profile for equal weight, best case, and worst case
@@ -28,7 +27,7 @@ options(width = 5000)
 transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
 kable(transition_risk_product_example) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
@@ -157,7 +156,7 @@ plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_
 transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
 kable(transition_risk_company_example) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk`
@@ -184,7 +183,7 @@ avg_transition_risk_equal_weight_per_benchmark <- avg_transition_risk_per_benchm
 
 kable(avg_transition_risk_equal_weight_per_benchmark) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk`
@@ -198,7 +197,7 @@ avg_transition_risk_best_case_per_benchmark <- avg_transition_risk_per_benchmark
 
 kable(avg_transition_risk_best_case_per_benchmark) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk`
@@ -212,7 +211,7 @@ avg_transition_risk_worst_case_per_benchmark <- avg_transition_risk_per_benchmar
 
 kable(avg_transition_risk_worst_case_per_benchmark) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk` for a country
@@ -240,7 +239,7 @@ avg_transition_risk_equal_weight_per_benchmark_country  <- avg_transition_risk_p
 
 kable(avg_transition_risk_equal_weight_per_benchmark_country) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk` for a country
@@ -254,7 +253,7 @@ avg_transition_risk_best_case_per_benchmark_country  <- avg_transition_risk_per_
 
 kable(avg_transition_risk_best_case_per_benchmark_country) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk` for a country
@@ -268,5 +267,5 @@ avg_transition_risk_worst_case_per_benchmark_country  <- avg_transition_risk_per
 
 kable(avg_transition_risk_worst_case_per_benchmark_country) |>
   kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
-  scroll_box(width = "1000px")
+  scroll_box(width = "800px")
 ```
