@@ -17,6 +17,7 @@ library(tiltDataAnalysis)
 library(dplyr)
 library(knitr)
 library(ggplot2)
+library(kableExtra)
 options(readr.show_col_types = FALSE)
 options(width = 5000)
 ```
@@ -25,7 +26,9 @@ options(width = 5000)
 
 ```{r, warning=FALSE}
 transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
-kable(transition_risk_product_example)
+kable(transition_risk_product_example) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
@@ -109,7 +112,7 @@ avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
 avg_transition_risk_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "france") |>
   rename(avg_equal_weight = "proportion")
 
-kable(avg_transition_risk_equal_weight_per_benchmark_country_risk_category)
+kable(avg_transition_risk_equal_weight_per_benchmark_country_risk_category) 
 ```
 
 #### Bar plot
@@ -152,7 +155,9 @@ plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_
 
 ```{r, warning=FALSE}
 transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
-kable(transition_risk_company_example)
+kable(transition_risk_company_example) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk`
@@ -177,7 +182,9 @@ avg_transition_risk_equal_weight_per_benchmark <- avg_transition_risk_per_benchm
          "25th_quantile_avg_transition_risk_equal_weight" = "rank_25th",
          "75th_quantile_avg_transition_risk_equal_weight" = "rank_75th")
 
-kable(avg_transition_risk_equal_weight_per_benchmark)
+kable(avg_transition_risk_equal_weight_per_benchmark) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk`
@@ -189,7 +196,9 @@ avg_transition_risk_best_case_per_benchmark <- avg_transition_risk_per_benchmark
          "25th_quantile_avg_transition_risk_best_case" = "rank_25th",
          "75th_quantile_avg_transition_risk_best_case" = "rank_75th")
 
-kable(avg_transition_risk_best_case_per_benchmark)
+kable(avg_transition_risk_best_case_per_benchmark) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk`
@@ -201,7 +210,9 @@ avg_transition_risk_worst_case_per_benchmark <- avg_transition_risk_per_benchmar
          "25th_quantile_avg_transition_risk_worst_case" = "rank_25th",
          "75th_quantile_avg_transition_risk_worst_case" = "rank_75th")
 
-kable(avg_transition_risk_worst_case_per_benchmark)
+kable(avg_transition_risk_worst_case_per_benchmark) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk` for a country
@@ -227,7 +238,9 @@ avg_transition_risk_equal_weight_per_benchmark_country  <- avg_transition_risk_p
          "25th_quantile_avg_transition_risk_equal_weight" = "rank_25th",
          "75th_quantile_avg_transition_risk_equal_weight" = "rank_75th")
 
-kable(avg_transition_risk_equal_weight_per_benchmark_country)
+kable(avg_transition_risk_equal_weight_per_benchmark_country) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk` for a country
@@ -239,7 +252,9 @@ avg_transition_risk_best_case_per_benchmark_country  <- avg_transition_risk_per_
          "25th_quantile_avg_transition_risk_best_case" = "rank_25th",
          "75th_quantile_avg_transition_risk_best_case" = "rank_75th")
 
-kable(avg_transition_risk_best_case_per_benchmark_country)
+kable(avg_transition_risk_best_case_per_benchmark_country) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk` for a country
@@ -251,5 +266,7 @@ avg_transition_risk_worst_case_per_benchmark_country  <- avg_transition_risk_per
          "25th_quantile_avg_transition_risk_worst_case" = "rank_25th",
          "75th_quantile_avg_transition_risk_worst_case" = "rank_75th")
 
-kable(avg_transition_risk_worst_case_per_benchmark_country)
+kable(avg_transition_risk_worst_case_per_benchmark_country) |>
+  kable_styling(full_width = TRUE, bootstrap_options = "striped") |>
+  scroll_box(width = "1000px")
 ```
