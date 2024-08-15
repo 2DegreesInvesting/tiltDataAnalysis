@@ -12,6 +12,7 @@
 \alias{example_transition_risk_company_emission_avg_best_case_worst_case}
 \alias{example_transition_risk_company_sector_avg_best_case_worst_case}
 \alias{example_transition_risk_product_best_case_worst_case}
+\alias{example_transition_risk_company_transition_risk_avg_best_case_worst_case}
 \title{Example raw datasets}
 \usage{
 example_emission_product_co2_des_analysis()
@@ -35,6 +36,8 @@ example_transition_risk_company_emission_avg_best_case_worst_case()
 example_transition_risk_company_sector_avg_best_case_worst_case()
 
 example_transition_risk_product_best_case_worst_case()
+
+example_transition_risk_company_transition_risk_avg_best_case_worst_case()
 }
 \value{
 A dataframe.
@@ -55,5 +58,6 @@ example_emission_product_best_case_worst_case()
 example_transition_risk_company_emission_avg_best_case_worst_case()
 example_transition_risk_company_sector_avg_best_case_worst_case()
 example_transition_risk_product_best_case_worst_case()
+example_transition_risk_company_transition_risk_avg_best_case_worst_case()
 }
 \keyword{internal}

@@ -150,8 +150,8 @@ plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk
 ### Example company-level output of transition risk profile for best case and worst case
 
 ```{r, warning=FALSE}
-transition_risk_product_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
-kable(transition_risk_product_example)
+transition_risk_company_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
+kable(transition_risk_company_example)
 ```
 
 ### Descriptive analysis of `emission_rank_avg_equal_weight` per benchmark
@@ -170,7 +170,7 @@ emission_rank_avg_per_benchmark <- function(data, col) {
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct()
 }
-emission_rank_avg_equal_weight_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_product_example, "emission_rank_avg_equal_weight") |>
+emission_rank_avg_equal_weight_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_equal_weight") |>
   rename("average_emission_rank_avg_equal_weight" = "average",
          "median_emission_rank_avg_equal_weight" = "rank_median",
          "25th_quantile_emission_rank_avg_equal_weight" = "rank_25th",
@@ -182,7 +182,7 @@ kable(emission_rank_avg_equal_weight_per_benchmark)
 ### Descriptive analysis of `emission_rank_avg_best_case` per benchmark
 
 ```{r, warning=FALSE}
-emission_rank_avg_best_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_product_example, "emission_rank_avg_best_case") |>
+emission_rank_avg_best_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_best_case") |>
   rename("average_emission_rank_avg_best_case" = "average",
          "median_emission_rank_avg_best_case" = "rank_median",
          "25th_quantile_emission_rank_avg_best_case" = "rank_25th",
@@ -194,7 +194,7 @@ kable(emission_rank_avg_best_case_per_benchmark)
 ### Descriptive analysis of `emission_rank_avg_worst_case` per benchmark
 
 ```{r, warning=FALSE}
-emission_rank_avg_worst_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_product_example, "emission_rank_avg_worst_case") |>
+emission_rank_avg_worst_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_worst_case") |>
   rename("average_emission_rank_avg_worst_case" = "average",
          "median_emission_rank_avg_worst_case" = "rank_median",
          "25th_quantile_emission_rank_avg_worst_case" = "rank_25th",
@@ -220,7 +220,7 @@ emission_rank_avg_per_benchmark_country <- function(data, col, country_value) {
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct()
 }
-emission_rank_avg_equal_weight_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_product_example, "emission_rank_avg_equal_weight", "france") |>
+emission_rank_avg_equal_weight_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_equal_weight", "france") |>
   rename("average_emission_rank_avg_equal_weight" = "average",
          "median_emission_rank_avg_equal_weight" = "rank_median",
          "25th_quantile_emission_rank_avg_equal_weight" = "rank_25th",
@@ -232,7 +232,7 @@ kable(emission_rank_avg_equal_weight_per_benchmark_country)
 ### Descriptive analysis of `emission_rank_avg_best_case` per benchmark for a country
 
 ```{r, warning=FALSE}
-emission_rank_avg_best_case_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_product_example, "emission_rank_avg_best_case", "france") |>
+emission_rank_avg_best_case_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_best_case", "france") |>
   rename("average_emission_rank_avg_best_case" = "average",
          "median_emission_rank_avg_best_case" = "rank_median",
          "25th_quantile_emission_rank_avg_best_case" = "rank_25th",
@@ -244,7 +244,7 @@ kable(emission_rank_avg_best_case_per_benchmark_country)
 ### Descriptive analysis of `emission_rank_avg_best_case` per benchmark for a country
 
 ```{r, warning=FALSE}
-emission_rank_avg_worst_case_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_product_example, "emission_rank_avg_worst_case", "france") |>
+emission_rank_avg_worst_case_per_benchmark_country <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_worst_case", "france") |>
   rename("average_emission_rank_avg_worst_case" = "average",
          "median_emission_rank_avg_worst_case" = "rank_median",
          "25th_quantile_emission_rank_avg_worst_case" = "rank_25th",
