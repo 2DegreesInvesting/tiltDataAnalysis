@@ -36,7 +36,6 @@ kable(transition_risk_product_example) |>
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
     select(all_of(c("grouping_transition_risk", "transition_risk_category", col))) |>
-    distinct() |>
     summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>
     select(-all_of(c("total_mode"))) |>
@@ -101,7 +100,6 @@ plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_risk_category
 avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
   data |>
     select(all_of(c("grouping_transition_risk", "country", "transition_risk_category", col))) |>
-    distinct() |>
     filter(country == country_value) |>
     summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>

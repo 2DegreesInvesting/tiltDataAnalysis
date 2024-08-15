@@ -33,7 +33,6 @@ kable(emission_product_example)
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
     select(all_of(c("benchmark", "emission_profile", col))) |>
-    distinct() |>
     summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("benchmark")) |>
     select(-all_of(c("total_mode"))) |>
@@ -98,7 +97,6 @@ plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_risk_categor
 avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
   data |>
     select(all_of(c("benchmark", "country", "emission_profile", col))) |>
-    distinct() |>
     filter(country == country_value) |>
     summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("benchmark", "emission_profile")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("benchmark")) |>
