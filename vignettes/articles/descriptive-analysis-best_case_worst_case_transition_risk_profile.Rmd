@@ -147,3 +147,109 @@ kable(avg_transition_risk_worst_case_per_benchmark_country_risk_category)
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_category, "avg_worst_case")
 ```
+
+### Example company-level output of transition risk profile for best case and worst case
+
+```{r, warning=FALSE}
+transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
+kable(transition_risk_company_example)
+```
+
+### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk`
+
+```{r, warning=FALSE}
+avg_transition_risk_per_benchmark <- function(data, col) {
+  data |>
+    select(all_of(c("companies_id", "grouping_transition_risk", col))) |>
+    distinct() |>
+    mutate(sum_mode = sum(.data[[col]], na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(distinct_comp = n_distinct(companies_id, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(average = sum_mode / distinct_comp) |>
+    mutate(rank_median = median(.data[[col]], na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(rank_25th = quantile(.data[[col]], 0.25, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(rank_75th = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
+    distinct()
+}
+avg_transition_risk_equal_weight_per_benchmark <- avg_transition_risk_per_benchmark(transition_risk_company_example, "avg_transition_risk_equal_weight") |>
+  rename("average_avg_transition_risk_equal_weight" = "average",
+         "median_avg_transition_risk_equal_weight" = "rank_median",
+         "25th_quantile_avg_transition_risk_equal_weight" = "rank_25th",
+         "75th_quantile_avg_transition_risk_equal_weight" = "rank_75th")
+
+kable(avg_transition_risk_equal_weight_per_benchmark)
+```
+
+### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk`
+
+```{r, warning=FALSE}
+avg_transition_risk_best_case_per_benchmark <- avg_transition_risk_per_benchmark(transition_risk_company_example, "avg_transition_risk_best_case") |>
+  rename("average_avg_transition_risk_best_case" = "average",
+         "median_avg_transition_risk_best_case" = "rank_median",
+         "25th_quantile_avg_transition_risk_best_case" = "rank_25th",
+         "75th_quantile_avg_transition_risk_best_case" = "rank_75th")
+
+kable(avg_transition_risk_best_case_per_benchmark)
+```
+
+### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk`
+
+```{r, warning=FALSE}
+avg_transition_risk_worst_case_per_benchmark <- avg_transition_risk_per_benchmark(transition_risk_company_example, "avg_transition_risk_worst_case") |>
+  rename("average_avg_transition_risk_worst_case" = "average",
+         "median_avg_transition_risk_worst_case" = "rank_median",
+         "25th_quantile_avg_transition_risk_worst_case" = "rank_25th",
+         "75th_quantile_avg_transition_risk_worst_case" = "rank_75th")
+
+kable(avg_transition_risk_worst_case_per_benchmark)
+```
+
+### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk` for a country
+
+```{r, warning=FALSE}
+avg_transition_risk_per_benchmark_country <- function(data, col, country_value) {
+  data |>
+    select(all_of(c("companies_id", "grouping_transition_risk", "country", col))) |>
+    distinct() |>
+    filter(country == country_value) |>
+    mutate(sum_mode = sum(.data[[col]], na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(distinct_comp = n_distinct(companies_id, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(average = sum_mode / distinct_comp) |>
+    mutate(rank_median = median(.data[[col]], na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(rank_25th = quantile(.data[[col]], 0.25, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    mutate(rank_75th = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_transition_risk") |>
+    select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
+    distinct()
+}
+avg_transition_risk_equal_weight_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "france") |>
+  rename("average_avg_transition_risk_equal_weight" = "average",
+         "median_avg_transition_risk_equal_weight" = "rank_median",
+         "25th_quantile_avg_transition_risk_equal_weight" = "rank_25th",
+         "75th_quantile_avg_transition_risk_equal_weight" = "rank_75th")
+
+kable(avg_transition_risk_equal_weight_per_benchmark_country)
+```
+
+### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk` for a country
+
+```{r, warning=FALSE}
+avg_transition_risk_best_case_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "france") |>
+  rename("average_avg_transition_risk_best_case" = "average",
+         "median_avg_transition_risk_best_case" = "rank_median",
+         "25th_quantile_avg_transition_risk_best_case" = "rank_25th",
+         "75th_quantile_avg_transition_risk_best_case" = "rank_75th")
+
+kable(avg_transition_risk_best_case_per_benchmark_country)
+```
+
+### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk` for a country
+
+```{r, warning=FALSE}
+avg_transition_risk_worst_case_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "france") |>
+  rename("average_avg_transition_risk_worst_case" = "average",
+         "median_avg_transition_risk_worst_case" = "rank_median",
+         "25th_quantile_avg_transition_risk_worst_case" = "rank_25th",
+         "75th_quantile_avg_transition_risk_worst_case" = "rank_75th")
+
+kable(avg_transition_risk_worst_case_per_benchmark_country)
+```
