@@ -179,7 +179,7 @@ emission_rank_avg_equal_weight_per_benchmark <- emission_rank_avg_per_benchmark(
 
 kable(emission_rank_avg_equal_weight_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(5, width = "3cm") |>
+  column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_equal_weight" = 4))
 ```
 
@@ -190,7 +190,7 @@ emission_rank_avg_best_case_per_benchmark <- emission_rank_avg_per_benchmark(tra
 
 kable(emission_rank_avg_best_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(5, width = "3cm") |>
+  column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_best_case" = 4))
 ```
 
@@ -201,7 +201,7 @@ emission_rank_avg_worst_case_per_benchmark <- emission_rank_avg_per_benchmark(tr
 
 kable(emission_rank_avg_worst_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(5, width = "3cm") |>
+  column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_worst_case" = 4))
 ```
 
@@ -226,7 +226,7 @@ emission_rank_avg_equal_weight_per_benchmark_country <- emission_rank_avg_per_be
 
 kable(emission_rank_avg_equal_weight_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `France`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(6, width = "3cm") |>
+  column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 ```
 
@@ -237,7 +237,7 @@ emission_rank_avg_best_case_per_benchmark_country <- emission_rank_avg_per_bench
 
 kable(emission_rank_avg_best_case_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `France`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(6, width = "3cm") |>
+  column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 ```
 
@@ -248,6 +248,6 @@ emission_rank_avg_worst_case_per_benchmark_country <- emission_rank_avg_per_benc
 
 kable(emission_rank_avg_worst_case_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `France`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(6, width = "3cm") |>
+  column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 ```
