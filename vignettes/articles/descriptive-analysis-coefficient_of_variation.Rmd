@@ -24,7 +24,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 emission_product_example <- example_transition_risk_product_emission_cov()
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Average `cov_emission_rank` per company for emission profile benchmarks
@@ -50,7 +50,7 @@ kable(avg_cov_emission_rank_per_benchmark, align = "lc", caption = "Average cov_
 
 ```{r}
 sector_product_example <- example_transition_risk_product_sector_cov()
-kable(sector_product_example)
+kable(sector_product_example |> head(20))
 ```
 
 ### Average `cov_sector_target` per company for grouping_sector
@@ -78,7 +78,7 @@ kable(avg_cov_sector_target_per_benchmark, align = "lc", caption = "Average cov_
 
 ```{r}
 transition_risk_product_example <- example_transition_risk_product_transition_risk_cov()
-kable(transition_risk_product_example)
+kable(transition_risk_product_example |> head(20))
 ```
 
 ### Average `cov_transition_risk` per company for tilt_subsector benchmarks of grouping_transition_risk

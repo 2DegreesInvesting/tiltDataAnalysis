@@ -24,14 +24,14 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 emission_product_example <- example_emission_ep_product_des_analysis()
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Example subset of product-level output of sector profile.
 
 ```{r}
 sector_product_example <- example_sector_ep_product_des_analysis()
-kable(sector_product_example)
+kable(sector_product_example |> head(20))
 ```
 
 ### Distinct products of emission and sector profile

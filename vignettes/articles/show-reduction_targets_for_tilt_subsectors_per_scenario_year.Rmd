@@ -27,7 +27,7 @@ sector_product_example <- product_sector |>
   select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
   distinct()
 
-kable(sector_product_example)
+kable(sector_product_example |> head(20))
 ```
 
 ### Shows reduction targets for all tilt_subsectors per scenario-year benchmark

@@ -25,7 +25,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r, warning=FALSE}
 transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
-kable(transition_risk_product_example)
+kable(transition_risk_product_example |> head(20))
 ```
 
 ### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
@@ -156,7 +156,7 @@ plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_
 
 ```{r, warning=FALSE}
 transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
-kable(transition_risk_company_example) 
+kable(transition_risk_company_example |> head(20)) 
 ```
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk`

@@ -24,7 +24,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 emission_product_example <- example_emission_product_co2_des_analysis()
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Descriptive analysis for benchmark "all"

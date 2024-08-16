@@ -25,7 +25,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r, warning=FALSE}
 transition_risk_product_example <- example_transition_risk_company_sector_avg_best_case_worst_case()
-kable(transition_risk_product_example)
+kable(transition_risk_product_example |> head(20))
 ```
 
 ### Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector

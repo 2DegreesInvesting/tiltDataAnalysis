@@ -25,7 +25,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 transition_risk_product_example <- example_transition_risk_product_trs_des_analysis()
-kable(transition_risk_product_example)
+kable(transition_risk_product_example |> head(20))
 ```
 
 ### Descriptive analysis for benchmark "1.5C RPS_2030_tilt_subsector"

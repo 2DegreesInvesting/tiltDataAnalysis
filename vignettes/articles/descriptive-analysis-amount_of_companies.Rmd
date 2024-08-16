@@ -35,7 +35,7 @@ emission_product_example <- product_emission |>
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
 
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Example subset of product-level output of sector profile.
@@ -52,7 +52,7 @@ sector_product_example <- product_sector |>
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
 
-kable(sector_product_example)
+kable(sector_product_example |> head(20))
 ```
 
 ### Example subset of product-level output of transition risk profile.
@@ -69,7 +69,7 @@ transition_risk_product_example <- product_transition_risk |>
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
 
-kable(transition_risk_product_example)
+kable(transition_risk_product_example |> head(20))
 ```
 
 ### Number of companies for emission, sector, and transition risk profile
