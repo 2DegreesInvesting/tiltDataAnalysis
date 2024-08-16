@@ -25,7 +25,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r, warning=FALSE}
 emission_product_example <- example_emission_product_best_case_worst_case()
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Average `emissions_profile_equal_weight` per benchmark and emission_profile
@@ -156,7 +156,7 @@ plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk
 
 ```{r, warning=FALSE}
 transition_risk_company_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
-kable(transition_risk_company_example)
+kable(transition_risk_company_example |> head(20))
 ```
 
 ### Descriptive analysis of `emission_rank_avg_equal_weight` per benchmark

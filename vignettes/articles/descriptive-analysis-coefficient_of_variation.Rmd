@@ -12,9 +12,10 @@ knitr::opts_chunk$set(
 This article shows how to calculate the descriptive analysis of coefficient of 
 variation for emission profile, sector profile, and transition risk profile.
 
-```{r setup, echo = FALSE, message=FALSE}
+```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
 library(tiltDataAnalysis)
 library(dplyr)
+library(kableExtra)
 library(knitr)
 options(readr.show_col_types = FALSE)
 ```
@@ -28,7 +29,7 @@ kable(emission_product_example)
 
 ### Average `cov_emission_rank` per company for emission profile benchmarks
 
-```{r}
+```{r, echo=FALSE}
 avg_cov_emission_rank_per_benchmark <- emission_product_example |>
   select(all_of(c("companies_id", "grouping_emission", "cov_emission_rank"))) |>
   distinct() |>
@@ -37,8 +38,12 @@ avg_cov_emission_rank_per_benchmark <- emission_product_example |>
   mutate(avg_cov_emission_rank = sum_cov_emission_rank/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_emission_rank", "distinct_companies_per_benchmark", "cov_emission_rank", "companies_id"))) |>
   distinct()
-  
-kable(avg_cov_emission_rank_per_benchmark)
+```
+
+```{r}
+kable(avg_cov_emission_rank_per_benchmark, align = "lc", caption = "Average cov_emission_rank per company for grouping_emission", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(2, width = "5cm")
 ```
 
 ### Example company-level output of transition risk profile for `cov_sector_target`
@@ -48,9 +53,9 @@ sector_product_example <- example_transition_risk_product_sector_cov()
 kable(sector_product_example)
 ```
 
-### Average `cov_sector_target` per company for sector profile benchmarks
+### Average `cov_sector_target` per company for grouping_sector
 
-```{r}
+```{r, echo=FALSE}
 avg_cov_sector_target_per_benchmark <- sector_product_example |>
   select(all_of(c("companies_id", "scenario", "year", "cov_sector_target"))) |>
   mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
@@ -61,8 +66,12 @@ avg_cov_sector_target_per_benchmark <- sector_product_example |>
   mutate(avg_cov_sector_target = sum_cov_sector_target/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_sector_target", "distinct_companies_per_benchmark", "cov_sector_target", "companies_id"))) |>
   distinct()
-  
-kable(avg_cov_sector_target_per_benchmark)
+```
+
+```{r}
+kable(avg_cov_sector_target_per_benchmark, align = "lc", caption = "Average cov_sector_target per company for grouping_sector", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(2, width = "5cm")
 ```
 
 ### Example company-level output of transition risk profile for `cov_transition_risk`
@@ -72,9 +81,9 @@ transition_risk_product_example <- example_transition_risk_product_transition_ri
 kable(transition_risk_product_example)
 ```
 
-### Average `cov_transition_risk` per company for transition risk profile benchmarks (only for tilt_subsector)
+### Average `cov_transition_risk` per company for tilt_subsector benchmarks of grouping_transition_risk
 
-```{r}
+```{r, echo=FALSE}
 avg_cov_transition_risk_per_benchmark <- transition_risk_product_example |>
   select(all_of(c("companies_id", "grouping_transition_risk", "cov_transition_risk"))) |>
   distinct() |>
@@ -85,7 +94,11 @@ avg_cov_transition_risk_per_benchmark <- transition_risk_product_example |>
   mutate(avg_cov_transition_risk = sum_cov_transition_risk/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_transition_risk", "distinct_companies_per_benchmark", "cov_transition_risk", "companies_id"))) |>
   distinct()
-  
-kable(avg_cov_transition_risk_per_benchmark)
+```
+
+```{r}
+kable(avg_cov_transition_risk_per_benchmark, align = "lc", caption = "Average cov_transition_risk per company for tilt_subsector benchmarks of grouping_transition_risk", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(2, width = "5cm")
 ```
 
