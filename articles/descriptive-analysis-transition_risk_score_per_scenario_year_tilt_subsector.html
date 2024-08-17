@@ -61,7 +61,7 @@
 
 
 
-
+<script src="descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector_files/kePrint-0.0.1/kePrint.js"></script><link href="descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
@@ -78,82 +78,429 @@
 transition risk scores for all <code>tilt_subsectors</code> per
 scenario-year-tilt_subsector benchmark using product-level output of
 Transition risk profile indicator.</p>
-<p>Example subset of product-level output of Transition risk
-profile.</p>
+<div class="section level3">
+<h3 id="example-subset-of-product-level-output-of-transition-risk-profile-">Example subset of product-level output of Transition risk
+profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-transition-risk-profile-"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_trs_des_analysis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>n <span class="op">=</span> <span class="cn">Inf</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 16 × 3</span></span></span>
-<span><span class="co">#&gt;    tilt_subsector grouping_transition_risk     transition_risk_score</span></span>
-<span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> chemicals      1.5C RPS_2030_tilt_subsector                     1</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> chemicals      1.5C RPS_2030_tilt_subsector                     2</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> chemicals      1.5C RPS_2050_tilt_subsector                     3</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> chemicals      1.5C RPS_2050_tilt_subsector                     4</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> chemicals      NZ 2050_2030_tilt_subsector                      5</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> chemicals      NZ 2050_2030_tilt_subsector                      6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> chemicals      NZ 2050_2050_tilt_subsector                      7</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> chemicals      NZ 2050_2050_tilt_subsector                      8</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> iron &amp; steel   1.5C RPS_2030_tilt_subsector                     9</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> iron &amp; steel   1.5C RPS_2030_tilt_subsector                    10</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> iron &amp; steel   1.5C RPS_2050_tilt_subsector                    11</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> iron &amp; steel   1.5C RPS_2050_tilt_subsector                    12</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> iron &amp; steel   NZ 2050_2030_tilt_subsector                     13</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> iron &amp; steel   NZ 2050_2030_tilt_subsector                     14</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> iron &amp; steel   NZ 2050_2050_tilt_subsector                     15</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">16</span> iron &amp; steel   NZ 2050_2050_tilt_subsector                     <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “1.5C
-RPS_2030_tilt_subsector”.</p>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">tilt_subsector</th>
+<th align="left">grouping_transition_risk</th>
+<th align="right">transition_risk_score</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">chemicals</td>
+<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">chemicals</td>
+<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">chemicals</td>
+<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">chemicals</td>
+<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="left">chemicals</td>
+<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">chemicals</td>
+<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">chemicals</td>
+<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">chemicals</td>
+<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">iron &amp; steel</td>
+<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">iron &amp; steel</td>
+<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">iron &amp; steel</td>
+<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">iron &amp; steel</td>
+<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="right">12</td>
+</tr>
+<tr class="odd">
+<td align="left">iron &amp; steel</td>
+<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="right">13</td>
+</tr>
+<tr class="even">
+<td align="left">iron &amp; steel</td>
+<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="right">14</td>
+</tr>
+<tr class="odd">
+<td align="left">iron &amp; steel</td>
+<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="right">15</td>
+</tr>
+<tr class="even">
+<td align="left">iron &amp; steel</td>
+<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="right">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-1-5c-rps_2030_tilt_subsector">Descriptive analysis for benchmark “1.5C
+RPS_2030_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-1-5c-rps_2030_tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipr_2030</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">transition_risk_product_example</span>,</span>
 <span>   <span class="st">"1.5C RPS_2030_tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">ipr_2030</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   tilt_subsector grouping_transition_risk     tr_average tr_median tr_25th tr_75th</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> chemicals      1.5C RPS_2030_tilt_subsector        1.5       1.5    1.25    1.75</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> iron &amp; steel   1.5C RPS_2030_tilt_subsector        9.5       9.5    9.25    9.75</span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “1.5C
-RPS_2050_tilt_subsector”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">ipr_2030</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark 1.5C RPS_2030_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark 1.5C RPS_2030_tilt_subsector
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:left;">
+grouping_transition_risk
+</th>
+<th style="text-align:center;">
+tr_average
+</th>
+<th style="text-align:center;">
+tr_median
+</th>
+<th style="text-align:center;">
+tr_25th
+</th>
+<th style="text-align:center;">
+tr_75th
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+chemicals
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+iron &amp; steel
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9.75
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-1-5c-rps_2050_tilt_subsector">Descriptive analysis for benchmark “1.5C
+RPS_2050_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-1-5c-rps_2050_tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ipr_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">transition_risk_product_example</span>,</span>
 <span>   <span class="st">"1.5C RPS_2050_tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">ipr_2050</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   tilt_subsector grouping_transition_risk     tr_average tr_median tr_25th tr_75th</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> chemicals      1.5C RPS_2050_tilt_subsector        3.5       3.5    3.25    3.75</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> iron &amp; steel   1.5C RPS_2050_tilt_subsector       11.5      11.5   11.2    11.8</span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “NZ 2050_2030_tilt_subsector”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">ipr_2050</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark 1.5C RPS_2050_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark 1.5C RPS_2050_tilt_subsector
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:left;">
+grouping_transition_risk
+</th>
+<th style="text-align:center;">
+tr_average
+</th>
+<th style="text-align:center;">
+tr_median
+</th>
+<th style="text-align:center;">
+tr_25th
+</th>
+<th style="text-align:center;">
+tr_75th
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+chemicals
+</td>
+<td style="text-align:left;">
+1.5C RPS_2050_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+iron &amp; steel
+</td>
+<td style="text-align:left;">
+1.5C RPS_2050_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+11.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+11.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+11.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+11.75
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-nz-2050_2030_tilt_subsector">Descriptive analysis for benchmark “NZ
+2050_2030_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-nz-2050_2030_tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weo_2030</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">transition_risk_product_example</span>,</span>
 <span>   <span class="st">"NZ 2050_2030_tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">weo_2030</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   tilt_subsector grouping_transition_risk    tr_average tr_median tr_25th tr_75th</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> chemicals      NZ 2050_2030_tilt_subsector        5.5       5.5    5.25    5.75</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> iron &amp; steel   NZ 2050_2030_tilt_subsector       13.5      13.5   13.2    13.8</span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “NZ 2050_2050_tilt_subsector”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">weo_2030</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark NZ 2050_2030_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark NZ 2050_2030_tilt_subsector
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:left;">
+grouping_transition_risk
+</th>
+<th style="text-align:center;">
+tr_average
+</th>
+<th style="text-align:center;">
+tr_median
+</th>
+<th style="text-align:center;">
+tr_25th
+</th>
+<th style="text-align:center;">
+tr_75th
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+chemicals
+</td>
+<td style="text-align:left;">
+NZ 2050_2030_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+iron &amp; steel
+</td>
+<td style="text-align:left;">
+NZ 2050_2030_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+13.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+13.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+13.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+13.75
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-nz-2050_2050_tilt_subsector">Descriptive analysis for benchmark “NZ
+2050_2050_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-nz-2050_2050_tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">weo_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">transition_risk_product_example</span>,</span>
 <span>   <span class="st">"NZ 2050_2050_tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">weo_2050</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 6</span></span></span>
-<span><span class="co">#&gt;   tilt_subsector grouping_transition_risk    tr_average tr_median tr_25th tr_75th</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> chemicals      NZ 2050_2050_tilt_subsector        7.5       7.5    7.25    7.75</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> iron &amp; steel   NZ 2050_2050_tilt_subsector       15        15     15      15</span></span></code></pre></div>
-  </main>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">weo_2050</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark NZ 2050_2050_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark NZ 2050_2050_tilt_subsector
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:left;">
+grouping_transition_risk
+</th>
+<th style="text-align:center;">
+tr_average
+</th>
+<th style="text-align:center;">
+tr_median
+</th>
+<th style="text-align:center;">
+tr_25th
+</th>
+<th style="text-align:center;">
+tr_75th
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+chemicals
+</td>
+<td style="text-align:left;">
+NZ 2050_2050_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+7.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+7.5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+7.25
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+7.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+iron &amp; steel
+</td>
+<td style="text-align:left;">
+NZ 2050_2050_tilt_subsector
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+15.0
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+15.0
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+15.00
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+15.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

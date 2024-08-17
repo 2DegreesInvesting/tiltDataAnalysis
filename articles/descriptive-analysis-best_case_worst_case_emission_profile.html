@@ -61,7 +61,7 @@
 
 
 
-
+<script src="descriptive-analysis-best_case_worst_case_emission_profile_files/kePrint-0.0.1/kePrint.js"></script><link href="descriptive-analysis-best_case_worst_case_emission_profile_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
@@ -82,7 +82,7 @@ worst case<a class="anchor" aria-label="anchor" href="#example-product-level-out
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_emission_product_best_case_worst_case</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="9%">
@@ -283,42 +283,6 @@ worst case<a class="anchor" aria-label="anchor" href="#example-product-level-out
 <td align="right">0.60</td>
 <td align="right">0.60</td>
 </tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">unit</td>
-<td align="left">austria</td>
-<td align="left">medium</td>
-<td align="right">0.80</td>
-<td align="right">0.80</td>
-<td align="right">0.80</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">unit</td>
-<td align="left">austria</td>
-<td align="left">low</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">unit</td>
-<td align="left">austria</td>
-<td align="left">low</td>
-<td align="right">0.85</td>
-<td align="right">0.85</td>
-<td align="right">0.85</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">unit</td>
-<td align="left">austria</td>
-<td align="left">NA</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -336,14 +300,16 @@ and emission_profile<a class="anchor" aria-label="anchor" href="#average-emissio
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">avg_emission_profile_equal_weight_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_equal_weight <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_equal_weight`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_equal_weight_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_equal_weight</th>
+<th align="right">Average
+<code>emissions_profile_equal_weight</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -400,14 +366,15 @@ emission_profile<a class="anchor" aria-label="anchor" href="#average-emissions_p
 </h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_emission_profile_best_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_best_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_best_case`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_best_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_best_case</th>
+<th align="right">Average <code>emissions_profile_best_case</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -464,14 +431,15 @@ emission_profile<a class="anchor" aria-label="anchor" href="#average-emissions_p
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_emission_profile_worst_case_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_worst_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_worst_case`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_worst_case_per_benchmark_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_worst_case</th>
+<th align="right">Average <code>emissions_profile_worst_case</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -537,14 +505,16 @@ and emission_profile for a country<a class="anchor" aria-label="anchor" href="#a
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
 <span><span class="va">avg_emission_profile_equal_weight_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_equal_weight <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_equal_weight`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_equal_weight_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_equal_weight</th>
+<th align="right">Average
+<code>emissions_profile_equal_weight</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -596,14 +566,15 @@ emission_profile for a country<a class="anchor" aria-label="anchor" href="#avera
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_emission_profile_best_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_best_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_best_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_best_case`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_best_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_best_case</th>
+<th align="right">Average <code>emissions_profile_best_case</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -655,14 +626,15 @@ emission_profile for a country<a class="anchor" aria-label="anchor" href="#avera
 </h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_emission_profile_worst_case_per_benchmark_country_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_country_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emissions_profile_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>avg_worst_case <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emissions_profile_worst_case`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_emission_profile_worst_case_per_benchmark_country_risk_category</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">benchmark</th>
 <th align="left">emission_profile</th>
-<th align="right">avg_worst_case</th>
+<th align="right">Average <code>emissions_profile_worst_case</code>
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -714,7 +686,7 @@ case and worst case<a class="anchor" aria-label="anchor" href="#example-company-
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transition_risk_company_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_company_emission_avg_best_case_worst_case</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_company_example</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_company_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="10%">
@@ -812,48 +784,85 @@ per benchmark<a class="anchor" aria-label="anchor" href="#descriptive-analysis-o
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_comp <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>average <span class="op">=</span> <span class="va">sum_mode</span> <span class="op">/</span> <span class="va">distinct_comp</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_25th <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_75th <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"25th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"75th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_mode"</span>, <span class="va">col</span>, <span class="st">"companies_id"</span>, <span class="st">"distinct_comp"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">emission_rank_avg_equal_weight_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_equal_weight"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<span><span class="va">emission_rank_avg_equal_weight_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_equal_weight"</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_equal_weight_per_benchmark</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="9%">
-<col width="21%">
-<col width="20%">
-<col width="24%">
-<col width="24%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="right">average_emission_rank_avg_equal_weight</th>
-<th align="right">median_emission_rank_avg_equal_weight</th>
-<th align="right">25th_quantile_emission_rank_avg_equal_weight</th>
-<th align="right">75th_quantile_emission_rank_avg_equal_weight</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">0.350</td>
-<td align="right">0.300</td>
-<td align="right">0.2125</td>
-<td align="right">0.4375</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_equal_weight_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_equal_weight</code> per
+grouping_emission
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_equal_weight
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="right">0.475</td>
-<td align="right">0.425</td>
-<td align="right">0.2750</td>
-<td align="right">0.6250</td>
+<tr>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.350
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.300
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.475
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.425
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2750
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6250
+</td>
 </tr>
 </tbody>
 </table>
@@ -863,42 +872,79 @@ per benchmark<a class="anchor" aria-label="anchor" href="#descriptive-analysis-o
 benchmark<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-emission_rank_avg_best_case-per-benchmark"></a>
 </h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_rank_avg_best_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_best_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">emission_rank_avg_best_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_best_case"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_best_case_per_benchmark</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="10%">
-<col width="20%">
-<col width="20%">
-<col width="24%">
-<col width="24%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="right">average_emission_rank_avg_best_case</th>
-<th align="right">median_emission_rank_avg_best_case</th>
-<th align="right">25th_quantile_emission_rank_avg_best_case</th>
-<th align="right">75th_quantile_emission_rank_avg_best_case</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">0.350</td>
-<td align="right">0.300</td>
-<td align="right">0.2125</td>
-<td align="right">0.4375</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_best_case_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_best_case</code> per
+grouping_emission
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_best_case
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="right">0.475</td>
-<td align="right">0.425</td>
-<td align="right">0.2750</td>
-<td align="right">0.6250</td>
+<tr>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.350
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.300
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.475
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.425
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2750
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6250
+</td>
 </tr>
 </tbody>
 </table>
@@ -908,42 +954,79 @@ benchmark<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-em
 per benchmark<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-emission_rank_avg_worst_case-per-benchmark"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_rank_avg_worst_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_worst_case"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">emission_rank_avg_worst_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_worst_case"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_worst_case_per_benchmark</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="10%">
-<col width="20%">
-<col width="20%">
-<col width="24%">
-<col width="24%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="right">average_emission_rank_avg_worst_case</th>
-<th align="right">median_emission_rank_avg_worst_case</th>
-<th align="right">25th_quantile_emission_rank_avg_worst_case</th>
-<th align="right">75th_quantile_emission_rank_avg_worst_case</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">0.350</td>
-<td align="right">0.300</td>
-<td align="right">0.2125</td>
-<td align="right">0.4375</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_worst_case_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_worst_case</code> per
+grouping_emission
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_worst_case
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="right">0.475</td>
-<td align="right">0.425</td>
-<td align="right">0.2750</td>
-<td align="right">0.6250</td>
+<tr>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.350
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.300
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.475
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.425
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2750
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6250
+</td>
 </tr>
 </tbody>
 </table>
@@ -955,58 +1038,102 @@ per benchmark for a country<a class="anchor" aria-label="anchor" href="#descript
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emission_rank_avg_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span>, <span class="va">country_value</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"grouping_emission"</span>, <span class="st">"country"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"companies_id"</span>, <span class="st">"grouping_emission"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="va">country_value</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_comp <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>average <span class="op">=</span> <span class="va">sum_mode</span> <span class="op">/</span> <span class="va">distinct_comp</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_25th <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>rank_75th <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"25th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"75th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_mode"</span>, <span class="va">col</span>, <span class="st">"companies_id"</span>, <span class="st">"distinct_comp"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="op">}</span></span>
-<span><span class="va">emission_rank_avg_equal_weight_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<span><span class="va">emission_rank_avg_equal_weight_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_equal_weight_per_benchmark_country</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="9%">
-<col width="4%">
-<col width="20%">
-<col width="19%">
-<col width="23%">
-<col width="23%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="left">country</th>
-<th align="right">average_emission_rank_avg_equal_weight</th>
-<th align="right">median_emission_rank_avg_equal_weight</th>
-<th align="right">25th_quantile_emission_rank_avg_equal_weight</th>
-<th align="right">75th_quantile_emission_rank_avg_equal_weight</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="right">0.175</td>
-<td align="right">0.175</td>
-<td align="right">0.1375</td>
-<td align="right">0.2125</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_equal_weight_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"emission_rank_avg_equal_weight"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_equal_weight</code> per
+grouping_emission for country <code>France</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_equal_weight
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="left">france</td>
-<td align="right">0.575</td>
-<td align="right">0.575</td>
-<td align="right">0.4375</td>
-<td align="right">0.7125</td>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.1375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7125
+</td>
 </tr>
 </tbody>
 </table>
@@ -1016,46 +1143,90 @@ per benchmark for a country<a class="anchor" aria-label="anchor" href="#descript
 benchmark for a country<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-emission_rank_avg_best_case-per-benchmark-for-a-country"></a>
 </h3>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_rank_avg_best_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_best_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">emission_rank_avg_best_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_best_case"</span>, <span class="st">"france"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_best_case_per_benchmark_country</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="9%">
-<col width="4%">
-<col width="19%">
-<col width="19%">
-<col width="23%">
-<col width="23%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="left">country</th>
-<th align="right">average_emission_rank_avg_best_case</th>
-<th align="right">median_emission_rank_avg_best_case</th>
-<th align="right">25th_quantile_emission_rank_avg_best_case</th>
-<th align="right">75th_quantile_emission_rank_avg_best_case</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="right">0.175</td>
-<td align="right">0.175</td>
-<td align="right">0.1375</td>
-<td align="right">0.2125</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_best_case_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"emission_rank_avg_best_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_best_case</code> per
+grouping_emission for country <code>France</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_best_case
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="left">france</td>
-<td align="right">0.575</td>
-<td align="right">0.575</td>
-<td align="right">0.4375</td>
-<td align="right">0.7125</td>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.1375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7125
+</td>
 </tr>
 </tbody>
 </table>
@@ -1065,46 +1236,90 @@ benchmark for a country<a class="anchor" aria-label="anchor" href="#descriptive-
 benchmark for a country<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-emission_rank_avg_best_case-per-benchmark-for-a-country-1"></a>
 </h3>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_rank_avg_worst_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"average_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"average"</span>,</span>
-<span>         <span class="st">"median_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_median"</span>,</span>
-<span>         <span class="st">"25th_quantile_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_25th"</span>,</span>
-<span>         <span class="st">"75th_quantile_emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="st">"rank_75th"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">emission_rank_avg_worst_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">emission_rank_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_company_example</span>, <span class="st">"emission_rank_avg_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_worst_case_per_benchmark_country</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="9%">
-<col width="4%">
-<col width="19%">
-<col width="19%">
-<col width="23%">
-<col width="23%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">grouping_emission</th>
-<th align="left">country</th>
-<th align="right">average_emission_rank_avg_worst_case</th>
-<th align="right">median_emission_rank_avg_worst_case</th>
-<th align="right">25th_quantile_emission_rank_avg_worst_case</th>
-<th align="right">75th_quantile_emission_rank_avg_worst_case</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="right">0.175</td>
-<td align="right">0.175</td>
-<td align="right">0.1375</td>
-<td align="right">0.2125</td>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_rank_avg_worst_case_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"emission_rank_avg_worst_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>emission_rank_avg_worst_case</code> per
+grouping_emission for country <code>France</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+emission_rank_avg_worst_case
+</div>
+</th>
 </tr>
-<tr class="even">
-<td align="left">isic_4digit</td>
-<td align="left">france</td>
-<td align="right">0.575</td>
-<td align="right">0.575</td>
-<td align="right">0.4375</td>
-<td align="right">0.7125</td>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_emission
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+all
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.175
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.1375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+france
+</td>
+<td style="text-align:left;">
+isic_4digit
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.575
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7125
+</td>
 </tr>
 </tbody>
 </table>

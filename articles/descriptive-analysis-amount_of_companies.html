@@ -80,18 +80,7 @@ amount of companies for emission and sector profile.</p>
 <h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="va">product_emission</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"country"</span>, <span class="st">"emission_profile"</span>, <span class="st">"tilt_sector"</span>, </span>
-<span>                  <span class="st">"tilt_subsector"</span>, <span class="st">"main_activity"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
-<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
-<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
-<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
-<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="24%">
@@ -221,18 +210,7 @@ amount of companies for emission and sector profile.</p>
 <h3 id="example-subset-of-product-level-output-of-sector-profile-">Example subset of product-level output of sector profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-sector-profile-"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="va">product_sector</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"country"</span>, <span class="st">"sector_profile"</span>, <span class="st">"tilt_sector"</span>, </span>
-<span>                  <span class="st">"tilt_subsector"</span>, <span class="st">"main_activity"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
-<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
-<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
-<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
-<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="24%">
@@ -412,9 +390,9 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
 <span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
 <span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
-<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span></span></code></pre></div>
+<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="22%">
@@ -576,13 +554,13 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <h3 id="number-of-companies-for-emission-sector-and-transition-risk-profile">Number of companies for emission, sector, and transition risk
 profile<a class="anchor" aria-label="anchor" href="#number-of-companies-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for emission profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies for emission profile: 7</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for sector profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies for sector profile: 7</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for transition risk profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies for transition risk profile: 7</p>
 </div>
@@ -591,15 +569,6 @@ profile<a class="anchor" aria-label="anchor" href="#number-of-companies-for-emis
 <code>emission_profile</code>, with <code>sector_profile</code>, and
 with <code>transition_risk_category</code><a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-atleast-one-product-with-emission_profile-with-sector_profile-and-with-transition_risk_category"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_atleast_one_product_with_profile</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">profile</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">profile</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">profile</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `emission_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emission_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have atleast one product with
@@ -618,24 +587,14 @@ with <code>transition_risk_category</code><a class="anchor" aria-label="anchor" 
 emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_sectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>total_tilt_sectors <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">tilt_sector</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"companies_id"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">total_tilt_sectors</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_sectors for emission
 profile: 1</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_sectors for sector
 profile: 1</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_sectors for
 transition risk profile: 1</p>
@@ -644,25 +603,15 @@ transition risk profile: 1</p>
 <h3 id="number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile">Number of companies that have more than one tilt_subsectors for
 emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_subsectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>total_tilt_subsectors <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">tilt_subsector</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"companies_id"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">total_tilt_subsectors</span> <span class="op">&gt;</span> <span class="fl">1</span><span class="op">)</span></span>
-<span>  </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_subsectors for
 emission profile: 1</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_subsectors for
 sector profile: 1</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Number of companies that have more than one tilt_subsectors for
 transition risk profile: 1</p>
@@ -671,134 +620,106 @@ transition risk profile: 1</p>
 <h3 id="number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_sector for emission, sector, and
 transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_sector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_sector for emission profile
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+3
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_sector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_sector for sector profile
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+companies_count
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+3
+</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_per_single_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="va">benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_sector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_sector for transition risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 tilt_sector
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
-3
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-construction
-</td>
-<td style="text-align:center;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-metals
-</td>
-<td style="text-align:center;">
-3
-</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;">
-construction
-</td>
-<td style="text-align:center;">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-metals
-</td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
@@ -809,148 +730,130 @@ metals
 <h3 id="number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_subsector for emission, sector, and
 transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_subsector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_subsector for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_subsector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_subsector for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per tilt_subsector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per tilt_subsector for transition risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
@@ -961,148 +864,130 @@ other metals
 <h3 id="number-of-companies-per-country-for-emission-sector-and-transition-risk-profile">Number of companies per country for emission, sector, and transition
 risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country for transition risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 5
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
@@ -1113,7 +998,7 @@ netherlands
 <h3 id="number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_sector emission, sector,
 and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_double_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -1123,20 +1008,15 @@ and transition risk profile<a class="anchor" aria-label="anchor" href="#number-o
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_first</span><span class="op">]</span><span class="op">]</span>, <span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_second</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_sector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_sector for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1146,69 +1026,63 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_sector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_sector for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1218,69 +1092,64 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_sector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_sector for transition risk
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1290,50 +1159,49 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
@@ -1344,20 +1212,15 @@ construction
 <h3 id="number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_subsector emission, sector,
 and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_subsector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_subsector for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1367,80 +1230,74 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_subsector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_subsector for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1450,80 +1307,75 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"country"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per country and tilt_subsector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per country and tilt_subsector for transition risk
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 country
 </th>
@@ -1533,61 +1385,60 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
@@ -1598,196 +1449,178 @@ construction residential
 <h3 id="number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity for emission, sector, and
 transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_single_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity for transition risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 3
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
@@ -1798,20 +1631,16 @@ wholesaler
 <h3 id="number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_sector for emission,
 sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_sector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_sector for emission
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -1821,102 +1650,96 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_sector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_sector for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -1926,102 +1749,97 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_sector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_sector for transition
+risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2031,83 +1849,82 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
@@ -2118,20 +1935,16 @@ construction
 <h3 id="number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_subsector for
 emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_subsector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_subsector for emission
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2141,102 +1954,97 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_subsector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_subsector for sector
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2246,102 +2054,97 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and tilt_subsector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and tilt_subsector for transition
+risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2351,83 +2154,82 @@ tilt_subsector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 other metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 iron &amp; steel
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
@@ -2438,20 +2240,15 @@ construction residential
 <h3 id="number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and country for emission,
 sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and country for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and country for emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2461,102 +2258,96 @@ country
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and country for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and country for sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2566,102 +2357,97 @@ country
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_double_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lcc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity and country for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity and country for transition risk
+profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2671,83 +2457,82 @@ country
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
@@ -2758,7 +2543,7 @@ germany
 <h3 id="number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity, country, and tilt_sector for
 emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
-<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_main_activity_country_tilt_sector</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"main_activity"</span>, <span class="st">"country"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -2768,20 +2553,16 @@ emission, sector, and transition risk profile<a class="anchor" aria-label="ancho
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">main_activity</span>, <span class="va">country</span>, <span class="va">tilt_sector</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Emission profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Emission profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity, country, and tilt_sector for emission profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity, country, and tilt_sector for
+emission profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2794,137 +2575,132 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies per main_activity, country, and tilt_sector for sector profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity, country, and tilt_sector for
+sector profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -2937,137 +2713,132 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>, format.args <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>big.mark <span class="op">=</span> <span class="st">","</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_styling</span><span class="op">(</span>position <span class="op">=</span> <span class="st">"center"</span>, full_width <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Sector profile"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table table" style="width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Sector profile
-</div>
-</th>
-</tr>
-<tr>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="fu">companies_per_main_activity_country_tilt_sector</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span>, align <span class="op">=</span> <span class="st">"lccc"</span>,  caption <span class="op">=</span> <span class="st">"Number of companies per main_activity, country, and tilt_sector for transition risk profile"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies per main_activity, country, and tilt_sector for
+transition risk profile
+</caption>
+<thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
@@ -3080,118 +2851,117 @@ tilt_sector
 <th style="text-align:center;">
 companies_count
 </th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 metals
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 construction
 </td>
-<td style="text-align:center;">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
 </tr>

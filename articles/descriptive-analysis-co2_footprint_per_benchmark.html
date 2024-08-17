@@ -61,7 +61,7 @@
 
 
 
-
+<script src="descriptive-analysis-co2_footprint_per_benchmark_files/kePrint-0.0.1/kePrint.js"></script><link href="descriptive-analysis-co2_footprint_per_benchmark_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
@@ -77,100 +77,670 @@
 <p>This article shows how to calculate the descriptive analysis of
 co2_footprint per benchmark using product-level output of Emissions
 profile indicator.</p>
-<p>Example subset of product-level output of Emissions profile.</p>
+<div class="section level3">
+<h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of Emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
+</h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_emission_product_co2_des_analysis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="va">emission_product_example</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 8 × 6</span></span></span>
-<span><span class="co">#&gt;   benchmark      tilt_subsector unit  isic_4digit co2_footprint ep_product </span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> tilt_subsector chemicals      kg    '5555'                  1 water      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> tilt_subsector chemicals      kg    '5555'                  4 television </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> tilt_subsector chemicals      kg    '5555'                  9 tables     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> tilt_subsector chemicals      kg    '5555'                  8 electricity</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> tilt_subsector chemicals      kg    '5555'                 <span style="color: #BB0000;">NA</span> meat       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> tilt_subsector iron &amp; steel   m3    '6666'                  1 tables     </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> tilt_subsector iron &amp; steel   m3    '6666'                  2 water      </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">8</span> tilt_subsector iron &amp; steel   m3    '6666'                  4 tent</span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “all”.</p>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
+<colgroup>
+<col width="20%">
+<col width="20%">
+<col width="6%">
+<col width="16%">
+<col width="19%">
+<col width="16%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">benchmark</th>
+<th align="left">tilt_subsector</th>
+<th align="left">unit</th>
+<th align="left">isic_4digit</th>
+<th align="right">co2_footprint</th>
+<th align="left">ep_product</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">tilt_subsector</td>
+<td align="left">chemicals</td>
+<td align="left">kg</td>
+<td align="left">‘5555’</td>
+<td align="right">1</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="left">tilt_subsector</td>
+<td align="left">chemicals</td>
+<td align="left">kg</td>
+<td align="left">‘5555’</td>
+<td align="right">4</td>
+<td align="left">television</td>
+</tr>
+<tr class="odd">
+<td align="left">tilt_subsector</td>
+<td align="left">chemicals</td>
+<td align="left">kg</td>
+<td align="left">‘5555’</td>
+<td align="right">9</td>
+<td align="left">tables</td>
+</tr>
+<tr class="even">
+<td align="left">tilt_subsector</td>
+<td align="left">chemicals</td>
+<td align="left">kg</td>
+<td align="left">‘5555’</td>
+<td align="right">8</td>
+<td align="left">electricity</td>
+</tr>
+<tr class="odd">
+<td align="left">tilt_subsector</td>
+<td align="left">chemicals</td>
+<td align="left">kg</td>
+<td align="left">‘5555’</td>
+<td align="right">NA</td>
+<td align="left">meat</td>
+</tr>
+<tr class="even">
+<td align="left">tilt_subsector</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">m3</td>
+<td align="left">‘6666’</td>
+<td align="right">1</td>
+<td align="left">tables</td>
+</tr>
+<tr class="odd">
+<td align="left">tilt_subsector</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">m3</td>
+<td align="left">‘6666’</td>
+<td align="right">2</td>
+<td align="left">water</td>
+</tr>
+<tr class="even">
+<td align="left">tilt_subsector</td>
+<td align="left">iron &amp; steel</td>
+<td align="left">m3</td>
+<td align="left">‘6666’</td>
+<td align="right">4</td>
+<td align="left">tent</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-all">Descriptive analysis for benchmark “all”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-all"></a>
+</h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"all"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_all</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 1 × 7</span></span></span>
-<span><span class="co">#&gt;   co2_min co2_max amount_of_unique_produ…¹ co2_median co2_average co2_sd co2_cov</span></span>
-<span><span class="co">#&gt;     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span>       1       9                        6          4        4.14   3.24    78.1</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​amount_of_unique_products</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “unit”.</p>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_all</span>, align <span class="op">=</span> <span class="st">"ccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `all`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span> </span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>all</code>
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4.142857
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.236694
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+78.12711
+</td>
+</tr></tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-unit">Descriptive analysis for benchmark “unit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_unit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"unit"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_unit</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 8</span></span></span>
-<span><span class="co">#&gt;   unit  co2_min co2_max amount_of_unique_products co2_median co2_average co2_sd</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> kg          1       9                         5          6        5.5    3.70</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> m3          1       4                         3          2        2.33   1.53</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 1 more variable: co2_cov &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “isic_4digit”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>unit</code>
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+unit
+</th>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+kg
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.500000
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.696845
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+67.21537
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+m3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2.333333
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.527525
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+65.46537
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-isic_4digit">Descriptive analysis for benchmark “isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-isic_4digit"></a>
+</h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_isic_4digit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"isic_4digit"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_isic_4digit</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 8</span></span></span>
-<span><span class="co">#&gt;   isic_4digit co2_min co2_max amount_of_unique_products co2_median co2_average</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> '5555'            1       9                         5          6        5.5 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> '6666'            1       4                         3          2        2.33</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: co2_sd &lt;dbl&gt;, co2_cov &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “tilt_subsector”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_isic_4digit</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `isic_4digit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>isic_4digit</code>
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+isic_4digit
+</th>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+‘5555’
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.500000
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.696845
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+67.21537
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+‘6666’
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2.333333
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.527525
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+65.46537
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-tilt_subsector">Descriptive analysis for benchmark “tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_tilt_subsector</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_tilt_subsector</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 8</span></span></span>
-<span><span class="co">#&gt;   tilt_subsector co2_min co2_max amount_of_unique_produ…¹ co2_median co2_average</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>       <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> chemicals            1       9                        5          6        5.5 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> iron &amp; steel         1       4                        3          2        2.33</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ abbreviated name: ¹​amount_of_unique_products</span></span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 2 more variables: co2_sd &lt;dbl&gt;, co2_cov &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “unit_tilt_subsector”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_tilt_subsector</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `tilt_subsector`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>tilt_subsector</code>
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+chemicals
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.500000
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.696845
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+67.21537
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+iron &amp; steel
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2.333333
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.527525
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+65.46537
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-unit_tilt_subsector">Descriptive analysis for benchmark “unit_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_tilt_subsector"></a>
+</h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_unit_tilt_subsector</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"unit_tilt_subsector"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_unit_tilt_subsector</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
-<span><span class="co">#&gt;   unit  tilt_subsector co2_min co2_max amount_of_unique_products co2_median</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> kg    chemicals            1       9                         5          6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> m3    iron &amp; steel         1       4                         3          2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: co2_average &lt;dbl&gt;, co2_sd &lt;dbl&gt;, co2_cov &lt;dbl&gt;</span></span></span></code></pre></div>
-<p>Descriptive analysis for benchmark “unit_isic_4digit”.</p>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit_tilt_subsector</span>, align <span class="op">=</span> <span class="st">"llccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit_tilt_subsector`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>unit_tilt_subsector</code>
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+unit
+</th>
+<th style="text-align:left;">
+tilt_subsector
+</th>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+kg
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+chemicals
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.500000
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.696845
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+67.21537
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+m3
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+iron &amp; steel
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2.333333
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.527525
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+65.46537
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level3">
+<h3 id="descriptive-analysis-for-benchmark-unit_isic_4digit">Descriptive analysis for benchmark “unit_isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_isic_4digit"></a>
+</h3>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">co2_unit_isic_4digit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
 <span>   <span class="va">emission_product_example</span>,</span>
 <span>   <span class="st">"unit_isic_4digit"</span></span>
 <span> <span class="op">)</span></span>
-<span><span class="va">co2_unit_isic_4digit</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 2 × 9</span></span></span>
-<span><span class="co">#&gt;   unit  isic_4digit co2_min co2_max amount_of_unique_products co2_median</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                     <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> kg    '5555'            1       9                         5          6</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> m3    '6666'            1       4                         3          2</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># ℹ 3 more variables: co2_average &lt;dbl&gt;, co2_sd &lt;dbl&gt;, co2_cov &lt;dbl&gt;</span></span></span></code></pre></div>
-  </main>
+<span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit_isic_4digit</span>, align <span class="op">=</span> <span class="st">"llccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit_isic_4digit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis for benchmark <code>unit_isic_4digit</code>
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+unit
+</th>
+<th style="text-align:left;">
+isic_4digit
+</th>
+<th style="text-align:center;">
+co2_min
+</th>
+<th style="text-align:center;">
+co2_max
+</th>
+<th style="text-align:center;">
+amount_of_unique_products
+</th>
+<th style="text-align:center;">
+co2_median
+</th>
+<th style="text-align:center;">
+co2_average
+</th>
+<th style="text-align:center;">
+co2_sd
+</th>
+<th style="text-align:center;">
+co2_cov
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+kg
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+‘5555’
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+9
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+6
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+5.500000
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3.696845
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+67.21537
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 2.5cm; ">
+m3
+</td>
+<td style="text-align:left;width: 2.5cm; ">
+‘6666’
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+4
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+3
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+2.333333
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+1.527525
+</td>
+<td style="text-align:center;width: 2.5cm; ">
+65.46537
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 

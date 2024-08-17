@@ -61,7 +61,7 @@
 
 
 
-
+<script src="descriptive-analysis-employees_files/kePrint-0.0.1/kePrint.js"></script><link href="descriptive-analysis-employees_files/lightable-0.0.1/lightable.css" rel="stylesheet">
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
 
@@ -80,21 +80,7 @@ companies’ employees.</p>
 <h3 id="example-product-level-output-of-transition-risk-profile-">Example product-level output of transition risk profile.<a class="anchor" aria-label="anchor" href="#example-product-level-output-of-transition-risk-profile-"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="va">product_transition_risk</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">any_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span>, <span class="st">"tilt_sector"</span>, <span class="st">"country"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op">==</span> <span class="st">"insecticidal_clownanemonefish"</span>, </span>
-<span>                               <span class="st">"heliophobic_clownanemonefish"</span>, <span class="va">companies_id</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>min_headcount <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span><span class="op">)</span>, </span>
-<span>                               <span class="fl">50</span>, <span class="va">min_headcount</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>max_headcount <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span><span class="op">)</span>, </span>
-<span>                               <span class="fl">100</span>, <span class="va">max_headcount</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"antimonarchy_canine"</span>, <span class="st">"nonphilosophical_llama"</span>, </span>
-<span>                             <span class="st">"subdermal_chipmunk"</span>, <span class="st">"fascist_maiasaura"</span>,</span>
-<span>                             <span class="st">"ironhearted_tarpan"</span>, <span class="st">"heliophobic_clownanemonefish"</span>,</span>
-<span>                             <span class="st">"subzero_whiteeye"</span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="35%">
@@ -171,35 +157,50 @@ companies’ employees.</p>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-between-min_headcount-and-max_headcount-range">Number of companies between <code>min_headcount</code> and
-<code>max_headcount</code> range<a class="anchor" aria-label="anchor" href="#number-of-companies-between-min_headcount-and-max_headcount-range"></a>
+<h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount">Number of companies between range of <code>min_headcount</code> and
+<code>max_headcount</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount"></a>
 </h3>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_headcount_range</span> <span class="op">&lt;-</span> <span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>n_comp_headcount_range <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">max_headcount</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="right">min_headcount</th>
-<th align="right">max_headcount</th>
-<th align="right">n_comp_headcount_range</th>
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range</span>, align <span class="op">=</span> <span class="st">"ccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies between range of min_headcount and max_headcount
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+min_headcount
+</th>
+<th style="text-align:center;">
+max_headcount
+</th>
+<th style="text-align:center;">
+number_of_companies
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="right">5</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+5
+</td>
 </tr>
-<tr class="even">
-<td align="right">50</td>
-<td align="right">100</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+50
+</td>
+<td style="text-align:center;width: 3cm; ">
+100
+</td>
+<td style="text-align:center;width: 3cm; ">
+2
+</td>
 </tr>
 </tbody>
 </table>
@@ -207,64 +208,91 @@ companies’ employees.</p>
 <div class="section level3">
 <h3 id="bar-plot">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_headcount_range</span><span class="op">$</span><span class="va">range_headcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">companies_headcount_range</span><span class="op">$</span><span class="va">min_headcount</span>, <span class="va">companies_headcount_range</span><span class="op">$</span><span class="va">max_headcount</span>, sep <span class="op">=</span> <span class="st">'-'</span><span class="op">)</span> </span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">companies_headcount_range</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">range_headcounts</span>, y <span class="op">=</span> <span class="va">n_comp_headcount_range</span>, fill <span class="op">=</span> <span class="va">range_headcounts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-between-min_headcount-and-max_headcount-range-grouped-by-tilt_sector">Number of companies between <code>min_headcount</code> and
-<code>max_headcount</code> range grouped by
-<code>tilt_sector</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-min_headcount-and-max_headcount-range-grouped-by-tilt_sector"></a>
+<h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector">Number of companies between range of <code>min_headcount</code> and
+<code>max_headcount</code> grouped by <code>tilt_sector</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_headcount_range_tilt_sector</span> <span class="op">&lt;-</span> <span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>n_comp_headcount_range_tilt_sector <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">max_headcount</span>, <span class="va">tilt_sector</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="18%">
-<col width="18%">
-<col width="17%">
-<col width="46%">
-</colgroup>
-<thead><tr class="header">
-<th align="right">min_headcount</th>
-<th align="right">max_headcount</th>
-<th align="left">tilt_sector</th>
-<th align="right">n_comp_headcount_range_tilt_sector</th>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span>, align <span class="op">=</span> <span class="st">"cccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount grouped by tilt_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies between range of min_headcount and max_headcount
+grouped by tilt_sector
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+min_headcount
+</th>
+<th style="text-align:center;">
+max_headcount
+</th>
+<th style="text-align:center;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+number_of_companies
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">construction</td>
-<td align="right">4</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+4
+</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">metals</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">50</td>
-<td align="right">100</td>
-<td align="left">construction</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+50
+</td>
+<td style="text-align:center;width: 3cm; ">
+100
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">50</td>
-<td align="right">100</td>
-<td align="left">metals</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+50
+</td>
+<td style="text-align:center;width: 3cm; ">
+100
+</td>
+<td style="text-align:center;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+2
+</td>
 </tr>
 </tbody>
 </table>
@@ -272,84 +300,141 @@ companies’ employees.</p>
 <div class="section level3">
 <h3 id="bar-plot-1">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot-1"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_headcount_range_tilt_sector</span><span class="op">$</span><span class="va">range_headcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span><span class="op">$</span><span class="va">min_headcount</span>, <span class="va">companies_headcount_range_tilt_sector</span><span class="op">$</span><span class="va">max_headcount</span>, <span class="va">companies_headcount_range_tilt_sector</span><span class="op">$</span><span class="va">tilt_sector</span>, sep <span class="op">=</span> <span class="st">'-'</span><span class="op">)</span> </span>
-<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">range_headcounts</span>, y <span class="op">=</span> <span class="va">n_comp_headcount_range_tilt_sector</span>, fill <span class="op">=</span> <span class="va">range_headcounts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-between-min_headcount-and-max_headcount-range-grouped-by-tilt_sector-and-country">Number of companies between <code>min_headcount</code> and
-<code>max_headcount</code> range grouped by <code>tilt_sector</code> and
-<code>country</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-min_headcount-and-max_headcount-range-grouped-by-tilt_sector-and-country"></a>
+<h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector-and-country">Number of companies between range of <code>min_headcount</code> and
+<code>max_headcount</code> grouped by <code>tilt_sector</code> and
+<code>country</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector-and-country"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">companies_headcount_range_tilt_sector_country</span> <span class="op">&lt;-</span> <span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span>, <span class="st">"tilt_sector"</span>, <span class="st">"country"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>n_comp_headcount_range_tilt_sector_country <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"min_headcount"</span>, <span class="st">"max_headcount"</span>, <span class="st">"tilt_sector"</span>, <span class="st">"country"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">max_headcount</span>, <span class="va">tilt_sector</span>, <span class="va">country</span><span class="op">)</span></span>
-<span>  </span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector_country</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="14%">
-<col width="14%">
-<col width="13%">
-<col width="12%">
-<col width="44%">
-</colgroup>
-<thead><tr class="header">
-<th align="right">min_headcount</th>
-<th align="right">max_headcount</th>
-<th align="left">tilt_sector</th>
-<th align="left">country</th>
-<th align="right">n_comp_headcount_range_tilt_sector_country</th>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector_country</span>, align <span class="op">=</span> <span class="st">"ccccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount grouped by tilt_sector and country"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Number of companies between range of min_headcount and max_headcount
+grouped by tilt_sector and country
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+min_headcount
+</th>
+<th style="text-align:center;">
+max_headcount
+</th>
+<th style="text-align:center;">
+tilt_sector
+</th>
+<th style="text-align:center;">
+country
+</th>
+<th style="text-align:center;">
+number_of_companies
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">construction</td>
-<td align="left">france</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+france
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">construction</td>
-<td align="left">germany</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+germany
+</td>
+<td style="text-align:center;width: 3cm; ">
+2
+</td>
 </tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">construction</td>
-<td align="left">netherlands</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+netherlands
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="right">10</td>
-<td align="left">metals</td>
-<td align="left">germany</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
+<td style="text-align:center;width: 3cm; ">
+10
+</td>
+<td style="text-align:center;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+germany
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="odd">
-<td align="right">50</td>
-<td align="right">100</td>
-<td align="left">construction</td>
-<td align="left">netherlands</td>
-<td align="right">1</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+50
+</td>
+<td style="text-align:center;width: 3cm; ">
+100
+</td>
+<td style="text-align:center;width: 3cm; ">
+construction
+</td>
+<td style="text-align:center;width: 3cm; ">
+netherlands
+</td>
+<td style="text-align:center;width: 3cm; ">
+1
+</td>
 </tr>
-<tr class="even">
-<td align="right">50</td>
-<td align="right">100</td>
-<td align="left">metals</td>
-<td align="left">germany</td>
-<td align="right">2</td>
+<tr>
+<td style="text-align:center;width: 3cm; ">
+50
+</td>
+<td style="text-align:center;width: 3cm; ">
+100
+</td>
+<td style="text-align:center;width: 3cm; ">
+metals
+</td>
+<td style="text-align:center;width: 3cm; ">
+germany
+</td>
+<td style="text-align:center;width: 3cm; ">
+2
+</td>
 </tr>
 </tbody>
 </table>
