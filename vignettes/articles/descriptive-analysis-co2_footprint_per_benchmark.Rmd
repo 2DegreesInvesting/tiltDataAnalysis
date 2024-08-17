@@ -15,73 +15,91 @@ benchmark using product-level output of Emissions profile indicator.
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
 library(tibble)
-
+library(kableExtra)
+library(knitr)
 options(readr.show_col_types = FALSE)
 ```
 
-Example subset of product-level output of Emissions profile.
+### Example subset of product-level output of Emissions profile.
 
 ```{r}
 emission_product_example <- example_emission_product_co2_des_analysis()
-emission_product_example
+kable(emission_product_example |> head(20))
 ```
 
-Descriptive analysis for benchmark "all".
+### Descriptive analysis for benchmark "all"
  
 ```{r}
 co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "all"
  )
-co2_all
+kable(co2_all, align = "ccccccc", caption = "Descriptive analysis for benchmark `all`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:7, width = "2.5cm") 
 ```
 
-Descriptive analysis for benchmark "unit".
+### Descriptive analysis for benchmark "unit"
  
 ```{r}
 co2_unit <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "unit"
  )
-co2_unit
+
+kable(co2_unit, align = "lccccccc", caption = "Descriptive analysis for benchmark `unit`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:8, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "isic_4digit".
+### Descriptive analysis for benchmark "isic_4digit"
  
 ```{r}
 co2_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "isic_4digit"
  )
-co2_isic_4digit
+
+kable(co2_isic_4digit, align = "lccccccc", caption = "Descriptive analysis for benchmark `isic_4digit`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:8, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "tilt_subsector".
+### Descriptive analysis for benchmark "tilt_subsector"
  
 ```{r}
 co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "tilt_subsector"
  )
-co2_tilt_subsector
+
+kable(co2_tilt_subsector, align = "lccccccc", caption = "Descriptive analysis for benchmark `tilt_subsector`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:8, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "unit_tilt_subsector".
+### Descriptive analysis for benchmark "unit_tilt_subsector"
  
 ```{r}
 co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "unit_tilt_subsector"
  )
-co2_unit_tilt_subsector
+
+kable(co2_unit_tilt_subsector, align = "llccccccc", caption = "Descriptive analysis for benchmark `unit_tilt_subsector`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:9, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "unit_isic_4digit".
+### Descriptive analysis for benchmark "unit_isic_4digit"
  
 ```{r}
 co2_unit_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "unit_isic_4digit"
  )
-co2_unit_isic_4digit
+
+kable(co2_unit_isic_4digit, align = "llccccccc", caption = "Descriptive analysis for benchmark `unit_isic_4digit`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:9, width = "2.5cm")
 ```

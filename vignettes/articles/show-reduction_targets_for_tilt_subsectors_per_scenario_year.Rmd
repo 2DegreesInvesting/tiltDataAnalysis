@@ -14,24 +14,31 @@ scenario-year benchmark using product-level output of Sector profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
+library(kableExtra)
+library(dplyr)
+library(knitr)
 options(readr.show_col_types = FALSE)
 ```
 
-Example subset of product-level output of Sector profile.
+### Example subset of product-level output of Sector profile
 
 ```{r}
 sector_product_example <- product_sector |>
-  dplyr::select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
-  dplyr::distinct()
+  select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+  distinct()
 
-sector_product_example
+kable(sector_product_example |> head(20))
 ```
 
-Shows reduction targets for all `tilt_subsectors` per scenario-year benchmark.
+### Shows reduction targets for all tilt_subsectors per scenario-year benchmark
 
 ```{r}
 result <- show_reduction_targets_for_tilt_subsectors_per_scenario_year(
    sector_product_example
  )
-result
+
+kable(result, align = "lcccc", caption = "Reduction targets for all `tilt_subsectors` per scenario-year benchmark", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1, width = "6cm") |>
+  column_spec(2:5, width = "2.5cm")
 ```

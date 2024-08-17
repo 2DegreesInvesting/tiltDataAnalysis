@@ -15,54 +15,67 @@ using product-level output of Transition risk profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
+library(kableExtra)
+library(dplyr)
+library(knitr)
 options(readr.show_col_types = FALSE)
-options(width = 5000)
 ```
 
-Example subset of product-level output of Transition risk profile.
+### Example subset of product-level output of Transition risk profile.
 
 ```{r}
 transition_risk_product_example <- example_transition_risk_product_trs_des_analysis()
-transition_risk_product_example |> 
-  print(n = Inf)
+kable(transition_risk_product_example |> head(20))
 ```
 
-Descriptive analysis for benchmark "1.5C RPS_2030_tilt_subsector".
+### Descriptive analysis for benchmark "1.5C RPS_2030_tilt_subsector"
 
 ```{r}
 ipr_2030 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "1.5C RPS_2030_tilt_subsector"
  )
-ipr_2030
+
+kable(ipr_2030, align = "llcccc", caption = "Descriptive analysis for benchmark 1.5C RPS_2030_tilt_subsector", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "1.5C RPS_2050_tilt_subsector".
+### Descriptive analysis for benchmark "1.5C RPS_2050_tilt_subsector"
 
 ```{r}
 ipr_2050 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "1.5C RPS_2050_tilt_subsector"
  )
-ipr_2050
+
+kable(ipr_2050, align = "llcccc", caption = "Descriptive analysis for benchmark 1.5C RPS_2050_tilt_subsector", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "NZ 2050_2030_tilt_subsector".
+### Descriptive analysis for benchmark "NZ 2050_2030_tilt_subsector"
 
 ```{r}
 weo_2030 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "NZ 2050_2030_tilt_subsector"
  )
-weo_2030
+
+kable(weo_2030, align = "llcccc", caption = "Descriptive analysis for benchmark NZ 2050_2030_tilt_subsector", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "2.5cm")
 ```
 
-Descriptive analysis for benchmark "NZ 2050_2050_tilt_subsector".
+### Descriptive analysis for benchmark "NZ 2050_2050_tilt_subsector"
 
 ```{r}
 weo_2050 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "NZ 2050_2050_tilt_subsector"
  )
-weo_2050
+
+kable(weo_2050, align = "llcccc", caption = "Descriptive analysis for benchmark NZ 2050_2050_tilt_subsector", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "2.5cm")
 ```

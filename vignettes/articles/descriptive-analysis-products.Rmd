@@ -13,9 +13,10 @@ This article shows how to calculate the descriptive analysis of products for
 emission and sector profile.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(kableExtra)
 library(dplyr)
-library(tiltDataAnalysis)
 library(knitr)
+library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -23,14 +24,14 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 emission_product_example <- example_emission_ep_product_des_analysis()
-kable(emission_product_example)
+kable(emission_product_example |> head(20))
 ```
 
 ### Example subset of product-level output of sector profile.
 
 ```{r}
 sector_product_example <- example_sector_ep_product_des_analysis()
-kable(sector_product_example)
+kable(sector_product_example |> head(20))
 ```
 
 ### Distinct products of emission and sector profile
@@ -42,7 +43,7 @@ cat("Distinct products of sector profile:", n_distinct(sector_product_example$ep
 
 ### Matched distinct products of emission and sector profile
 
-```{r}
+```{r, echo=FALSE}
 matched_distinct_products <- function(data, profile) {
   result <- data |>
     select(all_of(c("ep_product", profile))) |>
@@ -60,7 +61,7 @@ cat("Matched distinct products of sector profile:", matched_distinct_products(se
 
 ### Average amount of distinct products per company for emission and sector profile
 
-```{r}
+```{r, echo=FALSE}
 avg_distinct_products_per_company <- function(data) {
   result <- data |>
     rename(any_of(c(ep_product = "product"))) |>
@@ -81,7 +82,7 @@ cat("Average amount of distinct products per company for sector profile:", avg_d
 
 ### Average amount of distinct products per company for transition risk profile
 
-```{r}
+```{r, echo=FALSE}
 transition_risk_product_example <- product_transition_risk |>
   select(c("companies_id", "product")) |> 
   distinct() |>
@@ -96,7 +97,7 @@ cat("Average amount of distinct products per company for transition risk profile
 
 ### Distinct products without a risk category for emission and sector profile
 
-```{r}
+```{r, echo=FALSE}
 distinct_products_without_risk_category <- function(data, profile) {
   result <- data |>
     select(all_of(c("ep_product", profile))) |>
@@ -114,98 +115,125 @@ cat("Distinct products without a risk category for sector profile:", distinct_pr
 
 ### Average profile ranking of all products per benchmarks
 
-```{r}
+```{r, echo=FALSE}
 profile_rank_df <- product_emission |>
   select(all_of(c("ep_product", "benchmark", "profile_ranking"))) |>
   distinct() |>
   filter(ep_product %in% c("tent", "surface engineering"))
-
-kable(profile_rank_df)
 ```
 
 ```{r, results='asis'}
+kable(profile_rank_df)
+```
+
+```{r, echo=FALSE}
 avg_profile_ranking_df <- profile_rank_df |>
   mutate(sum_profile_ranking = sum(.data$profile_ranking, na.rm = TRUE), .by = "benchmark") |>
   mutate(distinct_products_per_benchmark = n_distinct(.data$ep_product, na.rm = TRUE), .by = "benchmark") |>
   mutate(avg_profile_ranking = sum_profile_ranking/distinct_products_per_benchmark) |>
   select(-all_of(c("sum_profile_ranking", "distinct_products_per_benchmark", "profile_ranking", "ep_product"))) |>
   distinct()
+```
 
-kable(avg_profile_ranking_df)
+```{r, results='asis'}
+kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all products per benchmarks", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(1:2, width = "2.5cm")
 ```
 
 ### Average reduction targets of all products per benchmarks
 
-```{r}
+```{r, echo=FALSE}
 reduction_targets_df <- product_sector |>
   select(all_of(c("ep_product", "scenario", "year", "reduction_targets"))) |>
   distinct() |>
   mutate(scenario_year = paste(.data$scenario, .data$year, sep = "_")) |>
   select(-all_of(c("scenario", "year"))) |>
   filter(ep_product %in% c("tent", "surface engineering"))
+```
 
+```{r}
 kable(reduction_targets_df)
 ```
 
-```{r, results='asis'}
+```{r, echo=FALSE}
 avg_reduction_targets_df <- reduction_targets_df |>
   mutate(sum_reduction_targets = sum(.data$reduction_targets, na.rm = TRUE), .by = "scenario_year") |>
   mutate(distinct_products_per_scenario_year = n_distinct(.data$ep_product, na.rm = TRUE), .by = "scenario_year") |>
   mutate(avg_reduction_targets = sum_reduction_targets/distinct_products_per_scenario_year) |>
   select(-all_of(c("sum_reduction_targets", "distinct_products_per_scenario_year", "reduction_targets", "ep_product"))) |>
   distinct()
+```
 
-kable(avg_reduction_targets_df)
+```{r, results='asis'}
+kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all products per benchmarks", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(2, width = "5cm")
 ```
 
 ### Average transition risk scores of all products per tilt_subsector benchmarks
 
-```{r}
+```{r, echo=FALSE}
 trs_df <- product_transition_risk |>
   select(all_of(c("product", "grouping_transition_risk", "transition_risk_score"))) |>
   distinct() |>
   filter(grouping_transition_risk %in% c("1.5C RPS_2030_tilt_subsector", "1.5C RPS_2050_tilt_subsector",
                                          "NZ 2050_2030_tilt_subsector", "NZ 2050_2050_tilt_subsector"),
          product %in% c("tent", "surface engineering"))
-
-kable(trs_df)
 ```
 
 ```{r, results='asis'}
+kable(trs_df)
+```
+
+```{r, echo=FALSE}
 avg_trs_df <- trs_df |>
   mutate(sum_trs = sum(.data$transition_risk_score, na.rm = TRUE), .by = "grouping_transition_risk") |>
   mutate(distinct_products_per_benchmark = n_distinct(.data$product, na.rm = TRUE), .by = "grouping_transition_risk") |>
   mutate(avg_transition_risk_scores = sum_trs/distinct_products_per_benchmark) |>
   select(-all_of(c("sum_trs", "distinct_products_per_benchmark", "transition_risk_score", "product"))) |>
   distinct()
+```
 
-kable(avg_trs_df)
+```{r, results='asis'}
+kable(avg_trs_df, align = "lc", caption = "Average reduction targets of all products per benchmarks", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(2, width = "5cm")
 ```
 
 ### Average NA share per company with atleast one matched product for emission profile
 
-Companies with atleast one matched product
+#### Companies with atleast one matched product
 
-```{r}
+```{r, echo = FALSE}
 companies_atleast_one_matched_product <- product_emission |>
   select(all_of(c("companies_id", "ep_product", "emission_profile"))) |>
   distinct() |>
   filter(!is.na(emission_profile)) |>
   head(5)
+```
+
+```{r, results='asis'}
 kable(companies_atleast_one_matched_product)
 ```
 
-Average NA share per company which have atleast one matched product
+#### Average NA share per company which have atleast one matched product
 
-```{r}
+```{r, echo=FALSE}
 result <- company_transition_risk |>
   select(all_of(c("companies_id", "emission_category_NA"))) |>
   distinct() |>
   filter(companies_id %in% companies_atleast_one_matched_product$companies_id)
-kable(result)
 ```
 
 ```{r, results='asis'}
+kable(result)
+```
+
+```{r, echo=FALSE}
 average_result <- sum(result$emission_category_NA) / n_distinct(result$companies_id)
+```
+
+```{r, results='asis'}
 cat("Average NA share per company with atleast one matched product for emission profile:", average_result)
 ```
