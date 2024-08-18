@@ -13,11 +13,10 @@ This article shows how to calculate the descriptive analysis of products for
 emission and sector profile.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
-devtools::load_all(".")
 library(kableExtra)
 library(dplyr)
 library(knitr)
-# library(tiltDataAnalysis)
+library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 ```
 
