@@ -23,14 +23,14 @@ options(readr.show_col_types = FALSE)
 
 ### Example product-level output of transition risk profile for equal weight, best case, and worst case
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
 kable(transition_risk_product_example |> head(20))
 ```
 
 ### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
     select(all_of(c("grouping_transition_risk", "transition_risk_category", col))) |>
@@ -41,8 +41,6 @@ avg_per_benchmark_risk_category <- function(data, col) {
 }
 avg_transition_risk_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight") |>
   rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-
-kable(avg_transition_risk_equal_weight_per_benchmark_risk_category)
 ```
 
 #### Bar plot
@@ -65,11 +63,9 @@ plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_risk_catego
 
 ### Average `transition_risk_profile_best_case` per per `grouping_transition_risk` and `transition_risk_category`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_best_case") |>
   rename("Average `transition_risk_profile_best_case`" = "proportion")
-
-kable(avg_transition_risk_best_case_per_benchmark_risk_category)
 ```
 
 #### Bar plot
@@ -81,11 +77,9 @@ plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_risk_category,
 
 ### Average `transition_risk_profile_worst_case` per per `grouping_transition_risk` and `transition_risk_category`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case") |>
   rename("Average `transition_risk_profile_worst_case`" = "proportion")
-
-kable(avg_transition_risk_worst_case_per_benchmark_risk_category)
 ```
 
 #### Bar plot
@@ -97,7 +91,7 @@ plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_risk_category
 
 ### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category` for a country
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
   data |>
     select(all_of(c("grouping_transition_risk", "country", "transition_risk_category", col))) |>
@@ -107,49 +101,91 @@ avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
     select(-all_of(c("total_mode"))) |>
     distinct()
 }
-avg_transition_risk_equal_weight_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "france") |>
+avg_transition_risk_equal_weight_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "france") |>
   rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-
-kable(avg_transition_risk_equal_weight_per_benchmark_country_risk_category) 
+avg_transition_risk_equal_weight_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "austria") |>
+  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "germany") |>
+  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "netherlands") |>
+  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "spain") |>
+  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
 ```
 
-#### Bar plot
+#### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_category, "Average `transition_risk_profile_equal_weight`") +
-  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `France` ")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_france, "Average `transition_risk_profile_equal_weight`") +
+  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `france`")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_austria, "Average `transition_risk_profile_equal_weight`") +
+  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `austria`")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_germany, "Average `transition_risk_profile_equal_weight`") +
+  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `germany`")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_equal_weight`") +
+  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `netherlands`")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_spain, "Average `transition_risk_profile_equal_weight`") +
+  labs(title = "Average `transition_risk_profile_equal_weight` \n per grouping_transition_risk and \n transition_risk_category for country `spain`")
 ```
 
 ### Average `transition_risk_profile_best_case` per `grouping_transition_risk` and `transition_risk_category` for a country
 
-```{r, warning=FALSE}
-avg_transition_risk_best_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "france") |>
+```{r, warning=FALSE, echo=FALSE}
+avg_transition_risk_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "france") |>
   rename("Average `transition_risk_profile_best_case`" = "proportion")
-
-kable(avg_transition_risk_best_case_per_benchmark_country_risk_category)
+avg_transition_risk_best_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "austria") |>
+  rename("Average `transition_risk_profile_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "germany") |>
+  rename("Average `transition_risk_profile_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "netherlands") |>
+  rename("Average `transition_risk_profile_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "spain") |>
+  rename("Average `transition_risk_profile_best_case`" = "proportion")
 ```
 
-#### Bar plot
+#### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_category, "Average `transition_risk_profile_best_case`") +
-  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `France` ")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_best_case`") +
+  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `france`")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_best_case`") +
+  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `austria`")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_best_case`") +
+  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `germany`")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_best_case`") +
+  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `netherlands`")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_best_case`") +
+  labs(title = "Average `transition_risk_profile_best_case` \n per grouping_transition_risk and \n transition_risk_category for country `spain`")
 ```
 
 ### Average `transition_risk_profile_worst_case` per `grouping_transition_risk` and `transition_risk_category` for a country
 
-```{r, warning=FALSE}
-avg_transition_risk_worst_case_per_benchmark_country_risk_category <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "france") |>
+```{r, warning=FALSE, echo=FALSE}
+avg_transition_risk_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "france") |>
   rename("Average `transition_risk_profile_worst_case`" = "proportion")
-
-kable(avg_transition_risk_worst_case_per_benchmark_country_risk_category)
+avg_transition_risk_worst_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "austria") |>
+  rename("Average `transition_risk_profile_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "germany") |>
+  rename("Average `transition_risk_profile_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "netherlands") |>
+  rename("Average `transition_risk_profile_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "spain") |>
+  rename("Average `transition_risk_profile_worst_case`" = "proportion")
 ```
 
-#### Bar plot
+#### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_category, "Average `transition_risk_profile_worst_case`") +
-  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `France` ")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_worst_case`") +
+  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `france`")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_worst_case`") +
+  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `austria`")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_worst_case`") +
+  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `germany`")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_worst_case`") +
+  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `netherlands`")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_worst_case`") +
+  labs(title = "Average `transition_risk_profile_worst_case` \n per grouping_transition_risk and \n transition_risk_category for country `spain`")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case
@@ -161,7 +197,7 @@ kable(transition_risk_company_example |> head(20))
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_per_benchmark <- function(data, col) {
   data |>
     select(all_of(c("companies_id", "grouping_transition_risk", col))) |>
@@ -185,7 +221,7 @@ kable(avg_transition_risk_equal_weight_per_benchmark, align = "lcccc", caption =
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_best_case_per_benchmark <- avg_transition_risk_per_benchmark(transition_risk_company_example, "avg_transition_risk_best_case")
 
 kable(avg_transition_risk_best_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk", escape = F) |>
@@ -196,7 +232,7 @@ kable(avg_transition_risk_best_case_per_benchmark, align = "lcccc", caption = "D
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk`
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_worst_case_per_benchmark <- avg_transition_risk_per_benchmark(transition_risk_company_example, "avg_transition_risk_worst_case")
 
 kable(avg_transition_risk_worst_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk", escape = F) |>
@@ -207,7 +243,7 @@ kable(avg_transition_risk_worst_case_per_benchmark, align = "lcccc", caption = "
 
 ### Descriptive analysis of `avg_transition_risk_equal_weight` per `grouping_transition_risk` for a country
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 avg_transition_risk_per_benchmark_country <- function(data, col, country_value) {
   data |>
     select(all_of(c("country", "companies_id", "grouping_transition_risk", col))) |>
@@ -222,9 +258,31 @@ avg_transition_risk_per_benchmark_country <- function(data, col, country_value) 
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct()
 }
-avg_transition_risk_equal_weight_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "france")
+avg_transition_risk_equal_weight_per_benchmark_france  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "france")
+avg_transition_risk_equal_weight_per_benchmark_austria  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "austria")
+avg_transition_risk_equal_weight_per_benchmark_germany  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "germany")
+avg_transition_risk_equal_weight_per_benchmark_netherlands  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "netherlands")
+avg_transition_risk_equal_weight_per_benchmark_spain  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_equal_weight", "spain")
+```
 
-kable(avg_transition_risk_equal_weight_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `France`", escape = F) |>
+```{r, warning=FALSE, echo=FALSE}
+kable(avg_transition_risk_equal_weight_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `france`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_equal_weight" = 4))
+kable(avg_transition_risk_equal_weight_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `austria`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_equal_weight" = 4))
+kable(avg_transition_risk_equal_weight_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `germany`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_equal_weight" = 4))
+kable(avg_transition_risk_equal_weight_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `netherlands`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_equal_weight" = 4))
+kable(avg_transition_risk_equal_weight_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_equal_weight` per grouping_transition_risk for country `spain`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "avg_transition_risk_equal_weight" = 4))
@@ -232,10 +290,32 @@ kable(avg_transition_risk_equal_weight_per_benchmark_country, align = "llcccc", 
 
 ### Descriptive analysis of `avg_transition_risk_best_case` per `grouping_transition_risk` for a country
 
-```{r, warning=FALSE}
-avg_transition_risk_best_case_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "france")
+```{r, warning=FALSE, echo=FALSE}
+avg_transition_risk_best_case_per_benchmark_france  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "france")
+avg_transition_risk_best_case_per_benchmark_austria  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "austria")
+avg_transition_risk_best_case_per_benchmark_germany  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "germany")
+avg_transition_risk_best_case_per_benchmark_netherlands  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "netherlands")
+avg_transition_risk_best_case_per_benchmark_spain  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_best_case", "spain")
+```
 
-kable(avg_transition_risk_best_case_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `France`", escape = F) |>
+```{r, warning=FALSE, echo=FALSE}
+kable(avg_transition_risk_best_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `france`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_best_case" = 4))
+kable(avg_transition_risk_best_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `austria`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_best_case" = 4))
+kable(avg_transition_risk_best_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `germany`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_best_case" = 4))
+kable(avg_transition_risk_best_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `netherlands`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_best_case" = 4))
+kable(avg_transition_risk_best_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_best_case` per grouping_transition_risk for country `spain`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "avg_transition_risk_best_case" = 4))
@@ -243,10 +323,32 @@ kable(avg_transition_risk_best_case_per_benchmark_country, align = "llcccc", cap
 
 ### Descriptive analysis of `avg_transition_risk_worst_case` per `grouping_transition_risk` for a country
 
-```{r, warning=FALSE}
-avg_transition_risk_worst_case_per_benchmark_country  <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "france")
+```{r, warning=FALSE, echo=FALSE}
+avg_transition_risk_worst_case_per_benchmark_france <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "france")
+avg_transition_risk_worst_case_per_benchmark_austria <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "austria")
+avg_transition_risk_worst_case_per_benchmark_germany <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "germany")
+avg_transition_risk_worst_case_per_benchmark_netherlands <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "netherlands")
+avg_transition_risk_worst_case_per_benchmark_spain <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "france")
+```
 
-kable(avg_transition_risk_worst_case_per_benchmark_country, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `France`", escape = F) |>
+```{r, warning=FALSE, echo=FALSE}
+kable(avg_transition_risk_worst_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `france`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_worst_case" = 4))
+kable(avg_transition_risk_worst_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `austria`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_worst_case" = 4))
+kable(avg_transition_risk_worst_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `germany`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_worst_case" = 4))
+kable(avg_transition_risk_worst_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `netherlands`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Cambria") |>
+  column_spec(3:6, width = "3cm") |>
+  add_header_above(c(" ", " ", "avg_transition_risk_worst_case" = 4))
+kable(avg_transition_risk_worst_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `avg_transition_risk_worst_case` per grouping_transition_risk for country `spain`", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "avg_transition_risk_worst_case" = 4))
