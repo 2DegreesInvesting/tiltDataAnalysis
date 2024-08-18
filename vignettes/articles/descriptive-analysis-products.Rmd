@@ -13,10 +13,11 @@ This article shows how to calculate the descriptive analysis of products for
 emission and sector profile.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+devtools::load_all(".")
 library(kableExtra)
 library(dplyr)
 library(knitr)
-library(tiltDataAnalysis)
+# library(tiltDataAnalysis)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -115,6 +116,8 @@ cat("Distinct products without a risk category for sector profile:", distinct_pr
 
 ### Average profile ranking of all products per benchmarks
 
+#### Input
+
 ```{r, echo=FALSE}
 profile_rank_df <- product_emission |>
   select(all_of(c("ep_product", "benchmark", "profile_ranking"))) |>
@@ -122,9 +125,11 @@ profile_rank_df <- product_emission |>
   filter(ep_product %in% c("tent", "surface engineering"))
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(profile_rank_df)
 ```
+
+#### Output
 
 ```{r, echo=FALSE}
 avg_profile_ranking_df <- profile_rank_df |>
@@ -135,13 +140,15 @@ avg_profile_ranking_df <- profile_rank_df |>
   distinct()
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all products per benchmarks", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1:2, width = "2.5cm")
 ```
 
 ### Average reduction targets of all products per benchmarks
+
+#### Input
 
 ```{r, echo=FALSE}
 reduction_targets_df <- product_sector |>
@@ -152,9 +159,11 @@ reduction_targets_df <- product_sector |>
   filter(ep_product %in% c("tent", "surface engineering"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(reduction_targets_df)
 ```
+
+#### Output
 
 ```{r, echo=FALSE}
 avg_reduction_targets_df <- reduction_targets_df |>
@@ -165,13 +174,15 @@ avg_reduction_targets_df <- reduction_targets_df |>
   distinct()
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all products per benchmarks", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")
 ```
 
 ### Average transition risk scores of all products per tilt_subsector benchmarks
+
+#### Input
 
 ```{r, echo=FALSE}
 trs_df <- product_transition_risk |>
@@ -182,9 +193,11 @@ trs_df <- product_transition_risk |>
          product %in% c("tent", "surface engineering"))
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(trs_df)
 ```
+
+#### Output
 
 ```{r, echo=FALSE}
 avg_trs_df <- trs_df |>
@@ -195,7 +208,7 @@ avg_trs_df <- trs_df |>
   distinct()
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(avg_trs_df, align = "lc", caption = "Average reduction targets of all products per benchmarks", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")
@@ -213,7 +226,7 @@ companies_atleast_one_matched_product <- product_emission |>
   head(5)
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(companies_atleast_one_matched_product)
 ```
 
@@ -226,7 +239,7 @@ result <- company_transition_risk |>
   filter(companies_id %in% companies_atleast_one_matched_product$companies_id)
 ```
 
-```{r, results='asis'}
+```{r, results='asis', echo=FALSE}
 kable(result)
 ```
 

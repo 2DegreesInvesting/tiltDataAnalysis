@@ -30,7 +30,7 @@ kable(transition_risk_product_example |> head(20))
 
 ### Descriptive analysis for benchmark "1.5C RPS_2030_tilt_subsector"
 
-```{r}
+```{r, echo=FALSE}
 ipr_2030 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "1.5C RPS_2030_tilt_subsector"
@@ -43,7 +43,7 @@ kable(ipr_2030, align = "llcccc", caption = "Descriptive analysis for benchmark 
 
 ### Descriptive analysis for benchmark "1.5C RPS_2050_tilt_subsector"
 
-```{r}
+```{r, echo=FALSE}
 ipr_2050 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "1.5C RPS_2050_tilt_subsector"
@@ -56,7 +56,7 @@ kable(ipr_2050, align = "llcccc", caption = "Descriptive analysis for benchmark 
 
 ### Descriptive analysis for benchmark "NZ 2050_2030_tilt_subsector"
 
-```{r}
+```{r, echo=FALSE}
 weo_2030 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "NZ 2050_2030_tilt_subsector"
@@ -69,7 +69,7 @@ kable(weo_2030, align = "llcccc", caption = "Descriptive analysis for benchmark 
 
 ### Descriptive analysis for benchmark "NZ 2050_2050_tilt_subsector"
 
-```{r}
+```{r, echo=FALSE}
 weo_2050 <- calculate_trs_descriptive_analysis_per_tr_benchmark(
    transition_risk_product_example,
    "NZ 2050_2050_tilt_subsector"

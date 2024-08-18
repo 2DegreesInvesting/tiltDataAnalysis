@@ -40,7 +40,7 @@ avg_cov_emission_rank_per_benchmark <- emission_product_example |>
   distinct()
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(avg_cov_emission_rank_per_benchmark, align = "lc", caption = "Average cov_emission_rank per company for grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")
@@ -68,7 +68,7 @@ avg_cov_sector_target_per_benchmark <- sector_product_example |>
   distinct()
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(avg_cov_sector_target_per_benchmark, align = "lc", caption = "Average cov_sector_target per company for grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")
@@ -96,7 +96,7 @@ avg_cov_transition_risk_per_benchmark <- transition_risk_product_example |>
   distinct()
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(avg_cov_transition_risk_per_benchmark, align = "lc", caption = "Average cov_transition_risk per company for tilt_subsector benchmarks of grouping_transition_risk", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")

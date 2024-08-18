@@ -32,7 +32,7 @@ kable(sector_product_example |> head(20))
 
 ### Shows reduction targets for all tilt_subsectors per scenario-year benchmark
 
-```{r}
+```{r, echo=FALSE}
 result <- show_reduction_targets_for_tilt_subsectors_per_scenario_year(
    sector_product_example
  )
