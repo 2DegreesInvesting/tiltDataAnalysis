@@ -125,7 +125,7 @@ profile_rank_df <- product_emission |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(profile_rank_df)
+kable(profile_rank_df |> head(10))
 ```
 
 #### Output
@@ -159,7 +159,7 @@ reduction_targets_df <- product_sector |>
 ```
 
 ```{r, echo=FALSE}
-kable(reduction_targets_df)
+kable(reduction_targets_df |> head(10))
 ```
 
 #### Output
@@ -193,7 +193,7 @@ trs_df <- product_transition_risk |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(trs_df)
+kable(trs_df |> head(10))
 ```
 
 #### Output
@@ -221,12 +221,11 @@ kable(avg_trs_df, align = "lc", caption = "Average reduction targets of all prod
 companies_atleast_one_matched_product <- product_emission |>
   select(all_of(c("companies_id", "ep_product", "emission_profile"))) |>
   distinct() |>
-  filter(!is.na(emission_profile)) |>
-  head(5)
+  filter(!is.na(emission_profile))
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(companies_atleast_one_matched_product)
+kable(companies_atleast_one_matched_product |> head(10))
 ```
 
 #### Average NA share per company which have atleast one matched product
@@ -239,11 +238,11 @@ result <- company_transition_risk |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(result)
+kable(result |> head(10))
 ```
 
 ```{r, echo=FALSE}
-average_result <- sum(result$emission_category_NA) / n_distinct(result$companies_id)
+average_result <- sum(result$emission_category_NA, na.rm = TRUE) / n_distinct(result$companies_id)
 ```
 
 ```{r, results='asis'}
