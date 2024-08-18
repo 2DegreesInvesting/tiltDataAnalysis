@@ -55,7 +55,7 @@ companies_headcount_range <- transition_risk_product_example |>
   arrange(min_headcount, max_headcount)
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(companies_headcount_range, align = "ccc", caption = "Number of companies between range of min_headcount and max_headcount", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1:3, width = "3cm")
@@ -82,7 +82,7 @@ companies_headcount_range_tilt_sector <- transition_risk_product_example |>
   arrange(min_headcount, max_headcount, tilt_sector)
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(companies_headcount_range_tilt_sector, align = "cccc", caption = "Number of companies between range of min_headcount and max_headcount grouped by tilt_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1:4, width = "3cm")
@@ -109,7 +109,7 @@ companies_headcount_range_tilt_sector_country <- transition_risk_product_example
   arrange(min_headcount, max_headcount, tilt_sector, country)
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(companies_headcount_range_tilt_sector_country, align = "ccccc", caption = "Number of companies between range of min_headcount and max_headcount grouped by tilt_sector and country", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1:5, width = "3cm")
