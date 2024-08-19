@@ -18,14 +18,15 @@ library(kableExtra)
 library(dplyr)
 library(knitr)
 library(ggplot2)
+library(stringr)
 options(readr.show_col_types = FALSE)
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case of sector profile 
 
 ```{r, warning=FALSE}
-transition_risk_product_example <- example_transition_risk_company_sector_avg_best_case_worst_case()
-kable(transition_risk_product_example |> head(20))
+transition_risk_company_example <- example_transition_risk_company_sector_avg_best_case_worst_case()
+kable(transition_risk_company_example |> head(20))
 ```
 
 ### Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector
@@ -44,9 +45,10 @@ sector_target_avg_per_benchmark <- function(data, col) {
     mutate("25th_quantile" = quantile(.data[[col]], 0.25, na.rm = TRUE), .by = "grouping_sector") |>
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_sector") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
-    distinct()
+    distinct() |>
+    filter(!str_detect(grouping_sector, "NA"))
 }
-sector_target_avg_equal_weight_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_product_example, "sector_target_avg_equal_weight")
+sector_target_avg_equal_weight_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_equal_weight")
 
 kable(sector_target_avg_equal_weight_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
@@ -57,7 +59,7 @@ kable(sector_target_avg_equal_weight_per_benchmark, align = "lcccc", caption = "
 ### Descriptive analysis of `sector_target_avg_best_case` per grouping_sector
 
 ```{r, warning=FALSE, echo=FALSE}
-sector_target_avg_best_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_product_example, "sector_target_avg_best_case") 
+sector_target_avg_best_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_best_case") 
 
 kable(sector_target_avg_best_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
@@ -68,7 +70,7 @@ kable(sector_target_avg_best_case_per_benchmark, align = "lcccc", caption = "Des
 ### Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector
 
 ```{r, warning=FALSE, echo=FALSE}
-sector_target_avg_worst_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_product_example, "sector_target_avg_worst_case")
+sector_target_avg_worst_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_worst_case")
 
 kable(sector_target_avg_worst_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
@@ -93,14 +95,15 @@ sector_target_avg_per_benchmark_country <- function(data, col, country_value) {
     mutate("25th_quantile" = quantile(.data[[col]], 0.25, na.rm = TRUE), .by = "grouping_sector") |>
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_sector") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
-    distinct()
+    distinct() |>
+    filter(!str_detect(grouping_sector, "NA"))
 }
 
-sector_target_avg_equal_weight_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_equal_weight", "france")
-sector_target_avg_equal_weight_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_equal_weight", "austria")
-sector_target_avg_equal_weight_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_equal_weight", "germany")
-sector_target_avg_equal_weight_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_equal_weight", "netherlands")
-sector_target_avg_equal_weight_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_equal_weight", "spain")
+sector_target_avg_equal_weight_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_equal_weight", "france")
+sector_target_avg_equal_weight_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_equal_weight", "austria")
+sector_target_avg_equal_weight_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_equal_weight", "germany")
+sector_target_avg_equal_weight_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_equal_weight", "netherlands")
+sector_target_avg_equal_weight_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_equal_weight", "spain")
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
@@ -129,11 +132,11 @@ kable(sector_target_avg_equal_weight_per_benchmark_spain, align = "llcccc", capt
 ### Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for a country
 
 ```{r, warning=FALSE, echo=FALSE}
-sector_target_avg_best_case_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_best_case", "france")
-sector_target_avg_best_case_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_best_case", "austria")
-sector_target_avg_best_case_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_best_case", "germany")
-sector_target_avg_best_case_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_best_case", "netherlands")
-sector_target_avg_best_case_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_best_case", "spain")
+sector_target_avg_best_case_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_best_case", "france")
+sector_target_avg_best_case_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_best_case", "austria")
+sector_target_avg_best_case_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_best_case", "germany")
+sector_target_avg_best_case_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_best_case", "netherlands")
+sector_target_avg_best_case_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_best_case", "spain")
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
@@ -162,11 +165,11 @@ kable(sector_target_avg_best_case_per_benchmark_spain, align = "llcccc", caption
 ### Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for a country
 
 ```{r, warning=FALSE, echo=FALSE}
-sector_target_avg_worst_case_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_worst_case", "france")
-sector_target_avg_worst_case_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_worst_case", "austria")
-sector_target_avg_worst_case_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_worst_case", "germany")
-sector_target_avg_worst_case_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_worst_case", "netherlands")
-sector_target_avg_worst_case_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_product_example, "sector_target_avg_worst_case", "spain")
+sector_target_avg_worst_case_per_benchmark_france <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_worst_case", "france")
+sector_target_avg_worst_case_per_benchmark_austria <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_worst_case", "austria")
+sector_target_avg_worst_case_per_benchmark_germany <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_worst_case", "germany")
+sector_target_avg_worst_case_per_benchmark_netherlands <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_worst_case", "netherlands")
+sector_target_avg_worst_case_per_benchmark_spain <- sector_target_avg_per_benchmark_country(transition_risk_company_example, "sector_target_avg_worst_case", "spain")
 ```
 
 ```{r, warning=FALSE, echo=FALSE}

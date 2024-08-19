@@ -13,6 +13,7 @@
 #' @importFrom stats median
 #' @importFrom stats quantile
 #' @importFrom stats sd
+#' @importFrom stringr str_detect
 #' @importFrom tibble tribble
 #' @importFrom tidyr pivot_wider
 #' @importFrom tidyselect all_of

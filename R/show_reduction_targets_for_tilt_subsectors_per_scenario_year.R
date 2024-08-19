@@ -1,7 +1,7 @@
-#' Show reduction targets for all `tilt_subsectors` per scenario-year benchmark
+#' Show reduction targets for all `tilt_subsectors` per grouping_sector
 #'
 #' This function shows reduction targets for all `tilt_subsectors` per
-#' scenario-year benchmark using product-level output of Sector profile indicator.
+#' grouping_sector using product-level output of Sector profile indicator.
 #'
 #' @param sector_product A dataframe. Product-level output of Sector profile
 #'
@@ -15,17 +15,18 @@
 #'   distinct()
 #' sector_product_example
 #'
-#' show_reduction_targets_for_tilt_subsectors_per_scenario_year(
+#' show_reduction_targets_for_tilt_subsectors_per_grouping_sector(
 #'   sector_product_example
 #' )
-show_reduction_targets_for_tilt_subsectors_per_scenario_year <- function(sector_product) {
+show_reduction_targets_for_tilt_subsectors_per_grouping_sector <- function(sector_product) {
   sector_product |>
     select(all_of(c("tilt_subsector", "scenario", "year", "reduction_targets"))) |>
     distinct() |>
-    mutate(scenario_year = paste(.data$scenario, .data$year, sep = "_")) |>
+    mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
     select(-c("scenario", "year")) |>
+    filter(!str_detect(.data$grouping_sector, "NA")) |>
     pivot_wider(
-      names_from = "scenario_year",
+      names_from = "grouping_sector",
       values_from = "reduction_targets"
     ) |>
     rename(

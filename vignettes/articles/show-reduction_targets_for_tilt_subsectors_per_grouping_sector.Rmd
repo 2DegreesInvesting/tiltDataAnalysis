@@ -1,5 +1,5 @@
 ---
-title: "Show reduction targets for all tilt_subsectors per scenario-year benchmark"
+title: "Show reduction targets for all tilt_subsectors per grouping_sector"
 ---
 
 ```{r, include = FALSE}
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 ```
 
 This article outlines how to show reduction targets for all `tilt_subsectors` per
-scenario-year benchmark using product-level output of Sector profile indicator.
+grouping_sector using product-level output of Sector profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
@@ -30,14 +30,14 @@ sector_product_example <- product_sector |>
 kable(sector_product_example |> head(20))
 ```
 
-### Shows reduction targets for all tilt_subsectors per scenario-year benchmark
+### Shows reduction targets for all tilt_subsectors per grouping_sector
 
 ```{r, echo=FALSE}
-result <- show_reduction_targets_for_tilt_subsectors_per_scenario_year(
+result <- show_reduction_targets_for_tilt_subsectors_per_grouping_sector(
    sector_product_example
  )
 
-kable(result, align = "lcccc", caption = "Reduction targets for all `tilt_subsectors` per scenario-year benchmark", escape = F) |>
+kable(result, align = "lcccc", caption = "Reduction targets for all `tilt_subsectors` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1, width = "6cm") |>
   column_spec(2:5, width = "2.5cm")

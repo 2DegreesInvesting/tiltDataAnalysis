@@ -17,6 +17,7 @@ library(tiltDataAnalysis)
 library(dplyr)
 library(kableExtra)
 library(knitr)
+library(stringr)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -37,7 +38,8 @@ avg_cov_emission_rank_per_benchmark <- emission_product_example |>
   mutate(distinct_companies_per_benchmark = n_distinct(.data$companies_id, na.rm = TRUE), .by = "grouping_emission") |>
   mutate(avg_cov_emission_rank = sum_cov_emission_rank/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_emission_rank", "distinct_companies_per_benchmark", "cov_emission_rank", "companies_id"))) |>
-  distinct()
+  distinct() |>
+  filter(!str_detect(grouping_emission, "NA"))
 ```
 
 ```{r, echo=FALSE}
@@ -65,7 +67,8 @@ avg_cov_sector_target_per_benchmark <- sector_product_example |>
   mutate(distinct_companies_per_benchmark = n_distinct(.data$companies_id, na.rm = TRUE), .by = "grouping_sector") |>
   mutate(avg_cov_sector_target = sum_cov_sector_target/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_sector_target", "distinct_companies_per_benchmark", "cov_sector_target", "companies_id"))) |>
-  distinct()
+  distinct() |>
+  filter(!str_detect(grouping_sector, "NA"))
 ```
 
 ```{r, echo=FALSE}

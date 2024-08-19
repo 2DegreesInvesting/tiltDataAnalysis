@@ -17,6 +17,7 @@ library(kableExtra)
 library(dplyr)
 library(knitr)
 library(tiltDataAnalysis)
+library(stringr)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -113,13 +114,14 @@ cat("Distinct products without a risk category for emission profile:", distinct_
 cat("Distinct products without a risk category for sector profile:", distinct_products_without_risk_category(sector_product_example, "sector_profile"))
 ```
 
-### Average profile ranking of all products per benchmarks
+### Average profile ranking of all products per grouping_emission
 
 #### Input
 
 ```{r, echo=FALSE}
 profile_rank_df <- product_emission |>
   select(all_of(c("ep_product", "benchmark", "profile_ranking"))) |>
+  rename("grouping_emission" = "benchmark") |>
   distinct() |>
   filter(ep_product %in% c("tent", "surface engineering"))
 ```
@@ -132,20 +134,21 @@ kable(profile_rank_df |> head(10))
 
 ```{r, echo=FALSE}
 avg_profile_ranking_df <- profile_rank_df |>
-  mutate(sum_profile_ranking = sum(.data$profile_ranking, na.rm = TRUE), .by = "benchmark") |>
-  mutate(distinct_products_per_benchmark = n_distinct(.data$ep_product, na.rm = TRUE), .by = "benchmark") |>
+  mutate(sum_profile_ranking = sum(.data$profile_ranking, na.rm = TRUE), .by = "grouping_emission") |>
+  mutate(distinct_products_per_benchmark = n_distinct(.data$ep_product, na.rm = TRUE), .by = "grouping_emission") |>
   mutate(avg_profile_ranking = sum_profile_ranking/distinct_products_per_benchmark) |>
   select(-all_of(c("sum_profile_ranking", "distinct_products_per_benchmark", "profile_ranking", "ep_product"))) |>
-  distinct()
+  distinct() |>
+  filter(!str_detect(grouping_emission, "NA"))
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all products per benchmarks", escape = F) |>
+kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all products per grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(1:2, width = "2.5cm")
 ```
 
-### Average reduction targets of all products per benchmarks
+### Average reduction targets of all products per grouping_sector
 
 #### Input
 
@@ -153,7 +156,7 @@ kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking o
 reduction_targets_df <- product_sector |>
   select(all_of(c("ep_product", "scenario", "year", "reduction_targets"))) |>
   distinct() |>
-  mutate(scenario_year = paste(.data$scenario, .data$year, sep = "_")) |>
+  mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
   select(-all_of(c("scenario", "year"))) |>
   filter(ep_product %in% c("tent", "surface engineering"))
 ```
@@ -166,15 +169,16 @@ kable(reduction_targets_df |> head(10))
 
 ```{r, echo=FALSE}
 avg_reduction_targets_df <- reduction_targets_df |>
-  mutate(sum_reduction_targets = sum(.data$reduction_targets, na.rm = TRUE), .by = "scenario_year") |>
-  mutate(distinct_products_per_scenario_year = n_distinct(.data$ep_product, na.rm = TRUE), .by = "scenario_year") |>
+  mutate(sum_reduction_targets = sum(.data$reduction_targets, na.rm = TRUE), .by = "grouping_sector") |>
+  mutate(distinct_products_per_scenario_year = n_distinct(.data$ep_product, na.rm = TRUE), .by = "grouping_sector") |>
   mutate(avg_reduction_targets = sum_reduction_targets/distinct_products_per_scenario_year) |>
   select(-all_of(c("sum_reduction_targets", "distinct_products_per_scenario_year", "reduction_targets", "ep_product"))) |>
-  distinct()
+  distinct() |>
+  filter(!str_detect(grouping_sector, "NA"))
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all products per benchmarks", escape = F) |>
+kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all products per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
   column_spec(2, width = "5cm")
 ```
@@ -188,8 +192,8 @@ trs_df <- product_transition_risk |>
   select(all_of(c("product", "grouping_transition_risk", "transition_risk_score"))) |>
   distinct() |>
   filter(grouping_transition_risk %in% c("1.5C RPS_2030_tilt_subsector", "1.5C RPS_2050_tilt_subsector",
-                                         "NZ 2050_2030_tilt_subsector", "NZ 2050_2050_tilt_subsector"),
-         product %in% c("tent", "surface engineering"))
+                                         "NZ 2050_2030_tilt_subsector", "NZ 2050_2050_tilt_subsector")) |>
+  filter(product %in% c("tent", "surface engineering"))
 ```
 
 ```{r, results='asis', echo=FALSE}
