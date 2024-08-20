@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -274,14 +274,15 @@ profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-
 <p>Distinct products without a risk category for sector profile: 2</p>
 </div>
 <div class="section level3">
-<h3 id="average-profile-ranking-of-all-products-per-benchmarks">Average profile ranking of all products per benchmarks<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-products-per-benchmarks"></a>
+<h3 id="average-profile-ranking-of-all-products-per-grouping_emission">Average profile ranking of all products per grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-products-per-grouping_emission"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">profile_rank_df</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="input">Input<a class="anchor" aria-label="anchor" href="#input"></a>
+</h4>
 <table class="table">
 <thead><tr class="header">
 <th align="left">ep_product</th>
-<th align="left">benchmark</th>
+<th align="left">grouping_emission</th>
 <th align="right">profile_ranking</th>
 </tr></thead>
 <tbody>
@@ -335,29 +336,19 @@ profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-
 <td align="left">unit</td>
 <td align="right">0.5000000</td>
 </tr>
-<tr class="odd">
-<td align="left">surface engineering</td>
-<td align="left">unit_isic_4digit</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="even">
-<td align="left">surface engineering</td>
-<td align="left">unit_tilt_subsector</td>
-<td align="right">1.0000000</td>
-</tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_profile_ranking_df</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average profile ranking of all products per benchmarks"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h4>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average profile ranking of all products per benchmarks
+Average profile ranking of all products per grouping_emission
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-benchmark
+grouping_emission
 </th>
 <th style="text-align:center;">
 avg_profile_ranking
@@ -415,16 +406,18 @@ unit_tilt_subsector
 </tbody>
 </table>
 </div>
+</div>
 <div class="section level3">
-<h3 id="average-reduction-targets-of-all-products-per-benchmarks">Average reduction targets of all products per benchmarks<a class="anchor" aria-label="anchor" href="#average-reduction-targets-of-all-products-per-benchmarks"></a>
+<h3 id="average-reduction-targets-of-all-products-per-grouping_sector">Average reduction targets of all products per grouping_sector<a class="anchor" aria-label="anchor" href="#average-reduction-targets-of-all-products-per-grouping_sector"></a>
 </h3>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">reduction_targets_df</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="input-1">Input<a class="anchor" aria-label="anchor" href="#input-1"></a>
+</h4>
 <table class="table">
 <thead><tr class="header">
 <th align="left">ep_product</th>
 <th align="right">reduction_targets</th>
-<th align="left">scenario_year</th>
+<th align="left">grouping_sector</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -469,17 +462,17 @@ unit_tilt_subsector
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_reduction_targets_df</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average reduction targets of all products per benchmarks"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"5cm"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="output-1">Output<a class="anchor" aria-label="anchor" href="#output-1"></a>
+</h4>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average reduction targets of all products per benchmarks
+Average reduction targets of all products per grouping_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-scenario_year
+grouping_sector
 </th>
 <th style="text-align:center;">
 avg_reduction_targets
@@ -521,12 +514,14 @@ NZ 2050_2050
 </tbody>
 </table>
 </div>
+</div>
 <div class="section level3">
 <h3 id="average-transition-risk-scores-of-all-products-per-tilt_subsector-benchmarks">Average transition risk scores of all products per tilt_subsector
 benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-scores-of-all-products-per-tilt_subsector-benchmarks"></a>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">trs_df</span><span class="op">)</span></span></code></pre></div>
+<div class="section level4">
+<h4 id="input-2">Input<a class="anchor" aria-label="anchor" href="#input-2"></a>
+</h4>
 <table class="table">
 <colgroup>
 <col width="28%">
@@ -581,10 +576,10 @@ benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-s
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_trs_df</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average reduction targets of all products per benchmarks"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"5cm"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level4">
+<h4 id="output-2">Output<a class="anchor" aria-label="anchor" href="#output-2"></a>
+</h4>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average reduction targets of all products per benchmarks
@@ -633,6 +628,7 @@ NZ 2050_2050_tilt_subsector
 </tbody>
 </table>
 </div>
+</div>
 <div class="section level3">
 <h3 id="average-na-share-per-company-with-atleast-one-matched-product-for-emission-profile">Average NA share per company with atleast one matched product for
 emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-with-atleast-one-matched-product-for-emission-profile"></a>
@@ -640,13 +636,11 @@ emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-pe
 <div class="section level4">
 <h4 id="companies-with-atleast-one-matched-product">Companies with atleast one matched product<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-matched-product"></a>
 </h4>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_atleast_one_matched_product</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="45%">
-<col width="32%">
-<col width="22%">
+<col width="50%">
+<col width="29%">
+<col width="20%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -679,6 +673,31 @@ emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-pe
 <td align="left">tent</td>
 <td align="left">high</td>
 </tr>
+<tr class="even">
+<td align="left">preexistent_africanmolesnake</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">wealthy_ocelot</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_mollusk</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">gentlemanlike_asiaticlesserfreshwaterclam</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">frowsy_metalmarkbutterfly</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -686,8 +705,6 @@ emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-pe
 <h4 id="average-na-share-per-company-which-have-atleast-one-matched-product">Average NA share per company which have atleast one matched
 product<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-matched-product"></a>
 </h4>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">result</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -714,9 +731,29 @@ product<a class="anchor" aria-label="anchor" href="#average-na-share-per-company
 <td align="left">ergophilic_fieldspaniel</td>
 <td align="right">0</td>
 </tr>
+<tr class="even">
+<td align="left">preexistent_africanmolesnake</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">wealthy_ocelot</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_mollusk</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">gentlemanlike_asiaticlesserfreshwaterclam</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">frowsy_metalmarkbutterfly</td>
+<td align="right">0</td>
+</tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one matched product for emission profile:"</span>, <span class="va">average_result</span><span class="op">)</span></span></code></pre></div>
 <p>Average NA share per company with atleast one matched product for
 emission profile: 0</p>

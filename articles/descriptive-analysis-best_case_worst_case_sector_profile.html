@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -81,17 +81,17 @@ weight, best case, and worst case for sector profile.</p>
 case and worst case of sector profile<a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-best-case-and-worst-case-of-sector-profile"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_company_sector_avg_best_case_worst_case</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">transition_risk_company_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_company_sector_avg_best_case_worst_case</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_company_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="10%">
-<col width="6%">
+<col width="9%">
 <col width="7%">
-<col width="4%">
-<col width="25%">
+<col width="3%">
+<col width="24%">
 <col width="22%">
-<col width="23%">
+<col width="22%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -175,6 +175,60 @@ case and worst case of sector profile<a class="anchor" aria-label="anchor" href=
 <td align="right">0.20</td>
 <td align="right">0.20</td>
 </tr>
+<tr class="odd">
+<td align="left">comp_5</td>
+<td align="left">germany</td>
+<td align="left">1.5C RPS</td>
+<td align="right">2030</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+</tr>
+<tr class="even">
+<td align="left">comp_5</td>
+<td align="left">germany</td>
+<td align="left">NZ 2050</td>
+<td align="right">2030</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_6</td>
+<td align="left">netherlands</td>
+<td align="left">1.5C RPS</td>
+<td align="right">2030</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+</tr>
+<tr class="even">
+<td align="left">comp_6</td>
+<td align="left">netherlands</td>
+<td align="left">NZ 2050</td>
+<td align="right">2030</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_7</td>
+<td align="left">spain</td>
+<td align="left">1.5C RPS</td>
+<td align="right">2030</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+</tr>
+<tr class="even">
+<td align="left">comp_7</td>
+<td align="left">spain</td>
+<td align="left">NZ 2050</td>
+<td align="right">2030</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -182,28 +236,6 @@ case and worst case of sector profile<a class="anchor" aria-label="anchor" href=
 <h3 id="descriptive-analysis-of-sector_target_avg_equal_weight-per-grouping_sector">Descriptive analysis of <code>sector_target_avg_equal_weight</code>
 per grouping_sector<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_equal_weight-per-grouping_sector"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_per_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"scenario"</span>, <span class="st">"year"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>grouping_sector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">scenario</span>, <span class="va">.data</span><span class="op">$</span><span class="va">year</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scenario"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_comp <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>average <span class="op">=</span> <span class="va">sum_mode</span> <span class="op">/</span> <span class="va">distinct_comp</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"25th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"75th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_mode"</span>, <span class="va">col</span>, <span class="st">"companies_id"</span>, <span class="st">"distinct_comp"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">sector_target_avg_equal_weight_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_equal_weight"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_equal_weight_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"sector_target_avg_equal_weight"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
@@ -243,16 +275,16 @@ median
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.350
+0.5000000
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.300
+0.7
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.2125
+0.3
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.4375
+0.700
 </td>
 </tr>
 <tr>
@@ -260,16 +292,16 @@ median
 NZ 2050_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.475
+0.3571429
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
 </td>
 <td style="text-align:center;width: 3cm; ">
 0.425
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.2750
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.6250
 </td>
 </tr>
 </tbody>
@@ -279,13 +311,6 @@ NZ 2050_2030
 <h3 id="descriptive-analysis-of-sector_target_avg_best_case-per-grouping_sector">Descriptive analysis of <code>sector_target_avg_best_case</code> per
 grouping_sector<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_best_case-per-grouping_sector"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_best_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_best_case"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_best_case_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_best_case` per grouping_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"sector_target_avg_best_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_best_case</code> per
@@ -325,16 +350,16 @@ median
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.350
+0.5000000
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.300
+0.7
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.2125
+0.3
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.4375
+0.700
 </td>
 </tr>
 <tr>
@@ -342,16 +367,16 @@ median
 NZ 2050_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.475
+0.3571429
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
 </td>
 <td style="text-align:center;width: 3cm; ">
 0.425
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.2750
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.6250
 </td>
 </tr>
 </tbody>
@@ -361,13 +386,6 @@ NZ 2050_2030
 <h3 id="descriptive-analysis-of-sector_target_avg_worst_case-per-grouping_sector">Descriptive analysis of <code>sector_target_avg_worst_case</code>
 per grouping_sector<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_worst_case-per-grouping_sector"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_worst_case_per_benchmark</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_worst_case"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_worst_case_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">"sector_target_avg_worst_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_worst_case</code> per
@@ -407,16 +425,16 @@ median
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.350
+0.5000000
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.300
+0.7
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.2125
+0.3
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.4375
+0.700
 </td>
 </tr>
 <tr>
@@ -424,16 +442,16 @@ median
 NZ 2050_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
-0.475
+0.3571429
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
 </td>
 <td style="text-align:center;width: 3cm; ">
 0.425
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.2750
-</td>
-<td style="text-align:center;width: 3cm; ">
-0.6250
 </td>
 </tr>
 </tbody>
@@ -443,33 +461,10 @@ NZ 2050_2030
 <h3 id="descriptive-analysis-of-sector_target_avg_equal_weight-per-grouping_sector-for-a-country">Descriptive analysis of <code>sector_target_avg_equal_weight</code>
 per grouping_sector for a country<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_equal_weight-per-grouping_sector-for-a-country"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span>, <span class="va">country_value</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"country"</span>, <span class="st">"companies_id"</span>, <span class="st">"scenario"</span>, <span class="st">"year"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>grouping_sector <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">scenario</span>, <span class="va">.data</span><span class="op">$</span><span class="va">year</span>, sep <span class="op">=</span> <span class="st">"_"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scenario"</span>, <span class="st">"year"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">country</span> <span class="op">==</span> <span class="va">country_value</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_mode <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_comp <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>average <span class="op">=</span> <span class="va">sum_mode</span> <span class="op">/</span> <span class="va">distinct_comp</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>median <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/median.html" class="external-link">median</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"25th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.25</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"75th_quantile"</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/quantile.html" class="external-link">quantile</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">0.75</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_sector"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_mode"</span>, <span class="va">col</span>, <span class="st">"companies_id"</span>, <span class="st">"distinct_comp"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span><span class="va">sector_target_avg_equal_weight_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_equal_weight"</span>, <span class="st">"france"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_equal_weight_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"sector_target_avg_equal_weight"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
-grouping_sector for country <code>France</code>
+grouping_sector for country <code>france</code>
 </caption>
 <thead>
 <tr>
@@ -547,22 +542,339 @@ NZ 2050_2030
 </tr>
 </tbody>
 </table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
+grouping_sector for country <code>austria</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_equal_weight
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2875
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4625
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
+grouping_sector for country <code>germany</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_equal_weight
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
+grouping_sector for country <code>netherlands</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_equal_weight
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_equal_weight</code> per
+grouping_sector for country <code>spain</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_equal_weight
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level3">
 <h3 id="descriptive-analysis-of-sector_target_avg_best_case-per-grouping_sector-for-a-country">Descriptive analysis of <code>sector_target_avg_best_case</code> per
 grouping_sector for a country<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_best_case-per-grouping_sector-for-a-country"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_best_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_best_case"</span>, <span class="st">"france"</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_best_case_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"sector_target_avg_best_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_best_case</code> per
-grouping_sector for country <code>France</code>
+grouping_sector for country <code>france</code>
 </caption>
 <thead>
 <tr>
@@ -640,22 +952,339 @@ NZ 2050_2030
 </tr>
 </tbody>
 </table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_best_case</code> per
+grouping_sector for country <code>austria</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_best_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2875
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4625
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_best_case</code> per
+grouping_sector for country <code>germany</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_best_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_best_case</code> per
+grouping_sector for country <code>netherlands</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_best_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_best_case</code> per
+grouping_sector for country <code>spain</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_best_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level3">
 <h3 id="descriptive-analysis-of-sector_target_avg_worst_case-per-grouping_sector-for-a-country">Descriptive analysis of <code>sector_target_avg_worst_case</code>
 per grouping_sector for a country<a class="anchor" aria-label="anchor" href="#descriptive-analysis-of-sector_target_avg_worst_case-per-grouping_sector-for-a-country"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_target_avg_worst_case_per_benchmark_country</span> <span class="op">&lt;-</span> <span class="fu">sector_target_avg_per_benchmark_country</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_target_avg_worst_case"</span>, <span class="st">"france"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_target_avg_worst_case_per_benchmark_country</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `France`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">add_header_above</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">" "</span>, <span class="st">" "</span>, <span class="st">"sector_target_avg_worst_case"</span> <span class="op">=</span> <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis of <code>sector_target_avg_worst_case</code> per
-grouping_sector for country <code>France</code>
+grouping_sector for country <code>france</code>
 </caption>
 <thead>
 <tr>
@@ -729,6 +1358,330 @@ NZ 2050_2030
 </td>
 <td style="text-align:center;width: 3cm; ">
 0.7125
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_worst_case</code> per
+grouping_sector for country <code>austria</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_worst_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.525
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.6125
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+austria
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.375
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2875
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.4625
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_worst_case</code> per
+grouping_sector for country <code>germany</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_worst_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+germany
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_worst_case</code> per
+grouping_sector for country <code>netherlands</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_worst_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+netherlands
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Descriptive analysis of <code>sector_target_avg_worst_case</code> per
+grouping_sector for country <code>spain</code>
+</caption>
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+sector_target_avg_worst_case
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+grouping_sector
+</th>
+<th style="text-align:center;">
+average
+</th>
+<th style="text-align:center;">
+median
+</th>
+<th style="text-align:center;">
+25th_quantile
+</th>
+<th style="text-align:center;">
+75th_quantile
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+spain
+</td>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
+</td>
+<td style="text-align:center;width: 3cm; ">
+0.2
 </td>
 </tr>
 </tbody>

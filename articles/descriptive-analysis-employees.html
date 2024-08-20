@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -160,10 +160,6 @@ companies’ employees.</p>
 <h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount">Number of companies between range of <code>min_headcount</code> and
 <code>max_headcount</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range</span>, align <span class="op">=</span> <span class="st">"ccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Number of companies between range of min_headcount and max_headcount
@@ -214,10 +210,6 @@ number_of_companies
 <h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector">Number of companies between range of <code>min_headcount</code> and
 <code>max_headcount</code> grouped by <code>tilt_sector</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span>, align <span class="op">=</span> <span class="st">"cccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount grouped by tilt_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Number of companies between range of min_headcount and max_headcount
@@ -307,10 +299,6 @@ metals
 <code>max_headcount</code> grouped by <code>tilt_sector</code> and
 <code>country</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector-and-country"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector_country</span>, align <span class="op">=</span> <span class="st">"ccccc"</span>, caption <span class="op">=</span> <span class="st">"Number of companies between range of min_headcount and max_headcount grouped by tilt_sector and country"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, width <span class="op">=</span> <span class="st">"3cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Number of companies between range of min_headcount and max_headcount

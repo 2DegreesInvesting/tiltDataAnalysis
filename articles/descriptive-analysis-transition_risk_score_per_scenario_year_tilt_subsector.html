@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -179,15 +179,6 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <h3 id="descriptive-analysis-for-benchmark-1-5c-rps_2030_tilt_subsector">Descriptive analysis for benchmark “1.5C
 RPS_2030_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-1-5c-rps_2030_tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ipr_2030</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">transition_risk_product_example</span>,</span>
-<span>   <span class="st">"1.5C RPS_2030_tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">ipr_2030</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark 1.5C RPS_2030_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark 1.5C RPS_2030_tilt_subsector
@@ -260,15 +251,6 @@ iron &amp; steel
 <h3 id="descriptive-analysis-for-benchmark-1-5c-rps_2050_tilt_subsector">Descriptive analysis for benchmark “1.5C
 RPS_2050_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-1-5c-rps_2050_tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ipr_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">transition_risk_product_example</span>,</span>
-<span>   <span class="st">"1.5C RPS_2050_tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">ipr_2050</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark 1.5C RPS_2050_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark 1.5C RPS_2050_tilt_subsector
@@ -341,15 +323,6 @@ iron &amp; steel
 <h3 id="descriptive-analysis-for-benchmark-nz-2050_2030_tilt_subsector">Descriptive analysis for benchmark “NZ
 2050_2030_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-nz-2050_2030_tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">weo_2030</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">transition_risk_product_example</span>,</span>
-<span>   <span class="st">"NZ 2050_2030_tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">weo_2030</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark NZ 2050_2030_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark NZ 2050_2030_tilt_subsector
@@ -422,15 +395,6 @@ NZ 2050_2030_tilt_subsector
 <h3 id="descriptive-analysis-for-benchmark-nz-2050_2050_tilt_subsector">Descriptive analysis for benchmark “NZ
 2050_2050_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-nz-2050_2050_tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">weo_2050</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_trs_descriptive_analysis_per_tr_benchmark.html">calculate_trs_descriptive_analysis_per_tr_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">transition_risk_product_example</span>,</span>
-<span>   <span class="st">"NZ 2050_2050_tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">weo_2050</span>, align <span class="op">=</span> <span class="st">"llcccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark NZ 2050_2050_tilt_subsector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">3</span><span class="op">:</span><span class="fl">6</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark NZ 2050_2050_tilt_subsector

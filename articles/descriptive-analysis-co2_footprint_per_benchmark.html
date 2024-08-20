@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -80,9 +80,6 @@ profile indicator.</p>
 <div class="section level3">
 <h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of Emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_emission_product_co2_des_analysis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col width="20%">
@@ -171,14 +168,6 @@ profile indicator.</p>
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-all">Descriptive analysis for benchmark “all”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-all"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"all"</span></span>
-<span> <span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_all</span>, align <span class="op">=</span> <span class="st">"ccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `all`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">7</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span> </span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>all</code>
@@ -234,15 +223,6 @@ co2_cov
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-unit">Descriptive analysis for benchmark “unit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_unit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"unit"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>unit</code>
@@ -332,15 +312,6 @@ m3
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-isic_4digit">Descriptive analysis for benchmark “isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-isic_4digit"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_isic_4digit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"isic_4digit"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_isic_4digit</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `isic_4digit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>isic_4digit</code>
@@ -430,15 +401,6 @@ co2_cov
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-tilt_subsector">Descriptive analysis for benchmark “tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_tilt_subsector</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_tilt_subsector</span>, align <span class="op">=</span> <span class="st">"lccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `tilt_subsector`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">8</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>tilt_subsector</code>
@@ -528,15 +490,6 @@ iron &amp; steel
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-unit_tilt_subsector">Descriptive analysis for benchmark “unit_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_tilt_subsector"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_unit_tilt_subsector</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"unit_tilt_subsector"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit_tilt_subsector</span>, align <span class="op">=</span> <span class="st">"llccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit_tilt_subsector`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>unit_tilt_subsector</code>
@@ -635,15 +588,6 @@ iron &amp; steel
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-unit_isic_4digit">Descriptive analysis for benchmark “unit_isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_isic_4digit"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">co2_unit_isic_4digit</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/calculate_co2_descriptive_analysis_per_benchmark.html">calculate_co2_descriptive_analysis_per_benchmark</a></span><span class="op">(</span></span>
-<span>   <span class="va">emission_product_example</span>,</span>
-<span>   <span class="st">"unit_isic_4digit"</span></span>
-<span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">co2_unit_isic_4digit</span>, align <span class="op">=</span> <span class="st">"llccccccc"</span>, caption <span class="op">=</span> <span class="st">"Descriptive analysis for benchmark `unit_isic_4digit`"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">9</span>, width <span class="op">=</span> <span class="st">"2.5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>unit_isic_4digit</code>

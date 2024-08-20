@@ -42,7 +42,7 @@
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-employees.html">Descriptive analysis of employees</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-products.html">Descriptive analysis of products</a></li>
     <li><a class="dropdown-item" href="../articles/descriptive-analysis-transition_risk_score_per_scenario_year_tilt_subsector.html">Descriptive analysis of transition risk scores for all tilt_subsectors per scenario-year-tilt_subsector benchmark</a></li>
-    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_scenario_year.html">Show reduction targets for all tilt_subsectors per scenario-year benchmark</a></li>
+    <li><a class="dropdown-item" href="../articles/show-reduction_targets_for_tilt_subsectors_per_grouping_sector.html">Show reduction targets for all tilt_subsectors per grouping_sector</a></li>
   </ul>
 </li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
@@ -158,10 +158,6 @@ transition risk profile.</p>
 <h3 id="average-cov_emission_rank-per-company-for-emission-profile-benchmarks">Average <code>cov_emission_rank</code> per company for emission
 profile benchmarks<a class="anchor" aria-label="anchor" href="#average-cov_emission_rank-per-company-for-emission-profile-benchmarks"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_cov_emission_rank_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average cov_emission_rank per company for grouping_emission"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average cov_emission_rank per company for grouping_emission
@@ -230,7 +226,7 @@ unit_tilt_subsector
 <h3 id="example-company-level-output-of-transition-risk-profile-for-cov_sector_target">Example company-level output of transition risk profile for
 <code>cov_sector_target</code><a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-cov_sector_target"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_sector_cov</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -296,10 +292,6 @@ unit_tilt_subsector
 <h3 id="average-cov_sector_target-per-company-for-grouping_sector">Average <code>cov_sector_target</code> per company for
 grouping_sector<a class="anchor" aria-label="anchor" href="#average-cov_sector_target-per-company-for-grouping_sector"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_cov_sector_target_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average cov_sector_target per company for grouping_sector"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average cov_sector_target per company for grouping_sector
@@ -352,7 +344,7 @@ NZ 2050_2050
 <h3 id="example-company-level-output-of-transition-risk-profile-for-cov_transition_risk">Example company-level output of transition risk profile for
 <code>cov_transition_risk</code><a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-cov_transition_risk"></a>
 </h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_transition_risk_cov</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -409,10 +401,6 @@ NZ 2050_2050
 <h3 id="average-cov_transition_risk-per-company-for-tilt_subsector-benchmarks-of-grouping_transition_risk">Average <code>cov_transition_risk</code> per company for
 tilt_subsector benchmarks of grouping_transition_risk<a class="anchor" aria-label="anchor" href="#average-cov_transition_risk-per-company-for-tilt_subsector-benchmarks-of-grouping_transition_risk"></a>
 </h3>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">avg_cov_transition_risk_per_benchmark</span>, align <span class="op">=</span> <span class="st">"lc"</span>, caption <span class="op">=</span> <span class="st">"Average cov_transition_risk per company for tilt_subsector benchmarks of grouping_transition_risk"</span>, escape <span class="op">=</span> <span class="cn">F</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">kable_classic</span><span class="op">(</span>full_width <span class="op">=</span> <span class="cn">F</span>, html_font <span class="op">=</span> <span class="st">"Cambria"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu">column_spec</span><span class="op">(</span><span class="fl">2</span>, width <span class="op">=</span> <span class="st">"5cm"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average cov_transition_risk per company for tilt_subsector benchmarks of
