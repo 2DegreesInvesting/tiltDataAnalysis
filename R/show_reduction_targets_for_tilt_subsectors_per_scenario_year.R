@@ -11,7 +11,7 @@
 #' @examples
 #' library(dplyr)
 #' sector_product_example <- product_sector |>
-#'   select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+#'   select(c("tilt_sector" ,"tilt_subsector", "scenario", "year", "reduction_targets")) |>
 #'   distinct()
 #' sector_product_example
 #'
@@ -20,7 +20,7 @@
 #' )
 show_reduction_targets_for_tilt_subsectors_per_grouping_sector <- function(sector_product) {
   sector_product |>
-    select(all_of(c("tilt_subsector", "scenario", "year", "reduction_targets"))) |>
+    select(all_of(c("tilt_sector", "tilt_subsector", "scenario", "year", "reduction_targets"))) |>
     distinct() |>
     mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
     select(-c("scenario", "year")) |>
@@ -34,5 +34,6 @@ show_reduction_targets_for_tilt_subsectors_per_grouping_sector <- function(secto
       IPR_2050 = "1.5C RPS_2050",
       WEO_2030 = "NZ 2050_2030",
       WEO_2050 = "NZ 2050_2050",
-    )
+    ) |>
+    arrange(.data$tilt_sector, .data$tilt_subsector)
 }

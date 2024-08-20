@@ -20,7 +20,7 @@ grouping_sector using product-level output of Sector profile indicator.
 \examples{
 library(dplyr)
 sector_product_example <- product_sector |>
-  select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+  select(c("tilt_sector" ,"tilt_subsector", "scenario", "year", "reduction_targets")) |>
   distinct()
 sector_product_example
 

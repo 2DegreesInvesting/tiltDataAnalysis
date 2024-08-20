@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom dplyr arrange
 #' @importFrom dplyr distinct
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate

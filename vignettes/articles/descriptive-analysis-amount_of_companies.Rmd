@@ -25,12 +25,12 @@ options(readr.show_col_types = FALSE)
 
 ```{r, echo=FALSE}
 emission_product_example <- product_emission |>
-  select(all_of(c("companies_id", "country", "emission_profile", "tilt_sector", 
+  select(all_of(c("companies_id", "country", "emission_profile", "tilt_sector",
                   "tilt_subsector", "main_activity"))) |>
   distinct() |>
-  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish",
                                "heliophobic_clownanemonefish", companies_id)) |>
-  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama",
                              "subdermal_chipmunk", "fascist_maiasaura",
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
@@ -47,9 +47,9 @@ sector_product_example <- product_sector |>
   select(all_of(c("companies_id", "country", "sector_profile", "tilt_sector", 
                   "tilt_subsector", "main_activity"))) |>
   distinct() |>
-  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish",
                                "heliophobic_clownanemonefish", companies_id)) |>
-  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama",
                              "subdermal_chipmunk", "fascist_maiasaura",
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
@@ -66,9 +66,9 @@ transition_risk_product_example <- product_transition_risk |>
   select(all_of(c("companies_id", "country", "transition_risk_category", "tilt_sector", 
                   "tilt_subsector", "main_activity"))) |>
   distinct() |>
-  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish", 
+  mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish",
                                "heliophobic_clownanemonefish", companies_id)) |>
-  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama", 
+  filter(companies_id %in% c("antimonarchy_canine", "nonphilosophical_llama",
                              "subdermal_chipmunk", "fascist_maiasaura",
                              "ironhearted_tarpan", "heliophobic_clownanemonefish",
                              "subzero_whiteeye"))
@@ -88,7 +88,7 @@ cat("Number of companies for transition risk profile:", n_distinct(transition_ri
 
 ### Number of companies that have atleast one product with `emission_profile`, with `sector_profile`, and with `transition_risk_category`
 
-```{r, echo=FALSE}
+```{r}
 companies_atleast_one_product_with_profile <- function(data, profile) {
   result <- data |>
     select(all_of(c("companies_id", profile))) |>
@@ -107,7 +107,7 @@ cat("Number of companies that have atleast one product with `transition_risk_cat
 
 ### Number of companies that have more than one tilt_sectors for emission, sector, and transition risk profile
 
-```{r, echo=FALSE}
+```{r}
 companies_with_multiple_tilt_sectors <- function(data) {
   result <- data |>
     select(all_of(c("companies_id", "tilt_sector"))) |>
@@ -127,7 +127,7 @@ cat("Number of companies that have more than one tilt_sectors for transition ris
 
 ### Number of companies that have more than one tilt_subsectors for emission, sector, and transition risk profile
 
-```{r, echo=FALSE}
+```{r}
 companies_with_multiple_tilt_subsectors <- function(data) {
   result <- data |>
     select(all_of(c("companies_id", "tilt_subsector"))) |>
@@ -147,7 +147,7 @@ cat("Number of companies that have more than one tilt_subsectors for transition 
 
 ### Number of companies per tilt_sector for emission, sector, and transition risk profile
 
-```{r, echo=FALSE}
+```{r}
 companies_per_single_benchmark <- function(data, benchmark) {
   data |>
     select(all_of(c("companies_id", benchmark))) |>
@@ -201,7 +201,7 @@ kable(companies_per_single_benchmark(transition_risk_product_example, "country")
 
 ### Number of companies per country and tilt_sector emission, sector, and transition risk profile
 
-```{r, echo=FALSE}
+```{r}
 companies_per_double_benchmark <- function(data, benchmark_first, benchmark_second) {
   data |>
     select(all_of(c("companies_id", benchmark_first, benchmark_second))) |>
