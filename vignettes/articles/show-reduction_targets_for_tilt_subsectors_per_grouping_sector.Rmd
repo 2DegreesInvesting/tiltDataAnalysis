@@ -24,7 +24,7 @@ options(readr.show_col_types = FALSE)
 
 ```{r}
 sector_product_example <- product_sector |>
-  select(c("tilt_subsector", "scenario", "year", "reduction_targets")) |>
+  select(c("tilt_sector", "tilt_subsector", "scenario", "year", "reduction_targets")) |>
   distinct()
 
 kable(sector_product_example |> head(20))
@@ -37,8 +37,9 @@ result <- show_reduction_targets_for_tilt_subsectors_per_grouping_sector(
    sector_product_example
  )
 
-kable(result, align = "lcccc", caption = "Reduction targets for all `tilt_subsectors` per grouping_sector", escape = F) |>
+kable(result, align = "lccccc", caption = "Reduction targets for all `tilt_subsectors` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1, width = "6cm") |>
-  column_spec(2:5, width = "2.5cm")
+  column_spec(2, width = "6cm") |>
+  column_spec(3:6, width = "2.5cm") |>
+  collapse_rows(columns = 1, valign = "top")
 ```
