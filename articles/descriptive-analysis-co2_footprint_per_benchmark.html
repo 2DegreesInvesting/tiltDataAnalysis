@@ -74,23 +74,32 @@
 
     
     
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+</style>
 <p>This article shows how to calculate the descriptive analysis of
 co2_footprint per benchmark using product-level output of Emissions
 profile indicator.</p>
 <div class="section level3">
 <h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of Emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
 </h3>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="20%">
-<col width="20%">
-<col width="6%">
+<col width="17%">
+<col width="14%">
+<col width="17%">
+<col width="5%">
+<col width="14%">
 <col width="16%">
-<col width="19%">
-<col width="16%">
+<col width="14%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">benchmark</th>
+<th align="left">tilt_sector</th>
 <th align="left">tilt_subsector</th>
 <th align="left">unit</th>
 <th align="left">isic_4digit</th>
@@ -100,6 +109,7 @@ profile indicator.</p>
 <tbody>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">chemicals</td>
 <td align="left">kg</td>
 <td align="left">‘5555’</td>
@@ -108,6 +118,7 @@ profile indicator.</p>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">chemicals</td>
 <td align="left">kg</td>
 <td align="left">‘5555’</td>
@@ -116,6 +127,7 @@ profile indicator.</p>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">chemicals</td>
 <td align="left">kg</td>
 <td align="left">‘5555’</td>
@@ -124,6 +136,7 @@ profile indicator.</p>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">chemicals</td>
 <td align="left">kg</td>
 <td align="left">‘5555’</td>
@@ -132,6 +145,7 @@ profile indicator.</p>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">chemicals</td>
 <td align="left">kg</td>
 <td align="left">‘5555’</td>
@@ -140,6 +154,7 @@ profile indicator.</p>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">iron &amp; steel</td>
 <td align="left">m3</td>
 <td align="left">‘6666’</td>
@@ -148,6 +163,7 @@ profile indicator.</p>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">iron &amp; steel</td>
 <td align="left">m3</td>
 <td align="left">‘6666’</td>
@@ -156,6 +172,7 @@ profile indicator.</p>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
+<td align="left">group</td>
 <td align="left">iron &amp; steel</td>
 <td align="left">m3</td>
 <td align="left">‘6666’</td>
@@ -168,273 +185,86 @@ profile indicator.</p>
 <div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-all">Descriptive analysis for benchmark “all”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-all"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>all</code>
 </caption>
 <thead><tr>
 <th style="text-align:center;">
-co2_min
+# of distinct products
 </th>
 <th style="text-align:center;">
-co2_max
+min CO2e
 </th>
 <th style="text-align:center;">
-amount_of_unique_products
+max CO2e
 </th>
 <th style="text-align:center;">
-co2_median
+mean CO2e
 </th>
 <th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
+median CO2e
 </th>
 </tr></thead>
 <tbody><tr>
+<td style="text-align:center;width: 4cm; ">
+6
+</td>
 <td style="text-align:center;width: 2.5cm; ">
 1
 </td>
 <td style="text-align:center;width: 2.5cm; ">
 9
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-6
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-4
 </td>
 <td style="text-align:center;width: 2.5cm; ">
 4.142857
 </td>
 <td style="text-align:center;width: 2.5cm; ">
-3.236694
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-78.12711
+4
 </td>
 </tr></tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="descriptive-analysis-for-benchmark-unit">Descriptive analysis for benchmark “unit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit"></a>
-</h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Descriptive analysis for benchmark <code>unit</code>
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-unit
-</th>
-<th style="text-align:center;">
-co2_min
-</th>
-<th style="text-align:center;">
-co2_max
-</th>
-<th style="text-align:center;">
-amount_of_unique_products
-</th>
-<th style="text-align:center;">
-co2_median
-</th>
-<th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-kg
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-9
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-6
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5.500000
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3.696845
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-67.21537
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-m3
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-4
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2.333333
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1.527525
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-65.46537
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="descriptive-analysis-for-benchmark-isic_4digit">Descriptive analysis for benchmark “isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-isic_4digit"></a>
-</h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Descriptive analysis for benchmark <code>isic_4digit</code>
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-isic_4digit
-</th>
-<th style="text-align:center;">
-co2_min
-</th>
-<th style="text-align:center;">
-co2_max
-</th>
-<th style="text-align:center;">
-amount_of_unique_products
-</th>
-<th style="text-align:center;">
-co2_median
-</th>
-<th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-‘5555’
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-9
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-6
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5.500000
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3.696845
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-67.21537
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-‘6666’
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-4
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2.333333
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1.527525
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-65.46537
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
 <h3 id="descriptive-analysis-for-benchmark-tilt_subsector">Descriptive analysis for benchmark “tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-tilt_subsector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Descriptive analysis for benchmark <code>tilt_subsector</code>
 </caption>
 <thead><tr>
 <th style="text-align:left;">
+tilt_sector
+</th>
+<th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
-co2_min
+# of distinct products
 </th>
 <th style="text-align:center;">
-co2_max
+min CO2e
 </th>
 <th style="text-align:center;">
-amount_of_unique_products
+max CO2e
 </th>
 <th style="text-align:center;">
-co2_median
+mean CO2e
 </th>
 <th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
+median CO2e
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
+<td style="text-align:left;vertical-align: top !important;" rowspan="2">
+group
+</td>
+<td style="text-align:left;width: 3cm; ">
 chemicals
+</td>
+<td style="text-align:center;width: 4cm; ">
+5
 </td>
 <td style="text-align:center;width: 2.5cm; ">
 1
@@ -443,24 +273,18 @@ chemicals
 9
 </td>
 <td style="text-align:center;width: 2.5cm; ">
-5
+5.500000
 </td>
 <td style="text-align:center;width: 2.5cm; ">
 6
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-5.500000
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3.696845
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-67.21537
-</td>
 </tr>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
+</td>
+<td style="text-align:center;width: 4cm; ">
+3
 </td>
 <td style="text-align:center;width: 2.5cm; ">
 1
@@ -469,215 +293,128 @@ iron &amp; steel
 4
 </td>
 <td style="text-align:center;width: 2.5cm; ">
-3
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2
-</td>
-<td style="text-align:center;width: 2.5cm; ">
 2.333333
 </td>
 <td style="text-align:center;width: 2.5cm; ">
-1.527525
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-65.46537
+2
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="descriptive-analysis-for-benchmark-unit_tilt_subsector">Descriptive analysis for benchmark “unit_tilt_subsector”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_tilt_subsector"></a>
+<h3 id="five-products-with-lowest-co2e-values">Five products with lowest CO2e values<a class="anchor" aria-label="anchor" href="#five-products-with-lowest-co2e-values"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Descriptive analysis for benchmark <code>unit_tilt_subsector</code>
+Five products with lowest CO2e values
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-unit
-</th>
-<th style="text-align:left;">
-tilt_subsector
+ep_product
 </th>
 <th style="text-align:center;">
-co2_min
-</th>
-<th style="text-align:center;">
-co2_max
-</th>
-<th style="text-align:center;">
-amount_of_unique_products
-</th>
-<th style="text-align:center;">
-co2_median
-</th>
-<th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
+co2_footprint
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
-kg
+<td style="text-align:left;">
+water
 </td>
-<td style="text-align:left;width: 2.5cm; ">
-chemicals
-</td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
 1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-9
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-6
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5.500000
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3.696845
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-67.21537
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
-m3
+<td style="text-align:left;">
+tables
 </td>
-<td style="text-align:left;width: 2.5cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
 1
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-4
+</tr>
+<tr>
+<td style="text-align:left;">
+water
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-3
-</td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
 2
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-2.333333
+</tr>
+<tr>
+<td style="text-align:left;">
+television
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-1.527525
+<td style="text-align:center;width: 3cm; ">
+4
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-65.46537
+</tr>
+<tr>
+<td style="text-align:left;">
+tent
+</td>
+<td style="text-align:center;width: 3cm; ">
+4
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="descriptive-analysis-for-benchmark-unit_isic_4digit">Descriptive analysis for benchmark “unit_isic_4digit”<a class="anchor" aria-label="anchor" href="#descriptive-analysis-for-benchmark-unit_isic_4digit"></a>
+<h3 id="five-products-with-highest-co2e-values">Five products with highest CO2e values<a class="anchor" aria-label="anchor" href="#five-products-with-highest-co2e-values"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Descriptive analysis for benchmark <code>unit_isic_4digit</code>
+Five products with highest CO2e values
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-unit
-</th>
-<th style="text-align:left;">
-isic_4digit
+ep_product
 </th>
 <th style="text-align:center;">
-co2_min
-</th>
-<th style="text-align:center;">
-co2_max
-</th>
-<th style="text-align:center;">
-amount_of_unique_products
-</th>
-<th style="text-align:center;">
-co2_median
-</th>
-<th style="text-align:center;">
-co2_average
-</th>
-<th style="text-align:center;">
-co2_sd
-</th>
-<th style="text-align:center;">
-co2_cov
+co2_footprint
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
-kg
+<td style="text-align:left;">
+tables
 </td>
-<td style="text-align:left;width: 2.5cm; ">
-‘5555’
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1
-</td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
 9
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-6
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-5.500000
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-3.696845
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-67.21537
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
-m3
+<td style="text-align:left;">
+electricity
 </td>
-<td style="text-align:left;width: 2.5cm; ">
-‘6666’
+<td style="text-align:center;width: 3cm; ">
+8
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-1
+</tr>
+<tr>
+<td style="text-align:left;">
+television
 </td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
 4
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-3
+</tr>
+<tr>
+<td style="text-align:left;">
+tent
 </td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 3cm; ">
+4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+water
+</td>
+<td style="text-align:center;width: 3cm; ">
 2
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-2.333333
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1.527525
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-65.46537
 </td>
 </tr>
 </tbody>
