@@ -22,6 +22,7 @@ benchmark using product-level output of Emissions profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
 library(tiltDataAnalysis)
+library(dplyr)
 library(tibble)
 library(kableExtra)
 library(knitr)
@@ -52,18 +53,18 @@ kable(co2_all, align = "ccccc", caption = "Descriptive analysis for benchmark `a
 ### Descriptive analysis for benchmark "tilt_subsector"
  
 ```{r, echo=FALSE}
-# co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
-#    emission_product_example,
-#    "tilt_subsector"
-#  ) |>
-#     filter(!str_detect(tilt_subsector, "NA"))
-# 
-# kable(co2_tilt_subsector, align = "llccccc", caption = "Descriptive analysis for benchmark `tilt_subsector`", escape = F) |>
-#   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
-#   column_spec(2, width = "3cm") |>
-#   column_spec(3, width = "4cm") |>
-#   column_spec(4:7, width = "2.5cm") |>
-#   collapse_rows(columns = 1, valign = "top")
+co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
+   emission_product_example,
+   "tilt_subsector"
+ ) |>
+    filter(!str_detect(tilt_subsector, "NA"))
+
+kable(co2_tilt_subsector, align = "llccccc", caption = "Descriptive analysis for benchmark `tilt_subsector`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(2, width = "3cm") |>
+  column_spec(3, width = "4cm") |>
+  column_spec(4:7, width = "2.5cm") |>
+  collapse_rows(columns = 1, valign = "top")
 ```
 
 ### Five products with lowest CO2e values
