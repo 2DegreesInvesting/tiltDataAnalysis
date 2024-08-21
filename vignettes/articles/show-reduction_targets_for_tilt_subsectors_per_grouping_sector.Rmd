@@ -47,7 +47,7 @@ result <- show_reduction_targets_for_tilt_subsectors_per_grouping_sector(
 
 kable(result, align = "llcccc", caption = "Reduction targets for all `tilt_subsectors` per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
-  column_spec(2, width = "6cm") |>
+  column_spec(2, width = "4cm") |>
   column_spec(3:6, width = "2.5cm") |>
   collapse_rows(columns = 1, valign = "top")
 ```
