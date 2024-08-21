@@ -9,6 +9,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+```
+
 This article shows how to calculate the descriptive analysis of co2_footprint per
 benchmark using product-level output of Emissions profile indicator.
 
@@ -17,6 +25,7 @@ library(tiltDataAnalysis)
 library(tibble)
 library(kableExtra)
 library(knitr)
+library(stringr)
 options(readr.show_col_types = FALSE)
 ```
 
@@ -34,35 +43,10 @@ co2_all <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "all"
  )
-kable(co2_all, align = "ccccccc", caption = "Descriptive analysis for benchmark `all`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:7, width = "2.5cm") 
-```
-
-### Descriptive analysis for benchmark "unit"
- 
-```{r, echo=FALSE}
-co2_unit <- calculate_co2_descriptive_analysis_per_benchmark(
-   emission_product_example,
-   "unit"
- )
-
-kable(co2_unit, align = "lccccccc", caption = "Descriptive analysis for benchmark `unit`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:8, width = "2.5cm")
-```
-
-### Descriptive analysis for benchmark "isic_4digit"
- 
-```{r, echo=FALSE}
-co2_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
-   emission_product_example,
-   "isic_4digit"
- )
-
-kable(co2_isic_4digit, align = "lccccccc", caption = "Descriptive analysis for benchmark `isic_4digit`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:8, width = "2.5cm")
+kable(co2_all, align = "ccccc", caption = "Descriptive analysis for benchmark `all`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(1, width = "4cm") |>
+  column_spec(2:5, width = "2.5cm") 
 ```
 
 ### Descriptive analysis for benchmark "tilt_subsector"
@@ -71,35 +55,41 @@ kable(co2_isic_4digit, align = "lccccccc", caption = "Descriptive analysis for b
 co2_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
    emission_product_example,
    "tilt_subsector"
- )
+ ) |>
+    filter(!str_detect(tilt_subsector, "NA"))
 
-kable(co2_tilt_subsector, align = "lccccccc", caption = "Descriptive analysis for benchmark `tilt_subsector`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:8, width = "2.5cm")
+kable(co2_tilt_subsector, align = "llccccc", caption = "Descriptive analysis for benchmark `tilt_subsector`", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(2, width = "3cm") |>
+  column_spec(3, width = "4cm") |>
+  column_spec(4:7, width = "2.5cm") |>
+  collapse_rows(columns = 1, valign = "top")
 ```
 
-### Descriptive analysis for benchmark "unit_tilt_subsector"
- 
-```{r, echo=FALSE}
-co2_unit_tilt_subsector <- calculate_co2_descriptive_analysis_per_benchmark(
-   emission_product_example,
-   "unit_tilt_subsector"
- )
+### Five products with lowest CO2e values
 
-kable(co2_unit_tilt_subsector, align = "llccccccc", caption = "Descriptive analysis for benchmark `unit_tilt_subsector`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:9, width = "2.5cm")
+```{r, echo=FALSE}
+lowest_co2 <- emission_product_example |>
+  select(all_of(c("ep_product", "co2_footprint"))) |>
+  distinct() |>
+  arrange(desc(co2_footprint)) |>
+  head(5)
+
+kable(lowest_co2, align = "lc", caption = "Five products with lowest CO2e values", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(2, width = "3cm")
 ```
 
-### Descriptive analysis for benchmark "unit_isic_4digit"
- 
-```{r, echo=FALSE}
-co2_unit_isic_4digit <- calculate_co2_descriptive_analysis_per_benchmark(
-   emission_product_example,
-   "unit_isic_4digit"
- )
+### Five products with highest CO2e values
 
-kable(co2_unit_isic_4digit, align = "llccccccc", caption = "Descriptive analysis for benchmark `unit_isic_4digit`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(1:9, width = "2.5cm")
+```{r, echo=FALSE}
+highest_co2 <- emission_product_example |>
+  select(all_of(c("ep_product", "co2_footprint"))) |>
+  distinct() |>
+  arrange(co2_footprint) |>
+  head(5)
+
+kable(highest_co2, align = "lc", caption = "Five products with highest CO2e values", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(2, width = "3cm")
 ```

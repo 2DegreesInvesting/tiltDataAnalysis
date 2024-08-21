@@ -27,10 +27,10 @@ calculate_co2_descriptive_analysis_per_benchmark <- function(emission_product, b
     select_benchmarks <- c("unit", "isic_4digit", "benchmark", "co2_footprint", "ep_product")
     group_benchmark <- c("unit", "isic_4digit")
   } else if (benchmark == "unit_tilt_subsector") {
-    select_benchmarks <- c("unit", "tilt_subsector", "benchmark", "co2_footprint", "ep_product")
+    select_benchmarks <- c("tilt_sector", "unit", "tilt_subsector", "benchmark", "co2_footprint", "ep_product")
     group_benchmark <- c("unit", "tilt_subsector")
   } else {
-    select_benchmarks <- c(benchmark, "benchmark", "co2_footprint", "ep_product")
+    select_benchmarks <- c("tilt_sector", benchmark, "benchmark", "co2_footprint", "ep_product")
     group_benchmark <- benchmark
   }
 
@@ -39,15 +39,13 @@ calculate_co2_descriptive_analysis_per_benchmark <- function(emission_product, b
     distinct() |>
     filter(benchmark == benchmark) |>
     select(-c("benchmark")) |>
-    mutate(co2_min = min(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(co2_max = max(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(amount_of_unique_products = n_distinct(.data$ep_product, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(co2_median = median(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(co2_average = mean(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(co2_sd = sd(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
-    mutate(co2_cov = ((.data$co2_sd / .data$co2_average) * 100)) |>
+    mutate("# of distinct products" = n_distinct(.data$ep_product, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("min CO2e" = min(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("max CO2e" = max(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("mean CO2e" = mean(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("median CO2e" = median(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
     select(-all_of(c("ep_product", "co2_footprint"))) |>
     distinct()
 
-  output[order(output[[1]]), ]
+  output[order(output[[1]], output[[2]]), ]
 }
