@@ -74,216 +74,505 @@
 
     
     
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+</style>
 <p>This article shows how to calculate the descriptive analysis of
 products for emission and sector profile.</p>
 <div class="section level3">
-<h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
-</h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_emission_ep_product_des_analysis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">companies_id</th>
-<th align="left">ep_product</th>
-<th align="left">emission_profile</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">a</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">b</td>
-<td align="left">high</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">c</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">d</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">e</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">comp_2</td>
-<td align="left">a</td>
-<td align="left">high</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_2</td>
-<td align="left">b</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_2</td>
-<td align="left">c</td>
-<td align="left">high</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="example-subset-of-product-level-output-of-sector-profile-">Example subset of product-level output of sector profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-sector-profile-"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_sector_ep_product_des_analysis</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">companies_id</th>
-<th align="left">ep_product</th>
-<th align="left">sector_profile</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">a</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">b</td>
-<td align="left">high</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">c</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">d</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">e</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">comp_2</td>
-<td align="left">a</td>
-<td align="left">high</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_2</td>
-<td align="left">b</td>
-<td align="left">high</td>
-</tr>
-<tr class="even">
-<td align="left">comp_2</td>
-<td align="left">c</td>
-<td align="left">high</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="distinct-products-of-emission-and-sector-profile">Distinct products of emission and sector profile<a class="anchor" aria-label="anchor" href="#distinct-products-of-emission-and-sector-profile"></a>
-</h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products of emission profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">$</span><span class="va">ep_product</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products of emission profile: 5</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products of sector profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">$</span><span class="va">ep_product</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products of sector profile: 5</p>
-</div>
-<div class="section level3">
-<h3 id="matched-distinct-products-of-emission-and-sector-profile">Matched distinct products of emission and sector profile<a class="anchor" aria-label="anchor" href="#matched-distinct-products-of-emission-and-sector-profile"></a>
-</h3>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Matched distinct products of emission profile:"</span>, <span class="fu">matched_distinct_products</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emission_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Matched distinct products of emission profile: 3</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Matched distinct products of sector profile:"</span>, <span class="fu">matched_distinct_products</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"sector_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Matched distinct products of sector profile: 3</p>
-</div>
-<div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company-for-emission-and-sector-profile">Average amount of distinct products per company for emission and
-sector profile<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-emission-and-sector-profile"></a>
-</h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for emission profile:"</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for emission profile:
-4</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for sector profile:"</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for sector profile:
-4</p>
-</div>
-<div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company-for-transition-risk-profile">Average amount of distinct products per company for transition risk
-profile<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-transition-risk-profile"></a>
-</h3>
-<table class="table">
-<thead><tr class="header">
-<th align="left">companies_id</th>
-<th align="left">product</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">dystopic_kingbird</td>
-<td align="left">porches, metal</td>
-</tr>
-<tr class="even">
-<td align="left">private_arrowana</td>
-<td align="left">porches, metal</td>
-</tr>
-<tr class="odd">
-<td align="left">insecticidal_clownanemonefish</td>
-<td align="left">prefabricated houses</td>
-</tr>
-<tr class="even">
-<td align="left">animalistic_grub</td>
-<td align="left">prefabricated houses</td>
-</tr>
-<tr class="odd">
-<td align="left">wingless_northernpike</td>
-<td align="left">prefabricated houses</td>
-</tr>
-<tr class="even">
-<td align="left">epitaphic_yellowhammer</td>
-<td align="left">prefabricated houses</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for transition risk profile:"</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for transition risk
-profile: 1</p>
-</div>
-<div class="section level3">
-<h3 id="distinct-products-without-a-risk-category-for-emission-and-sector-profile">Distinct products without a risk category for emission and sector
-profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-risk-category-for-emission-and-sector-profile"></a>
-</h3>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for emission profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emission_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products without a risk category for emission profile: 2</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for sector profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"sector_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products without a risk category for sector profile: 2</p>
-</div>
-<div class="section level3">
-<h3 id="average-profile-ranking-of-all-products-per-grouping_emission">Average profile ranking of all products per grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-products-per-grouping_emission"></a>
+<h3 id="distinct-europages-products">Distinct europages products<a class="anchor" aria-label="anchor" href="#distinct-europages-products"></a>
 </h3>
 <div class="section level4">
 <h4 id="input">Input<a class="anchor" aria-label="anchor" href="#input"></a>
 </h4>
 <table class="table">
+<colgroup>
+<col width="15%">
+<col width="15%">
+<col width="3%">
+<col width="7%">
+<col width="4%">
+<col width="22%">
+<col width="6%">
+<col width="12%">
+<col width="6%">
+<col width="6%">
+</colgroup>
 <thead><tr class="header">
-<th align="left">ep_product</th>
+<th align="left">companies_id</th>
+<th align="left">company_name</th>
+<th align="left">country</th>
+<th align="left">company_city</th>
+<th align="left">postcode</th>
+<th align="left">address</th>
+<th align="left">main_activity</th>
+<th align="left">clustered</th>
+<th align="right">min_headcount</th>
+<th align="right">max_headcount</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">warriorlike_graysquirrel</td>
+<td align="left">warriorlike_graysquirrel</td>
+<td align="left">germany</td>
+<td align="left">grünwald</td>
+<td align="left">82031</td>
+<td align="left">bavariafilmplatz 7 | 82031 grünwald</td>
+<td align="left">wholesaler</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">leathery_acornwoodpecker</td>
+<td align="left">leathery_acornwoodpecker</td>
+<td align="left">germany</td>
+<td align="left">düsseldorf</td>
+<td align="left">40468</td>
+<td align="left">ulmenstrasse 275 | 40468 düsseldorf</td>
+<td align="left">wholesaler</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">automotive_alaskanmalamute</td>
+<td align="left">automotive_alaskanmalamute</td>
+<td align="left">germany</td>
+<td align="left">trier</td>
+<td align="left">54292</td>
+<td align="left">rheinstrasse 60 | 54292 trier</td>
+<td align="left">wholesaler</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">weatherproof_roadrunner</td>
+<td align="left">weatherproof_roadrunner</td>
+<td align="left">germany</td>
+<td align="left">münchen</td>
+<td align="left">80337</td>
+<td align="left">tumblingerstrasse 32 | 80337 münchen</td>
+<td align="left">wholesaler</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">angular_oregonsilverspotbutterfly</td>
+<td align="left">angular_oregonsilverspotbutterfly</td>
+<td align="left">germany</td>
+<td align="left">veitsbronn</td>
+<td align="left">90587</td>
+<td align="left">stockäckerstrasse 9 | 90587 veitsbronn</td>
+<td align="left">distributor</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">bereft_anchovy</td>
+<td align="left">bereft_anchovy</td>
+<td align="left">germany</td>
+<td align="left">langenselbold</td>
+<td align="left">63505</td>
+<td align="left">am felsenkeller 7 | 63505 langenselbold</td>
+<td align="left">distributor</td>
+<td align="left">exhibitions, stand fittings</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="left">austria</td>
+<td align="left">wilhelmsburg</td>
+<td align="left">3150</td>
+<td align="left">fleschplatz 2, top 5 | 3150 wilhelmsburg</td>
+<td align="left">wholesaler</td>
+<td align="left">tent</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">reversible_affenpinscher</td>
+<td align="left">reversible_affenpinscher</td>
+<td align="left">germany</td>
+<td align="left">quickborn</td>
+<td align="left">25451</td>
+<td align="left">friedrichsgaber strasse 21 | 25451 quickborn</td>
+<td align="left">wholesaler</td>
+<td align="left">tent</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">exportable_widgeon</td>
+<td align="left">exportable_widgeon</td>
+<td align="left">germany</td>
+<td align="left">vlotho</td>
+<td align="left">32602</td>
+<td align="left">lange strasse 100 | 32602 vlotho</td>
+<td align="left">wholesaler</td>
+<td align="left">tent</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="left">comely_manta</td>
+<td align="left">comely_manta</td>
+<td align="left">germany</td>
+<td align="left">henstedt-ulzburg</td>
+<td align="left">24558</td>
+<td align="left">hohenbergen 64 | 24558 henstedt-ulzburg</td>
+<td align="left">wholesaler</td>
+<td align="left">tent</td>
+<td align="right">1</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+</h4>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct europages products:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">example_europages_companies</span><span class="op">$</span><span class="va">clustered</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct europages products: 2</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="distinct-europages-products-that-matched-to-ecoinvent">Distinct europages products that matched to ecoinvent<a class="anchor" aria-label="anchor" href="#distinct-europages-products-that-matched-to-ecoinvent"></a>
+</h3>
+<div class="section level4">
+<h4 id="input-1">Input<a class="anchor" aria-label="anchor" href="#input-1"></a>
+</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">product</th>
 <th align="left">grouping_emission</th>
-<th align="right">profile_ranking</th>
+<th align="left">emission_category</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">a</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">b</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">c</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">d</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">e</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">a</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_2</td>
+<td align="left">b</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">c</td>
+<td align="left">all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_3</td>
+<td align="left">d</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_3</td>
+<td align="left">e</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="output-1">Output<a class="anchor" aria-label="anchor" href="#output-1"></a>
+</h4>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct europages products:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">matched_ecoinvent</span><span class="op">$</span><span class="va">product</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct europages products: 3</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="distinct-europages-products-that-have-sector_target">Distinct europages products that have
+<code>sector_target</code><a class="anchor" aria-label="anchor" href="#distinct-europages-products-that-have-sector_target"></a>
+</h3>
+<div class="section level4">
+<h4 id="input-2">Input<a class="anchor" aria-label="anchor" href="#input-2"></a>
+</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">product</th>
+<th align="right">sector_target</th>
+<th align="left">sector_category</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">a</td>
+<td align="right">0.12</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">b</td>
+<td align="right">0.96</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">c</td>
+<td align="right">0.64</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">d</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">e</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">a</td>
+<td align="right">0.12</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_2</td>
+<td align="left">b</td>
+<td align="right">0.96</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">c</td>
+<td align="right">0.64</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_3</td>
+<td align="left">d</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_3</td>
+<td align="left">e</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="output-2">Output<a class="anchor" aria-label="anchor" href="#output-2"></a>
+</h4>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct europages products:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">products_sector_target</span><span class="op">$</span><span class="va">product</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct europages products: 3</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="average-amount-of-distinct-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product">Average amount of distinct products per company for emission profile
+if the company have atleast one matched ecoinvent product<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product"></a>
+</h3>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">companies_with_atleast_one_matched_product</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"product"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"product"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">companies_id</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">companies_with_atleast_one_matched_product</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_products_per_company <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">product</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"companies_id"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"product"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  </span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">distinct_products_per_company</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
+<span><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for emission profile if the company have atleast one matched ecoinvent product:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct products per company for emission profile
+if the company have atleast one matched ecoinvent product: 4</p>
+</div>
+<div class="section level3">
+<h3 id="average-amount-of-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target">Average amount of distinct products per company for sector profile
+if the company have atleast one product with sector target<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct products per company for sector profile if
+the company have atleast one product with sector target: 4</p>
+</div>
+<div class="section level3">
+<h3 id="average-amount-of-distinct-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category">Average amount of distinct products per company for transition risk
+profile if the company have atleast one product with transition risk
+category<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category"></a>
+</h3>
+<div class="section level4">
+<h4 id="input-3">Input<a class="anchor" aria-label="anchor" href="#input-3"></a>
+</h4>
+<table class="table">
+<colgroup>
+<col width="18%">
+<col width="11%">
+<col width="35%">
+<col width="35%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">product</th>
+<th align="left">grouping_transition_risk</th>
+<th align="left">transition_risk_category</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">a</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">b</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">c</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">d</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_1</td>
+<td align="left">e</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">a</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_2</td>
+<td align="left">b</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">comp_2</td>
+<td align="left">c</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_3</td>
+<td align="left">d</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">comp_3</td>
+<td align="left">e</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct products per company for sector profile if
+the company have atleast one product with sector target: 4</p>
+</div>
+</div>
+<div class="section level3">
+<h3 id="average-amount-of-distinct-products-per-company">Average amount of distinct products per company<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company"></a>
+</h3>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company: "</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">example_transition_risk_profile</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct products per company: 3.333333</p>
+</div>
+<div class="section level3">
+<h3 id="distinct-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile">Distinct products without a risk category for emission, sector, and
+transition risk profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile"></a>
+</h3>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for emission profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct products without a risk category for emission profile: 2</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for sector profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct products without a risk category for sector profile: 2</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for transition risk profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct products without a risk category for transition risk
+profile: 2</p>
+</div>
+<div class="section level3">
+<h3 id="average-profile-ranking-of-all-products-per-grouping_emission">Average profile ranking of all products per grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-products-per-grouping_emission"></a>
+</h3>
+<div class="section level4">
+<h4 id="input-4">Input<a class="anchor" aria-label="anchor" href="#input-4"></a>
+</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">product</th>
+<th align="left">grouping_emission</th>
+<th align="right">emission_rank</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -293,27 +582,7 @@ profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">isic_4digit</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="odd">
-<td align="left">tent</td>
 <td align="left">tilt_subsector</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="even">
-<td align="left">tent</td>
-<td align="left">unit</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="odd">
-<td align="left">tent</td>
-<td align="left">unit_isic_4digit</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="even">
-<td align="left">tent</td>
-<td align="left">unit_tilt_subsector</td>
 <td align="right">1.0000000</td>
 </tr>
 <tr class="odd">
@@ -323,26 +592,23 @@ profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-
 </tr>
 <tr class="even">
 <td align="left">surface engineering</td>
-<td align="left">isic_4digit</td>
-<td align="right">1.0000000</td>
-</tr>
-<tr class="odd">
-<td align="left">surface engineering</td>
 <td align="left">tilt_subsector</td>
 <td align="right">1.0000000</td>
-</tr>
-<tr class="even">
-<td align="left">surface engineering</td>
-<td align="left">unit</td>
-<td align="right">0.5000000</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level4">
-<h4 id="output">Output<a class="anchor" aria-label="anchor" href="#output"></a>
+<h4 id="output-3">Output<a class="anchor" aria-label="anchor" href="#output-3"></a>
 </h4>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">avg_profile_ranking_df</span> <span class="op">&lt;-</span> <span class="va">profile_rank_df</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_profile_ranking <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">emission_rank</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_products_per_benchmark <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">product</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"emission rank average"</span> <span class="op">=</span> <span class="va">sum_profile_ranking</span><span class="op">/</span><span class="va">distinct_products_per_benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_profile_ranking"</span>, <span class="st">"distinct_products_per_benchmark"</span>, <span class="st">"emission_rank"</span>, <span class="st">"product"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average profile ranking of all products per grouping_emission
 </caption>
@@ -351,55 +617,23 @@ Average profile ranking of all products per grouping_emission
 grouping_emission
 </th>
 <th style="text-align:center;">
-avg_profile_ranking
+emission rank average
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
+<td style="text-align:left;width: 4cm; ">
 all
 </td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 4cm; ">
 0.6666667
 </td>
 </tr>
 <tr>
-<td style="text-align:left;width: 2.5cm; ">
-isic_4digit
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
+<td style="text-align:left;width: 4cm; ">
 tilt_subsector
 </td>
-<td style="text-align:center;width: 2.5cm; ">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-unit
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-0.7500000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-unit_isic_4digit
-</td>
-<td style="text-align:center;width: 2.5cm; ">
-1.0000000
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 2.5cm; ">
-unit_tilt_subsector
-</td>
-<td style="text-align:center;width: 2.5cm; ">
+<td style="text-align:center;width: 4cm; ">
 1.0000000
 </td>
 </tr>
@@ -411,12 +645,12 @@ unit_tilt_subsector
 <h3 id="average-reduction-targets-of-all-products-per-grouping_sector">Average reduction targets of all products per grouping_sector<a class="anchor" aria-label="anchor" href="#average-reduction-targets-of-all-products-per-grouping_sector"></a>
 </h3>
 <div class="section level4">
-<h4 id="input-1">Input<a class="anchor" aria-label="anchor" href="#input-1"></a>
+<h4 id="input-5">Input<a class="anchor" aria-label="anchor" href="#input-5"></a>
 </h4>
 <table class="table">
 <thead><tr class="header">
-<th align="left">ep_product</th>
-<th align="right">reduction_targets</th>
+<th align="left">product</th>
+<th align="right">sector_target</th>
 <th align="left">grouping_sector</th>
 </tr></thead>
 <tbody>
@@ -464,9 +698,9 @@ unit_tilt_subsector
 </table>
 </div>
 <div class="section level4">
-<h4 id="output-1">Output<a class="anchor" aria-label="anchor" href="#output-1"></a>
+<h4 id="output-4">Output<a class="anchor" aria-label="anchor" href="#output-4"></a>
 </h4>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
 Average reduction targets of all products per grouping_sector
 </caption>
@@ -475,39 +709,39 @@ Average reduction targets of all products per grouping_sector
 grouping_sector
 </th>
 <th style="text-align:center;">
-avg_reduction_targets
+sector target average
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 4cm; ">
 1.5C RPS_2030
 </td>
-<td style="text-align:center;width: 5cm; ">
+<td style="text-align:center;width: 4cm; ">
 0.135
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 4cm; ">
 1.5C RPS_2050
 </td>
-<td style="text-align:center;width: 5cm; ">
+<td style="text-align:center;width: 4cm; ">
 0.965
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 4cm; ">
 NZ 2050_2030
 </td>
-<td style="text-align:center;width: 5cm; ">
+<td style="text-align:center;width: 4cm; ">
 0.310
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
+<td style="text-align:left;width: 4cm; ">
 NZ 2050_2050
 </td>
-<td style="text-align:center;width: 5cm; ">
+<td style="text-align:center;width: 4cm; ">
 0.965
 </td>
 </tr>
@@ -520,7 +754,7 @@ NZ 2050_2050
 benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-scores-of-all-products-per-tilt_subsector-benchmarks"></a>
 </h3>
 <div class="section level4">
-<h4 id="input-2">Input<a class="anchor" aria-label="anchor" href="#input-2"></a>
+<h4 id="input-6">Input<a class="anchor" aria-label="anchor" href="#input-6"></a>
 </h4>
 <table class="table">
 <colgroup>
@@ -536,93 +770,145 @@ benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-s
 <tbody>
 <tr class="odd">
 <td align="left">tent</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="right">0.5900000</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">1.5C RPS_2050_all</td>
+<td align="right">0.9900000</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">NZ 2050_2030_all</td>
+<td align="right">0.7000000</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">NZ 2050_2050_all</td>
+<td align="right">0.9850000</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
 <td align="left">1.5C RPS_2030_tilt_subsector</td>
-<td align="right">0.590</td>
+<td align="right">0.5900000</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
 <td align="left">1.5C RPS_2050_tilt_subsector</td>
-<td align="right">0.990</td>
+<td align="right">0.9900000</td>
 </tr>
 <tr class="odd">
 <td align="left">tent</td>
 <td align="left">NZ 2050_2030_tilt_subsector</td>
-<td align="right">0.700</td>
+<td align="right">0.7000000</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
 <td align="left">NZ 2050_2050_tilt_subsector</td>
-<td align="right">0.985</td>
+<td align="right">0.9850000</td>
 </tr>
 <tr class="odd">
 <td align="left">surface engineering</td>
-<td align="left">1.5C RPS_2030_tilt_subsector</td>
-<td align="right">0.545</td>
+<td align="left">1.5C RPS_2030_all</td>
+<td align="right">0.2116667</td>
 </tr>
 <tr class="even">
 <td align="left">surface engineering</td>
-<td align="left">1.5C RPS_2050_tilt_subsector</td>
-<td align="right">0.975</td>
-</tr>
-<tr class="odd">
-<td align="left">surface engineering</td>
-<td align="left">NZ 2050_2030_tilt_subsector</td>
-<td align="right">0.610</td>
-</tr>
-<tr class="even">
-<td align="left">surface engineering</td>
-<td align="left">NZ 2050_2050_tilt_subsector</td>
-<td align="right">0.980</td>
+<td align="left">1.5C RPS_2050_all</td>
+<td align="right">0.6416667</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level4">
-<h4 id="output-2">Output<a class="anchor" aria-label="anchor" href="#output-2"></a>
+<h4 id="output-5">Output<a class="anchor" aria-label="anchor" href="#output-5"></a>
 </h4>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average reduction targets of all products per benchmarks
+Average transition risk scores of all products per transition risk
+groups
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-grouping_transition_risk
+group
+</th>
+<th style="text-align:left;">
+scenario
 </th>
 <th style="text-align:center;">
-avg_transition_risk_scores
+transition risk average
 </th>
 </tr></thead>
 <tbody>
 <tr>
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
+all
+</td>
 <td style="text-align:left;">
-1.5C RPS_2030_tilt_subsector
+1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.5675
+0.4008333
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-1.5C RPS_2050_tilt_subsector
+1.5C RPS_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.9825
+0.8158333
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050_2030_tilt_subsector
+NZ 2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.6550
+0.4883333
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050_2050_tilt_subsector
+NZ 2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.9825
+0.8158333
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
+tilt_subsector
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5675000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9825000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.6550000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9825000
 </td>
 </tr>
 </tbody>
@@ -630,22 +916,21 @@ NZ 2050_2050_tilt_subsector
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-na-share-per-company-with-atleast-one-matched-product-for-emission-profile">Average NA share per company with atleast one matched product for
-emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-with-atleast-one-matched-product-for-emission-profile"></a>
+<h3 id="average-na-share-per-company">Average NA share per company<a class="anchor" aria-label="anchor" href="#average-na-share-per-company"></a>
 </h3>
 <div class="section level4">
-<h4 id="companies-with-atleast-one-matched-product">Companies with atleast one matched product<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-matched-product"></a>
+<h4 id="companies-with-atleast-one-matched-product-for-emission-profile">Companies with atleast one matched product for emission profile<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-matched-product-for-emission-profile"></a>
 </h4>
 <table class="table">
 <colgroup>
-<col width="50%">
+<col width="49%">
 <col width="29%">
-<col width="20%">
+<col width="21%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
-<th align="left">ep_product</th>
-<th align="left">emission_profile</th>
+<th align="left">product</th>
+<th align="left">emission_category</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -702,8 +987,8 @@ emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-pe
 </table>
 </div>
 <div class="section level4">
-<h4 id="average-na-share-per-company-which-have-atleast-one-matched-product">Average NA share per company which have atleast one matched
-product<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-matched-product"></a>
+<h4 id="average-na-share-per-company-which-have-atleast-one-matched-product-for-emission-profile">Average NA share per company which have atleast one matched product
+for emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-matched-product-for-emission-profile"></a>
 </h4>
 <table class="table">
 <thead><tr class="header">
@@ -753,10 +1038,261 @@ product<a class="anchor" aria-label="anchor" href="#average-na-share-per-company
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one matched product for emission profile:"</span>, <span class="va">average_result</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one matched product for emission profile:"</span>, <span class="va">average_na_emission_profile</span><span class="op">)</span></span></code></pre></div>
 <p>Average NA share per company with atleast one matched product for
 emission profile: 0</p>
+</div>
+<div class="section level4">
+<h4 id="companies-with-atleast-one-product-with-sector-category">Companies with atleast one product with sector category<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-product-with-sector-category"></a>
+</h4>
+<table class="table">
+<colgroup>
+<col width="49%">
+<col width="29%">
+<col width="21%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">product</th>
+<th align="left">emission_category</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">skarn_gallinule</td>
+<td align="left">sheds, construction site</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">relegable_southernhairnosedwombat</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">psychodelic_airedale</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">ergophilic_fieldspaniel</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">preexistent_africanmolesnake</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">wealthy_ocelot</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_mollusk</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="odd">
+<td align="left">gentlemanlike_asiaticlesserfreshwaterclam</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">frowsy_metalmarkbutterfly</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="average-na-share-per-company-which-have-atleast-one-product-with-sector-category">Average NA share per company which have atleast one product with
+sector category<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-product-with-sector-category"></a>
+</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="right">sector_category_NA</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">skarn_gallinule</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">relegable_southernhairnosedwombat</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">psychodelic_airedale</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">ergophilic_fieldspaniel</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">preexistent_africanmolesnake</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">wealthy_ocelot</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_mollusk</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">gentlemanlike_asiaticlesserfreshwaterclam</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">frowsy_metalmarkbutterfly</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one product with sector category:"</span>, <span class="va">average_na_sector_profile</span><span class="op">)</span></span></code></pre></div>
+<p>Average NA share per company with atleast one product with sector
+category: 0</p>
+</div>
+<div class="section level4">
+<h4 id="companies-with-atleast-one-product-with-transition-risk-category">Companies with atleast one product with transition risk
+category<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-product-with-transition-risk-category"></a>
+</h4>
+<table class="table">
+<colgroup>
+<col width="41%">
+<col width="29%">
+<col width="29%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="left">product</th>
+<th align="left">transition_risk_category</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="left">tent</td>
+<td align="left">medium</td>
+</tr>
+<tr class="odd">
+<td align="left">skarn_gallinule</td>
+<td align="left">sheds, construction site</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">skarn_gallinule</td>
+<td align="left">sheds, construction site</td>
+<td align="left">medium</td>
+</tr>
+<tr class="odd">
+<td align="left">relegable_southernhairnosedwombat</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">relegable_southernhairnosedwombat</td>
+<td align="left">tent</td>
+<td align="left">medium</td>
+</tr>
+<tr class="odd">
+<td align="left">psychodelic_airedale</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">psychodelic_airedale</td>
+<td align="left">tent</td>
+<td align="left">medium</td>
+</tr>
+<tr class="odd">
+<td align="left">ergophilic_fieldspaniel</td>
+<td align="left">tent</td>
+<td align="left">high</td>
+</tr>
+<tr class="even">
+<td align="left">ergophilic_fieldspaniel</td>
+<td align="left">tent</td>
+<td align="left">medium</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="average-na-share-per-company-which-have-atleast-one-product-with-transition-risk-category">Average NA share per company which have atleast one product with
+transition risk category<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-product-with-transition-risk-category"></a>
+</h4>
+<table class="table">
+<thead><tr class="header">
+<th align="left">companies_id</th>
+<th align="right">transition_risk_NA_share</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">asteria_megalotomusquinquespinosus</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">skarn_gallinule</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">relegable_southernhairnosedwombat</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">psychodelic_airedale</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">ergophilic_fieldspaniel</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">preexistent_africanmolesnake</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">wealthy_ocelot</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">fulltime_mollusk</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">gentlemanlike_asiaticlesserfreshwaterclam</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">frowsy_metalmarkbutterfly</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one product with transition risk category:"</span>, <span class="va">average_na_transition_risk_profile</span><span class="op">)</span></span></code></pre></div>
+<p>Average NA share per company with atleast one product with transition
+risk category: 0</p>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -59,9 +59,11 @@ package.</p>
 <span></span>
 <span><span class="fu">example_transition_risk_product_trs_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">example_emission_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">example_transition_risk_emission_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
-<span><span class="fu">example_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu">example_transition_risk_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">example_transition_risk_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">example_transition_risk_product_emission_cov</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
@@ -120,30 +122,6 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">14</span> iron &amp; steel   NZ 2050_2030_tilt_subsector                     14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">15</span> iron &amp; steel   NZ 2050_2050_tilt_subsector                     15</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">16</span> iron &amp; steel   NZ 2050_2050_tilt_subsector                     <span style="color: #BB0000;">NA</span></span>
-<span class="r-in"><span><span class="fu">example_emission_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   companies_id ep_product emission_profile</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> comp_1       a          high            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> comp_1       b          high            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> comp_1       c          high            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> comp_1       d          <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> comp_1       e          <span style="color: #BB0000;">NA</span>              </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> comp_2       a          high            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> comp_2       b          high            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> comp_2       c          high            </span>
-<span class="r-in"><span><span class="fu">example_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 8 × 3</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   companies_id ep_product sector_profile</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> comp_1       a          high          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> comp_1       b          high          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> comp_1       c          high          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> comp_1       d          <span style="color: #BB0000;">NA</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> comp_1       e          <span style="color: #BB0000;">NA</span>            </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> comp_2       a          high          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> comp_2       b          high          </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> comp_2       c          high          </span>
 <span class="r-in"><span><span class="fu">example_transition_risk_product_emission_cov</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 12 × 3</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id grouping_emission   cov_emission_rank</span>
@@ -281,6 +259,48 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​avg_transition_risk_equal_weight</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: avg_transition_risk_best_case &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   avg_transition_risk_worst_case &lt;dbl&gt;</span></span>
+<span class="r-in"><span><span class="fu">example_transition_risk_emission_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id product grouping_emission emission_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> comp_1       a       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> comp_1       b       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> comp_1       c       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> comp_1       d       <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> comp_1       e       <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> comp_2       a       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> comp_2       b       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_2       c       all               high             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_3       d       <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_3       e       <span style="color: #BB0000;">NA</span>                <span style="color: #BB0000;">NA</span>               </span>
+<span class="r-in"><span><span class="fu">example_transition_risk_sector_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id product sector_target sector_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> comp_1       a                0.12 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> comp_1       b                0.96 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> comp_1       c                0.64 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> comp_1       d               <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> comp_1       e               <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> comp_2       a                0.12 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> comp_2       b                0.96 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_2       c                0.64 high           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_3       d               <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_3       e               <span style="color: #BB0000;">NA</span>    <span style="color: #BB0000;">NA</span>             </span>
+<span class="r-in"><span><span class="fu">example_transition_risk_ep_product_des_analysis</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 10 × 4</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id product grouping_transition_risk transition_risk_category</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> comp_1       a       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> comp_1       b       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> comp_1       c       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> comp_1       d       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> comp_1       e       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> comp_2       a       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> comp_2       b       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_2       c       1.5C RPS_2030_all        high                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_3       d       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_3       e       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
