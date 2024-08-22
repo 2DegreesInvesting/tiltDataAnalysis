@@ -10,8 +10,6 @@
 #' @examples
 #' example_emission_product_co2_des_analysis()
 #' example_transition_risk_product_trs_des_analysis()
-#' example_emission_ep_product_des_analysis()
-#' example_sector_ep_product_des_analysis()
 #' example_transition_risk_product_emission_cov()
 #' example_transition_risk_product_sector_cov()
 #' example_transition_risk_product_transition_risk_cov()
@@ -20,6 +18,9 @@
 #' example_transition_risk_company_sector_avg_best_case_worst_case()
 #' example_transition_risk_product_best_case_worst_case()
 #' example_transition_risk_company_transition_risk_avg_best_case_worst_case()
+#' example_transition_risk_emission_ep_product_des_analysis()
+#' example_transition_risk_sector_ep_product_des_analysis()
+#' example_transition_risk_ep_product_des_analysis()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -64,36 +65,60 @@ example_transition_risk_product_trs_des_analysis <- function() {
 
 #' @export
 #' @rdname example_emission_product_co2_des_analysis
-example_emission_ep_product_des_analysis <- function() {
+example_transition_risk_emission_ep_product_des_analysis <- function() {
   tribble(
     # styler: off
-  ~companies_id, ~ep_product, ~emission_profile,
-       "comp_1",         "a",            "high",
-       "comp_1",         "b",            "high",
-       "comp_1",         "c",            "high",
-       "comp_1",         "d",     NA_character_,
-       "comp_1",         "e",     NA_character_,
-       "comp_2",         "a",            "high",
-       "comp_2",         "b",            "high",
-       "comp_2",         "c",            "high"
-  # styler: on
+    ~companies_id, ~product, ~grouping_emission, ~emission_category,
+         "comp_1",      "a",              "all",             "high",
+         "comp_1",      "b",              "all",             "high",
+         "comp_1",      "c",              "all",             "high",
+         "comp_1",      "d",      NA_character_,      NA_character_,
+         "comp_1",      "e",      NA_character_,      NA_character_,
+         "comp_2",      "a",              "all",             "high",
+         "comp_2",      "b",              "all",             "high",
+         "comp_2",      "c",              "all",             "high",
+         "comp_3",      "d",      NA_character_,      NA_character_,
+         "comp_3",      "e",      NA_character_,      NA_character_
+    # styler: on
   )
 }
 
 #' @export
 #' @rdname example_emission_product_co2_des_analysis
-example_sector_ep_product_des_analysis <- function() {
+example_transition_risk_sector_ep_product_des_analysis <- function() {
   tribble(
     # styler: off
-    ~companies_id, ~ep_product, ~sector_profile,
-         "comp_1",         "a",          "high",
-         "comp_1",         "b",          "high",
-         "comp_1",         "c",          "high",
-         "comp_1",         "d",   NA_character_,
-         "comp_1",         "e",   NA_character_,
-         "comp_2",         "a",          "high",
-         "comp_2",         "b",          "high",
-         "comp_2",         "c",          "high"
+    ~companies_id, ~product, ~sector_target, ~sector_category,
+         "comp_1",      "a",           0.12,           "high",
+         "comp_1",      "b",           0.96,           "high",
+         "comp_1",      "c",           0.64,           "high",
+         "comp_1",      "d",       NA_real_,    NA_character_,
+         "comp_1",      "e",       NA_real_,    NA_character_,
+         "comp_2",      "a",           0.12,           "high",
+         "comp_2",      "b",           0.96,           "high",
+         "comp_2",      "c",           0.64,           "high",
+         "comp_3",      "d",       NA_real_,    NA_character_,
+         "comp_3",      "e",       NA_real_,    NA_character_
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_transition_risk_ep_product_des_analysis <- function() {
+  tribble(
+    # styler: off
+    ~companies_id, ~product, ~grouping_transition_risk, ~transition_risk_category,
+         "comp_1",      "a",       "1.5C RPS_2030_all",                    "high",
+         "comp_1",      "b",       "1.5C RPS_2030_all",                    "high",
+         "comp_1",      "c",       "1.5C RPS_2030_all",                    "high",
+         "comp_1",      "d",             NA_character_,             NA_character_,
+         "comp_1",      "e",             NA_character_,             NA_character_,
+         "comp_2",      "a",       "1.5C RPS_2030_all",                    "high",
+         "comp_2",      "b",       "1.5C RPS_2030_all",                    "high",
+         "comp_2",      "c",       "1.5C RPS_2030_all",                    "high",
+         "comp_3",      "d",             NA_character_,             NA_character_,
+         "comp_3",      "e",             NA_character_,             NA_character_
     # styler: on
   )
 }
@@ -308,3 +333,4 @@ example_transition_risk_company_transition_risk_avg_best_case_worst_case <- func
     # styler: on
   )
 }
+
