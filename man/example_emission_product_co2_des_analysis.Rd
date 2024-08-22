@@ -3,8 +3,9 @@
 \name{example_emission_product_co2_des_analysis}
 \alias{example_emission_product_co2_des_analysis}
 \alias{example_transition_risk_product_trs_des_analysis}
-\alias{example_emission_ep_product_des_analysis}
-\alias{example_sector_ep_product_des_analysis}
+\alias{example_transition_risk_emission_ep_product_des_analysis}
+\alias{example_transition_risk_sector_ep_product_des_analysis}
+\alias{example_transition_risk_ep_product_des_analysis}
 \alias{example_transition_risk_product_emission_cov}
 \alias{example_transition_risk_product_sector_cov}
 \alias{example_transition_risk_product_transition_risk_cov}
@@ -19,9 +20,11 @@ example_emission_product_co2_des_analysis()
 
 example_transition_risk_product_trs_des_analysis()
 
-example_emission_ep_product_des_analysis()
+example_transition_risk_emission_ep_product_des_analysis()
 
-example_sector_ep_product_des_analysis()
+example_transition_risk_sector_ep_product_des_analysis()
+
+example_transition_risk_ep_product_des_analysis()
 
 example_transition_risk_product_emission_cov()
 
@@ -49,8 +52,6 @@ package.
 \examples{
 example_emission_product_co2_des_analysis()
 example_transition_risk_product_trs_des_analysis()
-example_emission_ep_product_des_analysis()
-example_sector_ep_product_des_analysis()
 example_transition_risk_product_emission_cov()
 example_transition_risk_product_sector_cov()
 example_transition_risk_product_transition_risk_cov()
@@ -59,5 +60,8 @@ example_transition_risk_company_emission_avg_best_case_worst_case()
 example_transition_risk_company_sector_avg_best_case_worst_case()
 example_transition_risk_product_best_case_worst_case()
 example_transition_risk_company_transition_risk_avg_best_case_worst_case()
+example_transition_risk_emission_ep_product_des_analysis()
+example_transition_risk_sector_ep_product_des_analysis()
+example_transition_risk_ep_product_des_analysis()
 }
 \keyword{internal}
