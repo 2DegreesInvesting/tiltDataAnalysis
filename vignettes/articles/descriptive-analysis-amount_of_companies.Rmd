@@ -35,8 +35,8 @@ table {
 ```{r, echo=FALSE}
 # read_csv("transition_risk_profile_at_product_level_all_countries_wide_22_08_24.csv")
 transition_risk_product_example <- product_transition_risk |>
-  select(all_of(c("companies_id", "country", "transition_risk_category", "tilt_sector",
-                  "tilt_subsector", "main_activity"))) |>
+  select(all_of(c("companies_id", "country", "transition_risk_category", "emission_category",
+                  "sector_category", "tilt_sector", "tilt_subsector", "main_activity"))) |>
   distinct() |>
   mutate(companies_id = ifelse(companies_id == "insecticidal_clownanemonefish",
                                "heliophobic_clownanemonefish", companies_id)) |>
