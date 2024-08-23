@@ -74,6 +74,13 @@
 
     
     
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+</style>
 <p>This article shows how to calculate the descriptive analysis of
 coefficient of variation for emission profile, sector profile, and
 transition risk profile.</p>
@@ -81,9 +88,6 @@ transition risk profile.</p>
 <h3 id="example-company-level-output-of-transition-risk-profile-for-cov_emission_rank">Example company-level output of transition risk profile for
 <code>cov_emission_rank</code><a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-cov_emission_rank"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">emission_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_emission_cov</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -158,16 +162,28 @@ transition risk profile.</p>
 <h3 id="average-cov_emission_rank-per-company-for-emission-profile-benchmarks">Average <code>cov_emission_rank</code> per company for emission
 profile benchmarks<a class="anchor" aria-label="anchor" href="#average-cov_emission_rank-per-company-for-emission-profile-benchmarks"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">avg_cov_emission_rank_per_benchmark</span> <span class="op">&lt;-</span> <span class="va">emission_product_example</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"grouping_emission"</span>, <span class="st">"cov_emission_rank"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">cov_emission_rank</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>sum_cov_emission_rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">cov_emission_rank</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>distinct_companies_per_benchmark <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"Average COV of emission rank for all firms"</span> <span class="op">=</span> <span class="va">sum_cov_emission_rank</span><span class="op">/</span><span class="va">distinct_companies_per_benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_cov_emission_rank"</span>, <span class="st">"distinct_companies_per_benchmark"</span>, <span class="st">"cov_emission_rank"</span>, <span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grouping_emission</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"group"</span> <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span></span></code></pre></div>
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average cov_emission_rank per company for grouping_emission
+Average COV of emission rank for all firms per group
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-grouping_emission
+group
 </th>
 <th style="text-align:center;">
-avg_cov_emission_rank
+Average COV of emission rank for all firms
 </th>
 </tr></thead>
 <tbody>
@@ -181,42 +197,10 @@ all
 </tr>
 <tr>
 <td style="text-align:left;">
-isic_4digit
-</td>
-<td style="text-align:center;width: 5cm; ">
-32.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
 tilt_subsector
 </td>
 <td style="text-align:center;width: 5cm; ">
 37.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-unit
-</td>
-<td style="text-align:center;width: 5cm; ">
-42.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-unit_isic_4digit
-</td>
-<td style="text-align:center;width: 5cm; ">
-47.5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-unit_tilt_subsector
-</td>
-<td style="text-align:center;width: 5cm; ">
-52.5
 </td>
 </tr>
 </tbody>
@@ -226,9 +210,6 @@ unit_tilt_subsector
 <h3 id="example-company-level-output-of-transition-risk-profile-for-cov_sector_target">Example company-level output of transition risk profile for
 <code>cov_sector_target</code><a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-cov_sector_target"></a>
 </h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sector_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_sector_cov</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -292,16 +273,16 @@ unit_tilt_subsector
 <h3 id="average-cov_sector_target-per-company-for-grouping_sector">Average <code>cov_sector_target</code> per company for
 grouping_sector<a class="anchor" aria-label="anchor" href="#average-cov_sector_target-per-company-for-grouping_sector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average cov_sector_target per company for grouping_sector
+Average COV of sector target for all firms per scenario
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-grouping_sector
+scenario
 </th>
 <th style="text-align:center;">
-avg_cov_sector_target
+Average COV of sector target for all firms
 </th>
 </tr></thead>
 <tbody>
@@ -344,9 +325,6 @@ NZ 2050_2050
 <h3 id="example-company-level-output-of-transition-risk-profile-for-cov_transition_risk">Example company-level output of transition risk profile for
 <code>cov_transition_risk</code><a class="anchor" aria-label="anchor" href="#example-company-level-output-of-transition-risk-profile-for-cov_transition_risk"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">transition_risk_product_example</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/example_emission_product_co2_des_analysis.html">example_transition_risk_product_transition_risk_cov</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">companies_id</th>
@@ -401,23 +379,29 @@ NZ 2050_2050
 <h3 id="average-cov_transition_risk-per-company-for-tilt_subsector-benchmarks-of-grouping_transition_risk">Average <code>cov_transition_risk</code> per company for
 tilt_subsector benchmarks of grouping_transition_risk<a class="anchor" aria-label="anchor" href="#average-cov_transition_risk-per-company-for-tilt_subsector-benchmarks-of-grouping_transition_risk"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average cov_transition_risk per company for tilt_subsector benchmarks of
-grouping_transition_risk
+Average COV of transition risk for all firms per scenario of
+<code>tilt_subsector</code> group
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-grouping_transition_risk
+group
+</th>
+<th style="text-align:left;">
+scenario
 </th>
 <th style="text-align:center;">
-avg_cov_transition_risk
+Average COV of transition risk for all firms
 </th>
 </tr></thead>
 <tbody>
 <tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+tilt_subsector
+</td>
 <td style="text-align:left;">
-1.5C RPS_2030_tilt_subsector
+1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
 27.5
@@ -425,7 +409,7 @@ avg_cov_transition_risk
 </tr>
 <tr>
 <td style="text-align:left;">
-1.5C RPS_2050_tilt_subsector
+1.5C RPS_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
 32.5
@@ -433,7 +417,7 @@ avg_cov_transition_risk
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050_2030_tilt_subsector
+NZ 2050
 </td>
 <td style="text-align:center;width: 5cm; ">
 37.5
@@ -441,7 +425,7 @@ NZ 2050_2030_tilt_subsector
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050_2050_tilt_subsector
+NZ 2050
 </td>
 <td style="text-align:center;width: 5cm; ">
 42.5
