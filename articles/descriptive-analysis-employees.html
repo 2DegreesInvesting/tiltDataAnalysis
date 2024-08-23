@@ -74,6 +74,13 @@
 
     
     
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+</style>
 <p>This article shows how to calculate the descriptive analysis of
 companies’ employees.</p>
 <div class="section level3">
@@ -160,27 +167,27 @@ companies’ employees.</p>
 <h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount">Number of companies between range of <code>min_headcount</code> and
 <code>max_headcount</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies between range of min_headcount and max_headcount
+# of firms between range of min_headcount and max_headcount
 </caption>
 <thead><tr>
-<th style="text-align:center;">
+<th style="text-align:left;">
 min_headcount
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 max_headcount
 </th>
 <th style="text-align:center;">
-number_of_companies
+# of firms
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 1
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 10
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -188,10 +195,10 @@ number_of_companies
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 50
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 100
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -204,86 +211,55 @@ number_of_companies
 <div class="section level3">
 <h3 id="bar-plot">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot"></a>
 </h3>
-<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector">Number of companies between range of <code>min_headcount</code> and
 <code>max_headcount</code> grouped by <code>tilt_sector</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies between range of min_headcount and max_headcount
-grouped by tilt_sector
+# of firms between range of min_headcount and max_headcount grouped by
+tilt_sector
 </caption>
 <thead><tr>
-<th style="text-align:center;">
+<th style="text-align:left;">
+tilt_sector
+</th>
+<th style="text-align:left;">
 min_headcount
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 max_headcount
 </th>
 <th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-number_of_companies
+# of firms
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="2">
+construction
+</td>
+<td style="text-align:left;width: 3cm; ">
 1
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 10
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
 </td>
 <td style="text-align:center;width: 3cm; ">
 4
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-<td style="text-align:center;width: 3cm; ">
-10
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 50
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 100
 </td>
 <td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
 1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 3cm; ">
-50
-</td>
-<td style="text-align:center;width: 3cm; ">
-100
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
 </td>
 </tr>
 </tbody>
@@ -292,47 +268,47 @@ metals
 <div class="section level3">
 <h3 id="bar-plot-1">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot-1"></a>
 </h3>
-<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 <div class="section level3">
 <h3 id="number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector-and-country">Number of companies between range of <code>min_headcount</code> and
 <code>max_headcount</code> grouped by <code>tilt_sector</code> and
 <code>country</code><a class="anchor" aria-label="anchor" href="#number-of-companies-between-range-of-min_headcount-and-max_headcount-grouped-by-tilt_sector-and-country"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies between range of min_headcount and max_headcount
-grouped by tilt_sector and country
+# of firms between range of min_headcount and max_headcount grouped by
+tilt_sector and country
 </caption>
 <thead><tr>
-<th style="text-align:center;">
-min_headcount
-</th>
-<th style="text-align:center;">
-max_headcount
-</th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_sector
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
+min_headcount
+</th>
+<th style="text-align:left;">
+max_headcount
+</th>
+<th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
-number_of_companies
+# of firms
 </th>
 </tr></thead>
 <tbody>
 <tr>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-<td style="text-align:center;width: 3cm; ">
-10
-</td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
 construction
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
+1
+</td>
+<td style="text-align:left;width: 3cm; ">
+10
+</td>
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -340,16 +316,13 @@ france
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 1
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 10
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -357,16 +330,13 @@ germany
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 1
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 10
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -374,54 +344,17 @@ netherlands
 </td>
 </tr>
 <tr>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-<td style="text-align:center;width: 3cm; ">
-10
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 50
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 100
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
 <td style="text-align:center;width: 3cm; ">
 1
-</td>
-</tr>
-<tr>
-<td style="text-align:center;width: 3cm; ">
-50
-</td>
-<td style="text-align:center;width: 3cm; ">
-100
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
 </td>
 </tr>
 </tbody>
