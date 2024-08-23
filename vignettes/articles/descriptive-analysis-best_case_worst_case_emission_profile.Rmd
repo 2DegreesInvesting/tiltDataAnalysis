@@ -9,6 +9,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+```
+
 This article shows how to calculate the descriptive analysis of equal weight,
 best case, and worst case for emission profile.
 
@@ -24,23 +32,23 @@ options(readr.show_col_types = FALSE)
 
 ### Example product-level output of emission profile for best case and worst case
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
+# read_csv("transition_risk_profile_at_product_level_all_countries_wide_22_08_24.csv")
 emission_product_example <- example_emission_product_best_case_worst_case()
 kable(emission_product_example |> head(20))
 ```
 
-### Average `emissions_profile_equal_weight` per benchmark and emission_profile
+### Average `emissions_profile_equal_weight` per grouping_emission and emission_category
 
 ```{r, warning=FALSE, echo=FALSE}
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
-    select(all_of(c("benchmark", "emission_profile", col))) |>
-    rename("grouping_emission" = "benchmark") |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_emission", "emission_profile")) |>
+    select(all_of(c("grouping_emission", "emission_category", col))) |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_emission", "emission_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_emission")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
-    filter(!str_detect(grouping_emission, "NA"))
+    filter(grouping_emission %in% c("all", "tilt_subsector"))
 }
 avg_emission_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_equal_weight") |>
   rename("Average `emissions_profile_equal_weight`" = "proportion")
@@ -53,7 +61,7 @@ score_colors <- function(...) c("low" = "#F6CB4E", "medium" = "#B3D15D", "high" 
 fill_score_colors <- function() scale_fill_manual(values = score_colors(), na.value = "#0476D0")
 
 plot_bar_plot_profile <- function(data, col) {
-  ggplot(data, aes(x = .data[[col]], y = .data$grouping_emission, fill = .data$emission_profile)) +
+  ggplot(data, aes(x = .data[[col]], y = .data$grouping_emission, fill = .data$emission_category)) +
     geom_col(position = position_stack(reverse = TRUE), width = 0.5) +
     fill_score_colors() +
     tiltPlot::theme_tiltplot() +
@@ -61,10 +69,10 @@ plot_bar_plot_profile <- function(data, col) {
 }
 
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` \n per benchmark and emission_profile")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category", fill = " emission category")
 ```
 
-### Average `emissions_profile_best_case` per benchmark and emission_profile
+### Average `emissions_profile_best_case` per grouping_emission and emission_category
 
 ```{r, warning=FALSE, echo=FALSE}
 avg_emission_profile_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_best_case") |>
@@ -75,10 +83,10 @@ avg_emission_profile_best_case_per_benchmark_risk_category <- avg_per_benchmark_
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_risk_category, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` \n per benchmark and emission_profile")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category", fill = " emission category")
 ```
 
-### Average `emissions_profile_worst_case` per benchmark and emission_profile
+### Average `emissions_profile_worst_case` per grouping_emission and emission_category
 
 ```{r, warning=FALSE, echo=FALSE}
 avg_emission_profile_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_product_example, "emissions_profile_worst_case") |>
@@ -89,22 +97,21 @@ avg_emission_profile_worst_case_per_benchmark_risk_category <- avg_per_benchmark
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_risk_category, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` \n per benchmark and emission_profile")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category", fill = " emission category")
 ```
 
-### Average `emissions_profile_equal_weight` per benchmark and emission_profile for a country
+### Average `emissions_profile_equal_weight` per grouping_emission and emission_category for a country
 
 ```{r, warning=FALSE, echo=FALSE}
 avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
   data |>
-    select(all_of(c("benchmark", "country", "emission_profile", col))) |>
-    rename("grouping_emission" = "benchmark") |>
+    select(all_of(c("grouping_emission", "country", "emission_category", col))) |>
     filter(country == country_value) |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_emission", "emission_profile")) |>
+    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_emission", "emission_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_emission")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
-    filter(!str_detect(grouping_emission, "NA"))
+    filter(grouping_emission %in% c("all", "tilt_subsector"))
 }
 avg_emission_profile_equal_weight_per_benchmark_risk_category_france <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_equal_weight", "france") |>
   rename("Average `emissions_profile_equal_weight`" = "proportion")
@@ -122,18 +129,18 @@ avg_emission_profile_equal_weight_per_benchmark_risk_category_spain <- avg_per_b
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_france, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` per \n benchmark and emission_profile for `france`")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_austria, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` per \n benchmark and emission_profile for `austria`")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_germany, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` per \n benchmark and emission_profile for `germany`")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_netherlands, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` per \n benchmark and emission_profile for `netherlands`")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_spain, "Average `emissions_profile_equal_weight`") +
-  labs(title = "Average `emissions_profile_equal_weight` per \n benchmark and emission_profile for country `spain`")
+  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for country `spain`", fill = " emission category")
 ```
 
-### Average `emissions_profile_base_case` per benchmark and emission_profile for a country
+### Average `emissions_profile_base_case` per grouping_emission and emission_category for a country
 
 ```{r, warning=FALSE, echo = FALSE}
 avg_emission_profile_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_best_case", "france") |>
@@ -152,18 +159,18 @@ avg_emission_profile_best_case_per_benchmark_country_risk_spain <- avg_per_bench
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_france, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` per \n benchmark and emission_profile for `france`")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_austria, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` per \n benchmark and emission_profile for `austria`")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_germany, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` per \n benchmark and emission_profile for `germany`")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_netherlands, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` per \n benchmark and emission_profile for `netherlands`")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_spain, "Average `emissions_profile_best_case`") +
-  labs(title = "Average `emissions_profile_best_case` per \n benchmark and emission_profile for `spain`")
+  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
 ```
 
-### Average `emissions_profile_worst_case` per benchmark and emission_profile for a country
+### Average `emissions_profile_worst_case` per grouping_emission and emission_category for a country
 
 ```{r, warning=FALSE, echo = FALSE}
 avg_emission_profile_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(emission_product_example, "emissions_profile_worst_case", "france") |>
@@ -182,25 +189,26 @@ avg_emission_profile_worst_case_per_benchmark_country_risk_spain <- avg_per_benc
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_france, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` per \n benchmark and emission_profile for `france`")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_austria, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` per \n benchmark and emission_profile for `austria`")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_germany, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` per \n benchmark and emission_profile for `germany`")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_netherlands, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` per \n benchmark and emission_profile for `netherlands`")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_spain, "Average `emissions_profile_worst_case`") +
-  labs(title = "Average `emissions_profile_worst_case` per \n benchmark and emission_profile for `spain`")
+  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
+# read_csv("transition_risk_profile_at_company_level_all_countries_wide_22_08_24.csv")
 transition_risk_company_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
 kable(transition_risk_company_example |> head(20))
 ```
 
-### Descriptive analysis of `emission_rank_avg_equal_weight` per benchmark
+### Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_per_benchmark <- function(data, col) {
@@ -215,39 +223,39 @@ emission_rank_avg_per_benchmark <- function(data, col) {
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_emission") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct() |>
-    filter(!str_detect(grouping_emission, "NA"))
+    filter(grouping_emission %in% c("all", "tilt_subsector"))
 }
 emission_rank_avg_equal_weight_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_equal_weight") 
 
 kable(emission_rank_avg_equal_weight_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_equal_weight" = 4))
 ```
 
-### Descriptive analysis of `emission_rank_avg_best_case` per benchmark
+### Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_best_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_best_case")
 
 kable(emission_rank_avg_best_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_best_case" = 4))
 ```
 
-### Descriptive analysis of `emission_rank_avg_worst_case` per benchmark
+### Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_worst_case_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_worst_case")
 
 kable(emission_rank_avg_worst_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "emission_rank_avg_worst_case" = 4))
 ```
 
-### Descriptive analysis of `emission_rank_avg_equal_weight` per benchmark for a country
+### Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for a country
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_per_benchmark_country <- function(data, col, country_value) {
@@ -263,7 +271,7 @@ emission_rank_avg_per_benchmark_country <- function(data, col, country_value) {
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_emission") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct() |>
-    filter(!str_detect(grouping_emission, "NA"))
+    filter(grouping_emission %in% c("all", "tilt_subsector"))
 }
 emission_rank_avg_equal_weight_per_benchmark_france <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_equal_weight", "france")
 emission_rank_avg_equal_weight_per_benchmark_austria <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_equal_weight", "austria")
@@ -274,28 +282,28 @@ emission_rank_avg_equal_weight_per_benchmark_spain <- emission_rank_avg_per_benc
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(emission_rank_avg_equal_weight_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 kable(emission_rank_avg_equal_weight_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 kable(emission_rank_avg_equal_weight_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 kable(emission_rank_avg_equal_weight_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 kable(emission_rank_avg_equal_weight_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_equal_weight` per grouping_emission for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_equal_weight" = 4))
 ```
 
-### Descriptive analysis of `emission_rank_avg_best_case` per benchmark for a country
+### Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for a country
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_best_case_per_benchmark_france <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_best_case", "france")
@@ -307,28 +315,28 @@ emission_rank_avg_best_case_per_benchmark_spain <- emission_rank_avg_per_benchma
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(emission_rank_avg_best_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 kable(emission_rank_avg_best_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 kable(emission_rank_avg_best_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 kable(emission_rank_avg_best_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 kable(emission_rank_avg_best_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_best_case" = 4))
 ```
 
-### Descriptive analysis of `emission_rank_avg_best_case` per benchmark for a country
+### Descriptive analysis of `emission_rank_avg_best_case` per grouping_emission for a country
 
 ```{r, warning=FALSE, echo=FALSE}
 emission_rank_avg_worst_case_per_benchmark_france <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_worst_case", "france")
@@ -340,23 +348,23 @@ emission_rank_avg_worst_case_per_benchmark_spain <- emission_rank_avg_per_benchm
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(emission_rank_avg_worst_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 kable(emission_rank_avg_worst_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 kable(emission_rank_avg_worst_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 kable(emission_rank_avg_worst_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 kable(emission_rank_avg_worst_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `emission_rank_avg_worst_case` per grouping_emission for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "emission_rank_avg_worst_case" = 4))
 ```
