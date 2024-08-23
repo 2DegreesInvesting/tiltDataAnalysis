@@ -76,325 +76,36 @@
     
 <p>This article shows how to calculate the descriptive analysis on
 amount of companies for emission and sector profile.</p>
-<div class="section level3">
-<h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
-</h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">emission_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="24%">
-<col width="10%">
-<col width="14%">
-<col width="10%">
-<col width="21%">
-<col width="19%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">companies_id</th>
-<th align="left">country</th>
-<th align="left">emission_profile</th>
-<th align="left">tilt_sector</th>
-<th align="left">tilt_subsector</th>
-<th align="left">main_activity</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">subdermal_chipmunk</td>
-<td align="left">france</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">retailer</td>
-</tr>
-<tr class="even">
-<td align="left">antimonarchy_canine</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="odd">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="odd">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">fascist_maiasaura</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="odd">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="even">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">subzero_whiteeye</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="example-subset-of-product-level-output-of-sector-profile-">Example subset of product-level output of sector profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-sector-profile-"></a>
-</h3>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">sector_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
-<colgroup>
-<col width="24%">
-<col width="10%">
-<col width="12%">
-<col width="11%">
-<col width="21%">
-<col width="19%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">companies_id</th>
-<th align="left">country</th>
-<th align="left">sector_profile</th>
-<th align="left">tilt_sector</th>
-<th align="left">tilt_subsector</th>
-<th align="left">main_activity</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">antimonarchy_canine</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">antimonarchy_canine</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="odd">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="odd">
-<td align="left">nonphilosophical_llama</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">fascist_maiasaura</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="odd">
-<td align="left">fascist_maiasaura</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="even">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="odd">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="even">
-<td align="left">subdermal_chipmunk</td>
-<td align="left">france</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">retailer</td>
-</tr>
-<tr class="odd">
-<td align="left">subdermal_chipmunk</td>
-<td align="left">france</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">retailer</td>
-</tr>
-<tr class="even">
-<td align="left">subzero_whiteeye</td>
-<td align="left">netherlands</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">subzero_whiteeye</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">netherlands</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">distributor</td>
-</tr>
-</tbody>
-</table>
-</div>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+</style>
 <div class="section level3">
 <h3 id="example-subset-of-product-level-output-of-transition-risk-profile-">Example subset of product-level output of transition risk
 profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-transition-risk-profile-"></a>
 </h3>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">10</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="22%">
+<col width="16%">
+<col width="5%">
+<col width="17%">
+<col width="12%">
+<col width="11%">
 <col width="9%">
-<col width="19%">
-<col width="10%">
-<col width="19%">
-<col width="18%">
+<col width="17%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
 <th align="left">country</th>
 <th align="left">transition_risk_category</th>
+<th align="left">emission_category</th>
+<th align="left">sector_category</th>
 <th align="left">tilt_sector</th>
 <th align="left">tilt_subsector</th>
 <th align="left">main_activity</th>
@@ -404,6 +115,8 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <td align="left">subdermal_chipmunk</td>
 <td align="left">france</td>
 <td align="left">high</td>
+<td align="left">high</td>
+<td align="left">medium</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
 <td align="left">retailer</td>
@@ -411,14 +124,38 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <tr class="even">
 <td align="left">subdermal_chipmunk</td>
 <td align="left">france</td>
-<td align="left">medium</td>
+<td align="left">high</td>
+<td align="left">high</td>
+<td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
 <td align="left">retailer</td>
 </tr>
 <tr class="odd">
+<td align="left">subdermal_chipmunk</td>
+<td align="left">france</td>
+<td align="left">medium</td>
+<td align="left">high</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">retailer</td>
+</tr>
+<tr class="even">
 <td align="left">antimonarchy_canine</td>
 <td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">high</td>
+<td align="left">medium</td>
+<td align="left">construction</td>
+<td align="left">construction residential</td>
+<td align="left">distributor</td>
+</tr>
+<tr class="odd">
+<td align="left">antimonarchy_canine</td>
+<td align="left">germany</td>
+<td align="left">high</td>
+<td align="left">high</td>
 <td align="left">high</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
@@ -427,6 +164,8 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <tr class="even">
 <td align="left">antimonarchy_canine</td>
 <td align="left">germany</td>
+<td align="left">medium</td>
+<td align="left">high</td>
 <td align="left">medium</td>
 <td align="left">construction</td>
 <td align="left">construction residential</td>
@@ -436,6 +175,8 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <td align="left">nonphilosophical_llama</td>
 <td align="left">germany</td>
 <td align="left">low</td>
+<td align="left">low</td>
+<td align="left">low</td>
 <td align="left">metals</td>
 <td align="left">other metals</td>
 <td align="left">distributor</td>
@@ -443,148 +184,74 @@ profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-l
 <tr class="even">
 <td align="left">nonphilosophical_llama</td>
 <td align="left">germany</td>
-<td align="left">medium</td>
+<td align="left">low</td>
+<td align="left">low</td>
+<td align="left">high</td>
 <td align="left">metals</td>
 <td align="left">other metals</td>
 <td align="left">distributor</td>
 </tr>
 <tr class="odd">
-<td align="left">fascist_maiasaura</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="even">
-<td align="left">fascist_maiasaura</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">wholesaler</td>
-</tr>
-<tr class="odd">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">medium</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="even">
-<td align="left">ironhearted_tarpan</td>
-<td align="left">germany</td>
-<td align="left">high</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="odd">
-<td align="left">ironhearted_tarpan</td>
+<td align="left">nonphilosophical_llama</td>
 <td align="left">germany</td>
 <td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">iron &amp; steel</td>
-<td align="left">manufacturer/ producer</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
 <td align="left">low</td>
-<td align="left">metals</td>
-<td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">germany</td>
 <td align="left">medium</td>
 <td align="left">metals</td>
 <td align="left">other metals</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">subzero_whiteeye</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="odd">
-<td align="left">subzero_whiteeye</td>
-<td align="left">netherlands</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
-<td align="left">agent/ representative</td>
-</tr>
-<tr class="even">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">netherlands</td>
-<td align="left">high</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
 <td align="left">distributor</td>
 </tr>
-<tr class="odd">
-<td align="left">heliophobic_clownanemonefish</td>
-<td align="left">netherlands</td>
-<td align="left">medium</td>
-<td align="left">construction</td>
-<td align="left">construction residential</td>
+<tr class="even">
+<td align="left">nonphilosophical_llama</td>
+<td align="left">germany</td>
+<td align="left">low</td>
+<td align="left">high</td>
+<td align="left">low</td>
+<td align="left">metals</td>
+<td align="left">other metals</td>
 <td align="left">distributor</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-for-emission-sector-and-transition-risk-profile">Number of companies for emission, sector, and transition risk
-profile<a class="anchor" aria-label="anchor" href="#number-of-companies-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-distinct-companies">Number of distinct companies<a class="anchor" aria-label="anchor" href="#number-of-distinct-companies"></a>
 </h3>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for emission profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies for emission profile: 7</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for sector profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies for sector profile: 7</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies for transition risk profile:"</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies for transition risk profile: 7</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of distinct firms: "</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of distinct firms: 7</p>
 </div>
 <div class="section level3">
 <h3 id="number-of-companies-that-have-atleast-one-product-with-emission_profile-with-sector_profile-and-with-transition_risk_category">Number of companies that have atleast one product with
 <code>emission_profile</code>, with <code>sector_profile</code>, and
 with <code>transition_risk_category</code><a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-atleast-one-product-with-emission_profile-with-sector_profile-and-with-transition_risk_category"></a>
 </h3>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_atleast_one_product_with_profile</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">profile</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">profile</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">profile</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">profile</span><span class="op">]</span><span class="op">]</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span>
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `emission_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">emission_product_example</span>, <span class="st">"emission_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have atleast one product with
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of firms that have atleast one product with `emission_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of firms that have atleast one product with
 <code>emission_profile</code>: 7</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `sector_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">sector_product_example</span>, <span class="st">"sector_profile"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have atleast one product with
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of firms that have atleast one product with `sector_profile`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of firms that have atleast one product with
 <code>sector_profile</code>: 7</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have atleast one product with `transition_risk_category`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have atleast one product with
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of firms that have atleast one product with `transition_risk_category`:"</span>, <span class="fu">companies_atleast_one_product_with_profile</span><span class="op">(</span><span class="va">transition_risk_product_example</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of firms that have atleast one product with
 <code>transition_risk_category</code>: 7</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-sector-and-transition-risk-profile">Number of companies that have more than one tilt_sectors for
-emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_sectors-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-that-have-more-than-one-tilt_sectors">Number of companies that have more than one tilt_sectors<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_sectors"></a>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_sectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_sector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -594,24 +261,14 @@ emission, sector, and transition risk profile<a class="anchor" aria-label="ancho
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_sectors for emission
-profile: 1</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_sectors for sector
-profile: 1</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_sectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_sectors for
-transition risk profile: 1</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of firms that have more than one tilt_sectors: "</span>, <span class="fu">companies_with_multiple_tilt_sectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of firms that have more than one tilt_sectors: 1</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile">Number of companies that have more than one tilt_subsectors for
-emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_subsectors-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-that-have-more-than-one-tilt_subsectors">Number of companies that have more than one tilt_subsectors<a class="anchor" aria-label="anchor" href="#number-of-companies-that-have-more-than-one-tilt_subsectors"></a>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_with_multiple_tilt_subsectors</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -621,105 +278,34 @@ emission, sector, and transition risk profile<a class="anchor" aria-label="ancho
 <span>  </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for emission profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">emission_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_subsectors for
-emission profile: 1</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for sector profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">sector_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_subsectors for
-sector profile: 1</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of companies that have more than one tilt_subsectors for transition risk profile:"</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Number of companies that have more than one tilt_subsectors for
-transition risk profile: 1</p>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Number of firms that have more than one tilt_subsectors: "</span>, <span class="fu">companies_with_multiple_tilt_subsectors</span><span class="op">(</span><span class="va">transition_risk_product_example</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Number of firms that have more than one tilt_subsectors: 1</p>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_sector for emission, sector, and
-transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-tilt_sector">Number of companies per tilt_sector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_sector"></a>
 </h3>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_single_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="va">benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"# of firms"</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="va">benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark</span><span class="op">]</span><span class="op">]</span>, <span class="st">"NA"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per tilt_sector for emission profile
+# of firms per tilt_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 tilt_sector
 </th>
 <th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per tilt_sector for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per tilt_sector for transition risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -743,97 +329,18 @@ metals
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per tilt_subsector for emission, sector, and
-transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-tilt_subsector">Number of companies per tilt_subsector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-tilt_subsector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per tilt_subsector for emission profile
+# of firms per tilt_subsector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per tilt_subsector for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per tilt_subsector for transition risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -865,97 +372,18 @@ other metals
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-for-emission-sector-and-transition-risk-profile">Number of companies per country for emission, sector, and transition
-risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-country">Number of companies per country<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per country for emission profile
+# of firms per country
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-5
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country for transition risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -987,32 +415,33 @@ netherlands
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_sector emission, sector,
-and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_sector-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-country-and-tilt_sector">Number of companies per country and tilt_sector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_sector"></a>
 </h3>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">companies_per_double_benchmark</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>companies_count <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"# of firms"</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">companies_id</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">benchmark_first</span>, <span class="va">benchmark_second</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_first</span><span class="op">]</span><span class="op">]</span>, <span class="st">"NA"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu">str_detect</span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_second</span><span class="op">]</span><span class="op">]</span>, <span class="st">"NA"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_first</span><span class="op">]</span><span class="op">]</span>, <span class="va">.data</span><span class="op">[[</span><span class="va">benchmark_second</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per country and tilt_sector for emission profile
+# of firms per country and tilt_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 country
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_sector
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -1020,7 +449,7 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1031,7 +460,7 @@ construction
 <td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1042,7 +471,7 @@ construction
 <td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1053,132 +482,7 @@ metals
 <td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country and tilt_sector for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country and tilt_sector for transition risk
-profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1189,22 +493,21 @@ construction
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile">Number of companies per country and tilt_subsector emission, sector,
-and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_subsector-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-country-and-tilt_subsector">Number of companies per country and tilt_subsector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-country-and-tilt_subsector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per country and tilt_subsector for emission profile
+# of firms per country and tilt_subsector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 country
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -1212,7 +515,7 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1223,7 +526,7 @@ construction residential
 <td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1234,7 +537,7 @@ construction residential
 <td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1245,7 +548,7 @@ iron &amp; steel
 <td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1256,154 +559,7 @@ other metals
 <td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country and tilt_subsector for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per country and tilt_subsector for transition risk
-profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-country
-</th>
-<th style="text-align:center;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1414,129 +570,18 @@ construction residential
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity for emission, sector, and
-transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-main_activity">Number of companies per main_activity<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per main_activity for emission profile
+# of firms per main_activity
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
 <th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-3
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity for transition risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -1584,23 +629,21 @@ wholesaler
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_sector for emission,
-sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-tilt_sector">Number of companies per main_activity and tilt_sector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_sector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per main_activity and tilt_sector for emission
-profile
+# of firms per main_activity and tilt_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_sector
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -1608,19 +651,8 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
+construction
 </td>
 <td style="text-align:center;width: 3cm; ">
 1
@@ -1630,7 +662,7 @@ metals
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1639,31 +671,9 @@ construction
 </tr>
 <tr>
 <td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1674,198 +684,7 @@ construction
 <td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and tilt_sector for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and tilt_sector for transition
-risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1876,23 +695,21 @@ construction
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and tilt_subsector for
-emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_subsector-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-tilt_subsector">Number of companies per main_activity and tilt_subsector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-tilt_subsector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per main_activity and tilt_subsector for emission
-profile
+# of firms per main_activity and tilt_subsector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_subsector
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -1900,7 +717,7 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1911,7 +728,7 @@ construction residential
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1922,7 +739,7 @@ other metals
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1933,7 +750,7 @@ construction residential
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 other metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1944,7 +761,7 @@ other metals
 <td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 iron &amp; steel
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1955,7 +772,7 @@ iron &amp; steel
 <td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -1966,199 +783,7 @@ construction residential
 <td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and tilt_subsector for sector
-profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and tilt_subsector for transition
-risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-tilt_subsector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-other metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-iron &amp; steel
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction residential
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
 construction residential
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2169,22 +794,21 @@ construction residential
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity and country for emission,
-sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-country-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-main_activity-and-country">Number of companies per main_activity and country<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-and-country"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per main_activity and country for emission profile
+# of firms per main_activity and country
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 country
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -2192,7 +816,7 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2203,7 +827,7 @@ germany
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2214,7 +838,7 @@ netherlands
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2225,7 +849,7 @@ germany
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2236,7 +860,7 @@ netherlands
 <td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2247,7 +871,7 @@ germany
 <td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2258,198 +882,7 @@ france
 <td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and country for sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-country
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity and country for transition risk
-profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-country
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-2
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
 germany
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2460,26 +893,24 @@ germany
 </table>
 </div>
 <div class="section level3">
-<h3 id="number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile">Number of companies per main_activity, country, and tilt_sector for
-emission, sector, and transition risk profile<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-country-and-tilt_sector-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="number-of-companies-per-main_activity-country-and-tilt_sector">Number of companies per main_activity, country, and tilt_sector<a class="anchor" aria-label="anchor" href="#number-of-companies-per-main_activity-country-and-tilt_sector"></a>
 </h3>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Number of companies per main_activity, country, and tilt_sector for
-emission profile
+# of firms per main_activity, country, and tilt_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
 main_activity
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 country
 </th>
-<th style="text-align:center;">
+<th style="text-align:left;">
 tilt_sector
 </th>
 <th style="text-align:center;">
-companies_count
+# of firms
 </th>
 </tr></thead>
 <tbody>
@@ -2487,10 +918,10 @@ companies_count
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2501,10 +932,10 @@ metals
 <td style="text-align:left;width: 3cm; ">
 agent/ representative
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2515,10 +946,10 @@ construction
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2529,10 +960,10 @@ construction
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2543,10 +974,10 @@ metals
 <td style="text-align:left;width: 3cm; ">
 distributor
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 netherlands
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2557,10 +988,10 @@ construction
 <td style="text-align:left;width: 3cm; ">
 manufacturer/ producer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 metals
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2571,10 +1002,10 @@ metals
 <td style="text-align:left;width: 3cm; ">
 retailer
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 france
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
@@ -2585,278 +1016,10 @@ construction
 <td style="text-align:left;width: 3cm; ">
 wholesaler
 </td>
-<td style="text-align:center;width: 3cm; ">
+<td style="text-align:left;width: 3cm; ">
 germany
 </td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity, country, and tilt_sector for
-sector profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-country
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
 <td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-</tbody>
-</table>
-<table class="table  lightable-classic" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto;">
-<caption>
-Number of companies per main_activity, country, and tilt_sector for
-transition risk profile
-</caption>
-<thead><tr>
-<th style="text-align:left;">
-main_activity
-</th>
-<th style="text-align:center;">
-country
-</th>
-<th style="text-align:center;">
-tilt_sector
-</th>
-<th style="text-align:center;">
-companies_count
-</th>
-</tr></thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-agent/ representative
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-distributor
-</td>
-<td style="text-align:center;width: 3cm; ">
-netherlands
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-manufacturer/ producer
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
-metals
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-retailer
-</td>
-<td style="text-align:center;width: 3cm; ">
-france
-</td>
-<td style="text-align:center;width: 3cm; ">
-construction
-</td>
-<td style="text-align:center;width: 3cm; ">
-1
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 3cm; ">
-wholesaler
-</td>
-<td style="text-align:center;width: 3cm; ">
-germany
-</td>
-<td style="text-align:center;width: 3cm; ">
 construction
 </td>
 <td style="text-align:center;width: 3cm; ">
