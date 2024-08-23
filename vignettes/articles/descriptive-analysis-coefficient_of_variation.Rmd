@@ -9,6 +9,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+```
+
 This article shows how to calculate the descriptive analysis of coefficient of 
 variation for emission profile, sector profile, and transition risk profile.
 
@@ -23,34 +31,37 @@ options(readr.show_col_types = FALSE)
 
 ### Example company-level output of transition risk profile for `cov_emission_rank`
 
-```{r}
+```{r, echo= FALSE}
+# read_csv("transition_risk_profile_at_company_level_all_countries_wide_22_08_24.csv")
 emission_product_example <- example_transition_risk_product_emission_cov()
 kable(emission_product_example |> head(20))
 ```
 
 ### Average `cov_emission_rank` per company for emission profile benchmarks
 
-```{r, echo=FALSE}
+```{r}
 avg_cov_emission_rank_per_benchmark <- emission_product_example |>
   select(all_of(c("companies_id", "grouping_emission", "cov_emission_rank"))) |>
+  filter(!is.na(cov_emission_rank)) |>
   distinct() |>
   mutate(sum_cov_emission_rank = sum(.data$cov_emission_rank, na.rm = TRUE), .by = "grouping_emission") |>
   mutate(distinct_companies_per_benchmark = n_distinct(.data$companies_id, na.rm = TRUE), .by = "grouping_emission") |>
-  mutate(avg_cov_emission_rank = sum_cov_emission_rank/distinct_companies_per_benchmark) |>
+  mutate("Average COV of emission rank for all firms" = sum_cov_emission_rank/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_emission_rank", "distinct_companies_per_benchmark", "cov_emission_rank", "companies_id"))) |>
   distinct() |>
-  filter(!str_detect(grouping_emission, "NA"))
+  filter(grouping_emission %in% c("all", "tilt_subsector")) |>
+  rename("group" = "grouping_emission")
 ```
 
 ```{r, echo=FALSE}
-kable(avg_cov_emission_rank_per_benchmark, align = "lc", caption = "Average cov_emission_rank per company for grouping_emission", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+kable(avg_cov_emission_rank_per_benchmark, align = "lc", caption = "Average COV of emission rank for all firms per group", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2, width = "5cm")
 ```
 
 ### Example company-level output of transition risk profile for `cov_sector_target`
 
-```{r}
+```{r, echo= FALSE}
 sector_product_example <- example_transition_risk_product_sector_cov()
 kable(sector_product_example |> head(20))
 ```
@@ -63,23 +74,25 @@ avg_cov_sector_target_per_benchmark <- sector_product_example |>
   mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
   select(-all_of(c("scenario", "year"))) |>
   distinct() |>
+  filter(!is.na(cov_sector_target)) |>
   mutate(sum_cov_sector_target = sum(.data$cov_sector_target, na.rm = TRUE), .by = "grouping_sector") |>
   mutate(distinct_companies_per_benchmark = n_distinct(.data$companies_id, na.rm = TRUE), .by = "grouping_sector") |>
-  mutate(avg_cov_sector_target = sum_cov_sector_target/distinct_companies_per_benchmark) |>
+  mutate("Average COV of sector target for all firms" = sum_cov_sector_target/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_sector_target", "distinct_companies_per_benchmark", "cov_sector_target", "companies_id"))) |>
   distinct() |>
-  filter(!str_detect(grouping_sector, "NA"))
+  filter(!str_detect(grouping_sector, "NA")) |>
+  rename("scenario" = "grouping_sector")
 ```
 
 ```{r, echo=FALSE}
-kable(avg_cov_sector_target_per_benchmark, align = "lc", caption = "Average cov_sector_target per company for grouping_sector", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+kable(avg_cov_sector_target_per_benchmark, align = "lc", caption = "Average COV of sector target for all firms per scenario", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2, width = "5cm")
 ```
 
 ### Example company-level output of transition risk profile for `cov_transition_risk`
 
-```{r}
+```{r, echo= FALSE}
 transition_risk_product_example <- example_transition_risk_product_transition_risk_cov()
 kable(transition_risk_product_example |> head(20))
 ```
@@ -92,16 +105,25 @@ avg_cov_transition_risk_per_benchmark <- transition_risk_product_example |>
   distinct() |>
   filter(grouping_transition_risk %in% c("1.5C RPS_2030_tilt_subsector", "1.5C RPS_2050_tilt_subsector",
                                          "NZ 2050_2030_tilt_subsector", "NZ 2050_2050_tilt_subsector")) |>
+  filter(!is.na(cov_transition_risk)) |>
   mutate(sum_cov_transition_risk = sum(.data$cov_transition_risk, na.rm = TRUE), .by = "grouping_transition_risk") |>
   mutate(distinct_companies_per_benchmark = n_distinct(.data$companies_id, na.rm = TRUE), .by = "grouping_transition_risk") |>
-  mutate(avg_cov_transition_risk = sum_cov_transition_risk/distinct_companies_per_benchmark) |>
+  mutate("Average COV of transition risk for all firms" = sum_cov_transition_risk/distinct_companies_per_benchmark) |>
   select(-all_of(c("sum_cov_transition_risk", "distinct_companies_per_benchmark", "cov_transition_risk", "companies_id"))) |>
   distinct()
+
+avg_cov_transition_risk_per_benchmark$group <- sub(".*0_", "", avg_cov_transition_risk_per_benchmark$grouping_transition_risk)
+avg_cov_transition_risk_per_benchmark$scenario <- sub("(0)_.*", "\\1", avg_cov_transition_risk_per_benchmark$grouping_transition_risk)
+avg_cov_transition_risk_per_benchmark <- avg_cov_transition_risk_per_benchmark |>
+  select(-all_of(c("grouping_transition_risk"))) |>
+  relocate(all_of(c("group", "scenario")))
+
 ```
 
 ```{r, echo=FALSE}
-kable(avg_cov_transition_risk_per_benchmark, align = "lc", caption = "Average cov_transition_risk per company for tilt_subsector benchmarks of grouping_transition_risk", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
-  column_spec(2, width = "5cm")
+kable(avg_cov_transition_risk_per_benchmark, align = "llc", caption = "Average COV of transition risk for all firms per scenario of `tilt_subsector` group", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(3, width = "5cm") |>
+  collapse_rows(columns = 1, valign = "top")
 ```
 
