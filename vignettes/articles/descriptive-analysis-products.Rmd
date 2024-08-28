@@ -51,7 +51,7 @@ cat("Distinct europages products:", n_distinct(example_europages_companies$clust
 #### Input
 
 ```{r, echo=FALSE}
-# base_input <- read_csv("transition_risk_profile_at_product_level_all_countries_wide_21_08_24.csv")
+# base_input <- read_csv("transition_risk_profile_at_product_level_all_countries_wide_22_08_24.csv")
 example_emission_profile <- example_transition_risk_emission_ep_product_des_analysis()
 kable(example_emission_profile)
 ```
@@ -91,7 +91,7 @@ products_sector_target <- example_sector_profile |>
 cat("Distinct europages products:", n_distinct(products_sector_target$product))
 ```
 
-### Average amount of distinct products per company for emission profile if the company have atleast one matched ecoinvent product
+### Average amount of distinct ep products per company for emission profile if the company have atleast one matched ecoinvent product
 
 ```{r}
 avg_distinct_products_per_company_atleast_one_matched_ecoinvent <- function(data, col) {
@@ -111,16 +111,16 @@ avg_distinct_products_per_company_atleast_one_matched_ecoinvent <- function(data
 ```
 
 ```{r, results='asis'}
-cat("Average amount of distinct products per company for emission profile if the company have atleast one matched ecoinvent product:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_emission_profile, "emission_category"))
+cat("Average amount of distinct ep products per company for emission profile if the company have atleast one matched ecoinvent product:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_emission_profile, "emission_category"))
 ```
 
-### Average amount of distinct products per company for sector profile if the company have atleast one product with sector target
+### Average amount of ep distinct products per company for sector profile if the company have atleast one product with sector target
 
 ```{r, results='asis'}
-cat("Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_sector_profile, "sector_category"))
+cat("Average amount of distinct ep products per company for sector profile if the company have atleast one product with sector target:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_sector_profile, "sector_category"))
 ```
 
-### Average amount of distinct products per company for transition risk profile if the company have atleast one product with transition risk category
+### Average amount of distinct ep products per company for transition risk profile if the company have atleast one product with transition risk category
 
 #### Input
 
@@ -130,10 +130,10 @@ kable(example_transition_risk_profile)
 ```
 
 ```{r, results='asis'}
-cat("Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_transition_risk_profile, "transition_risk_category"))
+cat("Average amount of distinct ep products per company for sector profile if the company have atleast one product with transition risk category:", avg_distinct_products_per_company_atleast_one_matched_ecoinvent(example_transition_risk_profile, "transition_risk_category"))
 ```
 
-### Average amount of distinct products per company
+### Average amount of distinct ep products per company
 
 ```{r, echo=FALSE}
 avg_distinct_products_per_company <- function(data) {
@@ -148,10 +148,10 @@ avg_distinct_products_per_company <- function(data) {
 ```
 
 ```{r, results='asis'}
-cat("Average amount of distinct products per company: ", avg_distinct_products_per_company(example_transition_risk_profile))
+cat("Average amount of distinct ep products per company: ", avg_distinct_products_per_company(example_transition_risk_profile))
 ```
 
-### Distinct products without a risk category for emission, sector, and transition risk profile
+### Distinct ep products without a risk category for emission, sector, and transition risk profile
 
 ```{r, echo=FALSE}
 distinct_products_without_risk_category <- function(data, profile) {
@@ -165,12 +165,12 @@ distinct_products_without_risk_category <- function(data, profile) {
 ```
 
 ```{r, results='asis'}
-cat("Distinct products without a risk category for emission profile:", distinct_products_without_risk_category(example_emission_profile, "emission_category"))
-cat("Distinct products without a risk category for sector profile:", distinct_products_without_risk_category(example_sector_profile, "sector_category"))
-cat("Distinct products without a risk category for transition risk profile:", distinct_products_without_risk_category(example_transition_risk_profile, "transition_risk_category"))
+cat("Distinct ep products without a risk category for emission profile:", distinct_products_without_risk_category(example_emission_profile, "emission_category"))
+cat("Distinct ep products without a risk category for sector profile:", distinct_products_without_risk_category(example_sector_profile, "sector_category"))
+cat("Distinct ep products without a risk category for transition risk profile:", distinct_products_without_risk_category(example_transition_risk_profile, "transition_risk_category"))
 ```
 
-### Average profile ranking of all products per grouping_emission
+### Average profile ranking of all ep products per grouping_emission
 
 #### Input
 
@@ -199,12 +199,12 @@ avg_profile_ranking_df <- profile_rank_df |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all products per grouping_emission", escape = F) |>
+kable(avg_profile_ranking_df, align = "lc", caption = "Average profile ranking of all ep products per grouping_emission", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:2, width = "4cm")
 ```
 
-### Average reduction targets of all products per grouping_sector
+### Average reduction targets of all ep products per grouping_sector
 
 #### Input
 
@@ -234,12 +234,12 @@ avg_reduction_targets_df <- reduction_targets_df |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all products per grouping_sector", escape = F) |>
+kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targets of all ep products per grouping_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:2, width = "4cm")
 ```
 
-### Average transition risk scores of all products per tilt_subsector benchmarks
+### Average transition risk scores of all ep products per tilt_subsector benchmarks
 
 #### Input
 
@@ -276,7 +276,7 @@ avg_trs_df <- avg_trs_df |>
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(avg_trs_df, align = "llc", caption = "Average transition risk scores of all products per transition risk groups", escape = F) |>
+kable(avg_trs_df, align = "llc", caption = "Average transition risk scores of all ep products per transition risk groups", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1, width = "3cm") |>
   column_spec(3, width = "5cm") |>
@@ -285,12 +285,11 @@ kable(avg_trs_df, align = "llc", caption = "Average transition risk scores of al
 
 ### Average NA share per company 
 
-#### Companies with atleast one matched product for emission profile
+#### Companies with atleast one matched ecoinvent product for emission profile
 
 ```{r, echo = FALSE}
-transition_risk_company <- company_transition_risk
 # read_csv("transition_risk_profile_at_company_level_all_countries_wide_21_08_24.csv")
-
+transition_risk_company <- company_transition_risk
 companies_atleast_one_product_per_profile <- function(data, profile) {
   data |>
     select(all_of(c("companies_id", "product", profile))) |>
@@ -304,7 +303,7 @@ companies_atleast_one_product_emission_profile <- companies_atleast_one_product_
 kable(companies_atleast_one_product_emission_profile |> head(10))
 ```
 
-#### Average NA share per company which have atleast one matched product for emission profile
+#### Average NA share per company which have atleast one matched ecoinvent product for emission profile
 
 ```{r, echo=FALSE}
 na_emission_profile <- transition_risk_company |>
@@ -320,10 +319,10 @@ average_na_emission_profile <- sum(na_emission_profile$emission_category_NA, na.
 ```
 
 ```{r, results='asis'}
-cat("Average NA share per company with atleast one matched product for emission profile:", average_na_emission_profile)
+cat("Average NA share per company with atleast one matched ecoinvent product for emission profile:", average_na_emission_profile)
 ```
 
-#### Companies with atleast one product with sector category
+#### Companies with atleast one product with sector category/sector target
 
 ```{r, results='asis', echo=FALSE}
 companies_atleast_one_product_sector_profile <- companies_atleast_one_product_per_profile(transition_risk_product, "sector_category")

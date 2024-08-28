@@ -46,7 +46,7 @@ transition_risk_product_example <- product_transition_risk |>
                              "subzero_whiteeye"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(transition_risk_product_example |> head(10))
 ```
 
@@ -58,7 +58,7 @@ cat("Number of distinct firms: ", n_distinct(transition_risk_product_example$com
 
 ### Number of companies that have atleast one product with `emission_profile`, with `sector_profile`, and with `transition_risk_category`
 
-```{r}
+```{r, echo=FALSE}
 companies_atleast_one_product_with_profile <- function(data, profile) {
   result <- data |>
     select(all_of(c("companies_id", profile))) |>
@@ -77,7 +77,7 @@ cat("Number of firms that have atleast one product with `transition_risk_categor
 
 ### Number of companies that have more than one tilt_sectors
 
-```{r}
+```{r, echo=FALSE}
 companies_with_multiple_tilt_sectors <- function(data) {
   result <- data |>
     select(all_of(c("companies_id", "tilt_sector"))) |>
@@ -95,7 +95,7 @@ cat("Number of firms that have more than one tilt_sectors: ", companies_with_mul
 
 ### Number of companies that have more than one tilt_subsectors
 
-```{r}
+```{r, echo=FALSE}
 companies_with_multiple_tilt_subsectors <- function(data) {
   result <- data |>
     select(all_of(c("companies_id", "tilt_subsector"))) |>
@@ -113,7 +113,7 @@ cat("Number of firms that have more than one tilt_subsectors: ", companies_with_
 
 ### Number of companies per tilt_sector
 
-```{r}
+```{r, echo=FALSE}
 companies_per_single_benchmark <- function(data, benchmark) {
   data |>
     select(all_of(c("companies_id", benchmark))) |>
@@ -127,12 +127,23 @@ companies_per_single_benchmark <- function(data, benchmark) {
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
+# To create CSV files. Location: https://drive.google.com/drive/folders/1PSLn5nBtO-WK3-11_u857Q0yRtdoC6J9
+# result <- companies_per_single_benchmark(transition_risk_product_example, "tilt_sector")
+# readr::write_csv(result, file = "number_of_firms_per_tilt_sector.csv")
+```
+
+```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_single_benchmark(transition_risk_product_example, "tilt_sector"), align = "lc", caption = "# of firms per tilt_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:2, width = "3cm")
 ```
 
 ### Number of companies per tilt_subsector
+
+```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_single_benchmark(transition_risk_product_example, "tilt_subsector")
+# readr::write_csv(result, file = "number_of_firms_per_tilt_subsector.csv")
+```
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_single_benchmark(transition_risk_product_example, "tilt_subsector"), align = "lc", caption = "# of firms per tilt_subsector", escape = F) |>
@@ -143,6 +154,11 @@ kable(companies_per_single_benchmark(transition_risk_product_example, "tilt_subs
 ### Number of companies per country
 
 ```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_single_benchmark(transition_risk_product_example, "country")
+# readr::write_csv(result, file = "number_of_firms_per_country.csv")
+```
+
+```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_single_benchmark(transition_risk_product_example, "country"), align = "lc", caption = "# of firms per country", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:2, width = "3cm")
@@ -150,7 +166,7 @@ kable(companies_per_single_benchmark(transition_risk_product_example, "country")
 
 ### Number of companies per country and tilt_sector
 
-```{r}
+```{r, echo=FALSE}
 companies_per_double_benchmark <- function(data, benchmark_first, benchmark_second) {
   data |>
     select(all_of(c("companies_id", benchmark_first, benchmark_second))) |>
@@ -165,6 +181,11 @@ companies_per_double_benchmark <- function(data, benchmark_first, benchmark_seco
 ```
 
 ```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_sector")
+# readr::write_csv(result, file = "number_of_firms_per_country_and_tilt_sector.csv")
+```
+
+```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_sector"), align = "llc", caption = "# of firms per country and tilt_sector", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:3, width = "3cm") |>
@@ -172,6 +193,11 @@ kable(companies_per_double_benchmark(transition_risk_product_example, "country",
 ```
 
 ### Number of companies per country and tilt_subsector
+
+```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_subsector")
+# readr::write_csv(result, file = "number_of_firms_per_country_and_tilt_subsector.csv")
+```
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_double_benchmark(transition_risk_product_example, "country", "tilt_subsector"), align = "llc", caption = "# of firms per country and tilt_subsector", escape = F) |>
@@ -183,12 +209,22 @@ kable(companies_per_double_benchmark(transition_risk_product_example, "country",
 ### Number of companies per main_activity
 
 ```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_single_benchmark(transition_risk_product_example, "main_activity")
+# readr::write_csv(result, file = "number_of_firms_per_main_activity.csv")
+```
+
+```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_single_benchmark(transition_risk_product_example, "main_activity"), align = "lc", caption = "# of firms per main_activity", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:2, width = "3cm") 
 ```
 
 ### Number of companies per main_activity and tilt_sector
+
+```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_sector")
+# readr::write_csv(result, file = "number_of_firms_per_main_activity_and_tilt_sector.csv")
+```
 
 ```{r, warning=FALSE, echo=FALSE}
 result <- companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_sector") |>
@@ -202,6 +238,11 @@ kable(result, align = "llc", caption = "# of firms per main_activity and tilt_se
 ### Number of companies per main_activity and tilt_subsector
 
 ```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_subsector")
+# readr::write_csv(result, file = "number_of_firms_per_main_activity_and_tilt_subsector.csv")
+```
+
+```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_double_benchmark(transition_risk_product_example, "main_activity", "tilt_subsector"), align = "llc", caption = "# of firms per main_activity and tilt_subsector", escape = F) |>
   kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(1:3, width = "3cm") |>
@@ -209,6 +250,11 @@ kable(companies_per_double_benchmark(transition_risk_product_example, "main_acti
 ```
 
 ### Number of companies per main_activity and country
+
+```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_double_benchmark(transition_risk_product_example, "main_activity", "country")
+# readr::write_csv(result, file = "number_of_firms_per_main_activity_and_country.csv")
+```
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(companies_per_double_benchmark(transition_risk_product_example, "main_activity", "country"), align = "llc", caption = "# of firms per main_activity and country", escape = F) |>
@@ -230,6 +276,11 @@ companies_per_main_activity_country_tilt_sector <- function(data) {
     filter(!str_detect(tilt_sector, "NA")) |>
     arrange(main_activity, country, tilt_sector)
 }
+```
+
+```{r, warning=FALSE, echo=FALSE}
+# result <- companies_per_main_activity_country_tilt_sector(transition_risk_product_example)
+# readr::write_csv(result, file = "number_of_firms_per_main_activity_country_tilt_sector.csv")
 ```
 
 ```{r, warning=FALSE, echo=FALSE}

@@ -48,7 +48,7 @@ transition_risk_product_example <- product_transition_risk |>
                              "subzero_whiteeye"))
 ```
 
-```{r}
+```{r, echo=FALSE}
 kable(transition_risk_product_example |> head(20))
 ```
 
@@ -72,7 +72,7 @@ kable(companies_headcount_range, align = "llc", caption = "# of firms between ra
 
 ### Bar plot 
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE}
 companies_headcount_range_new <- mutate(companies_headcount_range, range_headcounts = paste(min_headcount, max_headcount, sep = '-')) |>
   filter(!is.na(min_headcount)) |>
   rename("number_of_companies" = "# of firms")
@@ -106,7 +106,7 @@ kable(companies_headcount_range_tilt_sector, align = "lllc", caption = "# of fir
 
 ### Bar plot 
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE}
 companies_headcount_range_tilt_sector_new <- mutate(companies_headcount_range_tilt_sector, range_headcounts = paste(min_headcount, max_headcount, tilt_sector, sep = '-')) |>
   filter(!is.na(min_headcount)) |>
   rename("number_of_companies" = "# of firms") |>
