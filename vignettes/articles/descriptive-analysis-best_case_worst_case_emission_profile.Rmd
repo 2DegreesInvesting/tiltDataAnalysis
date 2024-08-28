@@ -129,15 +129,15 @@ avg_emission_profile_equal_weight_per_benchmark_risk_category_spain <- avg_per_b
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_france, "Average `emissions_profile_equal_weight`") +
-  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
+  labs(x = "Average emission category under \n equal weight assumption for France", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_austria, "Average `emissions_profile_equal_weight`") +
-  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
+  labs(x = "Average emission category under \n equal weight assumption for Austria", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_germany, "Average `emissions_profile_equal_weight`") +
-  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
+  labs(x = "Average emission category under \n equal weight assumption for Germany", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_netherlands, "Average `emissions_profile_equal_weight`") +
-  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
+  labs(x = "Average emission category under \n equal weight assumption for Netherlands", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_equal_weight_per_benchmark_risk_category_spain, "Average `emissions_profile_equal_weight`") +
-  labs(x = "Average emission category under equal weight assumption", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for country `spain`", fill = " emission category")
+  labs(x = "Average emission category under \n equal weight assumption for Spain", y = "Group", title = "Average emission category under equal weight \n assumption per grouping_emission and \n emission_category for country `spain`", fill = " emission category")
 ```
 
 ### Average `emissions_profile_base_case` per grouping_emission and emission_category for a country
@@ -159,15 +159,15 @@ avg_emission_profile_best_case_per_benchmark_country_risk_spain <- avg_per_bench
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_france, "Average `emissions_profile_best_case`") +
-  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
+  labs(x = "Average emission category under \n best case assumption for France", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_austria, "Average `emissions_profile_best_case`") +
-  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
+  labs(x = "Average emission category under \n best case assumption for Austria", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_germany, "Average `emissions_profile_best_case`") +
-  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
+  labs(x = "Average emission category under \n best case assumption for Germany", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_netherlands, "Average `emissions_profile_best_case`") +
-  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
+  labs(x = "Average emission category under \n best case assumption for Netherlands", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_best_case_per_benchmark_country_risk_spain, "Average `emissions_profile_best_case`") +
-  labs(x = "Average emission category under best case assumption", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
+  labs(x = "Average emission category under \n best case assumption for Spain", y = "Group", title = "Average emission category under best case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
 ```
 
 ### Average `emissions_profile_worst_case` per grouping_emission and emission_category for a country
@@ -189,15 +189,15 @@ avg_emission_profile_worst_case_per_benchmark_country_risk_spain <- avg_per_benc
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_france, "Average `emissions_profile_worst_case`") +
-  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
+  labs(x = "Average emission category under \n worst case assumption for France", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `france`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_austria, "Average `emissions_profile_worst_case`") +
-  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
+  labs(x = "Average emission category under \n worst case assumption for Austria", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `austria`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_germany, "Average `emissions_profile_worst_case`") +
-  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
+  labs(x = "Average emission category under \n worst case assumption for Germany", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `germany`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_netherlands, "Average `emissions_profile_worst_case`") +
-  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
+  labs(x = "Average emission category under \n worst case assumption for Netherlands", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `netherlands`", fill = " emission category")
 plot_bar_plot_profile(avg_emission_profile_worst_case_per_benchmark_country_risk_spain, "Average `emissions_profile_worst_case`") +
-  labs(x = "Average emission category under worst case assumption", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
+  labs(x = "Average emission category under \n worst case assumption for Spain", y = "Group", title = "Average emission category under worst case \n assumption per grouping_emission and \n emission_category for `spain`", fill = " emission category")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case

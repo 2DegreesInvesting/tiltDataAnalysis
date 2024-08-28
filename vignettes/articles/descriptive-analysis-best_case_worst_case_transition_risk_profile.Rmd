@@ -138,15 +138,15 @@ avg_transition_risk_equal_weight_per_benchmark_country_risk_spain <- avg_per_ben
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_france, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n equal weight assumption for France", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_austria, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n equal weight assumption for Austria", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_germany, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n equal weight assumption for Germany", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category `netherlands`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n equal weight assumption for Netherlands", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category `netherlands`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_spain, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n equal weight assumption for Spain", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
 ### Average `transition_risk_profile_best_case` per `grouping_transition_risk` and `transition_risk_category` for a country
@@ -168,15 +168,15 @@ avg_transition_risk_best_case_per_benchmark_country_risk_spain <- avg_per_benchm
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n best case assumption for France", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n best case assumption for Austria", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n best case assumption for Germany", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n best case assumption for Netherlands", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n best case assumption for Spain", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
 ### Average `transition_risk_profile_worst_case` per `grouping_transition_risk` and `transition_risk_category` for a country
@@ -198,15 +198,15 @@ avg_transition_risk_worst_case_per_benchmark_country_risk_spain <- avg_per_bench
 
 ```{r, echo = FALSE, warning=FALSE}
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n worst case assumption for France", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n worst case assumption for Austria", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n worst case assumption for Germany", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n worst case assumption for Netherlands", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
 plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+  labs(x = "Average transition risk category under \n worst case assumption for Spain", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case
@@ -356,7 +356,7 @@ avg_transition_risk_worst_case_per_benchmark_france <- avg_transition_risk_per_b
 avg_transition_risk_worst_case_per_benchmark_austria <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "austria")
 avg_transition_risk_worst_case_per_benchmark_germany <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "germany")
 avg_transition_risk_worst_case_per_benchmark_netherlands <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "netherlands")
-avg_transition_risk_worst_case_per_benchmark_spain <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "france")
+avg_transition_risk_worst_case_per_benchmark_spain <- avg_transition_risk_per_benchmark_country(transition_risk_company_example, "avg_transition_risk_worst_case", "spain")
 ```
 
 ```{r, warning=FALSE, echo=FALSE}

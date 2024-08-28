@@ -9,6 +9,14 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{css, echo=FALSE}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+table {
+  font-family: 'Roboto Condensed', sans-serif;
+}
+```
+
 This article shows how to calculate the descriptive analysis of equal weight,
 best case, and worst case for sector profile.
 
@@ -24,7 +32,7 @@ options(readr.show_col_types = FALSE)
 
 ### Example company-level output of transition risk profile for best case and worst case of sector profile 
 
-```{r, warning=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 transition_risk_company_example <- example_transition_risk_company_sector_avg_best_case_worst_case()
 kable(transition_risk_company_example |> head(20))
 ```
@@ -51,7 +59,7 @@ sector_target_avg_per_benchmark <- function(data, col) {
 sector_target_avg_equal_weight_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_equal_weight")
 
 kable(sector_target_avg_equal_weight_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "sector_target_avg_equal_weight" = 4))
 ```
@@ -62,7 +70,7 @@ kable(sector_target_avg_equal_weight_per_benchmark, align = "lcccc", caption = "
 sector_target_avg_best_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_best_case") 
 
 kable(sector_target_avg_best_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "sector_target_avg_best_case" = 4))
 ```
@@ -73,7 +81,7 @@ kable(sector_target_avg_best_case_per_benchmark, align = "lcccc", caption = "Des
 sector_target_avg_worst_case_per_benchmark <- sector_target_avg_per_benchmark(transition_risk_company_example, "sector_target_avg_worst_case")
 
 kable(sector_target_avg_worst_case_per_benchmark, align = "lcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(2:5, width = "3cm") |>
   add_header_above(c(" ", "sector_target_avg_worst_case" = 4))
 ```
@@ -108,23 +116,23 @@ sector_target_avg_equal_weight_per_benchmark_spain <- sector_target_avg_per_benc
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(sector_target_avg_equal_weight_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_equal_weight" = 4))
 kable(sector_target_avg_equal_weight_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_equal_weight" = 4))
 kable(sector_target_avg_equal_weight_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_equal_weight" = 4))
 kable(sector_target_avg_equal_weight_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_equal_weight" = 4))
 kable(sector_target_avg_equal_weight_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_equal_weight` per grouping_sector for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_equal_weight" = 4))
 ```
@@ -141,23 +149,23 @@ sector_target_avg_best_case_per_benchmark_spain <- sector_target_avg_per_benchma
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(sector_target_avg_best_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_best_case" = 4))
 kable(sector_target_avg_best_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_best_case" = 4))
 kable(sector_target_avg_best_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_best_case" = 4))
 kable(sector_target_avg_best_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_best_case" = 4))
 kable(sector_target_avg_best_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_best_case` per grouping_sector for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_best_case" = 4))
 ```
@@ -174,23 +182,23 @@ sector_target_avg_worst_case_per_benchmark_spain <- sector_target_avg_per_benchm
 
 ```{r, warning=FALSE, echo=FALSE}
 kable(sector_target_avg_worst_case_per_benchmark_france, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `france`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_worst_case" = 4))
 kable(sector_target_avg_worst_case_per_benchmark_austria, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `austria`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_worst_case" = 4))
 kable(sector_target_avg_worst_case_per_benchmark_germany, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `germany`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_worst_case" = 4))
 kable(sector_target_avg_worst_case_per_benchmark_netherlands, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `netherlands`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_worst_case" = 4))
 kable(sector_target_avg_worst_case_per_benchmark_spain, align = "llcccc", caption = "Descriptive analysis of `sector_target_avg_worst_case` per grouping_sector for country `spain`", escape = F) |>
-  kable_classic(full_width = F, html_font = "Cambria") |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
   column_spec(3:6, width = "3cm") |>
   add_header_above(c(" ", " ", "sector_target_avg_worst_case" = 4))
 ```
