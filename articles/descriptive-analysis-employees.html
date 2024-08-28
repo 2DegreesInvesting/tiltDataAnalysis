@@ -86,8 +86,6 @@ companies’ employees.</p>
 <div class="section level3">
 <h3 id="example-product-level-output-of-transition-risk-profile-">Example product-level output of transition risk profile.<a class="anchor" aria-label="anchor" href="#example-product-level-output-of-transition-risk-profile-"></a>
 </h3>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">kable</span><span class="op">(</span><span class="va">transition_risk_product_example</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fl">20</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="35%">
@@ -211,6 +209,16 @@ max_headcount
 <div class="section level3">
 <h3 id="bar-plot">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot"></a>
 </h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">companies_headcount_range_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">companies_headcount_range</span>, range_headcounts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">max_headcount</span>, sep <span class="op">=</span> <span class="st">'-'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">min_headcount</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"number_of_companies"</span> <span class="op">=</span> <span class="st">"# of firms"</span><span class="op">)</span></span>
+<span><span class="va">companies_headcount_range_new</span><span class="op">$</span><span class="va">range_headcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">companies_headcount_range_new</span><span class="op">$</span><span class="va">range_headcounts</span>,</span>
+<span>                                                     levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">companies_headcount_range_new</span><span class="op">$</span><span class="va">range_headcounts</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">companies_headcount_range_new</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">range_headcounts</span>, y <span class="op">=</span> <span class="va">number_of_companies</span>, fill <span class="op">=</span> <span class="va">range_headcounts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Headcount Range"</span>, y <span class="op">=</span> <span class="st">"Number of firms"</span>, title <span class="op">=</span> <span class="st">"Number of companies between range of `min_headcount` and `max_headcount`"</span>,</span>
+<span>       fill <span class="op">=</span> <span class="st">"Headcount Range"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -268,6 +276,20 @@ construction
 <div class="section level3">
 <h3 id="bar-plot-1">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot-1"></a>
 </h3>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">companies_headcount_range_tilt_sector_new</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector</span>, range_headcounts <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">max_headcount</span>, <span class="va">tilt_sector</span>, sep <span class="op">=</span> <span class="st">'-'</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">min_headcount</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"number_of_companies"</span> <span class="op">=</span> <span class="st">"# of firms"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">min_headcount</span>, <span class="va">tilt_sector</span><span class="op">)</span></span>
+<span>  </span>
+<span><span class="va">companies_headcount_range_tilt_sector_new</span><span class="op">$</span><span class="va">range_headcounts</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector_new</span><span class="op">$</span><span class="va">range_headcounts</span>,</span>
+<span>                                                     levels <span class="op">=</span> <span class="va">companies_headcount_range_tilt_sector_new</span><span class="op">$</span><span class="va">range_headcounts</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ggplot</span><span class="op">(</span><span class="va">companies_headcount_range_tilt_sector_new</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">range_headcounts</span>, y <span class="op">=</span> <span class="va">number_of_companies</span>, fill <span class="op">=</span> <span class="va">range_headcounts</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">geom_bar</span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">labs</span><span class="op">(</span>x <span class="op">=</span> <span class="st">"Headcount Range"</span>, y <span class="op">=</span> <span class="st">"Number of firms"</span>, title <span class="op">=</span> <span class="st">"Number of companies between range of \n `min_headcount` and `max_headcount` \n grouped by `tilt_sector`"</span>, fill <span class="op">=</span> <span class="st">"Headcount Range"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme_minimal</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">90</span>, vjust <span class="op">=</span> <span class="fl">0.5</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="descriptive-analysis-employees_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 </div>
 <div class="section level3">

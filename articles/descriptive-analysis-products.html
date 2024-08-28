@@ -418,8 +418,8 @@ products for emission and sector profile.</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product">Average amount of distinct products per company for emission profile
-if the company have atleast one matched ecoinvent product<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product"></a>
+<h3 id="average-amount-of-distinct-ep-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product">Average amount of distinct ep products per company for emission
+profile if the company have atleast one matched ecoinvent product<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-ep-products-per-company-for-emission-profile-if-the-company-have-atleast-one-matched-ecoinvent-product"></a>
 </h3>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span><span class="op">)</span> <span class="op">{</span></span>
@@ -437,23 +437,23 @@ if the company have atleast one matched ecoinvent product<a class="anchor" aria-
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">distinct_products_per_company</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/n_distinct.html" class="external-link">n_distinct</a></span><span class="op">(</span><span class="va">result</span><span class="op">$</span><span class="va">companies_id</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for emission profile if the company have atleast one matched ecoinvent product:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for emission profile
-if the company have atleast one matched ecoinvent product: 4</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct ep products per company for emission profile if the company have atleast one matched ecoinvent product:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct ep products per company for emission
+profile if the company have atleast one matched ecoinvent product: 4</p>
 </div>
 <div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target">Average amount of distinct products per company for sector profile
-if the company have atleast one product with sector target<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target"></a>
+<h3 id="average-amount-of-ep-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target">Average amount of ep distinct products per company for sector
+profile if the company have atleast one product with sector target<a class="anchor" aria-label="anchor" href="#average-amount-of-ep-distinct-products-per-company-for-sector-profile-if-the-company-have-atleast-one-product-with-sector-target"></a>
 </h3>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for sector profile if
-the company have atleast one product with sector target: 4</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct ep products per company for sector profile if the company have atleast one product with sector target:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct ep products per company for sector profile
+if the company have atleast one product with sector target: 4</p>
 </div>
 <div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category">Average amount of distinct products per company for transition risk
-profile if the company have atleast one product with transition risk
-category<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category"></a>
+<h3 id="average-amount-of-distinct-ep-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category">Average amount of distinct ep products per company for transition
+risk profile if the company have atleast one product with transition
+risk category<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-ep-products-per-company-for-transition-risk-profile-if-the-company-have-atleast-one-product-with-transition-risk-category"></a>
 </h3>
 <div class="section level4">
 <h4 id="input-3">Input<a class="anchor" aria-label="anchor" href="#input-3"></a>
@@ -535,35 +535,39 @@ category<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-
 </tbody>
 </table>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company for sector profile if the company have atleast one product with sector target:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company for sector profile if
-the company have atleast one product with sector target: 4</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct ep products per company for sector profile if the company have atleast one product with transition risk category:"</span>, <span class="fu">avg_distinct_products_per_company_atleast_one_matched_ecoinvent</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct ep products per company for sector profile
+if the company have atleast one product with transition risk category:
+4</p>
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-amount-of-distinct-products-per-company">Average amount of distinct products per company<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-products-per-company"></a>
+<h3 id="average-amount-of-distinct-ep-products-per-company">Average amount of distinct ep products per company<a class="anchor" aria-label="anchor" href="#average-amount-of-distinct-ep-products-per-company"></a>
 </h3>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct products per company: "</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">example_transition_risk_profile</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Average amount of distinct products per company: 3.333333</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average amount of distinct ep products per company: "</span>, <span class="fu">avg_distinct_products_per_company</span><span class="op">(</span><span class="va">example_transition_risk_profile</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Average amount of distinct ep products per company: 3.333333</p>
 </div>
 <div class="section level3">
-<h3 id="distinct-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile">Distinct products without a risk category for emission, sector, and
-transition risk profile<a class="anchor" aria-label="anchor" href="#distinct-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile"></a>
+<h3 id="distinct-ep-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile">Distinct ep products without a risk category for emission, sector,
+and transition risk profile<a class="anchor" aria-label="anchor" href="#distinct-ep-products-without-a-risk-category-for-emission-sector-and-transition-risk-profile"></a>
 </h3>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for emission profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products without a risk category for emission profile: 2</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct ep products without a risk category for emission profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_emission_profile</span>, <span class="st">"emission_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct ep products without a risk category for emission profile:
+2</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for sector profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products without a risk category for sector profile: 2</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct ep products without a risk category for sector profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_sector_profile</span>, <span class="st">"sector_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct ep products without a risk category for sector profile:
+2</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct products without a risk category for transition risk profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p>Distinct products without a risk category for transition risk
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Distinct ep products without a risk category for transition risk profile:"</span>, <span class="fu">distinct_products_without_risk_category</span><span class="op">(</span><span class="va">example_transition_risk_profile</span>, <span class="st">"transition_risk_category"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Distinct ep products without a risk category for transition risk
 profile: 2</p>
 </div>
 <div class="section level3">
-<h3 id="average-profile-ranking-of-all-products-per-grouping_emission">Average profile ranking of all products per grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-products-per-grouping_emission"></a>
+<h3 id="average-profile-ranking-of-all-ep-products-per-grouping_emission">Average profile ranking of all ep products per
+grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ranking-of-all-ep-products-per-grouping_emission"></a>
 </h3>
 <div class="section level4">
 <h4 id="input-4">Input<a class="anchor" aria-label="anchor" href="#input-4"></a>
@@ -610,7 +614,7 @@ profile: 2</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average profile ranking of all products per grouping_emission
+Average profile ranking of all ep products per grouping_emission
 </caption>
 <thead><tr>
 <th style="text-align:left;">
@@ -642,7 +646,8 @@ tilt_subsector
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-reduction-targets-of-all-products-per-grouping_sector">Average reduction targets of all products per grouping_sector<a class="anchor" aria-label="anchor" href="#average-reduction-targets-of-all-products-per-grouping_sector"></a>
+<h3 id="average-reduction-targets-of-all-ep-products-per-grouping_sector">Average reduction targets of all ep products per
+grouping_sector<a class="anchor" aria-label="anchor" href="#average-reduction-targets-of-all-ep-products-per-grouping_sector"></a>
 </h3>
 <div class="section level4">
 <h4 id="input-5">Input<a class="anchor" aria-label="anchor" href="#input-5"></a>
@@ -702,7 +707,7 @@ tilt_subsector
 </h4>
 <table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average reduction targets of all products per grouping_sector
+Average reduction targets of all ep products per grouping_sector
 </caption>
 <thead><tr>
 <th style="text-align:left;">
@@ -750,8 +755,8 @@ NZ 2050_2050
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-transition-risk-scores-of-all-products-per-tilt_subsector-benchmarks">Average transition risk scores of all products per tilt_subsector
-benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-scores-of-all-products-per-tilt_subsector-benchmarks"></a>
+<h3 id="average-transition-risk-scores-of-all-ep-products-per-tilt_subsector-benchmarks">Average transition risk scores of all ep products per tilt_subsector
+benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-scores-of-all-ep-products-per-tilt_subsector-benchmarks"></a>
 </h3>
 <div class="section level4">
 <h4 id="input-6">Input<a class="anchor" aria-label="anchor" href="#input-6"></a>
@@ -826,7 +831,7 @@ benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-s
 </h4>
 <table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-Average transition risk scores of all products per transition risk
+Average transition risk scores of all ep products per transition risk
 groups
 </caption>
 <thead><tr>
@@ -919,7 +924,8 @@ NZ 2050
 <h3 id="average-na-share-per-company">Average NA share per company<a class="anchor" aria-label="anchor" href="#average-na-share-per-company"></a>
 </h3>
 <div class="section level4">
-<h4 id="companies-with-atleast-one-matched-product-for-emission-profile">Companies with atleast one matched product for emission profile<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-matched-product-for-emission-profile"></a>
+<h4 id="companies-with-atleast-one-matched-ecoinvent-product-for-emission-profile">Companies with atleast one matched ecoinvent product for emission
+profile<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-matched-ecoinvent-product-for-emission-profile"></a>
 </h4>
 <table class="table">
 <colgroup>
@@ -987,8 +993,8 @@ NZ 2050
 </table>
 </div>
 <div class="section level4">
-<h4 id="average-na-share-per-company-which-have-atleast-one-matched-product-for-emission-profile">Average NA share per company which have atleast one matched product
-for emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-matched-product-for-emission-profile"></a>
+<h4 id="average-na-share-per-company-which-have-atleast-one-matched-ecoinvent-product-for-emission-profile">Average NA share per company which have atleast one matched
+ecoinvent product for emission profile<a class="anchor" aria-label="anchor" href="#average-na-share-per-company-which-have-atleast-one-matched-ecoinvent-product-for-emission-profile"></a>
 </h4>
 <table class="table">
 <thead><tr class="header">
@@ -1039,12 +1045,13 @@ for emission profile<a class="anchor" aria-label="anchor" href="#average-na-shar
 </tbody>
 </table>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one matched product for emission profile:"</span>, <span class="va">average_na_emission_profile</span><span class="op">)</span></span></code></pre></div>
-<p>Average NA share per company with atleast one matched product for
-emission profile: 0</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="st">"Average NA share per company with atleast one matched ecoinvent product for emission profile:"</span>, <span class="va">average_na_emission_profile</span><span class="op">)</span></span></code></pre></div>
+<p>Average NA share per company with atleast one matched ecoinvent
+product for emission profile: 0</p>
 </div>
 <div class="section level4">
-<h4 id="companies-with-atleast-one-product-with-sector-category">Companies with atleast one product with sector category<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-product-with-sector-category"></a>
+<h4 id="companies-with-atleast-one-product-with-sector-categorysector-target">Companies with atleast one product with sector category/sector
+target<a class="anchor" aria-label="anchor" href="#companies-with-atleast-one-product-with-sector-categorysector-target"></a>
 </h4>
 <table class="table">
 <colgroup>
