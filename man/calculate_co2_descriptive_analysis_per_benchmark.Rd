@@ -5,7 +5,10 @@
 \alias{calculate_co2_descriptive_analysis_per_benchmark}
 \title{Calculate the descriptive analysis of co2_footprint per benchmark}
 \usage{
-calculate_co2_descriptive_analysis_per_benchmark(emission_product, benchmark)
+calculate_co2_descriptive_analysis_per_benchmark(
+  emission_product,
+  grouping_emission
+)
 }
 \arguments{
 \item{emission_product}{A dataframe. Product-level output of Emissions profile}
