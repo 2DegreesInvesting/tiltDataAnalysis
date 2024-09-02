@@ -87,24 +87,26 @@ profile indicator.</p>
 <div class="section level3">
 <h3 id="example-subset-of-product-level-output-of-emissions-profile-">Example subset of product-level output of Emissions profile.<a class="anchor" aria-label="anchor" href="#example-subset-of-product-level-output-of-emissions-profile-"></a>
 </h3>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="17%">
-<col width="14%">
-<col width="17%">
-<col width="5%">
-<col width="14%">
-<col width="16%">
-<col width="14%">
+<col width="15%">
+<col width="10%">
+<col width="13%">
+<col width="4%">
+<col width="10%">
+<col width="12%">
+<col width="10%">
+<col width="23%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">benchmark</th>
+<th align="left">grouping_emission</th>
 <th align="left">tilt_sector</th>
 <th align="left">tilt_subsector</th>
 <th align="left">unit</th>
 <th align="left">isic_4digit</th>
 <th align="right">co2_footprint</th>
-<th align="left">ep_product</th>
+<th align="left">product</th>
+<th align="left">activity_uuid_product_uuid</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -115,6 +117,7 @@ profile indicator.</p>
 <td align="left">‘5555’</td>
 <td align="right">1</td>
 <td align="left">water</td>
+<td align="left">uuid1</td>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
@@ -124,6 +127,7 @@ profile indicator.</p>
 <td align="left">‘5555’</td>
 <td align="right">4</td>
 <td align="left">television</td>
+<td align="left">uuid2</td>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
@@ -133,6 +137,7 @@ profile indicator.</p>
 <td align="left">‘5555’</td>
 <td align="right">9</td>
 <td align="left">tables</td>
+<td align="left">uuid3</td>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
@@ -142,6 +147,7 @@ profile indicator.</p>
 <td align="left">‘5555’</td>
 <td align="right">8</td>
 <td align="left">electricity</td>
+<td align="left">uuid4</td>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
@@ -151,6 +157,7 @@ profile indicator.</p>
 <td align="left">‘5555’</td>
 <td align="right">NA</td>
 <td align="left">meat</td>
+<td align="left">uuid5</td>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
@@ -160,6 +167,7 @@ profile indicator.</p>
 <td align="left">‘6666’</td>
 <td align="right">1</td>
 <td align="left">tables</td>
+<td align="left">uuid3</td>
 </tr>
 <tr class="odd">
 <td align="left">tilt_subsector</td>
@@ -169,6 +177,7 @@ profile indicator.</p>
 <td align="left">‘6666’</td>
 <td align="right">2</td>
 <td align="left">water</td>
+<td align="left">uuid1</td>
 </tr>
 <tr class="even">
 <td align="left">tilt_subsector</td>
@@ -178,6 +187,7 @@ profile indicator.</p>
 <td align="left">‘6666’</td>
 <td align="right">4</td>
 <td align="left">tent</td>
+<td align="left">uuid6</td>
 </tr>
 </tbody>
 </table>
@@ -311,7 +321,7 @@ Five products with lowest CO2e values
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-ep_product
+product
 </th>
 <th style="text-align:center;">
 co2_footprint
@@ -370,7 +380,7 @@ Five products with highest CO2e values
 </caption>
 <thead><tr>
 <th style="text-align:left;">
-ep_product
+product
 </th>
 <th style="text-align:center;">
 co2_footprint
