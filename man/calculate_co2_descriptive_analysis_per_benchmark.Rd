@@ -3,28 +3,31 @@
 %   R/calculate_co2_descriptive_analysis_per_benchmark.R
 \name{calculate_co2_descriptive_analysis_per_benchmark}
 \alias{calculate_co2_descriptive_analysis_per_benchmark}
-\title{Calculate the descriptive analysis of co2_footprint per benchmark}
+\title{Calculate the descriptive analysis of co2_footprint per grouping_emission}
 \usage{
-calculate_co2_descriptive_analysis_per_benchmark(emission_product, benchmark)
+calculate_co2_descriptive_analysis_per_benchmark(
+  emission_product,
+  grouping_emission
+)
 }
 \arguments{
 \item{emission_product}{A dataframe. Product-level output of Emissions profile}
 
-\item{benchmark}{A string. Benchmarks of Emissions profile}
+\item{grouping_emission}{A string. Benchmarks of Emissions profile}
 }
 \value{
 A dataframe
 }
 \description{
 This function calculates the descriptive analysis of co2_footprint per
-benchmark using product-level output of Emissions profile indicator.
+grouping_emission using product-level output of Emissions profile indicator.
 }
 \examples{
 library(dplyr)
 emission_product_example <- example_emission_product_co2_des_analysis()
 emission_product_example
 
-# Calculates the descriptive analysis for benchmark "tilt_subsector"
+# Calculates the descriptive analysis for grouping_emission "tilt_subsector"
 calculate_co2_descriptive_analysis_per_benchmark(
   emission_product_example,
   "tilt_subsector"

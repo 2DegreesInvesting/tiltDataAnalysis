@@ -71,7 +71,7 @@ kable(co2_tilt_subsector, align = "llccccc", caption = "Descriptive analysis for
 
 ```{r, echo=FALSE}
 lowest_co2 <- emission_product_example |>
-  select(all_of(c("ep_product", "co2_footprint"))) |>
+  select(all_of(c("product", "co2_footprint"))) |>
   distinct() |>
   arrange(.data$co2_footprint) |>
   head(5)
@@ -85,7 +85,7 @@ kable(lowest_co2, align = "lc", caption = "Five products with lowest CO2e values
 
 ```{r, echo=FALSE}
 highest_co2 <- emission_product_example |>
-  select(all_of(c("ep_product", "co2_footprint"))) |>
+  select(all_of(c("product", "co2_footprint"))) |>
   distinct() |>
   arrange(desc(.data$co2_footprint)) |>
   head(5)
