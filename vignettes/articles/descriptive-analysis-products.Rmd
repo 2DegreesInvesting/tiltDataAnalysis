@@ -37,7 +37,9 @@ options(readr.show_col_types = FALSE)
 
 ```{r, echo=FALSE}
 example_europages_companies <- read_csv(toy_europages_companies()) |> head(10)
-kable(example_europages_companies)
+kable(example_europages_companies, format = "html", escape = FALSE) %>%
+  kable_styling(bootstrap_options = "striped", full_width = FALSE) %>%
+  column_spec(1:10, width = "7cm")
 ```
 
 #### Output
