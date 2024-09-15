@@ -39,7 +39,8 @@ options(readr.show_col_types = FALSE)
 example_europages_companies <- read_csv(toy_europages_companies()) |> head(10)
 kable(example_europages_companies, format = "html", escape = FALSE) %>%
   kable_styling(bootstrap_options = "striped", full_width = FALSE) %>%
-  column_spec(1:10, width = "7cm")
+  column_spec(1:10, width = "7cm",
+              extra_css = "white-space: nowrap; overflow: hidden;")
 ```
 
 #### Output
