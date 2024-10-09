@@ -1,9 +1,15 @@
 Package: tiltDataAnalysis
 Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9001
-Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+Authors@R: c(
+    person("Kalash", "Singhal", , "kalash@2degrees-investing.org", role = c("aut", "cre")),
+    person("Mauro", "Lepore", , "maurolepore@gmail.com", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0002-1986-7988")),
+    person("Anne", "Schoenauer", , "anne.schoenauer@2degrees-investing.org", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0000-0002-4576-8799")),
+    person("Tilman", "Trompke", , "tilman@2degrees-investing.org", role = "aut",
+           comment = c(ORCID = "https://orcid.org/0009-0003-3351-5131"))
+  )
 Description: What the package does (one paragraph).
 License: GPL (>= 3)
 URL: https://github.com/2DegreesInvesting/tiltDataAnalysis,
