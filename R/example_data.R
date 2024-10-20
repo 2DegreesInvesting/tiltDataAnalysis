@@ -21,6 +21,7 @@
 #' example_transition_risk_emission_ep_product_des_analysis()
 #' example_transition_risk_sector_ep_product_des_analysis()
 #' example_transition_risk_ep_product_des_analysis()
+#' example_sector_product_best_case_worst_case()
 example_emission_product_co2_des_analysis <- function() {
   tribble(
   # styler: off
@@ -217,6 +218,46 @@ example_emission_product_best_case_worst_case <- function() {
          "comp_1",   "tilt_subsector", "netherlands",           "medium",                            0.60,                         0.60,                          0.60,
          "comp_1",   "tilt_subsector",       "spain",             "high",                            0.45,                         0.45,                          0.45,
          "comp_1",   "tilt_subsector",       "spain",           "medium",                            0.60,                         0.60,                          0.60
+    # styler: on
+  )
+}
+
+#' @export
+#' @rdname example_emission_product_co2_des_analysis
+example_sector_product_best_case_worst_case <- function() {
+  tribble(
+    # styler: off
+    ~companies_id,  ~scenario, ~year,      ~country,   ~sector_category,    ~sector_profile_equal_weight,    ~sector_profile_best_case,    ~sector_profile_worst_case,
+         "comp_1", "1.5C RPS",  2030,      "france",             "high",                            0.25,                         0.25,                          0.25,
+         "comp_2", "1.5C RPS",  2030,      "france",             "high",                            0.25,                         0.25,                          0.25,
+         "comp_1", "1.5C RPS",  2030,      "france",             "high",                            0.75,                         0.75,                          0.75,
+         "comp_1", "1.5C RPS",  2030,      "france",           "medium",                            0.10,                         0.10,                          0.10,
+         "comp_1", "1.5C RPS",  2030,      "france",              "low",                            0.15,                         0.15,                          0.15,
+         "comp_1", "1.5C RPS",  2030,      "france",              "low",                            0.55,                         0.55,                          0.55,
+         "comp_1", "1.5C RPS",  2030,      "france",      NA_character_,                            0.30,                         0.30,                          0.30,
+         "comp_1",  "NZ 2050",  2030,      "france",             "high",                            0.45,                         0.45,                          0.45,
+         "comp_1",  "NZ 2050",  2030,      "france",           "medium",                            0.60,                         0.60,                          0.60,
+         "comp_1",  "NZ 2050",  2030,      "france",           "medium",                            0.40,                         0.40,                          0.40,
+         "comp_1",  "NZ 2050",  2030,      "france",              "low",                            0.35,                         0.35,                          0.35,
+         "comp_1",  "NZ 2050",  2030,      "france",              "low",                            0.75,                         0.75,                          0.75,
+         "comp_1",  "NZ 2050",  2030,     "austria",             "high",                            0.35,                         0.35,                          0.35,
+         "comp_1", "1.5C RPS",  2030,     "austria",             "high",                            0.25,                         0.25,                          0.25,
+         "comp_1", "1.5C RPS",  2030,     "austria",           "medium",                            0.10,                         0.10,                          0.10,
+         "comp_1", "1.5C RPS",  2030,     "austria",           "medium",                            0.60,                         0.60,                          0.60,
+         "comp_1", "1.5C RPS",  2030,     "austria",              "low",                            0.15,                         0.15,                          0.15,
+         "comp_1", "1.5C RPS",  2030,     "austria",      NA_character_,                            0.30,                         0.30,                          0.30,
+         "comp_1",  "NZ 2050",  2030,     "austria",             "high",                            0.45,                         0.45,                          0.45,
+         "comp_1",  "NZ 2050",  2030,     "austria",           "medium",                            0.60,                         0.60,                          0.60,
+         "comp_1",  "NZ 2050",  2030,     "austria",           "medium",                            0.80,                         0.80,                          0.80,
+         "comp_1",  "NZ 2050",  2030,     "austria",              "low",                            0.35,                         0.35,                          0.35,
+         "comp_1",  "NZ 2050",  2030,     "austria",              "low",                            0.85,                         0.85,                          0.85,
+         "comp_1",  "NZ 2050",  2030,     "austria",      NA_character_,                            0.75,                         0.75,                          0.75,
+         "comp_1",  "NZ 2050",  2030,     "germany",             "high",                            0.45,                         0.45,                          0.45,
+         "comp_1",  "NZ 2050",  2030,     "germany",           "medium",                            0.60,                         0.60,                          0.60,
+         "comp_1",  "NZ 2050",  2030, "netherlands",             "high",                            0.45,                         0.45,                          0.45,
+         "comp_1",  "NZ 2050",  2030, "netherlands",           "medium",                            0.60,                         0.60,                          0.60,
+         "comp_1",  "NZ 2050",  2030,       "spain",             "high",                            0.45,                         0.45,                          0.45,
+         "comp_1",  "NZ 2050",  2030,       "spain",           "medium",                            0.60,                         0.60,                          0.60
     # styler: on
   )
 }
