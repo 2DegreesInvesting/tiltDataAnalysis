@@ -73,6 +73,8 @@ package.</p>
 <span></span>
 <span><span class="fu">example_emission_product_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">example_sector_product_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">example_transition_risk_company_emission_avg_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">example_transition_risk_company_sector_avg_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span>
@@ -300,6 +302,24 @@ package.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_2       c       1.5C RPS_2030_all        high                    </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_3       d       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_3       e       <span style="color: #BB0000;">NA</span>                       <span style="color: #BB0000;">NA</span>                      </span>
+<span class="r-in"><span><span class="fu">example_sector_product_best_case_worst_case</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 30 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    companies_id scenario  year country sector_category sector_profile_equal_we…¹</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  high                                 0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> comp_2       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  high                                 0.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  high                                 0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  medium                               0.1 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  low                                  0.15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  low                                  0.55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> comp_1       1.5C RPS  <span style="text-decoration: underline;">2</span>030 france  <span style="color: #BB0000;">NA</span>                                   0.3 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> comp_1       NZ 2050   <span style="text-decoration: underline;">2</span>030 france  high                                 0.45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> comp_1       NZ 2050   <span style="text-decoration: underline;">2</span>030 france  medium                               0.6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> comp_1       NZ 2050   <span style="text-decoration: underline;">2</span>030 france  medium                               0.4 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 20 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​sector_profile_equal_weight</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 2 more variables: sector_profile_best_case &lt;dbl&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   sector_profile_worst_case &lt;dbl&gt;</span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
