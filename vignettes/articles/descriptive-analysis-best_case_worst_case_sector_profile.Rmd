@@ -34,9 +34,8 @@ options(readr.show_col_types = FALSE)
 
 ```{r, warning=FALSE, echo=FALSE}
 # read_csv("transition_risk_profile_at_product_level_16_10_24.csv")
-sector_product_example <- read_csv("transition_risk_profile_at_product_level_16_10_24.csv")
-#   example_sector_product_best_case_worst_case()
-# kable(emission_product_example |> head(20))
+sector_product_example <- example_sector_product_best_case_worst_case()
+kable(sector_product_example |> head(20))
 ```
 
 ### Average `sector_profile_equal_weight` per grouping_sector and sector_category
