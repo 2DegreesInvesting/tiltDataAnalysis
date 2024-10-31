@@ -21,7 +21,11 @@ This article shows how to calculate the descriptive analysis of equal weight,
 best case, and worst case for transition risk profile.
 
 ```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
+devtools::load_all(".")
 library(tiltDataAnalysis)
+library(tiltToyData)
+library(tiltIndicator)
+library(tiltTransitionRisk)
 library(stringr)
 library(dplyr)
 library(knitr)
@@ -30,21 +34,35 @@ library(kableExtra)
 options(readr.show_col_types = FALSE)
 ```
 
-### Example product-level output of transition risk profile for equal weight, best case, and worst case
+### Example company-level output of transition risk profile for equal weight, best case, and worst case
 
 ```{r, warning=FALSE, echo=FALSE}
-# read_csv("transition_risk_profile_at_product_level_all_countries_wide_22_08_24.csv")
-transition_risk_product_example <- example_transition_risk_product_best_case_worst_case()
-kable(transition_risk_product_example |> head(20))
+# read_csv("transition_risk_profile_at_company_level_23_10_24.csv")
+# read_csv("emissions_profile_products_ecoinvent.csv") 
+# read_csv("sp_all_uuids_scenario_sectors.csv")
+# read_csv("sector_profile_any_scenarios.csv")
+transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
+co2 <- read_csv(toy_emissions_profile_products_ecoinvent())
+all_activities_scenario_sectors <- read_csv(toy_all_activities_scenario_sectors())
+scenarios <- read_csv(toy_sector_profile_any_scenarios())
+kable(transition_risk_company_example |> head(20))
 ```
 
-### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
+### Average `avg_transition_risk_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_per_benchmark_risk_category <- function(data, col) {
+thresholds <- add_thresholds_transition_risk(co2, all_activities_scenario_sectors, scenarios) |>
+  select(all_of(c("benchmark_tr_score", "transition_risk_low_threshold", "transition_risk_high_threshold"))) |>
+  distinct() |>
+  rename(grouping_transition_risk = "benchmark_tr_score")
+
+avg_per_benchmark_risk_category <- function(data, col, threshold) {
   data |>
-    select(all_of(c("grouping_transition_risk", "transition_risk_category", col))) |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
+    select(all_of(c("companies_id", "grouping_transition_risk", col))) |>
+    distinct() |>
+    left_join(threshold, by = c("grouping_transition_risk")) |>
+    mutate(risk_category = categorize_risk(.data[[col]], transition_risk_low_threshold, transition_risk_high_threshold)) |>
+    summarise(total_mode = n(), .by = c("grouping_transition_risk", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
@@ -52,8 +70,8 @@ avg_per_benchmark_risk_category <- function(data, col) {
     filter(!str_detect(grouping_transition_risk, "NA|unit")) |>
     arrange(grouping_transition_risk)
 }
-avg_transition_risk_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
 ```
 
 #### Bar plot
@@ -69,150 +87,154 @@ plot_bar_plot_profile <- function(data, col) {
     grep("_all", unique(grouping_transition_risk), value = TRUE)
   )))
 
-  ggplot(data, aes(x = .data[[col]], y = .data$grouping_transition_risk, fill = .data$transition_risk_category)) +
+  ggplot(data, aes(x = .data[[col]], y = .data$grouping_transition_risk, fill = .data$risk_category)) +
     geom_col(position = position_stack(reverse = TRUE), width = 0.5) +
     fill_score_colors() +
     tiltPlot::theme_tiltplot() +
     xlim(0, NA)
 }
 
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_risk_category, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category \n under equal weight assumption", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_risk_category, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies \n under equal weight assumption", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
 ```
 
-### Average `transition_risk_profile_best_case` per per `grouping_transition_risk` and `transition_risk_category`
+### Average `avg_transition_risk_best_case` per `grouping_transition_risk` and `transition_risk_category`
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_transition_risk_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_best_case") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_risk_category, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category \n under best case assumption", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_risk_category, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies \n under best case assumption", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
 ```
 
-### Average `transition_risk_profile_worst_case` per per `grouping_transition_risk` and `transition_risk_category`
+### Average `avg_transition_risk_worst_case` per `grouping_transition_risk` and `transition_risk_category`
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_transition_risk_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_risk_category, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category \n under worst case assumption", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_risk_category, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies \n under worst case assumption", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category", fill = "transition risk category")
 ```
 
-### Average `transition_risk_profile_equal_weight` per `grouping_transition_risk` and `transition_risk_category` for a country
+### Average `avg_transition_risk_equal_weight` per `grouping_transition_risk` and `transition_risk_category` for a country
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
+avg_per_benchmark_country_risk_category <- function(data, col, country_value, threshold) {
   data |>
-    select(all_of(c("grouping_transition_risk", "country", "transition_risk_category", col))) |>
+    select(all_of(c("companies_id", "country", "grouping_transition_risk", col))) |>
     filter(country == country_value) |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_transition_risk", "transition_risk_category")) |>
+    distinct() |>
+    left_join(threshold, by = c("grouping_transition_risk")) |>
+    mutate(risk_category = tiltIndicator::categorize_risk(.data[[col]], transition_risk_low_threshold, transition_risk_high_threshold)) |>
+    summarise(total_mode = n(), .by = c("grouping_transition_risk", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_transition_risk")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
     filter(str_detect(grouping_transition_risk, "all|tilt_subsector")) |>
-    filter(!str_detect(grouping_transition_risk, "NA|unit"))
+    filter(!str_detect(grouping_transition_risk, "NA|unit")) |>
+    arrange(grouping_transition_risk)
 }
-avg_transition_risk_equal_weight_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "france") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-avg_transition_risk_equal_weight_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "austria") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-avg_transition_risk_equal_weight_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "germany") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "netherlands") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
-avg_transition_risk_equal_weight_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_equal_weight", "spain") |>
-  rename("Average `transition_risk_profile_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", "france", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", "austria", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", "germany", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", "netherlands", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
+avg_transition_risk_equal_weight_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_equal_weight", "spain", thresholds) |>
+  rename("Average `avg_transition_risk_equal_weight`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_france, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category under \n equal weight assumption for France", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_austria, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category under \n equal weight assumption for Austria", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_germany, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category under \n equal weight assumption for Germany", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category under \n equal weight assumption for Netherlands", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category `netherlands`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_spain, "Average `transition_risk_profile_equal_weight`") +
-  labs(x = "Average transition risk category under \n equal weight assumption for Spain", y = "Group", title = "Average transition risk category under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_france, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for France", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_austria, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Austria", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_germany, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Germany", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_netherlands, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Netherlands", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category `netherlands`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_equal_weight_per_benchmark_country_risk_spain, "Average `avg_transition_risk_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Spain", y = "Group", title = "Share of companies under \n equal weight assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
-### Average `transition_risk_profile_best_case` per `grouping_transition_risk` and `transition_risk_category` for a country
+### Average `avg_transition_risk_best_case` per `grouping_transition_risk` and `transition_risk_category` for a country
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_transition_risk_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "france") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
-avg_transition_risk_best_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "austria") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
-avg_transition_risk_best_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "germany") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
-avg_transition_risk_best_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "netherlands") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
-avg_transition_risk_best_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_best_case", "spain") |>
-  rename("Average `transition_risk_profile_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", "france", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", "austria", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", "germany", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", "netherlands", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
+avg_transition_risk_best_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_best_case", "spain", thresholds) |>
+  rename("Average `avg_transition_risk_best_case`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category under \n best case assumption for France", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category under \n best case assumption for Austria", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category under \n best case assumption for Germany", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category under \n best case assumption for Netherlands", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_best_case`") +
-  labs(x = "Average transition risk category under \n best case assumption for Spain", y = "Group", title = "Average transition risk category under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_france, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for France", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_austria, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Austria", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_germany, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Germany", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_netherlands, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Netherlands", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_best_case_per_benchmark_country_risk_spain, "Average `avg_transition_risk_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Spain", y = "Group", title = "Share of companies under \n best case assumption per \n grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
-### Average `transition_risk_profile_worst_case` per `grouping_transition_risk` and `transition_risk_category` for a country
+### Average `avg_transition_risk_worst_case` per `grouping_transition_risk` and `transition_risk_category` for a country
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_transition_risk_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "france") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
-avg_transition_risk_worst_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "austria") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
-avg_transition_risk_worst_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "germany") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
-avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "netherlands") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
-avg_transition_risk_worst_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_product_example, "transition_risk_profile_worst_case", "spain") |>
-  rename("Average `transition_risk_profile_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", "france", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", "austria", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", "germany", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", "netherlands", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
+avg_transition_risk_worst_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(transition_risk_company_example, "avg_transition_risk_worst_case", "spain", thresholds) |>
+  rename("Average `avg_transition_risk_worst_case`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_france, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category under \n worst case assumption for France", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_austria, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category under \n worst case assumption for Austria", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_germany, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category under \n worst case assumption for Germany", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category under \n worst case assumption for Netherlands", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
-plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_spain, "Average `transition_risk_profile_worst_case`") +
-  labs(x = "Average transition risk category under \n worst case assumption for Spain", y = "Group", title = "Average transition risk category under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_france, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for France", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `france`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_austria, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Austria", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `austria`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_germany, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Germany", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `germany`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_netherlands, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Netherlands", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `netherlands`", fill = "transition risk category")
+plot_bar_plot_profile(avg_transition_risk_worst_case_per_benchmark_country_risk_spain, "Average `avg_transition_risk_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Spain", y = "Group", title = "Share of companies under \n worst case assumption per \n  grouping_transition_risk and \n transition_risk_category for `spain`", fill = "transition risk category")
 ```
 
 ### Example company-level output of transition risk profile for best case and worst case
 
 ```{r, warning=FALSE, echo=FALSE}
-# read_csv("transition_risk_profile_at_company_level_all_countries_wide_22_08_24.csv")
+# read_csv("transition_risk_profile_at_company_level_23_10_24.csv")
 transition_risk_company_example <- example_transition_risk_company_transition_risk_avg_best_case_worst_case()
 kable(transition_risk_company_example |> head(20))
 ```
