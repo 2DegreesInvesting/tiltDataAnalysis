@@ -21,7 +21,6 @@ This article shows how to calculate the descriptive analysis of equal weight,
 best case, and worst case for transition risk profile.
 
 ```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
-devtools::load_all(".")
 library(tiltDataAnalysis)
 library(tiltToyData)
 library(tiltIndicator)
