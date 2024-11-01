@@ -84,216 +84,160 @@ table {
 <p>This article shows how to calculate the descriptive analysis of equal
 weight, best case, and worst case for emission profile.</p>
 <div class="section level3">
-<h3 id="example-product-level-output-of-emission-profile-for-best-case-and-worst-case">Example product-level output of emission profile for best case and
-worst case<a class="anchor" aria-label="anchor" href="#example-product-level-output-of-emission-profile-for-best-case-and-worst-case"></a>
+<h3 id="example-company-level-output-of-emission-profile-for-best-case-and-worst-case">Example company-level output of emission profile for best case and
+worst case<a class="anchor" aria-label="anchor" href="#example-company-level-output-of-emission-profile-for-best-case-and-worst-case"></a>
 </h3>
 <table class="table">
 <colgroup>
-<col width="8%">
-<col width="12%">
-<col width="5%">
-<col width="12%">
+<col width="9%">
+<col width="9%">
+<col width="13%">
+<col width="23%">
 <col width="21%">
-<col width="19%">
-<col width="20%">
+<col width="22%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
-<th align="left">grouping_emission</th>
 <th align="left">country</th>
-<th align="left">emission_category</th>
-<th align="right">emissions_profile_equal_weight</th>
-<th align="right">emissions_profile_best_case</th>
-<th align="right">emissions_profile_worst_case</th>
+<th align="left">grouping_emission</th>
+<th align="right">emission_rank_avg_equal_weight</th>
+<th align="right">emission_rank_avg_best_case</th>
+<th align="right">emission_rank_avg_worst_case</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">comp_1</td>
-<td align="left">all</td>
 <td align="left">france</td>
-<td align="left">high</td>
+<td align="left">all</td>
 <td align="right">0.25</td>
 <td align="right">0.25</td>
 <td align="right">0.25</td>
+</tr>
+<tr class="even">
+<td align="left">comp_1</td>
+<td align="left">france</td>
+<td align="left">tilt_subsector</td>
+<td align="right">0.85</td>
+<td align="right">0.85</td>
+<td align="right">0.85</td>
+</tr>
+<tr class="odd">
+<td align="left">comp_2</td>
+<td align="left">france</td>
+<td align="left">all</td>
+<td align="right">0.10</td>
+<td align="right">0.10</td>
+<td align="right">0.10</td>
 </tr>
 <tr class="even">
 <td align="left">comp_2</td>
-<td align="left">all</td>
 <td align="left">france</td>
-<td align="left">high</td>
-<td align="right">0.25</td>
-<td align="right">0.25</td>
-<td align="right">0.25</td>
+<td align="left">tilt_subsector</td>
+<td align="right">0.30</td>
+<td align="right">0.30</td>
+<td align="right">0.30</td>
 </tr>
 <tr class="odd">
-<td align="left">comp_1</td>
+<td align="left">comp_3</td>
+<td align="left">austria</td>
 <td align="left">all</td>
-<td align="left">france</td>
-<td align="left">high</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
+<td align="right">0.35</td>
+<td align="right">0.35</td>
+<td align="right">0.35</td>
 </tr>
 <tr class="even">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="left">medium</td>
-<td align="right">0.10</td>
-<td align="right">0.10</td>
-<td align="right">0.10</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="left">low</td>
-<td align="right">0.15</td>
-<td align="right">0.15</td>
-<td align="right">0.15</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">france</td>
-<td align="left">low</td>
+<td align="left">comp_3</td>
+<td align="left">austria</td>
+<td align="left">tilt_subsector</td>
 <td align="right">0.55</td>
 <td align="right">0.55</td>
 <td align="right">0.55</td>
 </tr>
 <tr class="odd">
-<td align="left">comp_1</td>
+<td align="left">comp_4</td>
+<td align="left">austria</td>
 <td align="left">all</td>
-<td align="left">france</td>
-<td align="left">NA</td>
-<td align="right">0.30</td>
-<td align="right">0.30</td>
-<td align="right">0.30</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
 </tr>
 <tr class="even">
-<td align="left">comp_1</td>
+<td align="left">comp_4</td>
+<td align="left">austria</td>
 <td align="left">tilt_subsector</td>
-<td align="left">france</td>
-<td align="left">high</td>
-<td align="right">0.45</td>
-<td align="right">0.45</td>
-<td align="right">0.45</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
 </tr>
 <tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">tilt_subsector</td>
-<td align="left">france</td>
-<td align="left">medium</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
+<td align="left">comp_5</td>
+<td align="left">germany</td>
+<td align="left">all</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
 </tr>
 <tr class="even">
-<td align="left">comp_1</td>
+<td align="left">comp_5</td>
+<td align="left">germany</td>
 <td align="left">tilt_subsector</td>
-<td align="left">france</td>
-<td align="left">medium</td>
-<td align="right">0.40</td>
-<td align="right">0.40</td>
-<td align="right">0.40</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
 </tr>
 <tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">tilt_subsector</td>
-<td align="left">france</td>
-<td align="left">low</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
+<td align="left">comp_6</td>
+<td align="left">netherlands</td>
+<td align="left">all</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
 </tr>
 <tr class="even">
-<td align="left">comp_1</td>
+<td align="left">comp_6</td>
+<td align="left">netherlands</td>
 <td align="left">tilt_subsector</td>
-<td align="left">france</td>
-<td align="left">low</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
-<td align="right">0.75</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
 </tr>
 <tr class="odd">
-<td align="left">comp_1</td>
+<td align="left">comp_7</td>
+<td align="left">spain</td>
+<td align="left">all</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+<td align="right">0.70</td>
+</tr>
+<tr class="even">
+<td align="left">comp_7</td>
+<td align="left">spain</td>
 <td align="left">tilt_subsector</td>
-<td align="left">austria</td>
-<td align="left">high</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
-<td align="right">0.35</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">austria</td>
-<td align="left">high</td>
-<td align="right">0.25</td>
-<td align="right">0.25</td>
-<td align="right">0.25</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">austria</td>
-<td align="left">medium</td>
-<td align="right">0.10</td>
-<td align="right">0.10</td>
-<td align="right">0.10</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">austria</td>
-<td align="left">medium</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">austria</td>
-<td align="left">low</td>
-<td align="right">0.15</td>
-<td align="right">0.15</td>
-<td align="right">0.15</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">all</td>
-<td align="left">austria</td>
-<td align="left">NA</td>
-<td align="right">0.30</td>
-<td align="right">0.30</td>
-<td align="right">0.30</td>
-</tr>
-<tr class="odd">
-<td align="left">comp_1</td>
-<td align="left">tilt_subsector</td>
-<td align="left">austria</td>
-<td align="left">high</td>
-<td align="right">0.45</td>
-<td align="right">0.45</td>
-<td align="right">0.45</td>
-</tr>
-<tr class="even">
-<td align="left">comp_1</td>
-<td align="left">tilt_subsector</td>
-<td align="left">austria</td>
-<td align="left">medium</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
-<td align="right">0.60</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
+<td align="right">0.20</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_equal_weight-per-grouping_emission-and-emission_category">Average <code>emissions_profile_equal_weight</code> per
-grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emissions_profile_equal_weight-per-grouping_emission-and-emission_category"></a>
+<h3 id="average-emission_rank_avg_equal_weight-per-grouping_emission-and-emission_category">Average <code>emission_rank_avg_equal_weight</code> per
+grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_equal_weight-per-grouping_emission-and-emission_category"></a>
 </h3>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">avg_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">data</span>, <span class="va">col</span><span class="op">)</span> <span class="op">{</span></span>
+<span>  <span class="va">data</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"grouping_emission"</span>, <span class="va">col</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>risk_category <span class="op">=</span> <span class="fu">categorize_risk</span><span class="op">(</span><span class="va">.data</span><span class="op">[[</span><span class="va">col</span><span class="op">]</span><span class="op">]</span>, <span class="fl">1</span><span class="op">/</span><span class="fl">3</span>, <span class="fl">2</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>total_mode <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grouping_emission"</span>, <span class="st">"risk_category"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>proportion <span class="op">=</span> <span class="va">total_mode</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">total_mode</span><span class="op">)</span>, .by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"grouping_emission"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"total_mode"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grouping_emission</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">}</span></span>
+<span><span class="va">avg_emission_profile_equal_weight_per_benchmark_risk_category</span> <span class="op">&lt;-</span> <span class="fu">avg_per_benchmark_risk_category</span><span class="op">(</span><span class="va">emission_company_example</span>, <span class="st">"emission_rank_avg_equal_weight"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"Average `emission_rank_avg_equal_weight`"</span> <span class="op">=</span> <span class="st">"proportion"</span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
 <h4 id="bar-plot">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot"></a>
 </h4>
@@ -301,8 +245,8 @@ grouping_emission and emission_category<a class="anchor" aria-label="anchor" hre
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_best_case-per-grouping_emission-and-emission_category">Average <code>emissions_profile_best_case</code> per
-grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emissions_profile_best_case-per-grouping_emission-and-emission_category"></a>
+<h3 id="average-emission_rank_avg_best_case-per-grouping_emission-and-emission_category">Average <code>emission_rank_avg_best_case</code> per
+grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_best_case-per-grouping_emission-and-emission_category"></a>
 </h3>
 <div class="section level4">
 <h4 id="bar-plot-1">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot-1"></a>
@@ -311,8 +255,8 @@ grouping_emission and emission_category<a class="anchor" aria-label="anchor" hre
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_worst_case-per-grouping_emission-and-emission_category">Average <code>emissions_profile_worst_case</code> per
-grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emissions_profile_worst_case-per-grouping_emission-and-emission_category"></a>
+<h3 id="average-emission_rank_avg_worst_case-per-grouping_emission-and-emission_category">Average <code>emission_rank_avg_worst_case</code> per
+grouping_emission and emission_category<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_worst_case-per-grouping_emission-and-emission_category"></a>
 </h3>
 <div class="section level4">
 <h4 id="bar-plot-2">Bar plot<a class="anchor" aria-label="anchor" href="#bar-plot-2"></a>
@@ -321,8 +265,8 @@ grouping_emission and emission_category<a class="anchor" aria-label="anchor" hre
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_equal_weight-per-grouping_emission-and-emission_category-for-a-country">Average <code>emissions_profile_equal_weight</code> per
-grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emissions_profile_equal_weight-per-grouping_emission-and-emission_category-for-a-country"></a>
+<h3 id="average-emission_rank_avg_equal_weight-per-grouping_emission-and-emission_category-for-a-country">Average <code>emission_rank_avg_equal_weight</code> per
+grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_equal_weight-per-grouping_emission-and-emission_category-for-a-country"></a>
 </h3>
 <div class="section level4">
 <h4 id="bar-plots">Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots"></a>
@@ -331,8 +275,8 @@ grouping_emission and emission_category for a country<a class="anchor" aria-labe
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_base_case-per-grouping_emission-and-emission_category-for-a-country">Average <code>emissions_profile_base_case</code> per
-grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emissions_profile_base_case-per-grouping_emission-and-emission_category-for-a-country"></a>
+<h3 id="average-emission_rank_avg_best_case-per-grouping_emission-and-emission_category-for-a-country">Average <code>emission_rank_avg_best_case</code> per
+grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_best_case-per-grouping_emission-and-emission_category-for-a-country"></a>
 </h3>
 <div class="section level4">
 <h4 id="bar-plots-1">Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots-1"></a>
@@ -341,8 +285,8 @@ grouping_emission and emission_category for a country<a class="anchor" aria-labe
 </div>
 </div>
 <div class="section level3">
-<h3 id="average-emissions_profile_worst_case-per-grouping_emission-and-emission_category-for-a-country">Average <code>emissions_profile_worst_case</code> per
-grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emissions_profile_worst_case-per-grouping_emission-and-emission_category-for-a-country"></a>
+<h3 id="average-emission_rank_avg_worst_case-per-grouping_emission-and-emission_category-for-a-country">Average <code>emission_rank_avg_worst_case</code> per
+grouping_emission and emission_category for a country<a class="anchor" aria-label="anchor" href="#average-emission_rank_avg_worst_case-per-grouping_emission-and-emission_category-for-a-country"></a>
 </h3>
 <div class="section level4">
 <h4 id="bar-plots-2">Bar plots<a class="anchor" aria-label="anchor" href="#bar-plots-2"></a>
