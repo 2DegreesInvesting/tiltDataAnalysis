@@ -50,7 +50,7 @@ kable(transition_risk_company_example |> head(20))
 
 ### Average `avg_transition_risk_equal_weight` per `grouping_transition_risk` and `transition_risk_category`
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE}
 thresholds <- add_thresholds_transition_risk(co2, all_activities_scenario_sectors, scenarios) |>
   select(all_of(c("benchmark_tr_score", "transition_risk_low_threshold", "transition_risk_high_threshold"))) |>
   distinct() |>

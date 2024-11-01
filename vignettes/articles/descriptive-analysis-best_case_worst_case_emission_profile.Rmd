@@ -41,7 +41,7 @@ kable(emission_company_example |> head(20))
 
 ### Average `emission_rank_avg_equal_weight` per grouping_emission and emission_category
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE}
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
     select(all_of(c("companies_id", "grouping_emission", col))) |>
