@@ -22,6 +22,7 @@ best case, and worst case for sector profile.
 
 ```{r setup, echo = FALSE, message=FALSE, warning=FALSE}
 library(tiltDataAnalysis)
+library(tiltIndicator)
 library(kableExtra)
 library(dplyr)
 library(knitr)
@@ -33,28 +34,31 @@ options(readr.show_col_types = FALSE)
 ### Example product-level output of sector profile for best case and worst case
 
 ```{r, warning=FALSE, echo=FALSE}
-# read_csv("transition_risk_profile_at_product_level_16_10_24.csv")
-sector_product_example <- example_sector_product_best_case_worst_case()
-kable(sector_product_example |> head(20))
+# read_csv("transition_risk_profile_at_company_level_23_10_24.csv")
+sector_company_example <- example_transition_risk_company_sector_avg_best_case_worst_case()
+kable(sector_company_example |> head(20))
 ```
 
 ### Average `sector_profile_equal_weight` per grouping_sector and sector_category
 
-```{r, warning=FALSE, echo=FALSE}
+```{r, warning=FALSE}
 avg_per_benchmark_risk_category <- function(data, col) {
   data |>
-    select(all_of(c("scenario", "year", "sector_category", col))) |>
+    select(all_of(c("companies_id", "scenario", "year", col))) |>
     distinct() |>
+    mutate(risk_category = categorize_risk(.data[[col]], 
+                                           low_threshold = ifelse(.data$year == 2030, 1 / 9, 1 / 3), 
+                                           high_threshold = ifelse(.data$year == 2030, 2 / 9, 2 / 3))) |>
     mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
     select(-c("scenario", "year")) |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_sector", "sector_category")) |>
+    summarise(total_mode = n(), .by = c("grouping_sector", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_sector")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
     filter(!str_detect(grouping_sector, "NA"))
 }
-avg_sector_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_product_example, "sector_profile_equal_weight") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_company_example, "sector_target_avg_equal_weight") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
 ```
 
 #### Bar plot
@@ -64,146 +68,149 @@ score_colors <- function(...) c("low" = "#F6CB4E", "medium" = "#B3D15D", "high" 
 fill_score_colors <- function() scale_fill_manual(values = score_colors(), na.value = "#0476D0")
 
 plot_bar_plot_profile <- function(data, col) {
-  ggplot(data, aes(x = .data[[col]], y = .data$grouping_sector, fill = .data$sector_category)) +
+  ggplot(data, aes(x = .data[[col]], y = .data$grouping_sector, fill = .data$risk_category)) +
     geom_col(position = position_stack(reverse = TRUE), width = 0.5) +
     fill_score_colors() +
     tiltPlot::theme_tiltplot() +
     xlim(0, NA)
 }
 
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under equal weight assumption", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under equal weight assumption", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category", fill = " sector category")
 ```
 
-### Average `sector_profile_best_case` per grouping_sector and sector_category
+### Average `sector_target_avg_best_case` per grouping_sector and sector_category
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_sector_profile_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_product_example, "sector_profile_best_case") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_company_example, "sector_target_avg_best_case") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_risk_category, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under best case assumption", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_risk_category, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under best case assumption", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category", fill = " sector category")
 ```
 
-### Average `sector_profile_worst_case` per grouping_sector and sector_category
+### Average `sector_target_avg_worst_case` per grouping_sector and sector_category
 
 ```{r, warning=FALSE, echo=FALSE}
-avg_sector_profile_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_product_example, "sector_profile_worst_case") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_risk_category <- avg_per_benchmark_risk_category(sector_company_example, "sector_target_avg_worst_case") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
 ```
 
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_risk_category, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under worst case assumption", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_risk_category, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under worst case assumption", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category", fill = " sector category")
 ```
 
-### Average `sector_profile_equal_weight` per grouping_sector and sector_category for a country
+### Average `sector_target_avg_equal_weight` per grouping_sector and sector_category for a country
 
 ```{r, warning=FALSE, echo=FALSE}
 avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
   data |>
-    select(all_of(c("scenario", "year", "country", "sector_category", col))) |>
+    select(all_of(c("companies_id", "country", "scenario", "year", col))) |>
     distinct() |>
+    mutate(risk_category = categorize_risk(.data[[col]], 
+                                           low_threshold = ifelse(.data$year == 2030, 1 / 9, 1 / 3), 
+                                           high_threshold = ifelse(.data$year == 2030, 2 / 9, 2 / 3))) |>
     mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
     select(-c("scenario", "year")) |>
     filter(country == country_value) |>
-    summarise(total_mode = sum(.data[[col]], na.rm = TRUE), .by = c("grouping_sector", "sector_category")) |>
+    summarise(total_mode = n(), .by = c("grouping_sector", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_sector")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
     filter(!str_detect(grouping_sector, "NA"))
 }
-avg_sector_profile_equal_weight_per_benchmark_risk_category_france <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_equal_weight", "france") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
-avg_sector_profile_equal_weight_per_benchmark_risk_category_austria <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_equal_weight", "austria") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
-avg_sector_profile_equal_weight_per_benchmark_risk_category_germany <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_equal_weight", "germany") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
-avg_sector_profile_equal_weight_per_benchmark_risk_category_netherlands <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_equal_weight", "netherlands") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
-avg_sector_profile_equal_weight_per_benchmark_risk_category_spain <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_equal_weight", "spain") |>
-  rename("Average `sector_profile_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category_france <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_equal_weight", "france") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category_austria <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_equal_weight", "austria") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category_germany <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_equal_weight", "germany") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category_netherlands <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_equal_weight", "netherlands") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
+avg_sector_profile_equal_weight_per_benchmark_risk_category_spain <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_equal_weight", "spain") |>
+  rename("Average `sector_target_avg_equal_weight`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_france, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under \n equal weight assumption for France", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_austria, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under \n equal weight assumption for Austria", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_germany, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under \n equal weight assumption for Germany", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_netherlands, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under \n equal weight assumption for Netherlands", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_spain, "Average `sector_profile_equal_weight`") +
-  labs(x = "Average sector category under \n equal weight assumption for Spain", y = "Group", title = "Average sector category under equal weight \n assumption per grouping_sector and \n sector_category for country `spain`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_france, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for France", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_austria, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Austria", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_germany, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Germany", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_netherlands, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Netherlands", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_equal_weight_per_benchmark_risk_category_spain, "Average `sector_target_avg_equal_weight`") +
+  labs(x = "Share of companies under \n equal weight assumption for Spain", y = "Group", title = "Share of companies under equal weight \n assumption per grouping_sector and \n sector_category for country `spain`", fill = " sector category")
 ```
 
-### Average `sector_profile_base_case` per grouping_sector and sector_category for a country
+### Average `sector_target_avg_best_case` per grouping_sector and sector_category for a country
 
 ```{r, warning=FALSE, echo = FALSE}
-avg_sector_profile_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_best_case", "france") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
-avg_sector_profile_best_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_best_case", "austria") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
-avg_sector_profile_best_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_best_case", "germany") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
-avg_sector_profile_best_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_best_case", "netherlands") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
-avg_sector_profile_best_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_best_case", "spain") |>
-  rename("Average `sector_profile_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_best_case", "france") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_best_case", "austria") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_best_case", "germany") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_best_case", "netherlands") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
+avg_sector_profile_best_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_best_case", "spain") |>
+  rename("Average `sector_target_avg_best_case`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_france, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under \n best case assumption for France", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_austria, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under \n best case assumption for Austria", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_germany, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under \n best case assumption for Germany", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_netherlands, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under \n best case assumption for Netherlands", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_spain, "Average `sector_profile_best_case`") +
-  labs(x = "Average sector category under \n best case assumption for Spain", y = "Group", title = "Average sector category under best case \n assumption per grouping_sector and \n sector_category for `spain`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_france, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for France", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_austria, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Austria", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_germany, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Germany", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_netherlands, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Netherlands", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_best_case_per_benchmark_country_risk_spain, "Average `sector_target_avg_best_case`") +
+  labs(x = "Share of companies under \n best case assumption for Spain", y = "Group", title = "Share of companies under best case \n assumption per grouping_sector and \n sector_category for `spain`", fill = " sector category")
 ```
 
-### Average `sector_profile_worst_case` per grouping_sector and sector_category for a country
+### Average `sector_target_avg_worst_case` per grouping_sector and sector_category for a country
 
 ```{r, warning=FALSE, echo = FALSE}
-avg_sector_profile_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_worst_case", "france") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
-avg_sector_profile_worst_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_worst_case", "austria") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
-avg_sector_profile_worst_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_worst_case", "germany") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
-avg_sector_profile_worst_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_worst_case", "netherlands") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
-avg_sector_profile_worst_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(sector_product_example, "sector_profile_worst_case", "spain") |>
-  rename("Average `sector_profile_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_country_risk_france <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_worst_case", "france") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_country_risk_austria <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_worst_case", "austria") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_country_risk_germany <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_worst_case", "germany") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_country_risk_netherlands <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_worst_case", "netherlands") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
+avg_sector_profile_worst_case_per_benchmark_country_risk_spain <- avg_per_benchmark_country_risk_category(sector_company_example, "sector_target_avg_worst_case", "spain") |>
+  rename("Average `sector_target_avg_worst_case`" = "proportion")
 ```
 
 #### Bar plots
 
 ```{r, echo = FALSE, warning=FALSE}
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_france, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under \n worst case assumption for France", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_austria, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under \n worst case assumption for Austria", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_germany, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under \n worst case assumption for Germany", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_netherlands, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under \n worst case assumption for Netherlands", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
-plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_spain, "Average `sector_profile_worst_case`") +
-  labs(x = "Average sector category under \n worst case assumption for Spain", y = "Group", title = "Average sector category under worst case \n assumption per grouping_sector and \n sector_category for `spain`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_france, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for France", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category for `france`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_austria, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Austria", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category for `austria`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_germany, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Germany", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category for `germany`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_netherlands, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Netherlands", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category for `netherlands`", fill = " sector category")
+plot_bar_plot_profile(avg_sector_profile_worst_case_per_benchmark_country_risk_spain, "Average `sector_target_avg_worst_case`") +
+  labs(x = "Share of companies under \n worst case assumption for Spain", y = "Group", title = "Share of companies under worst case \n assumption per grouping_sector and \n sector_category for `spain`", fill = " sector category")
 ```
 
 
