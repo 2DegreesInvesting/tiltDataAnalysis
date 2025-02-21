@@ -21,6 +21,9 @@ This article shows how to calculate the descriptive analysis of co2_footprint pe
 benchmark using product-level output of Emissions profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(stats)
+library(base)
+library(tidyselect)
 library(tiltDataAnalysis)
 library(dplyr)
 library(tibble)

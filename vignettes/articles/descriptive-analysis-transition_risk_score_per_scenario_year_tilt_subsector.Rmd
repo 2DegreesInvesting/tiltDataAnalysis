@@ -14,6 +14,8 @@ scores for all `tilt_subsectors` per scenario-year-tilt_subsector benchmark
 using product-level output of Transition risk profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(base)
+library(stats)
 library(tiltDataAnalysis)
 library(kableExtra)
 library(dplyr)
