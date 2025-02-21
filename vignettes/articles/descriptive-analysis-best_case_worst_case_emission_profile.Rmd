@@ -34,7 +34,7 @@ options(readr.show_col_types = FALSE)
 ### Example company-level output of emission profile for best case and worst case
 
 ```{r, warning=FALSE, echo=FALSE}
-# read_csv("transition_risk_profile_at_company_level_23_10_24.csv")
+# read_csv("transition_risk_profile_at_company_level_29_01_25.csv")
 emission_company_example <- example_transition_risk_company_emission_avg_best_case_worst_case()
 kable(emission_company_example |> head(20))
 ```
@@ -47,11 +47,12 @@ avg_per_benchmark_risk_category <- function(data, col) {
     select(all_of(c("companies_id", "grouping_emission", col))) |>
     distinct() |>
     mutate(risk_category = categorize_risk(.data[[col]], 1/3, 2/3)) |>
+    filter(!is.na(.data[[col]])) |>
     summarise(total_mode = n(), .by = c("grouping_emission", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_emission")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
-    filter(grouping_emission %in% c("all", "tilt_subsector"))
+    filter(grouping_emission %in% c("unit", "unit_tilt_subsector", "unit_isic_4digit"))
 }
 avg_emission_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchmark_risk_category(emission_company_example, "emission_rank_avg_equal_weight") |>
   rename("Average `emission_rank_avg_equal_weight`" = "proportion")
@@ -60,10 +61,13 @@ avg_emission_profile_equal_weight_per_benchmark_risk_category <- avg_per_benchma
 #### Bar plot
 
 ```{r, echo = FALSE, warning=FALSE}
-score_colors <- function(...) c("low" = "#F6CB4E", "medium" = "#B3D15D", "high" = "#E3693B")
-fill_score_colors <- function() scale_fill_manual(values = score_colors(), na.value = "#0476D0")
+score_colors <- function(...) c("low" = "#B3D15D", "medium" = "#F6CB4E", "high" = "#E3693B")
+fill_score_colors <- function() scale_fill_manual(values = score_colors())
 
 plot_bar_plot_profile <- function(data, col) {
+  data <- data %>%
+    mutate(risk_category = factor(risk_category, levels = c("high", "medium", "low")))
+  
   ggplot(data, aes(x = .data[[col]], y = .data$grouping_emission, fill = .data$risk_category)) +
     geom_col(position = position_stack(reverse = TRUE), width = 0.5) +
     fill_score_colors() +
@@ -112,11 +116,12 @@ avg_per_benchmark_country_risk_category <- function(data, col, country_value) {
     filter(country == country_value) |>
     distinct() |>
     mutate(risk_category = categorize_risk(.data[[col]], 1/3, 2/3)) |>
+    filter(!is.na(.data[[col]])) |>
     summarise(total_mode = n(), .by = c("grouping_emission", "risk_category")) |>
     mutate(proportion = total_mode / sum(total_mode), .by = c("grouping_emission")) |>
     select(-all_of(c("total_mode"))) |>
     distinct() |>
-    filter(grouping_emission %in% c("all", "tilt_subsector"))
+    filter(grouping_emission %in% c("unit", "unit_tilt_subsector", "unit_isic_4digit"))
 }
 avg_emission_profile_equal_weight_per_benchmark_risk_category_france <- avg_per_benchmark_country_risk_category(emission_company_example, "emission_rank_avg_equal_weight", "france") |>
   rename("Average `emission_rank_avg_equal_weight`" = "proportion")
@@ -228,7 +233,7 @@ emission_rank_avg_per_benchmark <- function(data, col) {
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_emission") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct() |>
-    filter(grouping_emission %in% c("all", "tilt_subsector"))
+    filter(grouping_emission %in% c("unit", "unit_tilt_subsector", "unit_isic_4digit"))
 }
 emission_rank_avg_equal_weight_per_benchmark <- emission_rank_avg_per_benchmark(transition_risk_company_example, "emission_rank_avg_equal_weight") 
 
@@ -276,7 +281,7 @@ emission_rank_avg_per_benchmark_country <- function(data, col, country_value) {
     mutate("75th_quantile" = quantile(.data[[col]], 0.75, na.rm = TRUE), .by = "grouping_emission") |>
     select(-all_of(c("sum_mode", col, "companies_id", "distinct_comp"))) |>
     distinct() |>
-    filter(grouping_emission %in% c("all", "tilt_subsector"))
+    filter(grouping_emission %in% c("unit", "unit_tilt_subsector", "unit_isic_4digit"))
 }
 emission_rank_avg_equal_weight_per_benchmark_france <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_equal_weight", "france")
 emission_rank_avg_equal_weight_per_benchmark_austria <- emission_rank_avg_per_benchmark_country(transition_risk_company_example, "emission_rank_avg_equal_weight", "austria")

@@ -14,11 +14,30 @@ scores for all `tilt_subsectors` per scenario-year-tilt_subsector benchmark
 using product-level output of Transition risk profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(base)
+library(stats)
 library(tiltDataAnalysis)
 library(kableExtra)
 library(dplyr)
 library(knitr)
 options(readr.show_col_types = FALSE)
+```
+
+### Functions
+
+```{r, echo=FALSE}
+calculate_trs_descriptive_analysis_per_tr_benchmark <- function(transition_risk_product, transition_risk_benchmark) {
+  transition_risk_product |>
+    select(c("tilt_subsector", "grouping_transition_risk", "transition_risk_score")) |>
+    distinct() |>
+    filter(.data$grouping_transition_risk == transition_risk_benchmark) |>
+    mutate(tr_average = mean(.data$transition_risk_score, na.rm = TRUE), .by = "tilt_subsector") |>
+    mutate(tr_median = median(.data$transition_risk_score, na.rm = TRUE), .by = "tilt_subsector") |>
+    mutate(tr_25th = quantile(.data$transition_risk_score, 0.25, na.rm = TRUE), .by = "tilt_subsector") |>
+    mutate(tr_75th = quantile(.data$transition_risk_score, 0.75, na.rm = TRUE), .by = "tilt_subsector") |>
+    select(-c("transition_risk_score")) |>
+    distinct()
+}
 ```
 
 ### Example subset of product-level output of Transition risk profile.

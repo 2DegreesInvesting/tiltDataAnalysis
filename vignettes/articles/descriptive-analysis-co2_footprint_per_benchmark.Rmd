@@ -21,6 +21,9 @@ This article shows how to calculate the descriptive analysis of co2_footprint pe
 benchmark using product-level output of Emissions profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(stats)
+library(base)
+library(tidyselect)
 library(tiltDataAnalysis)
 library(dplyr)
 library(tibble)
@@ -28,6 +31,41 @@ library(kableExtra)
 library(knitr)
 library(stringr)
 options(readr.show_col_types = FALSE)
+```
+
+### Functions
+
+```{r, echo=FALSE}
+calculate_co2_descriptive_analysis_per_benchmark <- function(emission_product, grouping_emission) {
+  if (grouping_emission == "all") {
+    select_benchmarks <- c("grouping_emission", "co2_footprint", "activity_uuid_product_uuid")
+    group_benchmark <- NULL
+  } else if (grouping_emission == "unit_isic_4digit") {
+    select_benchmarks <- c("unit", "isic_4digit", "grouping_emission", "co2_footprint", "activity_uuid_product_uuid")
+    group_benchmark <- c("unit", "isic_4digit")
+  } else if (grouping_emission == "unit_tilt_subsector") {
+    select_benchmarks <- c("tilt_sector", "unit", "tilt_subsector", "grouping_emission", "co2_footprint", "activity_uuid_product_uuid")
+    group_benchmark <- c("unit", "tilt_subsector")
+  } else {
+    select_benchmarks <- c("tilt_sector", grouping_emission, "grouping_emission", "co2_footprint", "activity_uuid_product_uuid")
+    group_benchmark <- grouping_emission
+  }
+
+  output <- emission_product |>
+    select(all_of(select_benchmarks)) |>
+    distinct() |>
+    filter(grouping_emission == grouping_emission) |>
+    select(-c("grouping_emission")) |>
+    mutate("# of distinct products" = n_distinct(.data$activity_uuid_product_uuid, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("min CO2e" = min(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("max CO2e" = max(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("mean CO2e" = mean(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    mutate("median CO2e" = median(.data$co2_footprint, na.rm = TRUE), .by = group_benchmark) |>
+    select(-all_of(c("activity_uuid_product_uuid", "co2_footprint"))) |>
+    distinct()
+
+  output[order(output[[1]], output[[2]]), ]
+}
 ```
 
 ### Example subset of product-level output of Emissions profile.

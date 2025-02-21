@@ -109,17 +109,17 @@ example_transition_risk_sector_ep_product_des_analysis <- function() {
 example_transition_risk_ep_product_des_analysis <- function() {
   tribble(
     # styler: off
-    ~companies_id, ~product, ~grouping_transition_risk, ~transition_risk_category,
-         "comp_1",      "a",       "1.5C RPS_2030_all",                    "high",
-         "comp_1",      "b",       "1.5C RPS_2030_all",                    "high",
-         "comp_1",      "c",       "1.5C RPS_2030_all",                    "high",
-         "comp_1",      "d",             NA_character_,             NA_character_,
-         "comp_1",      "e",             NA_character_,             NA_character_,
-         "comp_2",      "a",       "1.5C RPS_2030_all",                    "high",
-         "comp_2",      "b",       "1.5C RPS_2030_all",                    "high",
-         "comp_2",      "c",       "1.5C RPS_2030_all",                    "high",
-         "comp_3",      "d",             NA_character_,             NA_character_,
-         "comp_3",      "e",             NA_character_,             NA_character_
+    ~companies_id,  ~country, ~product, ~grouping_transition_risk, ~transition_risk_category,
+         "comp_1", "germany",      "a",       "1.5C RPS_2030_all",                    "high",
+         "comp_1", "germany",      "b",       "1.5C RPS_2030_all",                    "high",
+         "comp_1", "germany",      "c",       "1.5C RPS_2030_all",                    "high",
+         "comp_1", "germany",      "d",             NA_character_,             NA_character_,
+         "comp_1", "germany",      "e",             NA_character_,             NA_character_,
+         "comp_2", "germany",      "a",       "1.5C RPS_2030_all",                    "high",
+         "comp_2", "germany",      "b",       "1.5C RPS_2030_all",                    "high",
+         "comp_2", "germany",      "c",       "1.5C RPS_2030_all",                    "high",
+         "comp_3", "germany",      "d",             NA_character_,             NA_character_,
+         "comp_3", "germany",      "e",             NA_character_,             NA_character_
     # styler: on
   )
 }
@@ -169,15 +169,15 @@ example_transition_risk_product_sector_cov <- function() {
 example_transition_risk_product_transition_risk_cov <- function() {
   tribble(
     # styler: off
-    ~companies_id,      ~grouping_transition_risk, ~cov_transition_risk,
-         "comp_1", "1.5C RPS_2030_tilt_subsector",                 10.0,
-         "comp_1", "1.5C RPS_2050_tilt_subsector",                 15.0,
-         "comp_1",  "NZ 2050_2030_tilt_subsector",                 20.0,
-         "comp_1",  "NZ 2050_2050_tilt_subsector",                 25.0,
-         "comp_2", "1.5C RPS_2030_tilt_subsector",                 45.0,
-         "comp_2", "1.5C RPS_2050_tilt_subsector",                 50.0,
-         "comp_2",  "NZ 2050_2030_tilt_subsector",                 55.0,
-         "comp_2",  "NZ 2050_2050_tilt_subsector",                 60.0
+    ~companies_id, ~grouping_transition_risk, ~cov_transition_risk,
+         "comp_1",      "1.5C RPS_2030_unit",                 10.0,
+         "comp_1",      "1.5C RPS_2050_unit",                 15.0,
+         "comp_1",       "NZ 2050_2030_unit",                 20.0,
+         "comp_1",       "NZ 2050_2050_unit",                 25.0,
+         "comp_2",      "1.5C RPS_2030_unit",                 45.0,
+         "comp_2",      "1.5C RPS_2050_unit",                 50.0,
+         "comp_2",       "NZ 2050_2030_unit",                 55.0,
+         "comp_2",       "NZ 2050_2050_unit",                 60.0
     # styler: on
   )
 }
@@ -268,20 +268,20 @@ example_transition_risk_company_emission_avg_best_case_worst_case <- function() 
   tribble(
     # styler: off
     ~companies_id,      ~country, ~grouping_emission, ~emission_rank_avg_equal_weight, ~emission_rank_avg_best_case,  ~emission_rank_avg_worst_case,
-         "comp_1",      "france",              "all",                            0.25,                         0.25,                           0.25,
-         "comp_1",      "france",   "tilt_subsector",                            0.85,                         0.85,                           0.85,
-         "comp_2",      "france",              "all",                            0.10,                         0.10,                           0.10,
-         "comp_2",      "france",   "tilt_subsector",                            0.30,                         0.30,                           0.30,
-         "comp_3",     "austria",              "all",                            0.35,                         0.35,                           0.35,
-         "comp_3",     "austria",   "tilt_subsector",                            0.55,                         0.55,                           0.55,
-         "comp_4",     "austria",              "all",                            0.70,                         0.70,                           0.70,
-         "comp_4",     "austria",   "tilt_subsector",                            0.20,                         0.20,                           0.20,
-         "comp_5",     "germany",              "all",                            0.70,                         0.70,                           0.70,
-         "comp_5",     "germany",   "tilt_subsector",                            0.20,                         0.20,                           0.20,
-         "comp_6", "netherlands",              "all",                            0.70,                         0.70,                           0.70,
-         "comp_6", "netherlands",   "tilt_subsector",                            0.20,                         0.20,                           0.20,
-         "comp_7",       "spain",              "all",                            0.70,                         0.70,                           0.70,
-         "comp_7",       "spain",   "tilt_subsector",                            0.20,                         0.20,                           0.20
+         "comp_1",      "france",             "unit",                            0.25,                         0.25,                           0.25,
+         "comp_1",      "france", "unit_isic_4digit",                            0.85,                         0.85,                           0.85,
+         "comp_2",      "france",             "unit",                            0.10,                         0.10,                           0.10,
+         "comp_2",      "france", "unit_isic_4digit",                            0.30,                         0.30,                           0.30,
+         "comp_3",     "austria",             "unit",                            0.35,                         0.35,                           0.35,
+         "comp_3",     "austria", "unit_isic_4digit",                            0.55,                         0.55,                           0.55,
+         "comp_4",     "austria",             "unit",                            0.70,                         0.70,                           0.70,
+         "comp_4",     "austria", "unit_isic_4digit",                            0.20,                         0.20,                           0.20,
+         "comp_5",     "germany",             "unit",                            0.70,                         0.70,                           0.70,
+         "comp_5",     "germany", "unit_isic_4digit",                            0.20,                         0.20,                           0.20,
+         "comp_6", "netherlands",             "unit",                            0.70,                         0.70,                           0.70,
+         "comp_6", "netherlands", "unit_isic_4digit",                            0.20,                         0.20,                           0.20,
+         "comp_7",       "spain",             "unit",                            0.70,                         0.70,                           0.70,
+         "comp_7",       "spain", "unit_isic_4digit",                            0.20,                         0.20,                           0.20
     # styler: on
   )
 }
@@ -356,20 +356,20 @@ example_transition_risk_company_transition_risk_avg_best_case_worst_case <- func
   tribble(
     # styler: off
     ~companies_id,      ~country, ~grouping_transition_risk, ~avg_transition_risk_equal_weight, ~avg_transition_risk_best_case,  ~avg_transition_risk_worst_case,
-         "comp_1",      "france",       "1.5C RPS_2030_all",                              0.25,                           0.25,                             0.25,
-         "comp_1",      "france",        "NZ 2050_2030_all",                              0.85,                           0.85,                             0.85,
-         "comp_2",      "france",       "1.5C RPS_2030_all",                              0.10,                           0.10,                             0.10,
-         "comp_2",      "france",        "NZ 2050_2030_all",                              0.30,                           0.30,                             0.30,
-         "comp_3",     "austria",       "1.5C RPS_2030_all",                              0.35,                           0.35,                             0.35,
-         "comp_3",     "austria",        "NZ 2050_2030_all",                              0.55,                           0.55,                             0.55,
-         "comp_4",     "austria",       "1.5C RPS_2030_all",                              0.70,                           0.70,                             0.70,
-         "comp_4",     "austria",        "NZ 2050_2030_all",                              0.20,                           0.20,                             0.20,
-         "comp_5",     "germany",       "1.5C RPS_2030_all",                              0.70,                           0.70,                             0.70,
-         "comp_5",     "germany",        "NZ 2050_2030_all",                              0.20,                           0.20,                             0.20,
-         "comp_6", "netherlands",       "1.5C RPS_2030_all",                              0.70,                           0.70,                             0.70,
-         "comp_6", "netherlands",        "NZ 2050_2030_all",                              0.20,                           0.20,                             0.20,
-         "comp_7",       "spain",       "1.5C RPS_2030_all",                              0.70,                           0.70,                             0.70,
-         "comp_7",       "spain",        "NZ 2050_2030_all",                              0.20,                           0.20,                             0.20
+         "comp_1",      "france",      "1.5C RPS_2030_unit",                              0.25,                           0.25,                             0.25,
+         "comp_1",      "france",       "NZ 2050_2030_unit",                              0.85,                           0.85,                             0.85,
+         "comp_2",      "france",      "1.5C RPS_2030_unit",                              0.10,                           0.10,                             0.10,
+         "comp_2",      "france",       "NZ 2050_2030_unit",                              0.30,                           0.30,                             0.30,
+         "comp_3",     "austria",      "1.5C RPS_2030_unit",                              0.35,                           0.35,                             0.35,
+         "comp_3",     "austria",       "NZ 2050_2030_unit",                              0.55,                           0.55,                             0.55,
+         "comp_4",     "austria",      "1.5C RPS_2030_unit",                              0.70,                           0.70,                             0.70,
+         "comp_4",     "austria",       "NZ 2050_2030_unit",                              0.20,                           0.20,                             0.20,
+         "comp_5",     "germany",      "1.5C RPS_2030_unit",                              0.70,                           0.70,                             0.70,
+         "comp_5",     "germany",       "NZ 2050_2030_unit",                              0.20,                           0.20,                             0.20,
+         "comp_6", "netherlands",      "1.5C RPS_2030_unit",                              0.70,                           0.70,                             0.70,
+         "comp_6", "netherlands",       "NZ 2050_2030_unit",                              0.20,                           0.20,                             0.20,
+         "comp_7",       "spain",      "1.5C RPS_2030_unit",                              0.70,                           0.70,                             0.70,
+         "comp_7",       "spain",       "NZ 2050_2030_unit",                              0.20,                           0.20,                             0.20
     # styler: on
   )
 }

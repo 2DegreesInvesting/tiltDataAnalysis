@@ -36,6 +36,7 @@ options(readr.show_col_types = FALSE)
 #### Input
 
 ```{r, echo=FALSE}
+# read_csv("ep_companies.csv")
 example_europages_companies <- read_csv(toy_europages_companies()) |> head(10)
 kable(example_europages_companies, format = "html", escape = FALSE) %>%
   kable_styling(bootstrap_options = "striped", full_width = FALSE) %>%
@@ -54,7 +55,7 @@ cat("Distinct europages products:", n_distinct(example_europages_companies$clust
 #### Input
 
 ```{r, echo=FALSE}
-# base_input <- read_csv("transition_risk_profile_at_product_level_all_countries_wide_22_08_24.csv")
+# read_csv("transition_risk_profile_at_product_level_23_10_24.csv")
 example_emission_profile <- example_transition_risk_emission_ep_product_des_analysis()
 kable(example_emission_profile)
 ```
@@ -77,6 +78,7 @@ cat("Distinct europages products:", n_distinct(matched_ecoinvent$product))
 #### Input
 
 ```{r, echo=FALSE}
+# read_csv("transition_risk_profile_at_product_level_23_10_24.csv")
 example_sector_profile <- example_transition_risk_sector_ep_product_des_analysis()
 kable(example_sector_profile)
 ```
@@ -128,6 +130,7 @@ cat("Average amount of distinct ep products per company for sector profile if th
 #### Input
 
 ```{r, echo=FALSE}
+# read_csv("transition_risk_profile_at_product_level_23_10_24.csv")
 example_transition_risk_profile <- example_transition_risk_ep_product_des_analysis()
 kable(example_transition_risk_profile)
 ```
@@ -181,9 +184,8 @@ cat("Distinct ep products without a risk category for transition risk profile:",
 transition_risk_product <- product_transition_risk
 profile_rank_df <- transition_risk_product |>
   select(all_of(c("product", "grouping_emission", "emission_rank"))) |> 
-  filter(grouping_emission %in% c("all", "tilt_subsector")) |>
-  distinct() |>
-  filter(product %in% c("tent", "surface engineering"))
+  filter(grouping_emission %in% c("unit", "unit_tilt_subsector", "unit_isic_4digit")) |>
+  distinct()
 ```
 
 ```{r, results='asis', echo=FALSE}
@@ -216,8 +218,7 @@ reduction_targets_df <- transition_risk_product |>
   select(all_of(c("product", "scenario", "year", "sector_target"))) |>
   distinct() |>
   mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
-  select(-all_of(c("scenario", "year"))) |>
-  filter(product %in% c("tent", "surface engineering"))
+  select(-all_of(c("scenario", "year"))) 
 ```
 
 ```{r, echo=FALSE}
@@ -250,15 +251,16 @@ kable(avg_reduction_targets_df, align = "lc", caption = "Average reduction targe
 trs_df <- transition_risk_product |>
   select(all_of(c("product", "grouping_transition_risk", "transition_risk_score"))) |>
   distinct() |>
-  filter(grouping_transition_risk %in% c("1.5C RPS_2030_tilt_subsector", "1.5C RPS_2050_tilt_subsector",
-                                         "NZ 2050_2030_tilt_subsector", "NZ 2050_2050_tilt_subsector",
-                                         "1.5C RPS_2030_all", "1.5C RPS_2050_all",
-                                         "NZ 2050_2030_all", "NZ 2050_2050_all")) |>
-  filter(product %in% c("tent", "surface engineering"))
+  filter(grouping_transition_risk %in% c("1.5C RPS_2030_unit_tilt_subsector", "1.5C RPS_2050_unit_tilt_subsector",
+                                         "NZ 2050_2030_unit_tilt_subsector", "NZ 2050_2050_unit_tilt_subsector",
+                                         "1.5C RPS_2030_unit", "1.5C RPS_2050_unit",
+                                         "NZ 2050_2030_unit", "NZ 2050_2050_unit",
+                                         "1.5C RPS_2030_unit_isic_4digit", "1.5C RPS_2050_unit_isic_4digit",
+                                         "NZ 2050_2030_unit_isic_4digit", "NZ 2050_2050_unit_isic_4digit")) 
 ```
 
 ```{r, results='asis', echo=FALSE}
-kable(trs_df |> head(10))
+kable(trs_df |> head(20))
 ```
 
 #### Output
@@ -271,8 +273,8 @@ avg_trs_df <- trs_df |>
   select(-all_of(c("sum_trs", "distinct_products_per_benchmark", "transition_risk_score", "product"))) |>
   distinct()
 
-avg_trs_df$group <- sub(".*0_", "", avg_trs_df$grouping_transition_risk)
-avg_trs_df$scenario <- sub("(0)_.*", "\\1", avg_trs_df$grouping_transition_risk)
+avg_trs_df$scenario <- sub("_((?:tilt|unit|all).*)", "", avg_trs_df$grouping_transition_risk)
+avg_trs_df$group <- sub(".*?_((tilt|unit|all).*)", "\\1", avg_trs_df$grouping_transition_risk)
 avg_trs_df <- avg_trs_df |>
   select(-all_of(c("grouping_transition_risk"))) |>
   relocate(all_of(c("group", "scenario")))
@@ -286,12 +288,53 @@ kable(avg_trs_df, align = "llc", caption = "Average transition risk scores of al
   collapse_rows(columns = 1, valign = "top")
 ```
 
+### Average transition risk scores of all ep products per tilt_subsector and country
+
+#### Input
+
+```{r, echo=FALSE}
+trs_df <- transition_risk_product |>
+  select(all_of(c("product", "country", "grouping_transition_risk", "transition_risk_score"))) |>
+  distinct() |>
+  filter(grouping_transition_risk %in% c("1.5C RPS_2030_unit_tilt_subsector", "1.5C RPS_2050_unit_tilt_subsector",
+                                         "NZ 2050_2030_unit_tilt_subsector", "NZ 2050_2050_unit_tilt_subsector")) 
+```
+
+```{r, results='asis', echo=FALSE}
+kable(trs_df |> head(20))
+```
+
+#### Output
+
+```{r, echo=FALSE}
+avg_trs_df_country <- trs_df |>
+  mutate(sum_trs = sum(.data$transition_risk_score, na.rm = TRUE), .by = c("grouping_transition_risk", "country")) |>
+  mutate(distinct_products_per_benchmark = n_distinct(.data$product, na.rm = TRUE), .by = c("grouping_transition_risk", "country")) |>
+  mutate("transition risk average" = sum_trs/distinct_products_per_benchmark) |>
+  select(-all_of(c("sum_trs", "distinct_products_per_benchmark", "transition_risk_score", "product"))) |>
+  distinct()
+
+avg_trs_df_country$scenario <- sub("_((?:tilt|unit|all).*)", "", avg_trs_df_country$grouping_transition_risk)
+avg_trs_df_country$group <- sub(".*?_((tilt|unit|all).*)", "\\1", avg_trs_df_country$grouping_transition_risk)
+avg_trs_df_country <- avg_trs_df_country |>
+  select(-all_of(c("grouping_transition_risk"))) |>
+  relocate(all_of(c("group", "country", "scenario")))
+```
+
+```{r, results='asis', echo=FALSE}
+kable(avg_trs_df_country, align = "lllc", caption = "Average transition risk scores of all ep products per transition risk group per country", escape = F) |>
+  kable_classic(full_width = F, html_font = "Roboto Condensed") |>
+  column_spec(1, width = "3cm") |>
+  column_spec(4, width = "5cm") |>
+  collapse_rows(columns = 1:2, valign = "top")
+```
+
 ### Average NA share per company 
 
 #### Companies with atleast one matched ecoinvent product for emission profile
 
 ```{r, echo = FALSE}
-# read_csv("transition_risk_profile_at_company_level_all_countries_wide_21_08_24.csv")
+# read_csv("transition_risk_profile_at_company_level_23_10_24.csv")
 transition_risk_company <- company_transition_risk
 companies_atleast_one_product_per_profile <- function(data, profile) {
   data |>

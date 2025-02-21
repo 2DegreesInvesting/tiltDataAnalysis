@@ -21,11 +21,38 @@ This article outlines how to show reduction targets for all `tilt_subsectors` pe
 grouping_sector using product-level output of Sector profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(tidyselect)
+library(tidyr)
+library(stringr)
 library(tiltDataAnalysis)
 library(kableExtra)
 library(dplyr)
 library(knitr)
 options(readr.show_col_types = FALSE)
+```
+
+### Functions
+
+```{r, warning=FALSE, echo=FALSE}
+show_reduction_targets_for_tilt_subsectors_per_grouping_sector <- function(sector_product) {
+  sector_product |>
+    select(all_of(c("tilt_sector", "tilt_subsector", "scenario", "year", "reduction_targets"))) |>
+    distinct() |>
+    mutate(grouping_sector = paste(.data$scenario, .data$year, sep = "_")) |>
+    select(-c("scenario", "year")) |>
+    filter(!str_detect(.data$grouping_sector, "NA")) |>
+    pivot_wider(
+      names_from = "grouping_sector",
+      values_from = "reduction_targets"
+    ) |>
+    rename(
+      IPR_2030 = "1.5C RPS_2030",
+      IPR_2050 = "1.5C RPS_2050",
+      WEO_2030 = "NZ 2050_2030",
+      WEO_2050 = "NZ 2050_2050",
+    ) |>
+    arrange(.data$tilt_sector, .data$tilt_subsector)
+}
 ```
 
 ### Example subset of product-level output of Sector profile
