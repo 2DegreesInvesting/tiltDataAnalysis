@@ -21,6 +21,7 @@ This article outlines how to show reduction targets for all `tilt_subsectors` pe
 grouping_sector using product-level output of Sector profile indicator.
 
 ```{r setup, warning=FALSE, echo = FALSE, message=FALSE}
+library(tidyr)
 library(tiltDataAnalysis)
 library(kableExtra)
 library(dplyr)
