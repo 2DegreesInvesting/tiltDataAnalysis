@@ -8,8 +8,8 @@
 <title>Descriptive analysis of coefficient of variation • tiltDataAnalysis</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Descriptive analysis of coefficient of variation">
 </head>
 <body>
@@ -163,7 +163,7 @@ transition risk profile.</p>
 profile benchmarks<a class="anchor" aria-label="anchor" href="#average-cov_emission_rank-per-company-for-emission-profile-benchmarks"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">avg_cov_emission_rank_per_benchmark</span> <span class="op">&lt;-</span> <span class="va">emission_product_example</span> <span class="op">|&gt;</span></span>
+<code class="sourceCode R"><span><span class="va">avg_cov_emission_rank_per_benchmark</span> <span class="op">&lt;-</span> <span class="va">emission_company_example</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"companies_id"</span>, <span class="st">"grouping_emission"</span>, <span class="st">"cov_emission_rank"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">cov_emission_rank</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -172,7 +172,7 @@ profile benchmarks<a class="anchor" aria-label="anchor" href="#average-cov_emiss
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span><span class="st">"Average COV of emission rank for all firms"</span> <span class="op">=</span> <span class="va">sum_cov_emission_rank</span><span class="op">/</span><span class="va">distinct_companies_per_benchmark</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"sum_cov_emission_rank"</span>, <span class="st">"distinct_companies_per_benchmark"</span>, <span class="st">"cov_emission_rank"</span>, <span class="st">"companies_id"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grouping_emission</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"all"</span>, <span class="st">"tilt_subsector"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">grouping_emission</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"unit"</span>, <span class="st">"unit_tilt_subsector"</span>, <span class="st">"unit_isic_4digit"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span><span class="st">"group"</span> <span class="op">=</span> <span class="st">"grouping_emission"</span><span class="op">)</span></span></code></pre></div>
 <table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
@@ -189,18 +189,26 @@ Average COV of emission rank for all firms
 <tbody>
 <tr>
 <td style="text-align:left;">
-all
+unit
 </td>
 <td style="text-align:center;width: 5cm; ">
-27.5
+42.5
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-tilt_subsector
+unit_isic_4digit
 </td>
 <td style="text-align:center;width: 5cm; ">
-37.5
+47.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+unit_tilt_subsector
+</td>
+<td style="text-align:center;width: 5cm; ">
+52.5
 </td>
 </tr>
 </tbody>
@@ -334,42 +342,42 @@ NZ 2050_2050
 <tbody>
 <tr class="odd">
 <td align="left">comp_1</td>
-<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="left">1.5C RPS_2030_unit</td>
 <td align="right">10</td>
 </tr>
 <tr class="even">
 <td align="left">comp_1</td>
-<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="left">1.5C RPS_2050_unit</td>
 <td align="right">15</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_1</td>
-<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="left">NZ 2050_2030_unit</td>
 <td align="right">20</td>
 </tr>
 <tr class="even">
 <td align="left">comp_1</td>
-<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="left">NZ 2050_2050_unit</td>
 <td align="right">25</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_2</td>
-<td align="left">1.5C RPS_2030_tilt_subsector</td>
+<td align="left">1.5C RPS_2030_unit</td>
 <td align="right">45</td>
 </tr>
 <tr class="even">
 <td align="left">comp_2</td>
-<td align="left">1.5C RPS_2050_tilt_subsector</td>
+<td align="left">1.5C RPS_2050_unit</td>
 <td align="right">50</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_2</td>
-<td align="left">NZ 2050_2030_tilt_subsector</td>
+<td align="left">NZ 2050_2030_unit</td>
 <td align="right">55</td>
 </tr>
 <tr class="even">
 <td align="left">comp_2</td>
-<td align="left">NZ 2050_2050_tilt_subsector</td>
+<td align="left">NZ 2050_2050_unit</td>
 <td align="right">60</td>
 </tr>
 </tbody>
@@ -398,7 +406,7 @@ Average COV of transition risk for all firms
 <tbody>
 <tr>
 <td style="text-align:left;vertical-align: top !important;" rowspan="4">
-tilt_subsector
+unit
 </td>
 <td style="text-align:left;">
 1.5C RPS_2030
@@ -417,7 +425,7 @@ tilt_subsector
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
 37.5
@@ -425,7 +433,7 @@ NZ 2050
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
 42.5

@@ -8,8 +8,8 @@
 <title>Descriptive analysis of products • tiltDataAnalysis</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Descriptive analysis of products">
 </head>
 <body>
@@ -668,13 +668,15 @@ risk category<a class="anchor" aria-label="anchor" href="#average-amount-of-dist
 </h4>
 <table class="table">
 <colgroup>
-<col width="18%">
-<col width="11%">
-<col width="35%">
-<col width="35%">
+<col width="16%">
+<col width="10%">
+<col width="10%">
+<col width="31%">
+<col width="31%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">companies_id</th>
+<th align="left">country</th>
 <th align="left">product</th>
 <th align="left">grouping_transition_risk</th>
 <th align="left">transition_risk_category</th>
@@ -682,60 +684,70 @@ risk category<a class="anchor" aria-label="anchor" href="#average-amount-of-dist
 <tbody>
 <tr class="odd">
 <td align="left">comp_1</td>
+<td align="left">germany</td>
 <td align="left">a</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="even">
 <td align="left">comp_1</td>
+<td align="left">germany</td>
 <td align="left">b</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_1</td>
+<td align="left">germany</td>
 <td align="left">c</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="even">
 <td align="left">comp_1</td>
+<td align="left">germany</td>
 <td align="left">d</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_1</td>
+<td align="left">germany</td>
 <td align="left">e</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">comp_2</td>
+<td align="left">germany</td>
 <td align="left">a</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_2</td>
+<td align="left">germany</td>
 <td align="left">b</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="even">
 <td align="left">comp_2</td>
+<td align="left">germany</td>
 <td align="left">c</td>
 <td align="left">1.5C RPS_2030_all</td>
 <td align="left">high</td>
 </tr>
 <tr class="odd">
 <td align="left">comp_3</td>
+<td align="left">germany</td>
 <td align="left">d</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">comp_3</td>
+<td align="left">germany</td>
 <td align="left">e</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -789,23 +801,53 @@ grouping_emission<a class="anchor" aria-label="anchor" href="#average-profile-ra
 <tbody>
 <tr class="odd">
 <td align="left">tent</td>
-<td align="left">all</td>
-<td align="right">1.0000000</td>
+<td align="left">unit</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">tilt_subsector</td>
-<td align="right">1.0000000</td>
+<td align="left">unit_isic_4digit</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
-<td align="left">surface engineering</td>
-<td align="left">all</td>
-<td align="right">0.3333333</td>
+<td align="left">tent</td>
+<td align="left">unit_tilt_subsector</td>
+<td align="right">1</td>
 </tr>
 <tr class="even">
-<td align="left">surface engineering</td>
-<td align="left">tilt_subsector</td>
-<td align="right">1.0000000</td>
+<td align="left">sheds, construction site</td>
+<td align="left">unit</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">unit_isic_4digit</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">unit_tilt_subsector</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">open space amenities</td>
+<td align="left">unit</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">open space amenities</td>
+<td align="left">unit_isic_4digit</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">open space amenities</td>
+<td align="left">unit_tilt_subsector</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">garden fittings</td>
+<td align="left">unit</td>
+<td align="right">1</td>
 </tr>
 </tbody>
 </table>
@@ -835,15 +877,23 @@ emission rank average
 <tbody>
 <tr>
 <td style="text-align:left;width: 4cm; ">
-all
+unit
 </td>
 <td style="text-align:center;width: 4cm; ">
-0.6666667
+0.9047619
 </td>
 </tr>
 <tr>
 <td style="text-align:left;width: 4cm; ">
-tilt_subsector
+unit_isic_4digit
+</td>
+<td style="text-align:center;width: 4cm; ">
+1.0000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 4cm; ">
+unit_tilt_subsector
 </td>
 <td style="text-align:center;width: 4cm; ">
 1.0000000
@@ -888,24 +938,34 @@ grouping_sector<a class="anchor" aria-label="anchor" href="#average-reduction-ta
 <td align="left">NZ 2050_2050</td>
 </tr>
 <tr class="odd">
-<td align="left">surface engineering</td>
-<td align="right">0.09</td>
+<td align="left">sheds, construction site</td>
+<td align="right">0.18</td>
 <td align="left">1.5C RPS_2030</td>
 </tr>
 <tr class="even">
-<td align="left">surface engineering</td>
-<td align="right">0.95</td>
+<td align="left">sheds, construction site</td>
+<td align="right">0.98</td>
 <td align="left">1.5C RPS_2050</td>
 </tr>
 <tr class="odd">
-<td align="left">surface engineering</td>
-<td align="right">0.22</td>
+<td align="left">sheds, construction site</td>
+<td align="right">0.40</td>
 <td align="left">NZ 2050_2030</td>
 </tr>
 <tr class="even">
-<td align="left">surface engineering</td>
-<td align="right">0.96</td>
+<td align="left">sheds, construction site</td>
+<td align="right">0.97</td>
 <td align="left">NZ 2050_2050</td>
+</tr>
+<tr class="odd">
+<td align="left">open space amenities</td>
+<td align="right">0.18</td>
+<td align="left">1.5C RPS_2030</td>
+</tr>
+<tr class="even">
+<td align="left">open space amenities</td>
+<td align="right">0.98</td>
+<td align="left">1.5C RPS_2050</td>
 </tr>
 </tbody>
 </table>
@@ -931,7 +991,7 @@ sector target average
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 4cm; ">
-0.135
+0.1685714
 </td>
 </tr>
 <tr>
@@ -939,7 +999,7 @@ sector target average
 1.5C RPS_2050
 </td>
 <td style="text-align:center;width: 4cm; ">
-0.965
+0.9714286
 </td>
 </tr>
 <tr>
@@ -947,7 +1007,7 @@ sector target average
 NZ 2050_2030
 </td>
 <td style="text-align:center;width: 4cm; ">
-0.310
+0.3414286
 </td>
 </tr>
 <tr>
@@ -955,7 +1015,7 @@ NZ 2050_2030
 NZ 2050_2050
 </td>
 <td style="text-align:center;width: 4cm; ">
-0.965
+0.9638095
 </td>
 </tr>
 </tbody>
@@ -969,11 +1029,11 @@ benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-s
 <div class="section level4">
 <h4 id="input-6">Input<a class="anchor" aria-label="anchor" href="#input-6"></a>
 </h4>
-<table class="table">
+<table style="width:100%;" class="table">
 <colgroup>
-<col width="28%">
-<col width="40%">
 <col width="30%">
+<col width="41%">
+<col width="27%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">product</th>
@@ -983,53 +1043,103 @@ benchmarks<a class="anchor" aria-label="anchor" href="#average-transition-risk-s
 <tbody>
 <tr class="odd">
 <td align="left">tent</td>
-<td align="left">1.5C RPS_2030_all</td>
-<td align="right">0.5900000</td>
+<td align="left">1.5C RPS_2030_unit</td>
+<td align="right">0.590</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">1.5C RPS_2050_all</td>
-<td align="right">0.9900000</td>
+<td align="left">1.5C RPS_2050_unit</td>
+<td align="right">0.990</td>
 </tr>
 <tr class="odd">
 <td align="left">tent</td>
-<td align="left">NZ 2050_2030_all</td>
-<td align="right">0.7000000</td>
+<td align="left">NZ 2050_2030_unit</td>
+<td align="right">0.700</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">NZ 2050_2050_all</td>
-<td align="right">0.9850000</td>
+<td align="left">NZ 2050_2050_unit</td>
+<td align="right">0.985</td>
 </tr>
 <tr class="odd">
 <td align="left">tent</td>
-<td align="left">1.5C RPS_2030_tilt_subsector</td>
-<td align="right">0.5900000</td>
+<td align="left">1.5C RPS_2030_unit_isic_4digit</td>
+<td align="right">0.590</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">1.5C RPS_2050_tilt_subsector</td>
-<td align="right">0.9900000</td>
+<td align="left">1.5C RPS_2050_unit_isic_4digit</td>
+<td align="right">0.990</td>
 </tr>
 <tr class="odd">
 <td align="left">tent</td>
-<td align="left">NZ 2050_2030_tilt_subsector</td>
-<td align="right">0.7000000</td>
+<td align="left">NZ 2050_2030_unit_isic_4digit</td>
+<td align="right">0.700</td>
 </tr>
 <tr class="even">
 <td align="left">tent</td>
-<td align="left">NZ 2050_2050_tilt_subsector</td>
-<td align="right">0.9850000</td>
+<td align="left">NZ 2050_2050_unit_isic_4digit</td>
+<td align="right">0.985</td>
 </tr>
 <tr class="odd">
-<td align="left">surface engineering</td>
-<td align="left">1.5C RPS_2030_all</td>
-<td align="right">0.2116667</td>
+<td align="left">tent</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
 </tr>
 <tr class="even">
-<td align="left">surface engineering</td>
-<td align="left">1.5C RPS_2050_all</td>
-<td align="right">0.6416667</td>
+<td align="left">tent</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">1.5C RPS_2030_unit</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">1.5C RPS_2050_unit</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">NZ 2050_2030_unit</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">NZ 2050_2050_unit</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">1.5C RPS_2030_unit_isic_4digit</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">1.5C RPS_2050_unit_isic_4digit</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">NZ 2050_2030_unit_isic_4digit</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">NZ 2050_2050_unit_isic_4digit</td>
+<td align="right">0.985</td>
 </tr>
 </tbody>
 </table>
@@ -1056,13 +1166,13 @@ transition risk average
 <tbody>
 <tr>
 <td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
-all
+unit
 </td>
 <td style="text-align:left;">
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.4008333
+0.5366667
 </td>
 </tr>
 <tr>
@@ -1070,34 +1180,34 @@ all
 1.5C RPS_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.8158333
+0.9380952
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.4883333
+0.6230952
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.8158333
+0.9342857
 </td>
 </tr>
 <tr>
 <td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
-tilt_subsector
+unit_isic_4digit
 </td>
 <td style="text-align:left;">
 1.5C RPS_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.5675000
+0.5842857
 </td>
 </tr>
 <tr>
@@ -1105,23 +1215,407 @@ tilt_subsector
 1.5C RPS_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.9825000
+0.9857143
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2030
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.6550000
+0.6707143
 </td>
 </tr>
 <tr>
 <td style="text-align:left;">
-NZ 2050
+NZ 2050_2050
 </td>
 <td style="text-align:center;width: 5cm; ">
-0.9825000
+0.9819048
+</td>
+</tr>
+<tr>
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="4">
+unit_tilt_subsector
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5842857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9857143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.6707143
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9819048
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section level3">
+<h3 id="average-transition-risk-scores-of-all-ep-products-per-tilt_subsector-and-country">Average transition risk scores of all ep products per tilt_subsector
+and country<a class="anchor" aria-label="anchor" href="#average-transition-risk-scores-of-all-ep-products-per-tilt_subsector-and-country"></a>
+</h3>
+<div class="section level4">
+<h4 id="input-7">Input<a class="anchor" aria-label="anchor" href="#input-7"></a>
+</h4>
+<table class="table">
+<colgroup>
+<col width="28%">
+<col width="8%">
+<col width="38%">
+<col width="24%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">product</th>
+<th align="left">country</th>
+<th align="left">grouping_transition_risk</th>
+<th align="right">transition_risk_score</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">austria</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">austria</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">austria</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">austria</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">austria</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">austria</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">sheds, construction site</td>
+<td align="left">austria</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">sheds, construction site</td>
+<td align="left">austria</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">open space amenities</td>
+<td align="left">france</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">open space amenities</td>
+<td align="left">france</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">open space amenities</td>
+<td align="left">france</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">open space amenities</td>
+<td align="left">france</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">garden fittings</td>
+<td align="left">france</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">garden fittings</td>
+<td align="left">france</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">garden fittings</td>
+<td align="left">france</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">garden fittings</td>
+<td align="left">france</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">germany</td>
+<td align="left">1.5C RPS_2030_unit_tilt_subsector</td>
+<td align="right">0.590</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">germany</td>
+<td align="left">1.5C RPS_2050_unit_tilt_subsector</td>
+<td align="right">0.990</td>
+</tr>
+<tr class="odd">
+<td align="left">tent</td>
+<td align="left">germany</td>
+<td align="left">NZ 2050_2030_unit_tilt_subsector</td>
+<td align="right">0.700</td>
+</tr>
+<tr class="even">
+<td align="left">tent</td>
+<td align="left">germany</td>
+<td align="left">NZ 2050_2050_unit_tilt_subsector</td>
+<td align="right">0.985</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section level4">
+<h4 id="output-6">Output<a class="anchor" aria-label="anchor" href="#output-6"></a>
+</h4>
+<table class="table  lightable-classic" style="font-family: Roboto Condensed; width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+Average transition risk scores of all ep products per transition risk
+group per country
+</caption>
+<thead><tr>
+<th style="text-align:left;">
+group
+</th>
+<th style="text-align:left;">
+country
+</th>
+<th style="text-align:left;">
+scenario
+</th>
+<th style="text-align:center;">
+transition risk average
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;width: 3cm; vertical-align: top !important;" rowspan="20">
+unit_tilt_subsector
+</td>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+austria
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.7000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9850000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+france
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.7000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9850000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+germany
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5807692
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9830769
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.6526923
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9800000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+netherlands
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.7000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9850000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="4">
+spain
+</td>
+<td style="text-align:left;">
+1.5C RPS_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.5900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1.5C RPS_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9900000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2030
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.7000000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+NZ 2050_2050
+</td>
+<td style="text-align:center;width: 5cm; ">
+0.9850000
 </td>
 </tr>
 </tbody>
